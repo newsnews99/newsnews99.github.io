@@ -32,7 +32,7 @@
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 10px 20px;
+      padding: 4px 20px;
       gap: 10px;
     }
 
@@ -123,7 +123,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: flex-end;
       max-width: 1200px;
       margin: 0 auto;
       gap: 20px;
@@ -144,6 +144,10 @@
 
     .footer-section.left {
       text-align: left;
+    }
+
+    footer form {
+      margin-top: 5px;
     }
 
     footer form textarea {
@@ -181,10 +185,18 @@
       margin-left: auto;
     }
 
-    footer p {
+    footer p,
+    footer h3,
+    footer a {
       font-size: 14px;
       line-height: 1.4;
       margin: 6px 0;
+      text-transform: none;
+    }
+
+    footer h3 {
+      margin-bottom: 0;
+      font-size: 16px;
     }
 
     @media (max-width: 768px) {
@@ -294,7 +306,15 @@
 
   <footer>
     <div class="footer-content">
-      <!-- Left: Anonymous Tips Box -->
+      <!-- 1st: Flag and message -->
+      <div class="footer-section right">
+        <img src="australian_flag.png" alt="Australian Flag">
+        <p>
+          The Federation Sun proudly honours the European Australians who built this nation – taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shape our country. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
+        </p>
+      </div>
+
+      <!-- 2nd: Anonymous Tips -->
       <div class="footer-section left">
         <h3>Anonymous Tips</h3>
         <form action="https://formspree.io/f/meokpdkj" method="POST">
@@ -305,19 +325,11 @@
         </form>
       </div>
 
-      <!-- Center: Logo and Info -->
+      <!-- 3rd: Logo and contact -->
       <div class="footer-section center">
         <img src="fedsun__logo_footer.png" alt="Federation Sun Logo">
         <p>For all enquiries contact:<br><a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a></p>
         <p>The Federation Sun © 2025</p>
-      </div>
-
-      <!-- Right: Australian Flag and Message -->
-      <div class="footer-section right">
-        <img src="australian_flag.png" alt="Australian Flag">
-        <p>
-          The Federation Sun proudly honours the European Australians who built this nation – taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shape our country. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
-        </p>
       </div>
     </div>
   </footer>
