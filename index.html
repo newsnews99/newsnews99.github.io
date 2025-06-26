@@ -114,16 +114,42 @@
       display: block;
     }
 
-    .top-image {
+    .headline-wrapper {
+      display: flex;
+      gap: 40px;
       max-width: 1200px;
+      width: 100%;
+      margin-bottom: 40px;
+      align-items: flex-start;
+    }
+
+    .headline-left-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .headline-right-block {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .top-image {
+      width: 100%;
+      max-width: 100%;
       height: auto;
       max-height: 500px;
-      margin: 20px auto;
     }
 
     .main-headline {
       font-size: 96px;
-      margin: 0 0 20px;
+      margin: 0;
+      text-align: left;
     }
 
     .main-headline a {
@@ -138,10 +164,8 @@
     .headline-columns {
       display: flex;
       justify-content: space-between;
-      width: 100%;
-      max-width: 1200px;
       gap: 20px;
-      margin-bottom: 40px;
+      width: 100%;
     }
 
     .headline-column {
@@ -149,6 +173,8 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      text-align: left;
+      align-items: flex-start;
     }
 
     .headline-column a {
@@ -160,21 +186,6 @@
 
     .headline-column a:hover {
       color: gold;
-    }
-
-    .headline-left {
-      text-align: left;
-      align-items: flex-start;
-    }
-
-    .headline-center {
-      text-align: center;
-      align-items: center;
-    }
-
-    .headline-right {
-      text-align: right;
-      align-items: flex-end;
     }
 
     footer {
@@ -337,9 +348,18 @@
         width: auto;
       }
 
+      .headline-wrapper {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .main-headline {
+        text-align: center;
+      }
+
       .headline-columns {
         flex-direction: column;
-        align-items: stretch;
+        gap: 20px;
       }
 
       .headline-column {
@@ -373,12 +393,8 @@
     </div>
   </div>
 
-  <img src="fedsun_logo_underconstruction2.png" alt="Top Image" class="top-image" />
-
-  <h1 class="main-headline"><a href="#">HEADLINE</a></h1>
-
-  <div class="headline-columns">
-    <div class="headline-column headline-left">
+  <div class="headline-wrapper">
+    <div class="headline-left-column">
       <a href="#">Breaking: National Rally Shakes Canberra</a>
       <a href="#">Education Overhaul Proposed in Parliament</a>
       <a href="#">Fuel Prices Drop to Two-Year Low</a>
@@ -390,29 +406,35 @@
       <a href="#">New Defence Contracts Signed</a>
       <a href="#">Gold Coast Hosts National Games</a>
     </div>
-    <div class="headline-column headline-center">
-      <a href="#">Tech Giants Face New Regulation</a>
-      <a href="#">Melbourne Expands Green Zones</a>
-      <a href="#">PM Announces Climate Summit</a>
-      <a href="#">Regional Jobs Surge in Q1</a>
-      <a href="#">National Curriculum Reviewed</a>
-      <a href="#">Police Seize Record Drug Haul</a>
-      <a href="#">Indigenous Affairs Reform Pushed</a>
-      <a href="#">Tourism Rebounds Post-Pandemic</a>
-      <a href="#">New Public Transport Funding</a>
-      <a href="#">Cybersecurity Bill Passed</a>
-    </div>
-    <div class="headline-column headline-right">
-      <a href="#">University Fees Frozen for 2025</a>
-      <a href="#">Interest Rates Hold Steady</a>
-      <a href="#">Sydney Flood Risk Reviewed</a>
-      <a href="#">Wages Grow in Health Sector</a>
-      <a href="#">Farmers Receive New Subsidies</a>
-      <a href="#">Renewable Energy Plan Unveiled</a>
-      <a href="#">Diplomatic Visit from Canada</a>
-      <a href="#">AFL Grand Final Sell-Out</a>
-      <a href="#">Youth Crime Down in NT</a>
-      <a href="#">Koala Habitat Protected</a>
+    <div class="headline-right-block">
+      <img src="fedsun_logo_underconstruction2.png" alt="Top Image" class="top-image" />
+      <h1 class="main-headline"><a href="#">HEADLINE</a></h1>
+      <div class="headline-columns">
+        <div class="headline-column">
+          <a href="#">Tech Giants Face New Regulation</a>
+          <a href="#">Melbourne Expands Green Zones</a>
+          <a href="#">PM Announces Climate Summit</a>
+          <a href="#">Regional Jobs Surge in Q1</a>
+          <a href="#">National Curriculum Reviewed</a>
+          <a href="#">Police Seize Record Drug Haul</a>
+          <a href="#">Indigenous Affairs Reform Pushed</a>
+          <a href="#">Tourism Rebounds Post-Pandemic</a>
+          <a href="#">New Public Transport Funding</a>
+          <a href="#">Cybersecurity Bill Passed</a>
+        </div>
+        <div class="headline-column">
+          <a href="#">University Fees Frozen for 2025</a>
+          <a href="#">Interest Rates Hold Steady</a>
+          <a href="#">Sydney Flood Risk Reviewed</a>
+          <a href="#">Wages Grow in Health Sector</a>
+          <a href="#">Farmers Receive New Subsidies</a>
+          <a href="#">Renewable Energy Plan Unveiled</a>
+          <a href="#">Diplomatic Visit from Canada</a>
+          <a href="#">AFL Grand Final Sell-Out</a>
+          <a href="#">Youth Crime Down in NT</a>
+          <a href="#">Koala Habitat Protected</a>
+        </div>
+      </div>
     </div>
   </div>
 
