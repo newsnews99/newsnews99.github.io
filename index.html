@@ -28,18 +28,31 @@
     }
 
     .banner-content {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
       max-width: 1200px;
-      height: 100%;
       margin: 0 auto;
       padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      height: 100%;
     }
 
     .left-section {
       display: flex;
       align-items: center;
+      justify-content: flex-start;
+    }
+
+    .center-section {
+      display: flex;
+      justify-content: center;
+    }
+
+    .right-section {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
     }
 
     .left-section img.logo {
@@ -54,14 +67,12 @@
       line-height: 1;
       justify-content: flex-end;
       height: 60px;
-      text-align: right;
+      transform: translateY(3px);
     }
 
-    .center-section {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      padding: 0 20px;
+    .time-date > div {
+      margin: 0;
+      padding: 0;
     }
 
     .center-section input[type="text"] {
@@ -72,12 +83,6 @@
       border: none;
       border-radius: 4px;
       outline: none;
-    }
-
-    .right-section {
-      display: flex;
-      align-items: center;
-      gap: 12px;
     }
 
     .right-section img {
@@ -106,30 +111,51 @@
 
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
-      .banner-content {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
+      .banner {
         height: auto;
       }
 
-      .center-section {
-        order: 2;
+      .banner-content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+      }
+
+      .left-section {
+        justify-content: space-between;
         width: 100%;
-        justify-content: flex-start;
-        margin-top: 8px;
-        margin-bottom: 4px;
+      }
+
+      .center-section {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        order: 2;
       }
 
       .center-section input[type="text"] {
-        width: 100%;
+        width: 70%;
+        max-width: none;
+      }
+
+      .right-section {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
       }
 
       .time-date {
         align-items: flex-end;
         text-align: right;
+      }
+
+      body {
+        padding-left: 5vw;
+        padding-right: 5vw;
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
@@ -147,11 +173,10 @@
 
       <div class="center-section">
         <input type="text" placeholder="Search..." />
-      </div>
-
-      <div class="right-section">
-        <img src="icon_x.png" alt="X">
-        <img src="icon_gab.png" alt="Gab">
+        <div class="right-section">
+          <img src="icon_x.png" alt="X">
+          <img src="icon_gab.png" alt="Gab">
+        </div>
       </div>
     </div>
   </div>
