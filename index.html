@@ -5,31 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Centered Image</title>
   <style>
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
     }
 
-    .image-container {
+    body {
+      display: flex;
+      justify-content: center; /* horizontal centering */
+      align-items: center;     /* vertical centering */
       padding-left: 30%;
       padding-right: 30%;
-      width: 100%;
       box-sizing: border-box;
-      display: flex;
-      justify-content: center;
     }
 
     img {
       max-width: 100%;
       height: auto;
+      display: block;
     }
   </style>
 </head>
 <body>
-  <div class="image-container">
-    <img src="your-image.jpg" alt="Centered Image" />
-  </div>
+  <img src="your-image.jpg" alt="Centered Image" />
 </body>
 </html>
