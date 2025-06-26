@@ -186,6 +186,10 @@
       color: gold;
     }
 
+    .latest-news {
+      order: 2;
+    }
+
     footer {
       background-color: #1e1e1e;
       color: white;
@@ -347,15 +351,26 @@
       }
 
       .headline-wrapper {
-        flex-direction: column-reverse;
+        flex-direction: column;
         gap: 40px;
       }
 
+      .headline-right-block {
+        display: flex;
+        flex-direction: column;
+      }
+
       .main-headline {
+        order: 1;
         text-align: center;
       }
 
+      .headline-column.latest-news {
+        order: 2;
+      }
+
       .headline-columns {
+        order: 3;
         flex-direction: column;
         gap: 20px;
       }
@@ -396,22 +411,24 @@
   </div>
 
   <div class="headline-wrapper">
-    <div class="headline-column">
-      <h2 class="section-title">Latest News</h2>
-      <div><a href="#">Breaking: National Rally Shakes Canberra</a><img src="news1.jpg" alt=""></div>
-      <div><a href="#">Education Overhaul Proposed in Parliament</a><img src="news2.jpg" alt=""></div>
-      <div><a href="#">Fuel Prices Drop to Two-Year Low</a><img src="news3.jpg" alt=""></div>
-      <div><a href="#">Federal Budget Delivers Surplus</a><img src="news4.jpg" alt=""></div>
-      <div><a href="#">Immigration Numbers Revised for 2025</a><img src="news5.jpg" alt=""></div>
-      <div><a href="#">Veterans Honoured in ANZAC Ceremony</a><img src="news6.jpg" alt=""></div>
-      <div><a href="#">Housing Market Sees Unusual Dip</a><img src="news7.jpg" alt=""></div>
-      <div><a href="#">Farmers Push Back Against Land Bill</a><img src="news8.jpg" alt=""></div>
-      <div><a href="#">New Defence Contracts Signed</a><img src="news9.jpg" alt=""></div>
-      <div><a href="#">Gold Coast Hosts National Games</a><img src="news10.jpg" alt=""></div>
-    </div>
     <div class="headline-right-block">
       <img src="fedsun_logo_underconstruction2.png" alt="Top Image" class="top-image" />
       <h1 class="main-headline"><a href="#">HEADLINE</a></h1>
+
+      <div class="headline-column latest-news">
+        <h2 class="section-title">Latest News</h2>
+        <div><a href="#">Breaking: National Rally Shakes Canberra</a><img src="news1.jpg" alt=""></div>
+        <div><a href="#">Education Overhaul Proposed in Parliament</a><img src="news2.jpg" alt=""></div>
+        <div><a href="#">Fuel Prices Drop to Two-Year Low</a><img src="news3.jpg" alt=""></div>
+        <div><a href="#">Federal Budget Delivers Surplus</a><img src="news4.jpg" alt=""></div>
+        <div><a href="#">Immigration Numbers Revised for 2025</a><img src="news5.jpg" alt=""></div>
+        <div><a href="#">Veterans Honoured in ANZAC Ceremony</a><img src="news6.jpg" alt=""></div>
+        <div><a href="#">Housing Market Sees Unusual Dip</a><img src="news7.jpg" alt=""></div>
+        <div><a href="#">Farmers Push Back Against Land Bill</a><img src="news8.jpg" alt=""></div>
+        <div><a href="#">New Defence Contracts Signed</a><img src="news9.jpg" alt=""></div>
+        <div><a href="#">Gold Coast Hosts National Games</a><img src="news10.jpg" alt=""></div>
+      </div>
+
       <div class="headline-columns">
         <div class="headline-column">
           <a href="#">Tech Giants Face New Regulation</a>
