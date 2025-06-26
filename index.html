@@ -110,10 +110,12 @@
       padding: 20px;
       color: #ccc;
       font-size: 14px;
-      text-transform: none;
     }
 
-    /* Mobile Fix */
+    footer p {
+      text-transform: none !important;
+    }
+
     @media (max-width: 768px) {
       .banner-content {
         display: flex;
@@ -162,7 +164,6 @@
 <body>
   <div class="banner">
     <div class="banner-content">
-      <!-- Top row -->
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
         <div class="time-date">
@@ -171,7 +172,6 @@
         </div>
       </div>
 
-      <!-- Search + icons row -->
       <div class="center-right-row">
         <div class="center-section">
           <input type="text" placeholder="Search..." />
