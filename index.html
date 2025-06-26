@@ -5,17 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Federation Sun 2025</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     html, body {
       height: 100%;
       margin: 0;
+      font-family: 'Bebas Neue', sans-serif;
       background-color: #1e1e1e;
+      color: white;
+    }
+
+    .banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background-color: #1e1e1e;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+    }
+
+    .banner-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .left-section, .center-section, .right-section {
+      display: flex;
+      align-items: center;
+    }
+
+    .left-section img.logo {
+      height: 60px;
+      margin-right: 10px;
+    }
+
+    .time-date {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .center-section input[type="text"] {
+      width: 300px;
+      padding: 8px 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .right-section img {
+      height: 28px;
+      margin-left: 12px;
+      transition: transform 0.2s;
+    }
+
+    .right-section img:hover {
+      transform: scale(1.1);
     }
 
     body {
+      padding-top: 80px; /* offset for fixed banner */
       display: flex;
-      justify-content: center; /* horizontal centering */
-      align-items: center;     /* vertical centering */
+      justify-content: center;
+      align-items: center;
       padding-left: 30%;
       padding-right: 30%;
       box-sizing: border-box;
@@ -29,6 +90,51 @@
   </style>
 </head>
 <body>
+  <div class="banner">
+    <div class="banner-content">
+      <div class="left-section">
+        <img src="fedsun_logo_webtransparent.png" alt="Logo" class="logo" />
+        <div class="time-date">
+          <div id="current-time">--:--</div>
+          <div id="current-date">--/--/----</div>
+        </div>
+      </div>
+
+      <div class="center-section">
+        <input type="text" placeholder="Search..." />
+      </div>
+
+      <div class="right-section">
+        <img src="icon_gab.png" alt="Gab">
+      </div>
+    </div>
+  </div>
+
   <img src="fedsun_logo_webtransparent.png" alt="Centered Image" />
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const melTime = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Melbourne',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(now);
+
+      const melDate = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Melbourne',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).format(now);
+
+      document.getElementById('current-time').textContent = melTime;
+      document.getElementById('current-date').textContent = melDate;
+    }
+
+    updateTime();
+    setInterval(updateTime, 60000); // Update every minute
+  </script>
 </body>
 </html>
