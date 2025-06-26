@@ -71,6 +71,11 @@
       transform: translateY(3px);
     }
 
+    .time-date > div {
+      margin: 0;
+      padding: 0;
+    }
+
     .center-section input[type="text"] {
       width: 100%;
       max-width: 300px;
@@ -105,37 +110,35 @@
       display: block;
     }
 
-    /* Mobile Fix */
+    /* Mobile Styles */
     @media (max-width: 768px) {
       .banner-content {
         display: flex;
         flex-direction: column;
         gap: 10px;
+        align-items: stretch;
       }
 
       .left-section {
-        width: 100%;
         justify-content: space-between;
-      }
-
-      .center-right-row {
-        display: flex;
-        flex-direction: row;
         width: 100%;
-        gap: 10px;
       }
 
       .center-section {
         flex: 1;
+        width: 100%;
       }
 
       .center-section input[type="text"] {
         width: 100%;
+        max-width: none;
       }
 
       .right-section {
-        flex-shrink: 0;
+        flex-wrap: wrap;
+        justify-content: flex-end;
         gap: 10px;
+        width: 100%;
       }
 
       .time-date {
@@ -155,7 +158,6 @@
 <body>
   <div class="banner">
     <div class="banner-content">
-      <!-- Top row -->
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
         <div class="time-date">
@@ -164,17 +166,15 @@
         </div>
       </div>
 
-      <!-- Search + icons (stacked on desktop grid, flex on mobile) -->
-      <div class="center-right-row">
-        <div class="center-section">
-          <input type="text" placeholder="Search..." />
-        </div>
-        <div class="right-section">
-          <img src="icon_x.png" alt="X">
-          <img src="icon_telegram.png" alt="Telegram">
-          <img src="icon_youtube.png" alt="YouTube">
-          <img src="icon_gab.png" alt="Gab">
-        </div>
+      <div class="center-section">
+        <input type="text" placeholder="Search..." />
+      </div>
+
+      <div class="right-section">
+        <img src="icon_x.png" alt="X">
+        <img src="icon_telegram.png" alt="Telegram">
+        <img src="icon_youtube.png" alt="YouTube">
+        <img src="icon_gab.png" alt="Gab">
       </div>
     </div>
   </div>
