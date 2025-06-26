@@ -116,27 +116,34 @@
       }
 
       .banner-content {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
+        display: flex;
+        flex-direction: column;
         gap: 10px;
-      }
-
-      .left-section, .center-section, .right-section {
-        width: 100%;
+        align-items: stretch;
       }
 
       .left-section {
         justify-content: space-between;
+        width: 100%;
       }
 
       .center-section {
-        justify-content: center;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         order: 2;
       }
 
+      .center-section input[type="text"] {
+        width: 70%;
+        max-width: none;
+      }
+
       .right-section {
+        display: flex;
         justify-content: flex-end;
-        order: 3;
+        gap: 12px;
       }
 
       .time-date {
@@ -166,11 +173,10 @@
 
       <div class="center-section">
         <input type="text" placeholder="Search..." />
-      </div>
-
-      <div class="right-section">
-        <img src="icon_x.png" alt="X">
-        <img src="icon_gab.png" alt="Gab">
+        <div class="right-section">
+          <img src="icon_x.png" alt="X">
+          <img src="icon_gab.png" alt="Gab">
+        </div>
       </div>
     </div>
   </div>
