@@ -117,23 +117,34 @@
     .top-image {
       width: 100%;
       max-width: 1200px;
-      margin: 20px auto;
+      margin: 20px auto 20px;
     }
 
     .main-headline {
-      font-size: 48px;
-      margin: 20px 0 20px;
+      font-size: 96px;
+      margin: 0 0 20px;
+    }
+
+    .main-headline a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .main-headline a:hover {
+      color: gold;
     }
 
     .headline-list {
       width: 100%;
-      max-width: 800px;
+      max-width: 1200px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 10px;
       margin-bottom: 40px;
       text-align: left;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
 
     .headline-list a {
@@ -336,7 +347,9 @@
   <!-- New image and headlines -->
   <img src="fedsun_logo_underconstruction2.png" alt="Top Image" class="top-image" />
 
-  <h1 class="main-headline">HEADLINE</h1>
+  <h1 class="main-headline">
+    <a href="#">HEADLINE</a>
+  </h1>
 
   <div class="headline-list">
     <a href="#">Breaking: National Rally Shakes Canberra</a>
