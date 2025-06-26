@@ -178,6 +178,95 @@
       align-items: flex-end;
     }
 
+    footer {
+      background-color: #1e1e1e;
+      color: white;
+      padding: 20px 20px;
+      border-top: 1px solid #444;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 20px;
+    }
+
+    .footer-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-section.left {
+      text-align: left;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+
+    .footer-section.center {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-section.right {
+      text-align: right;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    footer img {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+
+    footer p,
+    footer h3,
+    footer a {
+      font-size: 14px;
+      line-height: 1.4;
+      margin: 6px 0;
+      text-transform: none;
+    }
+
+    footer h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      text-transform: none;
+    }
+
+    footer form {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    footer form textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      font-family: inherit;
+      border-radius: 4px;
+      border: none;
+      box-sizing: border-box;
+      margin: 0 0 10px 0;
+    }
+
+    footer form button {
+      background-color: #fff;
+      color: #1e1e1e;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      font-family: inherit;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
     @media (max-width: 768px) {
       .banner-content {
         flex-direction: column;
@@ -251,11 +340,10 @@
 
       .headline-columns {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
       }
 
       .headline-column {
-        width: 100%;
         align-items: flex-start !important;
         text-align: left !important;
       }
@@ -286,14 +374,10 @@
     </div>
   </div>
 
-  <!-- Image and Headline -->
   <img src="fedsun_logo_underconstruction2.png" alt="Top Image" class="top-image" />
 
-  <h1 class="main-headline">
-    <a href="#">HEADLINE</a>
-  </h1>
+  <h1 class="main-headline"><a href="#">HEADLINE</a></h1>
 
-  <!-- Multi-column headlines -->
   <div class="headline-columns">
     <div class="headline-column headline-left">
       <a href="#">Breaking: National Rally Shakes Canberra</a>
