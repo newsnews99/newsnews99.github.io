@@ -33,6 +33,7 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 10px 20px;
+      gap: 10px;
     }
 
     .left-section {
@@ -44,6 +45,7 @@
     .center-section {
       display: flex;
       justify-content: center;
+      width: 100%;
     }
 
     .right-section {
@@ -51,6 +53,7 @@
       align-items: center;
       justify-content: flex-end;
       gap: 12px;
+      width: 100%;
     }
 
     .left-section img.logo {
@@ -112,26 +115,18 @@
       .banner-content {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
         gap: 10px;
+        align-items: stretch;
       }
 
       .left-section {
-        width: 100%;
         justify-content: space-between;
-      }
-
-      .center-right-wrapper {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
         width: 100%;
       }
 
       .center-section {
         flex: 1;
+        width: 100%;
       }
 
       .center-section input[type="text"] {
@@ -140,10 +135,10 @@
       }
 
       .right-section {
-        flex-shrink: 0;
         flex-wrap: wrap;
         justify-content: flex-end;
         gap: 10px;
+        width: 100%;
       }
 
       .time-date {
@@ -163,7 +158,6 @@
 <body>
   <div class="banner">
     <div class="banner-content">
-      <!-- Row 1 on mobile, left column on desktop -->
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
         <div class="time-date">
@@ -172,17 +166,15 @@
         </div>
       </div>
 
-      <!-- Row 2 on mobile: search and icons side by side -->
-      <div class="center-right-wrapper">
-        <div class="center-section">
-          <input type="text" placeholder="Search..." />
-        </div>
-        <div class="right-section">
-          <img src="icon_x.png" alt="X">
-          <img src="icon_telegram.png" alt="Telegram">
-          <img src="icon_youtube.png" alt="YouTube">
-          <img src="icon_gab.png" alt="Gab">
-        </div>
+      <div class="center-section">
+        <input type="text" placeholder="Search..." />
+      </div>
+
+      <div class="right-section">
+        <img src="icon_x.png" alt="X">
+        <img src="icon_telegram.png" alt="Telegram">
+        <img src="icon_youtube.png" alt="YouTube">
+        <img src="icon_gab.png" alt="Gab">
       </div>
     </div>
   </div>
