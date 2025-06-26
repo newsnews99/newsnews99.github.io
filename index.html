@@ -28,78 +28,47 @@
     }
 
     .banner-content {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  height: 100%;
-}
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 100%;
+    }
 
-   .left-section {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
+    .left-section {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
 
-.center-section {
-  display: flex;
-  justify-content: center;
-}
+    .center-section {
+      display: flex;
+      justify-content: center;
+    }
 
-.right-section {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-}
+    .right-section {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
 
-    @media (max-width: 768px) {
-  .banner-content {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 10px;
-  }
-
-  .left-section, .center-section, .right-section {
-    width: 100%;
-  }
-
-  .left-section {
-    justify-content: space-between;
-  }
-
-  .center-section {
-    justify-content: center;
-    order: 2;
-  }
-
-  .right-section {
-    justify-content: flex-end;
-    order: 3;
-  }
-
-  .time-date {
-    align-items: flex-end;
-    text-align: right;
-  }
-}
     .left-section img.logo {
       height: 60px;
       margin-right: 10px;
     }
 
-   .time-date {
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-  line-height: 1;
-  justify-content: flex-end;
-  height: 60px;
-  transform: translateY(3px); /* ADJUST THIS if needed */
-}
-
+    .time-date {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      line-height: 1;
+      justify-content: flex-end;
+      height: 60px;
+      transform: translateY(3px);
+    }
 
     .time-date > div {
       margin: 0;
@@ -118,7 +87,6 @@
 
     .right-section img {
       height: 28px;
-      margin-left: 12px;
       transition: transform 0.2s;
     }
 
@@ -148,20 +116,32 @@
       }
 
       .banner-content {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 10px;
       }
 
       .left-section, .center-section, .right-section {
         width: 100%;
-        justify-content: space-between;
-        margin-bottom: 10px;
       }
 
-      .center-section input[type="text"] {
-        width: 100%;
-        max-width: none;
+      .left-section {
+        justify-content: space-between;
+      }
+
+      .center-section {
+        justify-content: center;
+        order: 2;
+      }
+
+      .right-section {
+        justify-content: flex-end;
+        order: 3;
+      }
+
+      .time-date {
+        align-items: flex-end;
+        text-align: right;
       }
 
       body {
@@ -189,7 +169,7 @@
       </div>
 
       <div class="right-section">
-        <img src="icon_x.png" alt="Gab">
+        <img src="icon_x.png" alt="X">
         <img src="icon_gab.png" alt="Gab">
       </div>
     </div>
