@@ -95,7 +95,7 @@
     }
 
     body {
-      padding-top: 140px; /* Ensures content isn't hidden under fixed header */
+      padding-top: 140px;
       padding-left: 10vw;
       padding-right: 10vw;
       display: flex;
@@ -248,11 +248,11 @@
       }
 
       .footer-section.right {
-        order: 2;
+        order: 2; /* Tips comes before logo */
       }
 
       .footer-section.center {
-        order: 3;
+        order: 3; /* Logo last on mobile */
       }
 
       footer form {
@@ -328,16 +328,6 @@
         </p>
       </div>
 
-      <!-- Tips section -->
-      <div class="footer-section right">
-        <h3>Anonymous tips</h3>
-        <form action="https://formspree.io/f/meokpdkj" method="POST">
-          <textarea name="tip" placeholder="Type your tip here..."></textarea>
-          <input type="hidden" name="_redirect" value="https://newsnews99.github.io/thanks.html" />
-          <button type="submit">Send tip</button>
-        </form>
-      </div>
-
       <!-- Logo section -->
       <div class="footer-section center">
         <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
@@ -346,6 +336,16 @@
           <a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a>
         </p>
         <p>The Federation Sun © 2025</p>
+      </div>
+
+      <!-- Tips section -->
+      <div class="footer-section right">
+        <h3>Anonymous tips</h3>
+        <form action="https://formspree.io/f/meokpdkj" method="POST">
+          <textarea name="tip" placeholder="Type your tip here..."></textarea>
+          <input type="hidden" name="_redirect" value="https://newsnews99.github.io/thanks.html" />
+          <button type="submit">Send tip</button>
+        </form>
       </div>
     </div>
   </footer>
