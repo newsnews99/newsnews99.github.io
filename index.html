@@ -21,6 +21,7 @@
       top: 0;
       left: 0;
       width: 100%;
+      height: 80px;
       background-color: #1e1e1e;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
       z-index: 1000;
@@ -28,9 +29,9 @@
 
     .banner-content {
       max-width: 1200px;
+      height: 100%;
       margin: 0 auto;
       padding: 0 20px;
-      height: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -53,7 +54,6 @@
       line-height: 1;
       justify-content: flex-end;
       height: 60px;
-      transform: translateY(3px);
       text-align: right;
     }
 
@@ -61,6 +61,7 @@
       flex: 1;
       display: flex;
       justify-content: center;
+      padding: 0 20px;
     }
 
     .center-section input[type="text"] {
@@ -106,49 +107,29 @@
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
       .banner-content {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
         height: auto;
-        gap: 10px;
-        align-items: stretch;
-      }
-
-      .top-row {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .bottom-row {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
       }
 
       .center-section {
+        order: 2;
+        width: 100%;
         justify-content: flex-start;
-        flex: unset;
+        margin-top: 8px;
+        margin-bottom: 4px;
       }
 
       .center-section input[type="text"] {
-        width: 70%;
-        max-width: none;
+        width: 100%;
       }
 
       .time-date {
         align-items: flex-end;
-      }
-
-      .right-section {
-        justify-content: flex-end;
-      }
-
-      body {
-        padding-left: 5vw;
-        padding-right: 5vw;
-        flex-direction: column;
-        text-align: center;
+        text-align: right;
       }
     }
   </style>
@@ -156,25 +137,21 @@
 <body>
   <div class="banner">
     <div class="banner-content">
-      <div class="top-row">
-        <div class="left-section">
-          <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
-          <div class="time-date">
-            <div id="current-time">--:--</div>
-            <div id="current-date">--/--/----</div>
-          </div>
-        </div>
-
-        <div class="right-section">
-          <img src="icon_x.png" alt="X">
-          <img src="icon_gab.png" alt="Gab">
+      <div class="left-section">
+        <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+        <div class="time-date">
+          <div id="current-time">--:--</div>
+          <div id="current-date">--/--/----</div>
         </div>
       </div>
 
-      <div class="bottom-row">
-        <div class="center-section">
-          <input type="text" placeholder="Search..." />
-        </div>
+      <div class="center-section">
+        <input type="text" placeholder="Search..." />
+      </div>
+
+      <div class="right-section">
+        <img src="icon_x.png" alt="X">
+        <img src="icon_gab.png" alt="Gab">
       </div>
     </div>
   </div>
