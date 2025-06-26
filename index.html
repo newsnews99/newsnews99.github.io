@@ -44,16 +44,13 @@
     .center-section {
       display: flex;
       justify-content: center;
-      width: 100%;
     }
 
     .right-section {
       display: flex;
-      justify-content: flex-end;
       align-items: center;
+      justify-content: flex-end;
       gap: 12px;
-      flex-wrap: wrap;
-      width: 100%;
     }
 
     .left-section img.logo {
@@ -115,22 +112,22 @@
       .banner-content {
         display: flex;
         flex-direction: column;
-        gap: 10px;
         align-items: stretch;
+        gap: 10px;
       }
 
       .left-section {
-        justify-content: space-between;
         width: 100%;
+        justify-content: space-between;
       }
 
       .center-right-wrapper {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         align-items: center;
-        width: 100%;
+        justify-content: space-between;
         gap: 10px;
+        width: 100%;
       }
 
       .center-section {
@@ -143,9 +140,10 @@
       }
 
       .right-section {
-        gap: 10px;
-        flex-wrap: nowrap;
+        flex-shrink: 0;
+        flex-wrap: wrap;
         justify-content: flex-end;
+        gap: 10px;
       }
 
       .time-date {
@@ -165,7 +163,7 @@
 <body>
   <div class="banner">
     <div class="banner-content">
-      <!-- Row 1 -->
+      <!-- Row 1 on mobile, left column on desktop -->
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
         <div class="time-date">
@@ -174,7 +172,7 @@
         </div>
       </div>
 
-      <!-- Row 2 (mobile) or columns 2 & 3 (desktop) -->
+      <!-- Row 2 on mobile: search and icons side by side -->
       <div class="center-right-wrapper">
         <div class="center-section">
           <input type="text" placeholder="Search..." />
