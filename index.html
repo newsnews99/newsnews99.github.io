@@ -21,7 +21,6 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: auto;
       background-color: #1e1e1e;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
       z-index: 1000;
@@ -44,17 +43,17 @@
 
     .center-section {
       display: flex;
-      flex-direction: row;
-      align-items: center;
       justify-content: center;
-      gap: 10px;
+      width: 100%;
     }
 
     .right-section {
       display: flex;
-      align-items: center;
       justify-content: flex-end;
+      align-items: center;
       gap: 12px;
+      flex-wrap: wrap;
+      width: 100%;
     }
 
     .left-section img.logo {
@@ -111,25 +110,31 @@
       display: block;
     }
 
-    /* Mobile Responsive Styles */
+    /* Mobile Styles */
     @media (max-width: 768px) {
       .banner-content {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
         gap: 10px;
+        align-items: stretch;
       }
 
       .left-section {
-        width: 100%;
         justify-content: space-between;
+        width: 100%;
+      }
+
+      .center-right-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
       }
 
       .center-section {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        width: 100%;
+        flex: 1;
       }
 
       .center-section input[type="text"] {
@@ -138,10 +143,9 @@
       }
 
       .right-section {
-        justify-content: center;
-        flex-wrap: wrap;
         gap: 10px;
-        width: 100%;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
       }
 
       .time-date {
@@ -161,6 +165,7 @@
 <body>
   <div class="banner">
     <div class="banner-content">
+      <!-- Row 1 -->
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
         <div class="time-date">
@@ -169,8 +174,11 @@
         </div>
       </div>
 
-      <div class="center-section">
-        <input type="text" placeholder="Search..." />
+      <!-- Row 2 (mobile) or columns 2 & 3 (desktop) -->
+      <div class="center-right-wrapper">
+        <div class="center-section">
+          <input type="text" placeholder="Search..." />
+        </div>
         <div class="right-section">
           <img src="icon_x.png" alt="X">
           <img src="icon_telegram.png" alt="Telegram">
