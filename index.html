@@ -62,18 +62,17 @@
     }
 
     .time-date {
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-  line-height: 1;
-  justify-content: flex-end;
-  align-items: flex-start;
-  height: 60px;
-  margin: 0;
-  text-align: left;
-  transform: translateY(2px);
-}
-
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      line-height: 1;
+      justify-content: flex-end;
+      align-items: flex-start;
+      height: 60px;
+      margin: 0;
+      text-align: left;
+      transform: translateY(3px);
+    }
 
     .time-date > div {
       margin: 0;
@@ -239,6 +238,7 @@
       .time-date {
         align-items: flex-end;
         text-align: right;
+        transform: translateY(3px);
       }
 
       .footer-content {
@@ -256,6 +256,7 @@
 
       .footer-section.left {
         order: 1;
+        margin-bottom: 5px; /* Reduced by 15px */
       }
 
       .footer-section.right {
