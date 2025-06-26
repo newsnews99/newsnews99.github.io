@@ -21,7 +21,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 80px;
+      height: auto;
       background-color: #1e1e1e;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
       z-index: 1000;
@@ -33,8 +33,7 @@
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 20px;
-      height: 100%;
+      padding: 10px 20px;
     }
 
     .left-section {
@@ -45,7 +44,10 @@
 
     .center-section {
       display: flex;
+      flex-direction: row;
+      align-items: center;
       justify-content: center;
+      gap: 10px;
     }
 
     .right-section {
@@ -53,7 +55,6 @@
       align-items: center;
       justify-content: flex-end;
       gap: 12px;
-      flex-wrap: wrap;
     }
 
     .left-section img.logo {
@@ -96,7 +97,7 @@
     }
 
     body {
-      padding-top: 80px;
+      padding-top: 100px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -113,20 +114,34 @@
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
       .banner-content {
-        grid-template-columns: 1fr 2fr 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      .left-section {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .center-section {
+        flex-direction: column;
+        align-items: center;
         gap: 8px;
-        padding: 0 10px;
+        width: 100%;
       }
 
       .center-section input[type="text"] {
         width: 100%;
-        max-width: 100%;
+        max-width: none;
       }
 
       .right-section {
-        justify-content: flex-end;
-        gap: 8px;
+        justify-content: center;
         flex-wrap: wrap;
+        gap: 10px;
+        width: 100%;
       }
 
       .time-date {
@@ -156,13 +171,12 @@
 
       <div class="center-section">
         <input type="text" placeholder="Search..." />
-      </div>
-
-      <div class="right-section">
-        <img src="icon_x.png" alt="X">
-        <img src="icon_telegram.png" alt="Telegram">
-        <img src="icon_youtube.png" alt="YouTube">
-        <img src="icon_gab.png" alt="Gab">
+        <div class="right-section">
+          <img src="icon_x.png" alt="X">
+          <img src="icon_telegram.png" alt="Telegram">
+          <img src="icon_youtube.png" alt="YouTube">
+          <img src="icon_gab.png" alt="Gab">
+        </div>
       </div>
     </div>
   </div>
