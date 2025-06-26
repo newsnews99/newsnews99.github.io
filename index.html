@@ -123,13 +123,24 @@
       align-items: flex-start;
     }
 
-    .headline-left-column {
+    .headline-column {
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 10px;
       text-align: left;
       align-items: flex-start;
+    }
+
+    .headline-column a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    .headline-column a:hover {
+      color: gold;
     }
 
     .headline-right-block {
@@ -166,26 +177,6 @@
       justify-content: space-between;
       gap: 20px;
       width: 100%;
-    }
-
-    .headline-column {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      text-align: left;
-      align-items: flex-start;
-    }
-
-    .headline-column a {
-      color: white;
-      text-decoration: none;
-      font-size: 20px;
-      transition: color 0.3s;
-    }
-
-    .headline-column a:hover {
-      color: gold;
     }
 
     footer {
@@ -394,7 +385,7 @@
   </div>
 
   <div class="headline-wrapper">
-    <div class="headline-left-column">
+    <div class="headline-column">
       <a href="#">Breaking: National Rally Shakes Canberra</a>
       <a href="#">Education Overhaul Proposed in Parliament</a>
       <a href="#">Fuel Prices Drop to Two-Year Low</a>
