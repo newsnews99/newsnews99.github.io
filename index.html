@@ -71,7 +71,7 @@
       height: 60px;
       margin: 0;
       text-align: left;
-      transform: translateY(2px);
+      transform: translateY(3px);
     }
 
     .time-date > div {
@@ -99,7 +99,6 @@
     }
 
     body {
-      padding-top: 140px;
       padding-left: 10vw;
       padding-right: 10vw;
       display: flex;
@@ -256,7 +255,7 @@
 
       .footer-section.left {
         order: 1;
-        margin-bottom: 0px; 
+        margin-bottom: 5px; /* Reduced by 15px */
       }
 
       .footer-section.right {
@@ -273,10 +272,6 @@
 
       footer form button {
         width: auto;
-      }
-
-      body {
-        padding-top: 140px;
       }
     }
   </style>
@@ -332,6 +327,20 @@
 
     updateTime();
     setInterval(updateTime, 60000);
+  </script>
+
+  <script>
+    function adjustBodyPadding() {
+      const banner = document.querySelector('.banner');
+      const body = document.body;
+      if (banner) {
+        const bannerHeight = banner.offsetHeight;
+        body.style.paddingTop = bannerHeight + 'px';
+      }
+    }
+
+    window.addEventListener('load', adjustBodyPadding);
+    window.addEventListener('resize', adjustBodyPadding);
   </script>
 
   <footer>
