@@ -13,6 +13,7 @@
       font-family: 'Bebas Neue', sans-serif;
       background-color: #1e1e1e;
       color: white;
+      box-sizing: border-box;
     }
 
     .banner {
@@ -46,25 +47,23 @@
       margin-right: 10px;
     }
 
-    .time-date  {
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-  line-height: 1;
-  justify-content: flex-end;
-  height: 60px; /* same as logo */
-  padding: 0;
-  margin: 0;
-}
+    .time-date {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      line-height: 1;
+      justify-content: flex-end;
+      height: 60px;
+    }
 
-.time-date > div {
-  margin: 0;
-  padding: 0;
-}
-
+    .time-date > div {
+      margin: 0;
+      padding: 0;
+    }
 
     .center-section input[type="text"] {
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       padding: 8px 12px;
       font-size: 16px;
       border: none;
@@ -83,19 +82,49 @@
     }
 
     body {
-      padding-top: 80px; /* offset for fixed banner */
+      padding-top: 80px;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-left: 30%;
-      padding-right: 30%;
-      box-sizing: border-box;
+      padding-left: 10vw;
+      padding-right: 10vw;
     }
 
     img {
       max-width: 100%;
       height: auto;
       display: block;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      .banner {
+        height: auto;
+      }
+
+      .banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+      }
+
+      .left-section, .center-section, .right-section {
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .center-section input[type="text"] {
+        width: 100%;
+        max-width: none;
+      }
+
+      body {
+        padding-left: 5vw;
+        padding-right: 5vw;
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -104,7 +133,7 @@
     <div class="banner-content">
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
-         <div class="time-date">
+        <div class="time-date">
           <div id="current-time">--:--</div>
           <div id="current-date">--/--/----</div>
         </div>
@@ -112,7 +141,6 @@
 
       <div class="center-section">
         <input type="text" placeholder="Search..." />
-       
       </div>
 
       <div class="right-section">
