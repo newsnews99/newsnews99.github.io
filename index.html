@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Federation Sun 2025</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     html, body {
+      height: 100%;
       margin: 0;
       font-family: 'Bebas Neue', sans-serif;
       background-color: #1e1e1e;
@@ -31,7 +32,7 @@
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px 20px;
+      padding: 10px 20px;
       gap: 10px;
     }
 
@@ -90,14 +91,12 @@
     }
 
     body {
-      padding-top: 140px;
-      padding-left: 10vw;
-      padding-right: 10vw;
+      padding-top: 100px;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      text-align: center;
+      padding-left: 10vw;
+      padding-right: 10vw;
     }
 
     img {
@@ -106,123 +105,37 @@
       display: block;
     }
 
-    footer {
-      background-color: #1e1e1e;
-      color: white;
-      padding: 20px 20px;
-      border-top: 1px solid #444;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      max-width: 1200px;
-      margin: 0 auto;
-      gap: 20px;
-    }
-
-    .footer-section {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .footer-section.left {
-      text-align: left;
-      align-items: flex-start;
-      justify-content: flex-end;
-    }
-
-    .footer-section.center {
-      text-align: center;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .footer-section.right {
-      text-align: right;
-      align-items: flex-end;
-      justify-content: flex-end;
-    }
-
-    footer img {
-      max-width: 100px;
-      margin-bottom: 10px;
-    }
-
-    footer p,
-    footer h3,
-    footer a {
-      font-size: 14px;
-      line-height: 1.4;
-      margin: 6px 0;
-      text-transform: none;
-    }
-
-    footer h3 {
-      margin-bottom: 10px;
-      font-size: 16px;
-      text-transform: none;
-    }
-
-    footer form {
-      width: 100%;
-      max-width: 300px;
-    }
-
-    footer form textarea {
-      width: 100%;
-      height: 100px;
-      padding: 10px;
-      font-family: inherit;
-      border-radius: 4px;
-      border: none;
-      box-sizing: border-box;
-      margin: 10px 0;
-    }
-
-    footer form button {
-      background-color: #fff;
-      color: #1e1e1e;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      font-family: inherit;
-      cursor: pointer;
-      width: 100%;
-      box-sizing: border-box;
-      margin: 0;
-    }
-
+    /* Mobile Fix */
     @media (max-width: 768px) {
       .banner-content {
+        display: flex;
         flex-direction: column;
         gap: 10px;
-        align-items: stretch;
-        display: flex;
       }
 
       .left-section {
-        justify-content: space-between;
         width: 100%;
+        justify-content: space-between;
+      }
+
+      .center-right-row {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 10px;
       }
 
       .center-section {
         flex: 1;
-        width: 100%;
       }
 
       .center-section input[type="text"] {
         width: 100%;
-        max-width: none;
       }
 
       .right-section {
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        flex-shrink: 0;
         gap: 10px;
-        width: 100%;
       }
 
       .time-date {
@@ -230,35 +143,11 @@
         text-align: right;
       }
 
-      .footer-content {
+      body {
+        padding-left: 5vw;
+        padding-right: 5vw;
         flex-direction: column;
-        align-items: center;
         text-align: center;
-      }
-
-      .footer-section {
-        text-align: center !important;
-        align-items: center !important;
-      }
-
-      .footer-section.left {
-        order: 1;
-      }
-
-      .footer-section.right {
-        order: 2;
-      }
-
-      .footer-section.center {
-        order: 3;
-      }
-
-      footer form {
-        max-width: none;
-      }
-
-      footer form button {
-        width: auto;
       }
     }
   </style>
@@ -266,6 +155,7 @@
 <body>
   <div class="banner">
     <div class="banner-content">
+      <!-- Top row -->
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
         <div class="time-date">
@@ -274,17 +164,17 @@
         </div>
       </div>
 
-      <div class="center-section">
-        <input type="text" placeholder="Search..." />
-      </div>
-
-      <div class="right-section">
-        <img src="icon_gab.png" alt="Gab" />
-        <img src="icon_facebook.png" alt="Facebook" />
-        <img src="icon_instagram.png" alt="Instagram" />
-        <img src="icon_telegram.png" alt="Telegram" />
-        <img src="icon_x.png" alt="X" />
-        <img src="icon_youtube.png" alt="YouTube" />
+      <!-- Search + icons (stacked on desktop grid, flex on mobile) -->
+      <div class="center-right-row">
+        <div class="center-section">
+          <input type="text" placeholder="Search..." />
+        </div>
+        <div class="right-section">
+          <img src="icon_x.png" alt="X">
+          <img src="icon_telegram.png" alt="Telegram">
+          <img src="icon_youtube.png" alt="YouTube">
+          <img src="icon_gab.png" alt="Gab">
+        </div>
       </div>
     </div>
   </div>
@@ -313,39 +203,7 @@
     }
 
     updateTime();
-    setInterval(updateTime, 60000);
+    setInterval(updateTime, 60000); // Update every minute
   </script>
-
-  <footer>
-    <div class="footer-content">
-      <!-- Flag section -->
-      <div class="footer-section left">
-        <img src="australian_flag.png" alt="Australian Flag" />
-        <p>
-          The Federation Sun proudly honours the European Australians who built this nation – taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shape our country. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
-        </p>
-      </div>
-
-      <!-- Logo section -->
-      <div class="footer-section center">
-        <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
-        <p>
-          For all enquiries contact:<br />
-          <a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a>
-        </p>
-        <p>The Federation Sun © 2025</p>
-      </div>
-
-      <!-- Tips section -->
-      <div class="footer-section right">
-        <h3>Anonymous tips</h3>
-        <form action="https://formspree.io/f/meokpdkj" method="POST">
-          <textarea name="tip" placeholder="Type your tip here..."></textarea>
-          <input type="hidden" name="_redirect" value="https://newsnews99.github.io/thanks.html" />
-          <button type="submit">Send tip</button>
-        </form>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>
