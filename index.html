@@ -102,6 +102,8 @@
       align-items: center;
       padding-left: 10vw;
       padding-right: 10vw;
+      flex-direction: column;
+      text-align: center;
     }
 
     img {
@@ -110,7 +112,54 @@
       display: block;
     }
 
-    /* Mobile Styles */
+    footer {
+      background-color: #1e1e1e;
+      color: white;
+      padding: 40px 10vw;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      border-top: 1px solid #444;
+    }
+
+    footer div {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    footer form textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      font-family: inherit;
+      border-radius: 4px;
+      border: none;
+    }
+
+    footer form button {
+      background-color: #fff;
+      color: #1e1e1e;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      font-family: inherit;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    footer img {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      font-size: 14px;
+      line-height: 1.4;
+      margin: 6px 0;
+    }
+
     @media (max-width: 768px) {
       .banner-content {
         display: flex;
@@ -146,10 +195,13 @@
         text-align: right;
       }
 
-      body {
-        padding-left: 5vw;
-        padding-right: 5vw;
+      footer {
         flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+
+      footer div {
         text-align: center;
       }
     }
@@ -177,7 +229,6 @@
         <img src="icon_telegram.png" alt="Telegram">
         <img src="icon_x.png" alt="X">
         <img src="icon_youtube.png" alt="YouTube">
-        
       </div>
     </div>
   </div>
@@ -208,5 +259,37 @@
     updateTime();
     setInterval(updateTime, 60000); // Update every minute
   </script>
+
+
+  <footer>
+    <!-- Left: Anonymous Tips Box -->
+    <div>
+      <h3>Anonymous Tips</h3>
+      <form action="https://formspree.io/f/meokpdkj" method="POST">
+        <textarea name="tip" placeholder="Type your tip here..."></textarea>
+        <input type="hidden" name="_redirect" value="https://newsnews99.github.io/thanks.html">
+        <br>
+        <button type="submit">Send Tip</button>
+      </form>
+    </div>
+
+    <!-- Center: Logo and Info -->
+    <div style="text-align:center;">
+      <img src="fedsun_logo_webtransparent.png" alt="Federation Sun Logo">
+      <p>For all enquiries contact:<br><a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a></p>
+      <p>The Federation Sun © 2025</p>
+    </div>
+
+    <!-- Right: Australian Flag and Message -->
+    <div style="text-align:right;">
+      <img src="australian_flag.png" alt="Australian Flag">
+      <p>
+        The Federation Sun proudly honours the European Australians who built this nation – taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shape our country. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
+
 </body>
 </html>
