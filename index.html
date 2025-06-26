@@ -117,6 +117,8 @@
     .top-image {
       width: 100%;
       max-width: 1200px;
+      height: auto;
+      max-height: 500px;
       margin: 20px auto 20px;
     }
 
@@ -134,27 +136,31 @@
       color: gold;
     }
 
-    .headline-list {
+    .headline-columns {
+      display: flex;
+      justify-content: space-between;
       width: 100%;
       max-width: 1200px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 40px;
       text-align: left;
-      padding: 0 20px;
-      box-sizing: border-box;
+      gap: 20px;
+      margin-bottom: 40px;
     }
 
-    .headline-list a {
+    .headline-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .headline-column a {
       color: white;
       text-decoration: none;
       font-size: 20px;
       transition: color 0.3s;
     }
 
-    .headline-list a:hover {
+    .headline-column a:hover {
       color: gold;
     }
 
@@ -317,6 +323,11 @@
       footer form button {
         width: auto;
       }
+
+      .headline-columns {
+        flex-direction: column;
+        gap: 20px;
+      }
     }
   </style>
 </head>
@@ -326,7 +337,7 @@
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
         <div class="time-date">
-          <div id="current-time">--:--</div>
+          <div><span id="current-time">--:--</span> AEST</div>
           <div id="current-date">--/--/----</div>
         </div>
       </div>
@@ -344,24 +355,51 @@
     </div>
   </div>
 
-  <!-- New image and headlines -->
+  <!-- Image and Headline -->
   <img src="fedsun_logo_underconstruction2.png" alt="Top Image" class="top-image" />
 
   <h1 class="main-headline">
     <a href="#">HEADLINE</a>
   </h1>
 
-  <div class="headline-list">
-    <a href="#">Breaking: National Rally Shakes Canberra</a>
-    <a href="#">Education Overhaul Proposed in Parliament</a>
-    <a href="#">Fuel Prices Drop to Two-Year Low</a>
-    <a href="#">Federal Budget Delivers Surplus</a>
-    <a href="#">Immigration Numbers Revised for 2025</a>
-    <a href="#">Veterans Honoured in ANZAC Ceremony</a>
-    <a href="#">Housing Market Sees Unusual Dip</a>
-    <a href="#">Farmers Push Back Against Land Bill</a>
-    <a href="#">New Defence Contracts Signed</a>
-    <a href="#">Gold Coast Hosts National Games</a>
+  <!-- Multi-column headlines -->
+  <div class="headline-columns">
+    <div class="headline-column">
+      <a href="#">Breaking: National Rally Shakes Canberra</a>
+      <a href="#">Education Overhaul Proposed in Parliament</a>
+      <a href="#">Fuel Prices Drop to Two-Year Low</a>
+      <a href="#">Federal Budget Delivers Surplus</a>
+      <a href="#">Immigration Numbers Revised for 2025</a>
+      <a href="#">Veterans Honoured in ANZAC Ceremony</a>
+      <a href="#">Housing Market Sees Unusual Dip</a>
+      <a href="#">Farmers Push Back Against Land Bill</a>
+      <a href="#">New Defence Contracts Signed</a>
+      <a href="#">Gold Coast Hosts National Games</a>
+    </div>
+    <div class="headline-column">
+      <a href="#">Tech Giants Face New Regulation</a>
+      <a href="#">Melbourne Expands Green Zones</a>
+      <a href="#">PM Announces Climate Summit</a>
+      <a href="#">Regional Jobs Surge in Q1</a>
+      <a href="#">National Curriculum Reviewed</a>
+      <a href="#">Police Seize Record Drug Haul</a>
+      <a href="#">Indigenous Affairs Reform Pushed</a>
+      <a href="#">Tourism Rebounds Post-Pandemic</a>
+      <a href="#">New Public Transport Funding</a>
+      <a href="#">Cybersecurity Bill Passed</a>
+    </div>
+    <div class="headline-column">
+      <a href="#">University Fees Frozen for 2025</a>
+      <a href="#">Interest Rates Hold Steady</a>
+      <a href="#">Sydney Flood Risk Reviewed</a>
+      <a href="#">Wages Grow in Health Sector</a>
+      <a href="#">Farmers Receive New Subsidies</a>
+      <a href="#">Renewable Energy Plan Unveiled</a>
+      <a href="#">Diplomatic Visit from Canada</a>
+      <a href="#">AFL Grand Final Sell-Out</a>
+      <a href="#">Youth Crime Down in NT</a>
+      <a href="#">Koala Habitat Protected</a>
+    </div>
   </div>
 
   <script>
