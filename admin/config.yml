@@ -13,4 +13,35 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Body", name: "body", widget: "text" }
+      - { label: "URL", name: "url", widget: "string" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "ticker"
+    label: "News Ticker"
+    folder: "content/ticker"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Ticker Text", name: "text", widget: "string" }
+
+  - name: "polls"
+    label: "Polls"
+    folder: "content/polls"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Question", name: "question", widget: "string" }
+      - label: "Options"
+        name: "options"
+        widget: "list"
+        field: { label: "Option", name: "option", widget: "string" }
+
+  - name: "videos"
+    label: "Video Embeds"
+    folder: "content/videos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Embed URL", name: "embed", widget: "string" }
