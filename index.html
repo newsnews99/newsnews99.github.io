@@ -174,7 +174,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-top: -8px; /* Updated for proper vertical alignment */
+      margin-top: 15px; /* Adjusted to align top of text with image */
     }
 
     .headline-right .column {
@@ -207,7 +207,7 @@
       color: white;
       padding: 20px 20px;
       border-top: 1px solid #444;
-      margin-top: 20px; /* Adds space above footer */
+      margin-top: 20px;
     }
 
     .footer-content {
@@ -371,6 +371,11 @@
 
       .headline-columns .column a,
       .headline-right .column a {
+        text-align: center;
+      }
+
+      .headline-columns .column:first-child {
+        align-items: center;
         text-align: center;
       }
 
