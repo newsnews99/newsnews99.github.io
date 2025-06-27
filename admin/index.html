@@ -9,15 +9,15 @@
   </head>
   <body>
     <div id="nc-root"></div>
-
     <script>
       window.CMS_MANUAL_INIT = true;
       fetch('/admin/config.yml')
-        .then(response => response.text())
-        .then(config => {
-          const yaml = window.jsyaml.load(config);
-          CMS.init({ config: yaml });
-        });
+        .then(res => res.text())
+        .then(text => {
+          const config = jsyaml.load(text);
+          window.CMS.init({ config });
+        })
+        .catch(err => console.error("CMS config load failed:", err));
     </script>
   </body>
 </html>
