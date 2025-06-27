@@ -463,7 +463,8 @@
       const body = document.body;
       if (banner) {
         const bannerHeight = banner.offsetHeight;
-        body.style.paddingTop = bannerHeight + 'px';
+        const extraPadding = 15;
+        body.style.paddingTop = (bannerHeight + extraPadding) + 'px';
       }
     }
 
