@@ -158,7 +158,7 @@
     }
 
     .headline-columns .column:first-child {
-      align-items: flex-start; /* left-align Latest column */
+      align-items: flex-start;
     }
 
     .headline-columns .column:first-child a.latest-title {
@@ -173,7 +173,7 @@
       width: 50%;
       display: flex;
       justify-content: space-between;
-      align-items: flex-start; /* Align top with image */
+      align-items: flex-start;
       margin-top: 0;
     }
 
@@ -207,6 +207,7 @@
       color: white;
       padding: 20px 20px;
       border-top: 1px solid #444;
+      margin-top: 20px;
     }
 
     .footer-content {
@@ -368,8 +369,8 @@
         text-align: center;
       }
 
-      .headline-columns .column a,
-      .headline-right .column a {
+      .headline-columns .column:first-child {
+        align-items: center;
         text-align: center;
       }
 
