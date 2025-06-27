@@ -109,11 +109,6 @@
       transform: translateY(2px);
     }
 
-    .time-date > div {
-      margin: 0;
-      padding: 0;
-    }
-
     .main-headline-container {
       display: flex;
       flex-wrap: wrap;
@@ -123,11 +118,11 @@
       max-width: 1200px;
     }
 
-    .headline-left,
-    .headline-right {
-      width: 48%;
+    .headline-left {
+      width: 50%;
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
     }
 
     .main-headline-img {
@@ -152,8 +147,8 @@
 
     .headline-columns {
       display: flex;
-      justify-content: space-between;
       width: 100%;
+      justify-content: space-between;
     }
 
     .headline-columns .column {
@@ -163,33 +158,46 @@
       text-align: left;
     }
 
-    .headline-columns .column:first-child::before {
-      content: "Latest";
-      text-align: center;
-      display: block;
-      margin-bottom: 10px;
+    .headline-columns .column:first-child {
+      align-items: center;
+    }
+
+    .headline-columns .column:first-child a.latest-title {
       color: gold;
-      font-size: 20px;
-      text-decoration: underline;
+      font-size: 18px;
+      margin-bottom: 10px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .headline-right {
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
     }
 
     .headline-right .column {
       display: flex;
       flex-direction: column;
+      width: 48%;
       text-align: left;
-      margin-left: 20px;
+      padding-left: 20px;
     }
 
-    .headline-columns a,
-    .headline-right a {
+    .headline-columns .column:not(:first-child) {
+      padding-left: 20px;
+    }
+
+    .headline-right a,
+    .headline-columns a {
       color: white;
       text-decoration: none;
       margin: 4px 0;
       font-size: 16px;
     }
 
-    .headline-columns a:hover,
-    .headline-right a:hover {
+    .headline-right a:hover,
+    .headline-columns a:hover {
       color: gold;
     }
 
@@ -250,7 +258,6 @@
     footer h3 {
       margin-bottom: 10px;
       font-size: 16px;
-      text-transform: none;
     }
 
     footer form {
@@ -306,22 +313,11 @@
         width: 100%;
       }
 
-      .center-section input[type="text"] {
-        width: 100%;
-        max-width: none;
-      }
-
       .right-section {
         flex-wrap: wrap;
         justify-content: flex-end;
         gap: 10px;
         width: 100%;
-      }
-
-      .time-date {
-        align-items: flex-end;
-        text-align: right;
-        transform: translateY(2px);
       }
 
       .main-headline-container {
@@ -331,10 +327,18 @@
         margin-top: 0;
       }
 
-      .headline-left,
-      .headline-right {
+      .headline-left, .headline-right {
         width: 100%;
         margin-bottom: 20px;
+      }
+
+      .main-headline-img {
+        width: 100%;
+      }
+
+      .main-headline-link {
+        width: 100%;
+        text-align: center;
         padding: 0 20px;
         box-sizing: border-box;
       }
@@ -349,6 +353,8 @@
       .headline-right .column {
         width: 100%;
         margin-bottom: 10px;
+        padding: 0 20px;
+        box-sizing: border-box;
         text-align: center;
       }
 
@@ -370,26 +376,9 @@
         margin-bottom: 20px;
       }
 
-      .footer-section.left {
-        order: 1;
-        margin-bottom: 5px;
-      }
-
-      .footer-section.right {
-        order: 2;
-      }
-
-      .footer-section.center {
-        order: 3;
-      }
-
-      footer form {
-        max-width: none;
-      }
-
-      footer form button {
-        width: auto;
-      }
+      .footer-section.left { order: 1; }
+      .footer-section.right { order: 2; }
+      .footer-section.center { order: 3; }
     }
   </style>
 </head>
@@ -423,6 +412,7 @@
       <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
       <div class="headline-columns">
         <div class="column">
+          <a href="#" class="latest-title">Latest</a>
           <a href="#">HEADLINE 1</a>
           <a href="#">HEADLINE 2</a>
           <a href="#">HEADLINE 3</a>
@@ -471,9 +461,7 @@
 
     updateTime();
     setInterval(updateTime, 60000);
-  </script>
 
-  <script>
     function adjustBodyPadding() {
       const banner = document.querySelector('.banner');
       const body = document.body;
@@ -492,7 +480,7 @@
       <div class="footer-section left">
         <img src="australian_flag.png" alt="Australian Flag" />
         <p>
-          The Federation Sun proudly honours the European Australians who built this nation – taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shape our country. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
+          The Federation Sun proudly honours the European Australians who built this nation – taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shape our country.
         </p>
       </div>
       <div class="footer-section center">
