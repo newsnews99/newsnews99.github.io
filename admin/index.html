@@ -8,20 +8,21 @@
   <body>
     <div id="nc-root"></div>
 
-    <!-- ✅ Load js-yaml BEFORE Decap CMS -->
+    <!-- ✅ Load js-yaml FIRST -->
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 
-    <!-- ✅ Use the UMD version of Decap CMS -->
+    <!-- ✅ Load the UMD version of Decap CMS -->
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.umd.js"></script>
 
-    <!-- ✅ Manual CMS Init -->
+    <!-- ✅ Manual CMS init -->
     <script>
       window.CMS_MANUAL_INIT = true;
+
       fetch("/admin/config.yml")
         .then(res => res.text())
         .then(text => {
           const config = window.jsyaml.load(text);
-          window.CMS.init(config); // ✅ This will now work!
+          window.CMS.init(config);
         })
         .catch(err => console.error("CMS config load failed:", err));
     </script>
