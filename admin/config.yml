@@ -1,0 +1,59 @@
+backend:
+  name: github
+  repo: your-username/your-repo-name
+  branch: main
+  site_domain: your-site.github.io
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "ticker"
+    label: "News Ticker"
+    files:
+      - label: "Ticker Headlines"
+        name: "ticker"
+        file: "data/ticker.json"
+        fields:
+          - label: "Headlines"
+            name: "headlines"
+            widget: "list"
+
+  - name: "headlines"
+    label: "Main Headlines"
+    files:
+      - label: "Headlines"
+        name: "headlines"
+        file: "data/headlines.json"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Link", name: "link", widget: "string" }
+
+  - name: "polls"
+    label: "Polls"
+    files:
+      - label: "Poll Data"
+        name: "polls"
+        file: "data/polls.json"
+        fields:
+          - label: "Question"
+            name: "question"
+            widget: "string"
+          - label: "Options"
+            name: "options"
+            widget: "list"
+
+  - name: "videos"
+    label: "Video Embeds"
+    files:
+      - label: "Videos"
+        name: "videos"
+        file: "data/videos.json"
+        fields:
+          - label: "Video URLs"
+            name: "videos"
+            widget: "list"
