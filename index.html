@@ -207,7 +207,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin-top: 120px;
+      margin-top: 15px; /* Updated to 15px */
       width: 100%;
       max-width: 1200px;
     }
@@ -385,11 +385,9 @@
           <div id="current-date">--/--/----</div>
         </div>
       </div>
-
       <div class="center-section">
         <input type="text" placeholder="Search..." />
       </div>
-
       <div class="right-section">
         <img src="icon_gab.png" alt="Gab" />
         <img src="icon_facebook.png" alt="Facebook" />
@@ -463,8 +461,7 @@
       const body = document.body;
       if (banner) {
         const bannerHeight = banner.offsetHeight;
-        const extraPadding = 15;
-        body.style.paddingTop = (bannerHeight + extraPadding) + 'px';
+        body.style.paddingTop = bannerHeight + 'px'; // Removed extra 15px
       }
     }
 
@@ -494,7 +491,7 @@
         <h3>Anonymous tips</h3>
         <form action="https://formspree.io/f/meokpdkj" method="POST">
           <textarea name="tip" placeholder="Type your tip here..."></textarea>
-          <input type="hidden" name="_redirect" value="https://newsnews99.github.io/thanks.html" />
+          <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
           <button type="submit">Send tip</button>
         </form>
       </div>
