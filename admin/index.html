@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Federation Sun Admin</title>
-    <link rel="stylesheet" href="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.css" />
-  </head>
-  <body>
-    <div id="nc-root"></div>
+<head>
+  <meta charset="UTF-8" />
+  <title>Federation Sun Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/decap-cms@3.0.0/dist/decap-cms.css" />
+</head>
+<body>
+  <div id="nc-root"></div>
 
-    <!-- ✅ Load js-yaml with global window.jsyaml -->
-    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <!-- ✅ Load js-yaml -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 
-    <!-- ✅ Load Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.umd.js"></script>
+  <!-- ✅ Load Decap CMS UMD via jsDelivr (not unpkg!) -->
+  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.0.0/dist/decap-cms.umd.js"></script>
 
-    <!-- ✅ Manual CMS init with delay -->
-    <script>
-  window.CMS_MANUAL_INIT = true;
+  <!-- ✅ Manual CMS init -->
+  <script>
+    window.CMS_MANUAL_INIT = true;
 
-  function waitForDeps(retries = 10) {
-    console.log("Checking deps...", {
-      CMS: window.CMS,
-      jsyaml: window.jsyaml
-    });
+    function waitForDeps(retries = 10) {
+      console.log("Checking deps...", {
+        CMS: window.CMS,
+        jsyaml: window.jsyaml
+      });
 
-    if (window.CMS && window.jsyaml) {
-      fetch("/admin/config.yml")
-        .then(res => res.text())
-        .then(text => {
-          const config = window.jsyaml.load(text);
-          window.CMS.init(config);
-        })
-        .catch(err => console.error("CMS config load failed:", err));
-    } else if (retries > 0) {
-      setTimeout(() => waitForDeps(retries - 1), 300);
-    } else {
-      console.error("CMS or jsyaml not available after waiting.");
+      if (window.CMS && window.jsyaml) {
+        fetch("/admin/config.yml")
+          .then(res => res.text())
+          .then(text => {
+            const config = window.jsyaml.load(text);
+            window.CMS.init(config);
+          })
+          .catch(err => console.error("CMS config load failed:", err));
+      } else if (retries > 0) {
+        setTimeout(() => waitForDeps(retries - 1), 300);
+      } else {
+        console.error("CMS or jsyaml not available after waiting.");
+      }
     }
-  }
 
-  waitForDeps();
-</script>
-  </body>
+    waitForDeps();
+  </script>
+</body>
 </html>
