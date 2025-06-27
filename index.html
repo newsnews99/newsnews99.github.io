@@ -35,18 +35,20 @@
       gap: 10px;
     }
 
+    .left-section, .center-section, .right-section {
+      width: 100%;
+    }
+
     .left-section {
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
       gap: 10px;
-      width: 100%;
     }
 
     .center-section {
       display: flex;
       justify-content: center;
-      width: 100%;
     }
 
     .right-section {
@@ -54,7 +56,6 @@
       align-items: center;
       justify-content: flex-end;
       gap: 12px;
-      width: 100%;
     }
 
     .left-section img.logo {
@@ -70,13 +71,7 @@
       align-items: flex-start;
       height: 60px;
       margin: 0;
-      text-align: left;
       transform: translateY(2px);
-    }
-
-    .time-date > div {
-      margin: 0;
-      padding: 0;
     }
 
     .center-section input[type="text"] {
@@ -116,6 +111,7 @@
 
     .headline-wrapper {
       display: flex;
+      flex-direction: column;
       gap: 40px;
       max-width: 1200px;
       width: 100%;
@@ -143,20 +139,6 @@
       color: gold;
     }
 
-    .headline-right-block {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .top-image {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      max-height: 500px;
-    }
-
     .main-headline {
       font-size: 96px;
       margin: 20px 0;
@@ -172,22 +154,11 @@
       color: gold;
     }
 
-    .headline-columns {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      width: 100%;
-    }
-
     .section-title {
       font-size: 28px;
       margin-bottom: 10px;
       text-align: left;
       color: gold;
-    }
-
-    .latest-news {
-      order: 2;
     }
 
     footer {
@@ -235,19 +206,15 @@
       margin-bottom: 10px;
     }
 
-    footer p,
-    footer h3,
-    footer a {
+    footer p, footer h3, footer a {
       font-size: 14px;
       line-height: 1.4;
       margin: 6px 0;
-      text-transform: none;
     }
 
     footer h3 {
       margin-bottom: 10px;
       font-size: 16px;
-      text-transform: none;
     }
 
     footer form {
@@ -263,7 +230,7 @@
       border-radius: 4px;
       border: none;
       box-sizing: border-box;
-      margin: 0 0 10px 0;
+      margin-bottom: 10px;
     }
 
     footer form button {
@@ -275,93 +242,96 @@
       font-family: inherit;
       cursor: pointer;
       width: 100%;
-      box-sizing: border-box;
-      margin: 0;
+    }
+
+    .headline-right-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .headline-columns {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .headline-wrapper {
+        flex-direction: row;
+      }
+
+      .headline-right-block {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .headline-column.latest-news {
+        order: 0;
+        max-width: 300px;
+        flex: 1;
+      }
+
+      .top-image,
+      .main-headline,
+      .headline-columns {
+        flex: 2;
+      }
+
+      .headline-columns {
+        flex-direction: row;
+        gap: 20px;
+      }
     }
 
     @media (max-width: 768px) {
       .banner-content {
         flex-direction: column;
         gap: 10px;
-        align-items: stretch;
-        display: flex;
       }
 
       .left-section {
         flex-direction: row;
-        align-items: flex-end;
         justify-content: space-between;
       }
 
       .center-section {
-        flex: 1;
         width: 100%;
-      }
-
-      .center-section input[type="text"] {
-        width: 100%;
-        max-width: none;
       }
 
       .right-section {
         flex-wrap: wrap;
-        justify-content: flex-end;
         gap: 10px;
+        justify-content: flex-end;
         width: 100%;
       }
 
       .time-date {
         align-items: flex-end;
         text-align: right;
-        transform: translateY(2px);
       }
 
       .footer-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        margin-top: 20px;
       }
 
       .footer-section {
-        text-align: center !important;
-        align-items: center !important;
         margin-bottom: 20px;
-      }
-
-      .footer-section.left {
-        order: 1;
-        margin-bottom: 5px;
-      }
-
-      .footer-section.right {
-        order: 2;
-      }
-
-      .footer-section.center {
-        order: 3;
-      }
-
-      footer form {
-        max-width: none;
-      }
-
-      footer form button {
-        width: auto;
       }
 
       .headline-wrapper {
         flex-direction: column;
-        gap: 40px;
       }
 
       .headline-right-block {
-        display: flex;
         flex-direction: column;
       }
 
       .main-headline {
-        order: 1;
         text-align: center;
       }
 
@@ -371,8 +341,6 @@
 
       .headline-columns {
         order: 3;
-        flex-direction: column;
-        gap: 20px;
       }
 
       .headline-column {
@@ -412,9 +380,6 @@
 
   <div class="headline-wrapper">
     <div class="headline-right-block">
-      <img src="fedsun_logo_underconstruction2.png" alt="Top Image" class="top-image" />
-      <h1 class="main-headline"><a href="#">HEADLINE</a></h1>
-
       <div class="headline-column latest-news">
         <h2 class="section-title">Latest News</h2>
         <div><a href="#">Breaking: National Rally Shakes Canberra</a><img src="news1.jpg" alt=""></div>
@@ -429,42 +394,23 @@
         <div><a href="#">Gold Coast Hosts National Games</a><img src="news10.jpg" alt=""></div>
       </div>
 
-      <div class="headline-columns">
-        <div class="headline-column">
-          <a href="#">Tech Giants Face New Regulation</a>
-          <a href="#">Melbourne Expands Green Zones</a>
-          <a href="#">PM Announces Climate Summit</a>
-          <a href="#">Regional Jobs Surge in Q1</a>
-          <a href="#">National Curriculum Reviewed</a>
-          <a href="#">Police Seize Record Drug Haul</a>
-          <a href="#">Indigenous Affairs Reform Pushed</a>
-          <a href="#">Tourism Rebounds Post-Pandemic</a>
-          <a href="#">New Public Transport Funding</a>
-          <a href="#">Cybersecurity Bill Passed</a>
-        </div>
-        <div class="headline-column">
-          <a href="#">University Fees Frozen for 2025</a>
-          <a href="#">Interest Rates Hold Steady</a>
-          <a href="#">Sydney Flood Risk Reviewed</a>
-          <a href="#">Wages Grow in Health Sector</a>
-          <a href="#">Farmers Receive New Subsidies</a>
-          <a href="#">Renewable Energy Plan Unveiled</a>
-          <a href="#">Diplomatic Visit from Canada</a>
-          <a href="#">AFL Grand Final Sell-Out</a>
-          <a href="#">Youth Crime Down in NT</a>
-          <a href="#">Koala Habitat Protected</a>
-        </div>
-        <div class="headline-column">
-          <a href="#">Space Agency Plans New Launch</a>
-          <a href="#">Superannuation Scheme Reviewed</a>
-          <a href="#">Major Rail Project Delayed</a>
-          <a href="#">Energy Prices to Stabilize</a>
-          <a href="#">Banks Report Record Profits</a>
-          <a href="#">Veterans Receive New Benefits</a>
-          <a href="#">Australia-India Trade Expands</a>
-          <a href="#">Climate Report Raises Concerns</a>
-          <a href="#">Electric Cars Gain Momentum</a>
-          <a href="#">New Laws Target Online Scams</a>
+      <div class="headline-right-content">
+        <img src="fedsun_logo_underconstruction2.png" alt="Top Image" class="top-image" />
+        <h1 class="main-headline"><a href="#">HEADLINE</a></h1>
+
+        <div class="headline-columns">
+          <div class="headline-column">
+            <a href="#">Tech Giants Face New Regulation</a>
+            <!-- ... -->
+          </div>
+          <div class="headline-column">
+            <a href="#">University Fees Frozen for 2025</a>
+            <!-- ... -->
+          </div>
+          <div class="headline-column">
+            <a href="#">Space Agency Plans New Launch</a>
+            <!-- ... -->
+          </div>
         </div>
       </div>
     </div>
@@ -479,18 +425,15 @@
         minute: '2-digit',
         hour12: false
       }).format(now);
-
       const melDate = new Intl.DateTimeFormat('en-AU', {
         timeZone: 'Australia/Melbourne',
         year: 'numeric',
         month: '2-digit',
         day: '2-digit'
       }).format(now);
-
       document.getElementById('current-time').textContent = melTime;
       document.getElementById('current-date').textContent = melDate;
     }
-
     updateTime();
     setInterval(updateTime, 60000);
   </script>
@@ -498,13 +441,10 @@
   <script>
     function adjustBodyPadding() {
       const banner = document.querySelector('.banner');
-      const body = document.body;
       if (banner) {
-        const bannerHeight = banner.offsetHeight;
-        body.style.paddingTop = bannerHeight + 'px';
+        document.body.style.paddingTop = banner.offsetHeight + 'px';
       }
     }
-
     window.addEventListener('load', adjustBodyPadding);
     window.addEventListener('resize', adjustBodyPadding);
   </script>
@@ -514,7 +454,7 @@
       <div class="footer-section left">
         <img src="australian_flag.png" alt="Australian Flag" />
         <p>
-          The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped modern Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
+          The Federation Sun proudly honours the European Australians who built this nation...
         </p>
       </div>
       <div class="footer-section center">
