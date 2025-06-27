@@ -1,14 +1,10 @@
 backend:
   name: git-gateway
   branch: main
+  login: false  # disables Netlify Identity login prompt
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
-
-site_url: https://federation-sun.netlify.app
-display_url: https://federation-sun.netlify.app
-
-logo_url: https://federation-sun.netlify.app/images/logo.png  # Optional logo
 
 collections:
   - name: "headlines"
