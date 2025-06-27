@@ -1,35 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <title>Federation Sun Admin</title>
-
-    <!-- Load Decap CMS (Netlify CMS) -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.css" />
-
-    <!-- Load js-yaml so we can manually parse config.yml -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.css" />
   </head>
   <body>
-    <!-- Required root element for CMS to mount -->
-    <div id="nc-root"></div>
-
+    <!-- CMS mounts itself here -->
     <script>
-      window.CMS_MANUAL_INIT = true;
-      fetch("/admin/config.yml")
-        .then((res) => {
-          if (!res.ok) throw new Error("config.yml not found");
-          return res.text();
-        })
-        .then((text) => {
-          const config = jsyaml.load(text);
-          window.CMS.init({ config });
-        })
-        .catch((err) => {
-          console.error("CMS config load failed:", err);
-          document.body.innerHTML += "<p style='color:red;'>CMS config load failed: " + err.message + "</p>";
-        });
+      window.CMS_MANUAL_INIT = false;
     </script>
   </body>
 </html>
