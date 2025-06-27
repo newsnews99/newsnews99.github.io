@@ -116,7 +116,6 @@
 
     .headline-wrapper {
       display: flex;
-      flex-direction: row;
       gap: 40px;
       max-width: 1200px;
       width: 100%;
@@ -124,37 +123,36 @@
       align-items: flex-start;
     }
 
-    .latest-news {
+    .headline-content {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      text-align: left;
-      align-items: flex-start;
+      gap: 20px;
     }
 
-    .latest-news .section-title {
-      font-size: 28px;
-      margin-bottom: 10px;
-      color: gold;
+    .latest-news {
+      flex: 0 0 240px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      gap: 8px;
     }
 
     .latest-news a {
-      color: white;
+      color: #3399ff;
       text-decoration: none;
       font-size: 18px;
-      transition: color 0.3s;
     }
 
     .latest-news a:hover {
       color: gold;
     }
 
-    .headline-content {
-      flex: 3;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 10px;
+      text-align: left;
+      color: gold;
     }
 
     .top-image {
@@ -257,11 +255,13 @@
       font-size: 14px;
       line-height: 1.4;
       margin: 6px 0;
+      text-transform: none;
     }
 
     footer h3 {
       margin-bottom: 10px;
       font-size: 16px;
+      text-transform: none;
     }
 
     footer form {
@@ -290,6 +290,7 @@
       cursor: pointer;
       width: 100%;
       box-sizing: border-box;
+      margin: 0;
     }
 
     @media (max-width: 768px) {
@@ -359,27 +360,34 @@
         max-width: none;
       }
 
-      .headline-wrapper {
-        flex-direction: column;
+      footer form button {
+        width: auto;
       }
 
-      .headline-content {
-        order: 1;
+      .headline-wrapper {
+        flex-direction: column;
+        gap: 40px;
       }
 
       .latest-news {
         order: 2;
-        text-align: left;
-        align-items: flex-start;
+        flex: none;
+      }
+
+      .main-headline {
+        order: 1;
+        text-align: center;
       }
 
       .headline-columns {
         order: 3;
         flex-direction: column;
+        gap: 20px;
       }
 
-      .main-headline {
-        text-align: center;
+      .headline-column {
+        align-items: flex-start !important;
+        text-align: left !important;
       }
 
       .section-title {
@@ -426,7 +434,6 @@
       <a href="#">New Defence Contracts Signed</a>
       <a href="#">Gold Coast Hosts National Games</a>
     </div>
-
     <div class="headline-content">
       <img src="fedsun_logo_underconstruction2.png" alt="Top Image" class="top-image" />
       <h1 class="main-headline"><a href="#">HEADLINE</a></h1>
