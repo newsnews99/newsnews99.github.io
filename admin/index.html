@@ -16,25 +16,30 @@
 
     <!-- ✅ Manual CMS init with delay -->
     <script>
-      window.CMS_MANUAL_INIT = true;
+  window.CMS_MANUAL_INIT = true;
 
-      function waitForDeps(retries = 10) {
-        if (window.CMS && window.jsyaml) {
-          fetch("/admin/config.yml")
-            .then(res => res.text())
-            .then(text => {
-              const config = window.jsyaml.load(text);
-              window.CMS.init(config);
-            })
-            .catch(err => console.error("CMS config load failed:", err));
-        } else if (retries > 0) {
-          setTimeout(() => waitForDeps(retries - 1), 300);
-        } else {
-          console.error("CMS or jsyaml not available after waiting.");
-        }
-      }
+  function waitForDeps(retries = 10) {
+    console.log("Checking deps...", {
+      CMS: window.CMS,
+      jsyaml: window.jsyaml
+    });
 
-      waitForDeps();
-    </script>
+    if (window.CMS && window.jsyaml) {
+      fetch("/admin/config.yml")
+        .then(res => res.text())
+        .then(text => {
+          const config = window.jsyaml.load(text);
+          window.CMS.init(config);
+        })
+        .catch(err => console.error("CMS config load failed:", err));
+    } else if (retries > 0) {
+      setTimeout(() => waitForDeps(retries - 1), 300);
+    } else {
+      console.error("CMS or jsyaml not available after waiting.");
+    }
+  }
+
+  waitForDeps();
+</script>
   </body>
 </html>
