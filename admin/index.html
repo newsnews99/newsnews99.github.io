@@ -8,22 +8,33 @@
   <body>
     <div id="nc-root"></div>
 
-    <!-- ✅ js-yaml UMD build from CDNJS -->
+    <!-- ✅ Load js-yaml -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 
-    <!-- ✅ Decap CMS UMD -->
+    <!-- ✅ Load Decap CMS -->
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.umd.js"></script>
 
+    <!-- ✅ Delayed Init Script -->
     <script>
       window.CMS_MANUAL_INIT = true;
 
-      fetch("/admin/config.yml")
-        .then(res => res.text())
-        .then(text => {
-          const config = window.jsyaml.load(text);
-          window.CMS.init(config);
-        })
-        .catch(err => console.error("CMS config load failed:", err));
+      function waitForDeps(retries = 10) {
+        if (window.CMS && window.jsyaml) {
+          fetch("/admin/config.yml")
+            .then(res => res.text())
+            .then(text => {
+              const config = window.jsyaml.load(text);
+              window.CMS.init(config);
+            })
+            .catch(err => console.error("CMS config load failed:", err));
+        } else if (retries > 0) {
+          setTimeout(() => waitForDeps(retries - 1), 300);
+        } else {
+          console.error("CMS or jsyaml not available after waiting.");
+        }
+      }
+
+      waitForDeps();
     </script>
   </body>
 </html>
