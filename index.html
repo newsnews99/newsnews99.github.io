@@ -140,7 +140,7 @@
       text-align: center;
       width: 100%;
       margin: 10px 0;
-      font-size: 20px;
+      font-size: 26px; /* Increased size */
       color: white;
       text-decoration: none;
     }
@@ -159,6 +159,7 @@
       display: flex;
       flex-direction: column;
       width: 48%;
+      text-align: left; /* Justify left */
     }
 
     .headline-right {
@@ -171,6 +172,7 @@
       display: flex;
       flex-direction: column;
       width: 48%;
+      text-align: left; /* Justify left */
     }
 
     .headline-right a,
@@ -352,6 +354,7 @@
         margin-bottom: 10px;
         padding: 0 20px;
         box-sizing: border-box;
+        text-align: center;
       }
 
       .headline-columns .column a,
@@ -401,7 +404,7 @@
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
         <div class="time-date">
-          <div id="current-time">--:--</div>
+          <div id="current-time">--:-- AEST</div>
           <div id="current-date">--/--/----</div>
         </div>
       </div>
@@ -467,7 +470,7 @@
         day: '2-digit'
       }).format(now);
 
-      document.getElementById('current-time').textContent = melTime;
+      document.getElementById('current-time').textContent = `${melTime} AEST`;
       document.getElementById('current-date').textContent = melDate;
     }
 
