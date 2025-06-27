@@ -1,59 +1,47 @@
 backend:
-  name: github
-  repo: your-username/your-repo-name
+  name: git-gateway
   branch: main
-  site_domain: your-site.github.io
 
-media_folder: "images"
-public_folder: "/images"
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
+  - name: "headlines"
+    label: "Headlines"
+    folder: "content/headlines"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "URL", name: "url", widget: "string" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
   - name: "ticker"
     label: "News Ticker"
-    files:
-      - label: "Ticker Headlines"
-        name: "ticker"
-        file: "data/ticker.json"
-        fields:
-          - label: "Headlines"
-            name: "headlines"
-            widget: "list"
-
-  - name: "headlines"
-    label: "Main Headlines"
-    files:
-      - label: "Headlines"
-        name: "headlines"
-        file: "data/headlines.json"
-        fields:
-          - label: "Items"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Link", name: "link", widget: "string" }
+    folder: "content/ticker"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Ticker Text", name: "text", widget: "string" }
 
   - name: "polls"
     label: "Polls"
-    files:
-      - label: "Poll Data"
-        name: "polls"
-        file: "data/polls.json"
-        fields:
-          - label: "Question"
-            name: "question"
-            widget: "string"
-          - label: "Options"
-            name: "options"
-            widget: "list"
+    folder: "content/polls"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Question", name: "question", widget: "string" }
+      - label: "Options"
+        name: "options"
+        widget: "list"
+        field: { label: "Option", name: "option", widget: "string" }
 
   - name: "videos"
     label: "Video Embeds"
-    files:
-      - label: "Videos"
-        name: "videos"
-        file: "data/videos.json"
-        fields:
-          - label: "Video URLs"
-            name: "videos"
-            widget: "list"
+    folder: "content/videos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Embed URL", name: "embed", widget: "string" }
