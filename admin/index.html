@@ -5,22 +5,28 @@
     <title>Federation Sun Admin</title>
     <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.css" />
-  </head>
-  <body>
     <script>
       window.CMS_MANUAL_INIT = true;
     </script>
-    <script type="module">
-      import yaml from "https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/+esm";
-
-      fetch("/admin/config.yml")
-        .then((res) => res.text())
-        .then((text) => {
-          const config = yaml.load(text);
-          window.CMS.init(config);
-        })
-        .catch((err) => console.error("CMS config load failed:", err));
-    </script>
+  </head>
+  <body>
     <div id="nc-root"></div>
+
+    <!-- DO NOT use type="module" here -->
+    <script>
+      // Load js-yaml using a <script> tag
+      const script = document.createElement("script");
+      script.src = "https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js";
+      script.onload = () => {
+        fetch("/admin/config.yml")
+          .then((res) => res.text())
+          .then((text) => {
+            const config = jsyaml.load(text); // from js-yaml global
+            window.CMS.init(config);
+          })
+          .catch((err) => console.error("CMS config load failed:", err));
+      };
+      document.body.appendChild(script);
+    </script>
   </body>
 </html>
