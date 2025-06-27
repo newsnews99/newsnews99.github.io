@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: newsnews99/newsnews99.github.io
   branch: main
 
 media_folder: "images/uploads"
