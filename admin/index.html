@@ -1,45 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Federation Sun Admin</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/decap-cms@3.0.0/dist/decap-cms.css" />
-</head>
-<body>
-  <div id="nc-root"></div>
-
-  <!-- ✅ Load js-yaml -->
-  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-
-  <!-- ✅ Load Decap CMS UMD -->
-  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.0.0/dist/decap-cms.umd.js"></script>
-
-  <!-- ✅ Manual CMS init with retry logic -->
-  <script>
-    window.CMS_MANUAL_INIT = true;
-
-    function waitForDeps(retries = 20) {
-      console.log("Waiting for CMS + jsyaml...", {
-        CMS: typeof window.CMS,
-        jsyaml: typeof window.jsyaml
-      });
-
-      if (window.CMS && window.jsyaml) {
-        fetch("/admin/config.yml")
-          .then(res => res.text())
-          .then(text => {
-            const config = window.jsyaml.load(text);
-            window.CMS.init(config);
-          })
-          .catch(err => console.error("❌ CMS config load failed:", err));
-      } else if (retries > 0) {
-        setTimeout(() => waitForDeps(retries - 1), 250);
-      } else {
-        console.error("❌ CMS or jsyaml not available after waiting.");
-      }
-    }
-
-    waitForDeps();
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Federation Sun Admin</title>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </head>
+  <body>
+    <div id="nc-root"></div>
+  </body>
 </html>
