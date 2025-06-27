@@ -123,25 +123,25 @@
       max-width: 1200px;
     }
 
-    .headline-left {
-      width: 50%;
+    .headline-left,
+    .headline-right {
+      width: 48%;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
     }
 
     .main-headline-img {
       width: 100%;
       height: auto;
-      margin-bottom: 15px; /* space between image and headline text */
+      margin-bottom: 15px;
     }
 
     .main-headline-link {
       display: block;
       text-align: center;
       width: 100%;
-      margin-bottom: 15px; /* space between headline text and columns */
-      font-size: 32px; /* increased size */
+      margin-bottom: 15px;
+      font-size: 32px;
       color: white;
       text-decoration: none;
     }
@@ -152,8 +152,8 @@
 
     .headline-columns {
       display: flex;
-      width: 100%;
       justify-content: space-between;
+      width: 100%;
     }
 
     .headline-columns .column {
@@ -173,30 +173,23 @@
       text-decoration: underline;
     }
 
-    .headline-right {
-      width: 50%;
-      display: flex;
-      justify-content: space-between;
-      padding-left: 20px; /* desktop: space to left of cols 2-4 */
-    }
-
     .headline-right .column {
       display: flex;
       flex-direction: column;
-      width: 48%;
       text-align: left;
+      margin-left: 20px;
     }
 
-    .headline-right a,
-    .headline-columns a {
+    .headline-columns a,
+    .headline-right a {
       color: white;
       text-decoration: none;
       margin: 4px 0;
       font-size: 16px;
     }
 
-    .headline-right a:hover,
-    .headline-columns a:hover {
+    .headline-columns a:hover,
+    .headline-right a:hover {
       color: gold;
     }
 
@@ -338,18 +331,10 @@
         margin-top: 0;
       }
 
-      .headline-left, .headline-right {
+      .headline-left,
+      .headline-right {
         width: 100%;
         margin-bottom: 20px;
-      }
-
-      .main-headline-img {
-        width: 100%;
-      }
-
-      .main-headline-link {
-        width: 100%;
-        text-align: center;
         padding: 0 20px;
         box-sizing: border-box;
       }
@@ -358,15 +343,12 @@
       .headline-right {
         flex-direction: column;
         align-items: center;
-        padding-left: 0;
       }
 
       .headline-columns .column,
       .headline-right .column {
         width: 100%;
         margin-bottom: 10px;
-        padding: 0 20px;
-        box-sizing: border-box;
         text-align: center;
       }
 
