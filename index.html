@@ -26,27 +26,35 @@
     }
 
     .banner-content {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
       padding: 16px 20px;
+      gap: 10px;
     }
 
-    .left-section, .center-section, .right-section {
-      flex: 1;
+    .left-section {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      gap: 10px;
+      width: 100%;
     }
 
     .center-section {
       display: flex;
       justify-content: center;
+      width: 100%;
     }
 
     .right-section {
       display: flex;
+      align-items: center;
       justify-content: flex-end;
-      gap: 10px;
+      gap: 12px;
+      width: 100%;
     }
 
     .left-section img.logo {
@@ -54,106 +62,326 @@
     }
 
     .time-date {
+      display: flex;
+      flex-direction: column;
       font-size: 14px;
+      line-height: 1;
+      justify-content: flex-end;
+      align-items: flex-start;
+      height: 60px;
+      margin: 0;
+      text-align: left;
+      transform: translateY(2px);
+    }
+
+    .time-date > div {
+      margin: 0;
+      padding: 0;
+    }
+
+    .center-section input[type="text"] {
+      width: 100%;
+      max-width: 300px;
+      padding: 8px 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .right-section img {
+      height: 28px;
+      transition: transform 0.2s;
+    }
+
+    .right-section img:hover {
+      transform: scale(1.1);
     }
 
     body {
-      padding-top: 100px;
-      padding-left: 5vw;
-      padding-right: 5vw;
+      padding-left: 10vw;
+      padding-right: 10vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
     }
 
     img {
       max-width: 100%;
       height: auto;
-    }
-
-    .main {
-      display: flex;
-      flex-direction: row;
-      max-width: 1200px;
-      margin: auto;
-      gap: 40px;
-    }
-
-    .latest-news {
-      flex: 1;
-    }
-
-    .latest-news h2 {
-      color: gold;
-      font-size: 24px;
-    }
-
-    .latest-news a,
-    .headline-column a {
-      color: #3399ff;
-      text-decoration: none;
       display: block;
-      margin-bottom: 8px;
-      font-size: 16px;
     }
 
-    .latest-news a:hover,
-    .headline-column a:hover {
-      color: gold;
-    }
-
-    .content {
-      flex: 3;
-    }
-
-    .main-headline {
-      font-size: 48px;
-      color: #3399ff;
-    }
-
-    .headline-columns {
+    .headline-wrapper {
       display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
+      gap: 40px;
+      max-width: 1200px;
+      width: 100%;
+      margin-bottom: 40px;
+      align-items: flex-start;
     }
 
     .headline-column {
       flex: 1;
-      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .headline-column a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    .headline-column a:hover {
+      color: gold;
+    }
+
+    .headline-right-block {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .top-image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      max-height: 500px;
+    }
+
+    .main-headline {
+      font-size: 96px;
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .main-headline a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .main-headline a:hover {
+      color: gold;
+    }
+
+    .headline-columns {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 10px;
+      text-align: left;
+      color: gold;
+    }
+
+    .latest-news {
+      order: 2;
     }
 
     footer {
       background-color: #1e1e1e;
       color: white;
+      padding: 20px 20px;
       border-top: 1px solid #444;
-      padding: 20px;
-      margin-top: 40px;
     }
 
     .footer-content {
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
+      align-items: stretch;
+      max-width: 1200px;
+      margin: 0 auto;
       gap: 20px;
     }
 
     .footer-section {
       flex: 1;
-      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-section.left {
+      text-align: left;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+
+    .footer-section.center {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-section.right {
+      text-align: right;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    footer img {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+
+    footer p,
+    footer h3,
+    footer a {
+      font-size: 14px;
+      line-height: 1.4;
+      margin: 6px 0;
+      text-transform: none;
+    }
+
+    footer h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      text-transform: none;
+    }
+
+    footer form {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    footer form textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      font-family: inherit;
+      border-radius: 4px;
+      border: none;
+      box-sizing: border-box;
+      margin: 0 0 10px 0;
+    }
+
+    footer form button {
+      background-color: #fff;
+      color: #1e1e1e;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      font-family: inherit;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+      margin: 0;
     }
 
     @media (max-width: 768px) {
-      .main {
+      .banner-content {
         flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+        display: flex;
       }
 
-      .latest-news {
+      .left-section {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+
+      .center-section {
+        flex: 1;
+        width: 100%;
+      }
+
+      .center-section input[type="text"] {
+        width: 100%;
+        max-width: none;
+      }
+
+      .right-section {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .time-date {
+        align-items: flex-end;
+        text-align: right;
+        transform: translateY(2px);
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .footer-section {
+        text-align: center !important;
+        align-items: center !important;
+        margin-bottom: 20px;
+      }
+
+      .footer-section.left {
+        order: 1;
+        margin-bottom: 5px;
+      }
+
+      .footer-section.right {
         order: 2;
       }
 
-      .content {
+      .footer-section.center {
+        order: 3;
+      }
+
+      footer form {
+        max-width: none;
+      }
+
+      footer form button {
+        width: auto;
+      }
+
+      .headline-wrapper {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .headline-right-block {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .main-headline {
         order: 1;
+        text-align: center;
+      }
+
+      .headline-column.latest-news {
+        order: 2;
       }
 
       .headline-columns {
+        order: 3;
         flex-direction: column;
+        gap: 20px;
+      }
+
+      .headline-column {
+        align-items: flex-start !important;
+        text-align: left !important;
+      }
+
+      .section-title {
+        text-align: center;
       }
     }
   </style>
@@ -172,33 +400,35 @@
         <input type="text" placeholder="Search..." />
       </div>
       <div class="right-section">
-        <img src="icon_gab.png" alt="Gab" height="28" />
-        <img src="icon_facebook.png" alt="Facebook" height="28" />
-        <img src="icon_instagram.png" alt="Instagram" height="28" />
-        <img src="icon_telegram.png" alt="Telegram" height="28" />
-        <img src="icon_x.png" alt="X" height="28" />
-        <img src="icon_youtube.png" alt="YouTube" height="28" />
+        <img src="icon_gab.png" alt="Gab" />
+        <img src="icon_facebook.png" alt="Facebook" />
+        <img src="icon_instagram.png" alt="Instagram" />
+        <img src="icon_telegram.png" alt="Telegram" />
+        <img src="icon_x.png" alt="X" />
+        <img src="icon_youtube.png" alt="YouTube" />
       </div>
     </div>
   </div>
 
-  <div class="main">
-    <div class="latest-news">
-      <h2>Latest News</h2>
-      <a href="#">Breaking: National Rally Shakes Canberra</a>
-      <a href="#">Education Overhaul Proposed in Parliament</a>
-      <a href="#">Fuel Prices Drop to Two-Year Low</a>
-      <a href="#">Federal Budget Delivers Surplus</a>
-      <a href="#">Immigration Numbers Revised for 2025</a>
-      <a href="#">Veterans Honoured in ANZAC Ceremony</a>
-      <a href="#">Housing Market Sees Unusual Dip</a>
-      <a href="#">Farmers Push Back Against Land Bill</a>
-      <a href="#">New Defence Contracts Signed</a>
-      <a href="#">Gold Coast Hosts National Games</a>
-    </div>
-    <div class="content">
-      <img src="fedsun_logo_underconstruction2.png" alt="Top Image" />
-      <h1 class="main-headline">HEADLINE</h1>
+  <div class="headline-wrapper">
+    <div class="headline-right-block">
+      <img src="fedsun_logo_underconstruction2.png" alt="Top Image" class="top-image" />
+      <h1 class="main-headline"><a href="#">HEADLINE</a></h1>
+
+      <div class="headline-column latest-news">
+        <h2 class="section-title">Latest News</h2>
+        <div><a href="#">Breaking: National Rally Shakes Canberra</a><img src="news1.jpg" alt=""></div>
+        <div><a href="#">Education Overhaul Proposed in Parliament</a><img src="news2.jpg" alt=""></div>
+        <div><a href="#">Fuel Prices Drop to Two-Year Low</a><img src="news3.jpg" alt=""></div>
+        <div><a href="#">Federal Budget Delivers Surplus</a><img src="news4.jpg" alt=""></div>
+        <div><a href="#">Immigration Numbers Revised for 2025</a><img src="news5.jpg" alt=""></div>
+        <div><a href="#">Veterans Honoured in ANZAC Ceremony</a><img src="news6.jpg" alt=""></div>
+        <div><a href="#">Housing Market Sees Unusual Dip</a><img src="news7.jpg" alt=""></div>
+        <div><a href="#">Farmers Push Back Against Land Bill</a><img src="news8.jpg" alt=""></div>
+        <div><a href="#">New Defence Contracts Signed</a><img src="news9.jpg" alt=""></div>
+        <div><a href="#">Gold Coast Hosts National Games</a><img src="news10.jpg" alt=""></div>
+      </div>
+
       <div class="headline-columns">
         <div class="headline-column">
           <a href="#">Tech Giants Face New Regulation</a>
@@ -240,28 +470,6 @@
     </div>
   </div>
 
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <img src="australian_flag.png" alt="Australian Flag" style="max-width: 100px;" />
-        <p>The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped modern Australia.</p>
-      </div>
-      <div class="footer-section">
-        <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" style="max-width: 100px;" />
-        <p>For all enquiries contact:<br><a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a></p>
-        <p>The Federation Sun © 2025</p>
-      </div>
-      <div class="footer-section">
-        <h3>Anonymous tips</h3>
-        <form action="https://formspree.io/f/meokpdkj" method="POST">
-          <textarea name="tip" placeholder="Type your tip here..."></textarea>
-          <input type="hidden" name="_redirect" value="https://newsnews99.github.io/thanks.html" />
-          <button type="submit">Send tip</button>
-        </form>
-      </div>
-    </div>
-  </footer>
-
   <script>
     function updateTime() {
       const now = new Date();
@@ -286,5 +494,46 @@
     updateTime();
     setInterval(updateTime, 60000);
   </script>
+
+  <script>
+    function adjustBodyPadding() {
+      const banner = document.querySelector('.banner');
+      const body = document.body;
+      if (banner) {
+        const bannerHeight = banner.offsetHeight;
+        body.style.paddingTop = bannerHeight + 'px';
+      }
+    }
+
+    window.addEventListener('load', adjustBodyPadding);
+    window.addEventListener('resize', adjustBodyPadding);
+  </script>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section left">
+        <img src="australian_flag.png" alt="Australian Flag" />
+        <p>
+          The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped modern Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
+        </p>
+      </div>
+      <div class="footer-section center">
+        <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
+        <p>
+          For all enquiries contact:<br />
+          <a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a>
+        </p>
+        <p>The Federation Sun © 2025</p>
+      </div>
+      <div class="footer-section right">
+        <h3>Anonymous tips</h3>
+        <form action="https://formspree.io/f/meokpdkj" method="POST">
+          <textarea name="tip" placeholder="Type your tip here..."></textarea>
+          <input type="hidden" name="_redirect" value="https://newsnews99.github.io/thanks.html" />
+          <button type="submit">Send tip</button>
+        </form>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
