@@ -112,7 +112,6 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      align-items: flex-start;
       margin-top: 20px;
       width: 100%;
       max-width: 1200px;
@@ -128,7 +127,7 @@
     .main-headline-img {
       width: 100%;
       height: auto;
-      margin-bottom: 15px; /* restored */
+      margin-bottom: 15px;
     }
 
     .main-headline-link {
@@ -175,7 +174,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-top: -15px; /* align with image top */
+      margin-top: -8px; /* Updated for proper vertical alignment */
     }
 
     .headline-right .column {
@@ -208,7 +207,7 @@
       color: white;
       padding: 20px 20px;
       border-top: 1px solid #444;
-      margin-top: 20px;
+      margin-top: 20px; /* Adds space above footer */
     }
 
     .footer-content {
@@ -370,8 +369,8 @@
         text-align: center;
       }
 
-      .headline-columns .column:first-child {
-        align-items: center;
+      .headline-columns .column a,
+      .headline-right .column a {
         text-align: center;
       }
 
