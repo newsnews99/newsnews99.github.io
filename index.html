@@ -203,6 +203,78 @@
       margin: 0;
     }
 
+    .main-headline-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 120px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .headline-left {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .main-headline-img {
+      width: 100%;
+      height: auto;
+    }
+
+    .main-headline-link {
+      display: block;
+      text-align: center;
+      width: 100%;
+      margin: 10px 0;
+      font-size: 20px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .main-headline-link:hover {
+      color: gold;
+    }
+
+    .headline-columns {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .headline-columns .column {
+      display: flex;
+      flex-direction: column;
+      width: 48%;
+    }
+
+    .headline-right {
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .headline-right .column {
+      display: flex;
+      flex-direction: column;
+      width: 48%;
+    }
+
+    .headline-right a,
+    .headline-columns a {
+      color: white;
+      text-decoration: none;
+      margin: 4px 0;
+      font-size: 16px;
+    }
+
+    .headline-right a:hover,
+    .headline-columns a:hover {
+      color: gold;
+    }
+
     @media (max-width: 768px) {
       .banner-content {
         flex-direction: column;
@@ -255,7 +327,7 @@
 
       .footer-section.left {
         order: 1;
-        margin-bottom: 5px; /* Reduced by 15px */
+        margin-bottom: 5px;
       }
 
       .footer-section.right {
@@ -272,6 +344,33 @@
 
       footer form button {
         width: auto;
+      }
+
+      .main-headline-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .headline-left, .headline-right {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .headline-columns,
+      .headline-right {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .headline-columns .column,
+      .headline-right .column {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .headline-columns .column a,
+      .headline-right .column a {
+        text-align: center;
       }
     }
   </style>
@@ -302,7 +401,36 @@
     </div>
   </div>
 
-  <img src="fedsun_logo_underconstruction1.png" alt="Centered Image" />
+  <div class="main-headline-container">
+    <div class="headline-left">
+      <img src="main_headline_image.png" alt="Main Headline" class="main-headline-img" />
+      <a href="#" class="main-headline-link">Main Headline Hyperlink Text</a>
+      <div class="headline-columns">
+        <div class="column">
+          <a href="#">Headline 1</a>
+          <a href="#">Headline 2</a>
+          <a href="#">Headline 3</a>
+        </div>
+        <div class="column">
+          <a href="#">Headline 4</a>
+          <a href="#">Headline 5</a>
+          <a href="#">Headline 6</a>
+        </div>
+      </div>
+    </div>
+    <div class="headline-right">
+      <div class="column">
+        <a href="#">Headline 7</a>
+        <a href="#">Headline 8</a>
+        <a href="#">Headline 9</a>
+      </div>
+      <div class="column">
+        <a href="#">Headline 10</a>
+        <a href="#">Headline 11</a>
+        <a href="#">Headline 12</a>
+      </div>
+    </div>
+  </div>
 
   <script>
     function updateTime() {
