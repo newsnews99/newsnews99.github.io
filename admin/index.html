@@ -11,17 +11,17 @@
   <!-- ✅ Load js-yaml -->
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 
-  <!-- ✅ Load Decap CMS UMD via jsDelivr (not unpkg!) -->
+  <!-- ✅ Load Decap CMS UMD -->
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.0.0/dist/decap-cms.umd.js"></script>
 
-  <!-- ✅ Manual CMS init -->
+  <!-- ✅ Manual CMS init with retry logic -->
   <script>
     window.CMS_MANUAL_INIT = true;
 
-    function waitForDeps(retries = 10) {
-      console.log("Checking deps...", {
-        CMS: window.CMS,
-        jsyaml: window.jsyaml
+    function waitForDeps(retries = 20) {
+      console.log("Waiting for CMS + jsyaml...", {
+        CMS: typeof window.CMS,
+        jsyaml: typeof window.jsyaml
       });
 
       if (window.CMS && window.jsyaml) {
@@ -31,11 +31,11 @@
             const config = window.jsyaml.load(text);
             window.CMS.init(config);
           })
-          .catch(err => console.error("CMS config load failed:", err));
+          .catch(err => console.error("❌ CMS config load failed:", err));
       } else if (retries > 0) {
-        setTimeout(() => waitForDeps(retries - 1), 300);
+        setTimeout(() => waitForDeps(retries - 1), 250);
       } else {
-        console.error("CMS or jsyaml not available after waiting.");
+        console.error("❌ CMS or jsyaml not available after waiting.");
       }
     }
 
