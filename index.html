@@ -58,7 +58,8 @@
     }
     .left-section {
       display: flex;
-      align-items: center;
+      flex-direction: row; /* <--- Ensure row alignment on desktop */
+      align-items: flex-end; /* Vertically align to bottom of logo */
       justify-content: flex-start;
       gap: 0;
       width: 100%;
@@ -69,7 +70,8 @@
     .left-section img.logo {
       height: 48px;
       display: block;
-      align-self: center;
+      align-self: flex-end;
+      margin-bottom: 0;
     }
     .time-date {
       display: flex;
@@ -79,13 +81,13 @@
       font-size: 13px;
       line-height: 1.1;
       text-align: left;
-      margin-left: 5px; /* 5px gap on desktop */
-      padding: 0;
-      position: relative;
+      margin-left: 10px;
       min-width: 110px;
       width: auto;
-      height: 43px; /* Decreased from 48px */
-      transform: translateY(17px);
+      height: 43px;
+      margin-bottom: 2px; /* fine tune for flush bottom align */
+      transform: none;
+      position: static;
     }
     .time-date div {
       text-align: left;
@@ -386,6 +388,9 @@
         align-self: flex-end;
         margin: 0;
         padding: 0;
+        /* Move logo up by 4px */
+        position: relative;
+        top: -4px;
       }
       .time-date {
         font-size: 12px;
@@ -487,10 +492,10 @@
       <div class="mobile-header-row">
         <div class="left-section">
           <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
-        </div>
-        <div class="time-date">
-          <div id="current-time">--:-- AEST</div>
-          <div id="current-date">--/--/----</div>
+          <div class="time-date">
+            <div id="current-time">--:-- AEST</div>
+            <div id="current-date">--/--/----</div>
+          </div>
         </div>
       </div>
       <div class="center-section">
