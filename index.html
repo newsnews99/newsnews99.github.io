@@ -51,43 +51,6 @@
       gap: 10px;
     }
 
-    .ticker {
-      width: 100%;
-      background-color: #222;
-      overflow: hidden;
-      white-space: nowrap;
-      box-sizing: border-box;
-      border-top: 1px solid #444;
-      border-bottom: 1px solid #444;
-    }
-
-    .ticker-content {
-      display: inline-block;
-      padding-left: 100%;
-      animation: ticker-scroll 20s linear infinite;
-    }
-
-    .ticker:hover .ticker-content {
-      animation-play-state: paused;
-    }
-
-    .ticker-content a {
-      display: inline-block;
-      color: white;
-      text-decoration: none;
-      margin-right: 50px;
-      font-size: 16px;
-    }
-
-    .ticker-content a:hover {
-      color: gold;
-    }
-
-    @keyframes ticker-scroll {
-      0% {transform: translateX(0);}
-      100% {transform: translateX(-100%);}
-    }
-
     .left-section {
       display: flex;
       align-items: flex-end;
@@ -95,7 +58,6 @@
       gap: 10px;
       width: 100%;
     }
-
     .left-section img.logo {
       height: 60px;
     }
@@ -105,7 +67,6 @@
       justify-content: center;
       width: 100%;
     }
-
     .center-section input[type="text"] {
       width: 100%;
       padding: 8px 12px;
@@ -122,12 +83,10 @@
       gap: 12px;
       width: 100%;
     }
-
     .right-section img {
       height: 28px;
       transition: transform 0.2s;
     }
-
     .right-section img:hover {
       transform: scale(1.1);
     }
@@ -145,6 +104,40 @@
       transform: translateY(2px);
     }
 
+    /* —– TICKER —– */
+    .ticker {
+      width: 100%;
+      background-color: #222;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      margin-top: 100px; /* space below fixed banner */
+    }
+    .ticker-content {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker-scroll 20s linear infinite;
+    }
+    .ticker:hover .ticker-content {
+      animation-play-state: paused;
+    }
+    .ticker-content a {
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      margin-right: 50px;
+      font-size: 16px;
+    }
+    .ticker-content a:hover {
+      color: gold;
+    }
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* —– MAIN HEADLINE & COLUMNS —– */
     .main-headline-container {
       display: flex;
       flex-wrap: wrap;
@@ -160,13 +153,11 @@
       flex-direction: column;
       align-items: flex-start;
     }
-
     .main-headline-img {
       width: 100%;
       height: auto;
       margin-bottom: 15px;
     }
-
     .main-headline-link {
       display: block;
       text-align: center;
@@ -176,7 +167,6 @@
       color: white;
       text-decoration: none;
     }
-
     .main-headline-link:hover {
       color: gold;
     }
@@ -186,14 +176,12 @@
       width: 100%;
       justify-content: space-between;
     }
-
     .headline-columns .column {
       display: flex;
       flex-direction: column;
       width: 48%;
       text-align: left;
     }
-
     .headline-columns .column a.latest-title {
       color: gold;
       font-size: 18px;
@@ -209,7 +197,6 @@
       align-items: flex-start;
       margin-top: -7px;
     }
-
     .headline-right .column {
       display: flex;
       flex-direction: column;
@@ -217,7 +204,6 @@
       text-align: left;
       padding-left: 20px;
     }
-
     .headline-right .column a.latest-title {
       color: gold;
       font-size: 18px;
@@ -225,7 +211,6 @@
       text-align: center;
       text-decoration: none;
     }
-
     .headline-right a,
     .headline-columns a {
       color: white;
@@ -233,12 +218,12 @@
       margin: 4px 0;
       font-size: 16px;
     }
-
     .headline-right a:hover,
     .headline-columns a:hover {
       color: gold;
     }
 
+    /* —– FOOTER —– */
     footer {
       background-color: #1e1e1e;
       color: white;
@@ -247,38 +232,32 @@
       margin-top: 20px;
       width: 100%;
     }
-
     .footer-wrapper {
       max-width: 1200px;
       margin: 0 auto;
       box-sizing: border-box;
     }
-
     .footer-content {
       display: flex;
       justify-content: space-between;
       align-items: stretch;
       gap: 20px;
     }
-
     .footer-section {
       flex: 1;
       display: flex;
       flex-direction: column;
     }
-
     .footer-section.left {
       text-align: left;
       align-items: flex-start;
       justify-content: flex-end;
     }
-
     .footer-section.center {
       text-align: center;
       align-items: center;
       justify-content: center;
     }
-
     .footer-section.right {
       text-align: right;
       align-items: flex-end;
@@ -289,7 +268,6 @@
       max-width: 100px;
       margin-bottom: 10px;
     }
-
     footer p,
     footer h3,
     footer a {
@@ -298,17 +276,14 @@
       margin: 6px 0;
       text-transform: none;
     }
-
     footer h3 {
       margin-bottom: 10px;
       font-size: 16px;
     }
-
     footer form {
       width: 100%;
       max-width: 300px;
     }
-
     footer form textarea {
       width: 100%;
       height: 100px;
@@ -319,7 +294,6 @@
       box-sizing: border-box;
       margin: 0 0 10px 0;
     }
-
     footer form button {
       background-color: #fff;
       color: #1e1e1e;
@@ -399,22 +373,13 @@
         box-sizing: border-box;
         text-align: center;
       }
-      .headline-columns .column a,
-      .headline-right .column a {
-        text-align: center;
-      }
-      .footer-wrapper {
-        padding: 0 20px;
-      }
-      .footer-content {
+      footer .footer-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
         margin-top: 20px;
       }
-      .footer-section {
-        text-align: center !important;
-        align-items: center !important;
+      footer .footer-section {
         margin-bottom: 20px;
       }
     }
@@ -447,9 +412,74 @@
     </div>
   </div>
 
-  <!-- KEEP THE REST OF YOUR CONTENT HERE -->
+  <!-- Your original main headline + columns -->
+  <div class="main-headline-container">
+    <div class="headline-left">
+      <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
+      <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
+      <div class="headline-columns">
+        <div class="column">
+          <a href="#" class="latest-title">Latest</a>
+          <a href="#">HEADLINE 1</a>
+          <a href="#">HEADLINE 2</a>
+          <a href="#">HEADLINE 3</a>
+        </div>
+        <div class="column">
+          <a href="#" class="latest-title">Latest</a>
+          <a href="#">HEADLINE 4</a>
+          <a href="#">HEADLINE 5</a>
+          <a href="#">HEADLINE 6</a>
+        </div>
+      </div>
+    </div>
+    <div class="headline-right">
+      <div class="column">
+        <a href="#" class="latest-title">Latest</a>
+        <a href="#">HEADLINE 7</a>
+        <a href="#">HEADLINE 8</a>
+        <a href="#">HEADLINE 9</a>
+      </div>
+      <div class="column">
+        <a href="#" class="latest-title">Latest</a>
+        <a href="#">HEADLINE 10</a>
+        <a href="#">HEADLINE 11</a>
+        <a href="#">HEADLINE 12</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Your original footer -->
+  <footer>
+    <div class="footer-wrapper">
+      <div class="footer-content">
+        <div class="footer-section left">
+          <img src="australian_flag.png" alt="Australian Flag" />
+          <p>
+            The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
+          </p>
+        </div>
+        <div class="footer-section center">
+          <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
+          <p>
+            For all enquiries contact:<br />
+            <a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a>
+          </p>
+          <p>The Federation Sun © 2025</p>
+        </div>
+        <div class="footer-section right">
+          <h3>Anonymous tips</h3>
+          <form action="https://formspree.io/f/meokpdkj" method="POST">
+            <textarea name="tip" placeholder="Type your tip here..."></textarea>
+            <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
+            <button type="submit">Send tip</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script>
+    // Update current time & date
     function updateTime() {
       const now = new Date();
       const melTime = new Intl.DateTimeFormat('en-AU', {
@@ -470,8 +500,19 @@
     updateTime();
     setInterval(updateTime, 60000);
 
+    // Ensure body is padded below fixed banner
+    function adjustBodyPadding() {
+      const banner = document.querySelector('.banner');
+      if (banner) {
+        document.body.style.paddingTop = banner.offsetHeight + 'px';
+      }
+    }
+    window.addEventListener('load', adjustBodyPadding);
+    window.addEventListener('resize', adjustBodyPadding);
+
+    // Fetch and render ticker headlines
     fetch('/headlines.json')
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => {
         const container = document.getElementById('ticker-content');
         container.innerHTML = '';
@@ -482,7 +523,7 @@
           container.appendChild(a);
         });
       })
-      .catch(err => {
+      .catch(() => {
         document.getElementById('ticker-content').textContent = 'Failed to load headlines.';
       });
   </script>
