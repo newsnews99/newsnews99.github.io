@@ -1,9 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: newsnews99/newsnews99.github.io
   branch: main
 
-media_folder: "data"
-public_folder: "/data"
+media_folder: "static/uploads"
+public_folder: "/uploads"
 
 collections:
   - name: "headlines"
@@ -15,6 +16,6 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "URL", name: "url", widget: "string" }
       - { label: "Author", name: "author", widget: "string", default: "editor" }
-      - { label: "Published", name: "published", widget: "datetime" }
-      - { label: "Updated", name: "updated", widget: "datetime" }
+      - { label: "Published", name: "published", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss[Z]" }
+      - { label: "Updated", name: "updated", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss[Z]" }
       - { label: "Category", name: "category", widget: "string", default: "news" }
