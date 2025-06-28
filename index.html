@@ -75,19 +75,13 @@
       overflow: hidden; white-space: nowrap;
     }
     .ticker-content {
-      display: inline-block; padding-left: 0;
-      animation: ticker-scroll 20s linear infinite;
+      display: inline-block; /* no CSS animation any more */
     }
-    .ticker:hover .ticker-content { animation-play-state: paused; }
     .ticker-content a {
       display: inline-block; color: white; text-decoration: none;
       margin-right: 50px; font-size: 16px;
     }
     .ticker-content a:hover { color: gold; }
-    @keyframes ticker-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
 
     /* —– MAIN HEADLINE & COLUMNS —– */
     .main-headline-container {
@@ -141,7 +135,8 @@
       max-width: 1200px; margin: 0 auto; box-sizing: border-box;
     }
     .footer-content {
-      display: flex; justify-content: space-between; align-items: stretch; gap: 20px;
+      display: flex; justify-content: space-between; align-items: stretch;
+      gap: 20px;
     }
     .footer-section {
       flex: 1; display: flex; flex-direction: column;
@@ -203,8 +198,7 @@
         width: 100%; margin-bottom: 10px; padding: 0 20px;
         box-sizing: border-box; text-align: center;
       }
-      /* same 20s speed */
-      .ticker-content { animation-duration: 20s !important; }
+      /* all speeds are now JS-driven */
       .footer-content {
         flex-direction: column; align-items: center; text-align: center; margin-top: 20px;
       }
@@ -343,7 +337,7 @@
     updateTime();
     setInterval(updateTime, 60000);
 
-    // fetch & duplicate headlines for seamless ticker
+    // build seamless scroll
     fetch('/headlines.json')
       .then(res => res.json())
       .then(data => {
@@ -355,15 +349,29 @@
           a.textContent = item.title;
           container.appendChild(a);
         });
-        // duplicate for seamless loop
+        // duplicate for loop
         container.innerHTML += container.innerHTML;
-        // remove margin-right on both original last and its duplicate
+        // remove gap on original last & duplicate last
         const N = data.length;
         const links = container.querySelectorAll('a');
         if (links.length >= 2*N) {
-          links[N - 1].style.marginRight = '0';
-          links[2*N - 1].style.marginRight = '0';
+          links[N-1].style.marginRight = '0';
+          links[2*N-1].style.marginRight = '0';
         }
+
+        const tickerInner = document.querySelector('.ticker-inner');
+        const halfWidth = tickerInner.scrollWidth / 2;
+        let lastTime;
+
+        function step(ts) {
+          if (!lastTime) lastTime = ts;
+          const delta = ts - lastTime;
+          lastTime = ts;
+          // pixels per ms: halfWidth / 20000ms
+          tickerInner.scrollLeft = (tickerInner.scrollLeft + (halfWidth/20000)*delta) % halfWidth;
+          requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
       })
       .catch(() => {
         document.getElementById('ticker-content').textContent = 'Failed to load headlines.';
