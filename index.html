@@ -82,10 +82,9 @@
       margin-left: 5px; /* 5px gap on desktop */
       padding: 0;
       position: relative;
-      /* Custom alignment for desktop */
-      transform: translateY(12px); /* Fine-tuned so bottom of date is flush with bottom of logo */
       min-width: 110px;
       width: auto;
+      transform: translateY(17px); /* 12px before + 5px down */
     }
     .time-date div {
       text-align: left;
@@ -372,19 +371,28 @@
         position: relative;
       }
       .left-section img.logo { height: 32px; }
+      /* Place time/date above search bar, right-aligned at header content limit */
+      .mobile-header-time-date-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-end;
+        width: 100%;
+        margin-bottom: 1px;
+      }
       .time-date {
         font-size: 12px;
         align-items: flex-end;
         text-align: right;
-        margin-bottom: 0;
         height: 32px;
         margin-left: 7px;
+        margin-bottom: 0;
         width: auto;
         justify-content: flex-end;
-        position: absolute;
-        right: 0;
-        top: 34px;
-        transform: translateY(2px); /* Move down 2px */
+        position: static !important;
+        right: 0 !important;
+        top: unset !important;
+        transform: translateY(2px) !important;
       }
       .time-date div { text-align: right;}
       .center-section { 
@@ -471,6 +479,13 @@
         <div class="time-date">
           <div id="current-time">--:-- AEST</div>
           <div id="current-date">--/--/----</div>
+        </div>
+      </div>
+      <!-- On mobile, move time/date above search bar -->
+      <div class="mobile-header-time-date-wrapper" style="display:none;">
+        <div class="time-date">
+          <div id="current-time-mobile">--:-- AEST</div>
+          <div id="current-date-mobile">--/--/----</div>
         </div>
       </div>
       <div class="center-section">
@@ -583,6 +598,10 @@
 
       document.getElementById('current-time').textContent = `${melTime} AEST`;
       document.getElementById('current-date').textContent = `${melDate}`;
+      if(document.getElementById('current-time-mobile')) {
+        document.getElementById('current-time-mobile').textContent = `${melTime} AEST`;
+        document.getElementById('current-date-mobile').textContent = `${melDate}`;
+      }
     }
     updateTime();
     setInterval(updateTime, 60000);
@@ -633,6 +652,19 @@
       var input = document.getElementById('search-input');
       input.value = 'site:fedsun.news ' + input.value;
     });
+
+    // Responsive swap for time/date on mobile
+    function handleTimeDatePlacement() {
+      if(window.innerWidth <= 768) {
+        document.querySelector('.time-date').style.display = "none";
+        document.querySelector('.mobile-header-time-date-wrapper').style.display = "flex";
+      } else {
+        document.querySelector('.time-date').style.display = "flex";
+        document.querySelector('.mobile-header-time-date-wrapper').style.display = "none";
+      }
+    }
+    handleTimeDatePlacement();
+    window.addEventListener('resize', handleTimeDatePlacement);
   </script>
 </body>
 </html>
