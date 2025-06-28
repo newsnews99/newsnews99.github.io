@@ -11,7 +11,6 @@
       --ticker-distance: 0px;
       --ticker-duration: 20s;
     }
-
     html, body {
       margin: 0;
       font-family: 'Bebas Neue', sans-serif;
@@ -33,7 +32,6 @@
       height: auto;
       display: block;
     }
-
     .banner {
       position: fixed;
       top: 0;
@@ -65,13 +63,27 @@
       justify-content: center;
       width: 100%;
     }
-    .center-section input[type="text"] {
+    .center-section form {
       width: 100%;
+    }
+    .center-section input[type="text"] {
+      width: 80%;
       padding: 8px 12px;
       font-size: 16px;
       border: none;
       border-radius: 4px;
       outline: none;
+      margin-right: 8px;
+    }
+    .center-section button {
+      padding: 8px 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      background: gold;
+      color: #1e1e1e;
+      cursor: pointer;
+      font-family: inherit;
     }
     .right-section {
       display: flex;
@@ -80,11 +92,12 @@
       gap: 12px;
       width: 100%;
     }
-    .right-section img {
+    .right-section a img {
       height: 28px;
       transition: transform 0.2s;
+      display: inline-block;
     }
-    .right-section img:hover { transform: scale(1.1);}
+    .right-section a:hover img { transform: scale(1.1);}
     .time-date {
       display: flex;
       flex-direction: column;
@@ -97,7 +110,6 @@
       text-align: right;
       transform: translateY(2px);
     }
-
     /* Ticker */
     .ticker {
       width: 100%;
@@ -139,7 +151,6 @@
       from { transform: translateX(0); }
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
-
     .main-headline-container {
       display: flex;
       flex-wrap: wrap;
@@ -380,15 +391,19 @@
         </div>
       </div>
       <div class="center-section">
-        <input type="text" placeholder="Search..." />
+        <!-- Search Form -->
+        <form id="search-form" action="https://www.google.com/search" method="GET" target="_blank" autocomplete="off">
+          <input type="text" id="search-input" name="q" placeholder="Search..." />
+          <button type="submit">Search</button>
+        </form>
       </div>
       <div class="right-section">
-        <img src="icon_gab.png" alt="Gab" />
-        <img src="icon_facebook.png" alt="Facebook" />
-        <img src="icon_instagram.png" alt="Instagram" />
-        <img src="icon_telegram.png" alt="Telegram" />
-        <img src="icon_x.png" alt="X" />
-        <img src="icon_youtube.png" alt="YouTube" />
+        <a href="https://gab.com/federationsun" target="_blank" rel="noopener"><img src="icon_gab.png" alt="Gab" /></a>
+        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener"><img src="icon_facebook.png" alt="Facebook" /></a>
+        <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener"><img src="icon_instagram.png" alt="Instagram" /></a>
+        <a href="https://t.me/federationsun" target="_blank" rel="noopener"><img src="icon_telegram.png" alt="Telegram" /></a>
+        <a href="https://x.com/federationsun" target="_blank" rel="noopener"><img src="icon_x.png" alt="X" /></a>
+        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube" /></a>
       </div>
     </div>
     <!-- Ticker INSIDE header, after banner-content -->
@@ -400,7 +415,6 @@
       </div>
     </div>
   </div>
-
   <div class="main-headline-container">
     <div class="headline-left">
       <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
@@ -435,7 +449,6 @@
       </div>
     </div>
   </div>
-
   <footer>
     <div class="footer-wrapper">
       <div class="footer-content">
@@ -528,6 +541,13 @@
       .catch(() => {
         document.getElementById('ticker-track').textContent = 'Failed to load headlines.';
       });
+
+    // Search bar: force site-specific search (optional, remove if not wanted)
+    document.getElementById('search-form').addEventListener('submit', function(e) {
+      var input = document.getElementById('search-input');
+      // Optional: replace 'fedsun.news' with your actual site domain
+      input.value = 'site:fedsun.news ' + input.value;
+    });
   </script>
 </body>
 </html>
