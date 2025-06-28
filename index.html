@@ -80,9 +80,13 @@
 
     /* —– TICKER —– */
     .ticker {
-      width: 100%; background-color: #222;
-      border-top: 1px solid #444; border-bottom: 1px solid #444;
-      display: flex; align-items: center; height: 36px;
+      width: 100%;
+      background-color: #222;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      display: flex;
+      align-items: center;
+      height: 36px;
       overflow: hidden;
     }
     .ticker-inner {
@@ -90,12 +94,9 @@
       max-width: 1200px;
       margin: 0 auto;
       overflow-x: hidden;
-      position: relative;
     }
     .ticker-track {
       display: flex;
-      position: absolute;
-      top: 0; left: 0;
       white-space: nowrap;
     }
     .ticker-track a {
@@ -104,7 +105,6 @@
       text-decoration: none;
       margin-right: 50px;
       font-size: 16px;
-      white-space: nowrap;
     }
     .ticker-track a:hover {
       color: gold;
@@ -348,7 +348,7 @@
   </footer>
 
   <script>
-    // 1) fix body padding for fixed banner
+    // 1) banner padding
     function adjustPadding() {
       const h = document.getElementById('banner').offsetHeight;
       document.documentElement.style.setProperty('--banner-height', h + 'px');
@@ -356,7 +356,7 @@
     window.addEventListener('load', adjustPadding);
     window.addEventListener('resize', adjustPadding);
 
-    // 2) live clock
+    // 2) clock
     function updateTime() {
       const now = new Date();
       document.getElementById('current-time').textContent =
@@ -380,7 +380,7 @@
         const track = document.getElementById('ticker-track');
         const container = document.getElementById('ticker-inner');
 
-        // render + duplicate
+        // render and duplicate
         track.innerHTML = '';
         data.concat(data).forEach(item=>{
           const a = document.createElement('a');
@@ -389,11 +389,10 @@
           track.appendChild(a);
         });
 
-        // scrolling
-        const speed = 1; // px per frame at ~60fps (~60px/s)
+        // constant-speed scroll
+        const speed = 1; // px per frame (~60px/sec)
         function step(){
           container.scrollLeft += speed;
-          // when we've scrolled half the track (one full list), reset
           if(container.scrollLeft >= track.scrollWidth/2){
             container.scrollLeft = 0;
           }
