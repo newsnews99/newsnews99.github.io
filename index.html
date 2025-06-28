@@ -365,7 +365,7 @@
       .mobile-header-row {
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-between; /* key! logo left, time/date right */
         align-items: flex-end;
         width: 100%;
         margin-bottom: 0;
@@ -379,6 +379,7 @@
         min-width: 0;
         padding: 0;
         margin: 0;
+        flex: 1 1 0;
       }
       .left-section img.logo {
         height: 32px;
@@ -387,13 +388,13 @@
         margin: 0;
         padding: 0;
         position: relative;
-        top: -4px; /* Move logo up 4px */
+        top: -4px;
       }
       .time-date {
         font-size: 12px;
         align-items: flex-end;
-        text-align: left;
-        margin-left: 10px;
+        text-align: right;
+        margin-left: 0;
         margin-bottom: 0;
         width: auto;
         height: 32px;
@@ -402,12 +403,12 @@
         right: 0 !important;
         top: unset !important;
         transform: none !important;
-        /* Baseline align with logo */
+        /* force right align in header row */
         display: flex;
         flex-direction: column;
         align-self: flex-end;
       }
-      .time-date div { text-align: left;}
+      .time-date div { text-align: right;}
       .center-section {
         flex: 1;
         width: 100%;
@@ -490,12 +491,12 @@
   <div class="banner">
     <div class="banner-content">
       <div class="mobile-header-row">
-        <div class="left-section">
+        <div class="left-section" style="flex:1;">
           <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
-          <div class="time-date">
-            <div id="current-time">--:-- AEST</div>
-            <div id="current-date">--/--/----</div>
-          </div>
+        </div>
+        <div class="time-date">
+          <div id="current-time">--:-- AEST</div>
+          <div id="current-date">--/--/----</div>
         </div>
       </div>
       <div class="center-section">
@@ -513,7 +514,6 @@
         <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube" /></a>
       </div>
     </div>
-    <!-- Ticker INSIDE header, after banner-content -->
     <div class="ticker">
       <div class="ticker-inner" id="ticker-inner">
         <div class="ticker-track" id="ticker-track">
