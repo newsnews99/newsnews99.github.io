@@ -22,10 +22,14 @@
       padding-left: 10vw;
       padding-right: 10vw;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
+      align-items: center;
       text-align: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     img {
       max-width: 100%;
@@ -47,17 +51,17 @@
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 16px 20px;
-      gap: 10px;
+      padding: 12px 20px;
+      gap: 8px;
     }
     .left-section {
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
-      gap: 10px;
+      gap: 8px;
       width: 100%;
     }
-    .left-section img.logo { height: 60px; }
+    .left-section img.logo { height: 48px; }
     .center-section {
       display: flex;
       justify-content: center;
@@ -66,37 +70,37 @@
     }
     .center-section form {
       width: 100%;
-      max-width: 400px;
+      max-width: 300px;
       display: flex;
       flex-direction: row;
       align-items: stretch;
-      gap: 8px; /* Spacing between input and button */
+      gap: 6px; /* Spacing between input and button */
     }
     .center-section input[type="text"] {
       width: 100%;
-      max-width: 400px;
+      max-width: 300px;
       flex: 1 1 0;
       min-width: 0;
-      padding: 10px 14px;
-      font-size: 16px;
+      padding: 4px 8px;
+      font-size: 15px;
       border: none;
       border-radius: 4px;
       outline: none;
       box-sizing: border-box;
-      height: 40px;
+      height: 32px;
       background: #fff;
       color: #1e1e1e;
     }
     .center-section button {
-      padding: 0 18px;
-      font-size: 16px;
+      padding: 0 12px;
+      font-size: 15px;
       border: none;
       border-radius: 4px;
       background: gold;
       color: #1e1e1e;
       cursor: pointer;
       font-family: inherit;
-      height: 40px;
+      height: 32px;  /* Ensures it matches input height */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -106,11 +110,11 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 12px;
+      gap: 8px;
       width: 100%;
     }
     .right-section a img {
-      height: 28px;
+      height: 24px;
       transition: transform 0.2s;
       display: inline-block;
     }
@@ -118,14 +122,18 @@
     .time-date {
       display: flex;
       flex-direction: column;
-      font-size: 14px;
-      line-height: 1;
+      font-size: 13px;
+      line-height: 1.1;
       justify-content: flex-end;
-      align-items: flex-end;
-      height: 60px;
+      align-items: flex-start;
+      height: 48px;
       margin: 0;
-      text-align: right;
+      text-align: left;
       transform: translateY(2px);
+    }
+    .time-date div {
+      text-align: left;
+      width: 100%;
     }
     /* Ticker */
     .ticker {
@@ -134,7 +142,7 @@
       border-top: 1px solid #444;
       border-bottom: 1px solid #444;
       overflow: hidden;
-      height: 36px;
+      height: 32px;
       position: relative;
       z-index: 999;
     }
@@ -143,7 +151,7 @@
       max-width: 1200px;
       margin: 0 auto;
       overflow: hidden;
-      height: 36px;
+      height: 32px;
       display: flex;
       align-items: center;
     }
@@ -158,10 +166,10 @@
     }
     .ticker-group a {
       display: inline-block;
-      margin-right: 50px;
+      margin-right: 40px;
       color: white;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 15px;
     }
     .ticker-group a:hover { color: gold; }
     @keyframes scroll {
@@ -175,6 +183,8 @@
       margin-top: 20px;
       width: 100%;
       max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .headline-left {
       width: 50%;
@@ -321,19 +331,34 @@
       box-sizing: border-box;
       margin: 0;
     }
+
+    /* MOBILE */
     @media (max-width: 768px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
       .banner-content {
         flex-direction: column;
-        gap: 10px;
+        gap: 6px;
         align-items: stretch;
         display: flex;
+        max-width: 100vw;
+        padding: 8px 8px;
       }
       .left-section {
         flex-direction: row;
         align-items: flex-end;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 6px;
       }
-      .time-date { align-items: flex-end; text-align: right;}
+      .left-section img.logo { height: 38px; }
+      .time-date { 
+        align-items: flex-end; 
+        text-align: right; 
+        height: 38px; 
+      }
+      .time-date div { text-align: right; }
       .center-section { flex: 1; width: 100%; min-width: 0; }
       .center-section form {
         width: 100%;
@@ -341,15 +366,20 @@
         display: flex;
         flex-direction: row;
         align-items: stretch;
+        gap: 5px;
       }
-      .center-section input[type="text"] { width: 100%; max-width: 100%; }
-      .center-section button { width: auto; min-width: 80px; }
-      .right-section { flex-wrap: wrap; justify-content: flex-end; gap: 10px; width: 100%;}
+      .center-section input[type="text"] { width: 100%; max-width: 100%; height: 28px; font-size: 14px; padding: 3px 7px;}
+      .center-section button { width: auto; min-width: 70px; height: 28px; font-size: 14px; padding: 0 10px; }
+      .right-section { flex-wrap: wrap; justify-content: flex-end; gap: 7px; width: 100%;}
+      .right-section a img { height: 19px;}
+      .container, .main-headline-container, .ticker-inner, .footer-wrapper { max-width: 100vw !important; width: 100% !important;}
       .main-headline-container {
         flex-direction: column;
         align-items: center;
         width: 100%;
         margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
       }
       .headline-left, .headline-right {
         width: 100%;
@@ -359,7 +389,7 @@
       .main-headline-link {
         width: 100%;
         text-align: center;
-        padding: 0 20px;
+        padding: 0 8px;
         box-sizing: border-box;
       }
       .headline-columns,
@@ -372,7 +402,7 @@
       .headline-right .column {
         width: 100%;
         margin-bottom: 10px;
-        padding: 0 20px;
+        padding: 0 8px;
         box-sizing: border-box;
         text-align: center;
       }
@@ -383,7 +413,7 @@
       .headline-columns .column:first-child {
         align-items: center;
       }
-      .footer-wrapper { padding: 0 20px;}
+      .footer-wrapper { padding: 0 8px;}
       .footer-content {
         flex-direction: column;
         align-items: center;
@@ -436,37 +466,39 @@
       </div>
     </div>
   </div>
-  <div class="main-headline-container">
-    <div class="headline-left">
-      <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
-      <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
-      <div class="headline-columns">
+  <div class="container">
+    <div class="main-headline-container">
+      <div class="headline-left">
+        <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
+        <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
+        <div class="headline-columns">
+          <div class="column">
+            <a href="#" class="latest-title">Latest</a>
+            <a href="#">HEADLINE 1</a>
+            <a href="#">HEADLINE 2</a>
+            <a href="#">HEADLINE 3</a>
+          </div>
+          <div class="column">
+            <a href="#" class="latest-title">Latest</a>
+            <a href="#">HEADLINE 4</a>
+            <a href="#">HEADLINE 5</a>
+            <a href="#">HEADLINE 6</a>
+          </div>
+        </div>
+      </div>
+      <div class="headline-right">
         <div class="column">
           <a href="#" class="latest-title">Latest</a>
-          <a href="#">HEADLINE 1</a>
-          <a href="#">HEADLINE 2</a>
-          <a href="#">HEADLINE 3</a>
+          <a href="#">HEADLINE 7</a>
+          <a href="#">HEADLINE 8</a>
+          <a href="#">HEADLINE 9</a>
         </div>
         <div class="column">
           <a href="#" class="latest-title">Latest</a>
-          <a href="#">HEADLINE 4</a>
-          <a href="#">HEADLINE 5</a>
-          <a href="#">HEADLINE 6</a>
+          <a href="#">HEADLINE 10</a>
+          <a href="#">HEADLINE 11</a>
+          <a href="#">HEADLINE 12</a>
         </div>
-      </div>
-    </div>
-    <div class="headline-right">
-      <div class="column">
-        <a href="#" class="latest-title">Latest</a>
-        <a href="#">HEADLINE 7</a>
-        <a href="#">HEADLINE 8</a>
-        <a href="#">HEADLINE 9</a>
-      </div>
-      <div class="column">
-        <a href="#" class="latest-title">Latest</a>
-        <a href="#">HEADLINE 10</a>
-        <a href="#">HEADLINE 11</a>
-        <a href="#">HEADLINE 12</a>
       </div>
     </div>
   </div>
@@ -511,13 +543,14 @@
 
       const melDate = new Intl.DateTimeFormat('en-AU', {
         timeZone: 'Australia/Melbourne',
+        weekday: 'short',
         year: 'numeric',
         month: '2-digit',
         day: '2-digit'
       }).format(now);
 
       document.getElementById('current-time').textContent = `${melTime} AEST`;
-      document.getElementById('current-date').textContent = melDate;
+      document.getElementById('current-date').textContent = `${melDate}`;
     }
     updateTime();
     setInterval(updateTime, 60000);
@@ -566,7 +599,6 @@
     // Search bar: force site-specific search (optional, remove if not wanted)
     document.getElementById('search-form').addEventListener('submit', function(e) {
       var input = document.getElementById('search-input');
-      // Optional: replace 'fedsun.news' with your actual site domain
       input.value = 'site:fedsun.news ' + input.value;
     });
   </script>
