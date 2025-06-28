@@ -9,6 +9,14 @@ on:
       url:
         description: 'Headline URL'
         required: true
+      author:
+        description: 'Author'
+        required: false
+        default: 'editor'
+      category:
+        description: 'Category'
+        required: false
+        default: 'news'
 
 jobs:
   add-headline:
@@ -25,25 +33,24 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Create headline file
+      - name: Create new headline file
         run: |
           mkdir -p content/headlines
-          TIMESTAMP=$(date -u +%Y%m%d%H%M%S)
+          TIMESTAMP=$(date -u +"%Y%m%d%H%M%S")
           FILENAME="content/headlines/headline-${TIMESTAMP}.md"
+          NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
           echo "---" > "$FILENAME"
           echo "title: ${{ github.event.inputs.title }}" >> "$FILENAME"
           echo "url: ${{ github.event.inputs.url }}" >> "$FILENAME"
-          echo "author: ${{ github.actor }}" >> "$FILENAME"
-          echo "published: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$FILENAME"
-          echo "updated: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$FILENAME"
-          echo "category: news" >> "$FILENAME"
+          echo "author: ${{ github.event.inputs.author }}" >> "$FILENAME"
+          echo "published: $NOW" >> "$FILENAME"
+          echo "updated: $NOW" >> "$FILENAME"
+          echo "category: ${{ github.event.inputs.category }}" >> "$FILENAME"
           echo "---" >> "$FILENAME"
+
           cat "$FILENAME"
 
-      - name: Commit and push file
+      - name: Commit and push headline
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git add content/headlines/
-          git commit -m "Add headline: ${{ github.event.inputs.title }}" || echo "Nothing to commit"
-          git push origin HEAD:main
+          GITHUB_TOKEN: ${{ s_
