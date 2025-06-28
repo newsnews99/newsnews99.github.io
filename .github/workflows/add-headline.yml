@@ -18,14 +18,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_TOKEN }}
 
       - name: Configure git
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Create new headline file
+      - name: Create headline file
         run: |
           mkdir -p content/headlines
           FILENAME="content/headlines/headline-${{ github.run_id }}.md"
@@ -35,7 +35,7 @@ jobs:
           echo "---" >> "$FILENAME"
           cat "$FILENAME"
 
-      - name: Commit and push changes
+      - name: Commit and push
         run: |
           git add content/headlines
           if git diff --cached --quiet; then
