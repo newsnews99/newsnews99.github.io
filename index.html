@@ -373,34 +373,45 @@
     updateTime();
     setInterval(updateTime,60000);
 
-    // 3) seamless JS ticker
+    // 3) seamless JS ticker — improved clone-until-wide
     fetch('/headlines.json')
-      .then(r=>r.json())
-      .then(data=>{
+      .then(r => r.json())
+      .then(data => {
         const track = document.getElementById('ticker-track');
         const container = document.getElementById('ticker-inner');
 
-        // render and duplicate
+        // render one copy
         track.innerHTML = '';
-        data.concat(data).forEach(item=>{
+        data.forEach(item => {
           const a = document.createElement('a');
           a.href = item.url;
           a.textContent = item.title;
           track.appendChild(a);
         });
 
-        // constant-speed scroll
-        const speed = 1; // px per frame (~60px/sec)
-        function step(){
+        // clone until wide enough for a seamless loop
+        while (track.scrollWidth < container.offsetWidth * 2) {
+          Array.from(track.children).forEach(orig => {
+            track.appendChild(orig.cloneNode(true));
+          });
+        }
+
+        // remove extra gap at the end
+        track.lastElementChild.style.marginRight = '0';
+
+        // measure the width of the first set
+        const firstSetWidth = track.scrollWidth / (track.children.length / data.length);
+        const speed = 1; // px per frame
+        function step() {
           container.scrollLeft += speed;
-          if(container.scrollLeft >= track.scrollWidth/2){
-            container.scrollLeft = 0;
+          if (container.scrollLeft >= firstSetWidth) {
+            container.scrollLeft -= firstSetWidth;
           }
           requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
       })
-      .catch(_=>{
+      .catch(_ => {
         document.getElementById('ticker-track').textContent = 'Failed to load headlines.';
       });
   </script>
