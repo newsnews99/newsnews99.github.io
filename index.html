@@ -210,9 +210,7 @@
       .banner-content {
         display: flex; flex-direction: column; gap: 10px;
       }
-      .left-section {
-        justify-content: space-between;
-      }
+      .left-section { justify-content: space-between; }
       .center-section, .right-section, .time-date {
         width: 100%;
       }
@@ -222,9 +220,7 @@
       .headline-left, .headline-right {
         width: 100%; margin-bottom: 20px;
       }
-      .main-headline-link {
-        padding: 0 20px; box-sizing: border-box;
-      }
+      .main-headline-link { padding: 0 20px; box-sizing: border-box; }
       .headline-columns, .headline-right {
         flex-direction: column; align-items: center; margin-top: 0;
       }
@@ -233,9 +229,7 @@
         padding: 0 20px; box-sizing: border-box;
         text-align: center;
       }
-      .footer-wrapper {
-        padding: 0 20px;
-      }
+      .footer-wrapper { padding: 0 20px; }
       .footer-content {
         flex-direction: column; align-items: center; text-align: center; margin-top: 20px;
       }
@@ -373,7 +367,7 @@
     updateTime();
     setInterval(updateTime,60000);
 
-    // 3) seamless JS ticker — improved clone-until-wide
+    // 3) seamless JS ticker — now with integer reset
     fetch('/headlines.json')
       .then(r => r.json())
       .then(data => {
@@ -389,19 +383,21 @@
           track.appendChild(a);
         });
 
-        // clone until wide enough for a seamless loop
+        // clone until wide enough
         while (track.scrollWidth < container.offsetWidth * 2) {
           Array.from(track.children).forEach(orig => {
             track.appendChild(orig.cloneNode(true));
           });
         }
 
-        // remove extra gap at the end
+        // remove final gap
         track.lastElementChild.style.marginRight = '0';
 
-        // measure the width of the first set
-        const firstSetWidth = track.scrollWidth / (track.children.length / data.length);
-        const speed = 1; // px per frame
+        // integer width of first set
+        const raw = track.scrollWidth / (track.children.length / data.length);
+        const firstSetWidth = Math.round(raw);
+        const speed = 1; // px/frame
+
         function step() {
           container.scrollLeft += speed;
           if (container.scrollLeft >= firstSetWidth) {
