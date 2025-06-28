@@ -7,11 +7,11 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
-    :root { --banner-height: 0px; }
+    :root { --banner-height: 0px; --scroll: 0px; }
     html, body {
       margin: 0;
       font-family: 'Bebas Neue', sans-serif;
-      background: #1e1e1e;
+      background-color: #1e1e1e;
       color: white;
       box-sizing: border-box;
     }
@@ -28,128 +28,201 @@
 
     /* —– BANNER —– */
     .banner {
-      position: fixed; top: 0; left: 0; width: 100%;
-      background: #1e1e1e;
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #1e1e1e;
       box-shadow: 0 2px 4px rgba(0,0,0,0.4);
       z-index: 1000;
     }
     .banner-content {
-      display: grid; grid-template-columns: 1fr auto 1fr;
-      align-items: center; max-width: 1200px;
-      margin: 0 auto; padding: 16px 20px; gap: 10px;
-    }
-    .left-section {
-      display: flex; align-items: flex-end; justify-content: flex-start;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px;
       gap: 10px;
     }
-    .left-section img.logo { height: 60px; }
+    .left-section {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      gap: 10px;
+    }
+    .left-section img.logo {
+      height: 60px;
+    }
     .center-section {
-      display: flex; justify-content: center;
+      display: flex;
+      justify-content: center;
     }
     .center-section input {
-      width: 100%; padding: 8px 12px; font-size: 16px;
-      border: none; border-radius: 4px; outline: none;
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      outline: none;
     }
     .right-section {
-      display: flex; align-items: center; justify-content: flex-end;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
       gap: 12px;
     }
     .right-section img {
-      height: 28px; transition: transform 0.2s;
+      height: 28px;
+      transition: transform 0.2s;
     }
     .right-section img:hover { transform: scale(1.1); }
     .time-date {
-      display: flex; flex-direction: column;
-      font-size: 14px; line-height: 1;
-      justify-content: flex-end; align-items: flex-end;
-      height: 60px; transform: translateY(2px);
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+      line-height: 1;
+      justify-content: flex-end;
+      align-items: flex-end;
+      height: 60px;
+      transform: translateY(2px);
     }
 
     /* —– TICKER —– */
     .ticker {
-      width: 100%; background: #222;
-      border-top: 1px solid #444; border-bottom: 1px solid #444;
-      display: flex; align-items: center; height: 36px;
+      width: 100%;
+      background-color: #222;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      display: flex;
+      align-items: center;
+      height: 36px;
     }
     .ticker-inner {
-      width: 100%; max-width: 1200px; margin: 0 auto;
-      overflow: hidden; white-space: nowrap;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+      white-space: nowrap;
     }
     .ticker-content {
       display: inline-block;
+      white-space: nowrap;
+      /* pure CSS animation, uses dynamically set --scroll */
       animation: ticker-scroll 20s linear infinite;
     }
     .ticker-content a {
-      display: inline-block; color: white;
-      text-decoration: none; margin-right: 50px;
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      margin-right: 50px;
       font-size: 16px;
     }
     .ticker-content a:hover { color: gold; }
     @keyframes ticker-scroll {
       from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+      to   { transform: translateX(calc(-1 * var(--scroll))); }
     }
 
-    /* —– MAIN HEADLINES —– */
+    /* —– MAIN SECTION —– */
     .main-headline-container {
-      display: flex; flex-wrap: wrap; justify-content: space-between;
-      margin-top: 20px; width: 100%; max-width: 1200px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 1200px;
     }
     .headline-left, .headline-right {
-      width: 50%; display: flex; flex-direction: column;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
     }
     .main-headline-img {
-      width: 100%; margin-bottom: 15px;
+      width: 100%;
+      margin-bottom: 15px;
     }
     .main-headline-link {
-      font-size: 32px; color: white; text-decoration: none;
+      font-size: 32px;
+      color: white;
+      text-decoration: none;
       margin-bottom: 15px;
     }
     .main-headline-link:hover { color: gold; }
     .headline-columns, .headline-right {
-      display: flex; justify-content: space-between;
+      display: flex;
+      justify-content: space-between;
     }
     .column {
-      display: flex; flex-direction: column;
-      width: 48%; text-align: left;
+      width: 48%;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
     }
     .latest-title {
-      color: gold; font-size: 18px;
-      margin-bottom: 10px; text-decoration: none;
+      color: gold;
+      font-size: 18px;
+      margin-bottom: 10px;
+      text-decoration: none;
       text-align: center;
     }
     .column a:not(.latest-title) {
-      color: white; font-size: 16px;
-      margin: 4px 0; text-decoration: none;
+      color: white;
+      font-size: 16px;
+      margin: 4px 0;
+      text-decoration: none;
     }
     .column a:not(.latest-title):hover { color: gold; }
 
     /* —– FOOTER —– */
     footer {
-      background: #1e1e1e; padding: 20px 0;
-      border-top: 1px solid #444; margin-top: 20px; width: 100%;
+      background-color: #1e1e1e;
+      padding: 20px 0;
+      border-top: 1px solid #444;
+      margin-top: 20px;
+      width: 100%;
     }
-    .footer-wrapper { max-width: 1200px; margin: 0 auto; }
+    .footer-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
     .footer-content {
-      display: flex; justify-content: space-between; gap: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
     }
     .footer-section {
-      flex: 1; display: flex; flex-direction: column;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
-    .footer-section.left img { max-width: 100px; margin-bottom: 10px; }
-    .footer-section.center img { max-width: 100px; margin-bottom: 10px; }
+    .footer-section img {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
     .footer-section p, .footer-section h3, .footer-section a {
-      font-size: 14px; line-height: 1.4; margin: 6px 0;
+      font-size: 14px;
+      line-height: 1.4;
+      margin: 6px 0;
     }
-    .footer-section h3 { font-size: 16px; margin-bottom: 10px; }
+    .footer-section h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
     .footer-section form textarea {
-      width: 100%; height: 100px; padding: 10px;
-      border: none; border-radius: 4px; resize: none;
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      resize: none;
     }
     .footer-section form button {
-      width: 100%; padding: 8px 16px;
-      background: #fff; color: #1e1e1e; border: none;
-      border-radius: 4px; cursor: pointer;
+      width: 100%;
+      padding: 8px 16px;
+      background: #fff;
+      color: #1e1e1e;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
 
     /* —– MOBILE —– */
@@ -192,6 +265,7 @@
       </div>
     </div>
 
+    <!-- TICKER BELOW BANNER CONTENT -->
     <div class="ticker">
       <div class="ticker-inner">
         <div class="ticker-content" id="ticker-content">Loading headlines…</div>
@@ -199,6 +273,7 @@
     </div>
   </div>
 
+  <!-- MAIN PAGE CONTENT -->
   <div class="main-headline-container">
     <div class="headline-left">
       <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
@@ -264,17 +339,15 @@
   </footer>
 
   <script>
-    // 1) Banner padding
+    // 1) adjust banner height
     function adjustPadding() {
-      document.documentElement.style.setProperty(
-        '--banner-height',
-        document.getElementById('banner').offsetHeight + 'px'
-      );
+      const h = document.getElementById('banner').offsetHeight;
+      document.documentElement.style.setProperty('--banner-height', h + 'px');
     }
     window.addEventListener('load', adjustPadding);
     window.addEventListener('resize', adjustPadding);
 
-    // 2) Clock
+    // 2) live clock
     function updateTime() {
       const now = new Date();
       document.getElementById('current-time').textContent =
@@ -291,28 +364,32 @@
     updateTime();
     setInterval(updateTime, 60000);
 
-    // 3) Ticker: load, duplicate, remove duplicate-last margin
+    // 3) build seamless, infinite ticker
     fetch('/headlines.json')
       .then(r => r.json())
       .then(data => {
-        const cont = document.getElementById('ticker-content');
-        cont.innerHTML = '';
+        const tc = document.getElementById('ticker-content');
+        tc.innerHTML = '';
         data.forEach(item => {
           const a = document.createElement('a');
           a.href = item.url;
           a.textContent = item.title;
-          cont.appendChild(a);
+          tc.appendChild(a);
         });
-        // duplicate
-        cont.innerHTML += cont.innerHTML;
-        // remove margin-right on the duplicate last link only
-        const links = cont.querySelectorAll('a');
+        // duplicate for loop
+        tc.innerHTML += tc.innerHTML;
+        // remove gap on duplicate last link
+        const links = tc.querySelectorAll('a');
         const N = data.length;
         if (links.length >= 2*N) {
           links[2*N - 1].style.marginRight = '0';
         }
+        // measure original width & set CSS var
+        const fullW = tc.scrollWidth;       // double width
+        const origW = fullW / 2;           // one cycle
+        tc.style.setProperty('--scroll', origW + 'px');
       })
-      .catch(_ => {
+      .catch(() => {
         document.getElementById('ticker-content').textContent = 'Failed to load headlines.';
       });
   </script>
