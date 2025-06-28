@@ -7,6 +7,9 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --banner-height: 0px;
+    }
     html, body {
       margin: 0;
       font-family: 'Bebas Neue', sans-serif;
@@ -14,8 +17,8 @@
       color: white;
       box-sizing: border-box;
     }
-
     body {
+      padding-top: var(--banner-height);
       padding-left: 10vw;
       padding-right: 10vw;
       display: flex;
@@ -24,23 +27,22 @@
       flex-direction: column;
       text-align: center;
     }
-
     img {
       max-width: 100%;
       height: auto;
       display: block;
     }
 
+    /* —– HEADER / BANNER —– */
     .banner {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       background-color: #1e1e1e;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
       z-index: 1000;
     }
-
     .banner-content {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
@@ -50,7 +52,6 @@
       padding: 16px 20px;
       gap: 10px;
     }
-
     .left-section {
       display: flex;
       align-items: flex-end;
@@ -61,7 +62,6 @@
     .left-section img.logo {
       height: 60px;
     }
-
     .center-section {
       display: flex;
       justify-content: center;
@@ -75,7 +75,6 @@
       border-radius: 4px;
       outline: none;
     }
-
     .right-section {
       display: flex;
       align-items: center;
@@ -90,7 +89,6 @@
     .right-section img:hover {
       transform: scale(1.1);
     }
-
     .time-date {
       display: flex;
       flex-direction: column;
@@ -112,7 +110,6 @@
       white-space: nowrap;
       border-top: 1px solid #444;
       border-bottom: 1px solid #444;
-      margin-top: 100px; /* space below fixed banner */
     }
     .ticker-content {
       display: inline-block;
@@ -133,7 +130,7 @@
       color: gold;
     }
     @keyframes ticker-scroll {
-      0% { transform: translateX(0); }
+      0%   { transform: translateX(0); }
       100% { transform: translateX(-100%); }
     }
 
@@ -146,7 +143,6 @@
       width: 100%;
       max-width: 1200px;
     }
-
     .headline-left {
       width: 50%;
       display: flex;
@@ -170,7 +166,6 @@
     .main-headline-link:hover {
       color: gold;
     }
-
     .headline-columns {
       display: flex;
       width: 100%;
@@ -189,7 +184,6 @@
       text-align: center;
       text-decoration: none;
     }
-
     .headline-right {
       width: 50%;
       display: flex;
@@ -263,7 +257,6 @@
       align-items: flex-end;
       justify-content: flex-end;
     }
-
     footer img {
       max-width: 100px;
       margin-bottom: 10px;
@@ -386,7 +379,7 @@
   </style>
 </head>
 <body>
-  <div class="banner">
+  <div class="banner" id="banner">
     <div class="banner-content">
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
@@ -407,12 +400,12 @@
         <img src="icon_youtube.png" alt="YouTube" />
       </div>
     </div>
-    <div class="ticker">
-      <div class="ticker-content" id="ticker-content">Loading headlines...</div>
-    </div>
   </div>
 
-  <!-- Your original main headline + columns -->
+  <div class="ticker">
+    <div class="ticker-content" id="ticker-content">Loading headlines...</div>
+  </div>
+
   <div class="main-headline-container">
     <div class="headline-left">
       <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
@@ -448,7 +441,6 @@
     </div>
   </div>
 
-  <!-- Your original footer -->
   <footer>
     <div class="footer-wrapper">
       <div class="footer-content">
@@ -479,7 +471,18 @@
   </footer>
 
   <script>
-    // Update current time & date
+    // update body padding to banner height
+    function adjustPadding() {
+      const banner = document.getElementById('banner');
+      document.documentElement.style.setProperty(
+        '--banner-height',
+        banner.offsetHeight + 'px'
+      );
+    }
+    window.addEventListener('load', adjustPadding);
+    window.addEventListener('resize', adjustPadding);
+
+    // time & date
     function updateTime() {
       const now = new Date();
       const melTime = new Intl.DateTimeFormat('en-AU', {
@@ -500,17 +503,7 @@
     updateTime();
     setInterval(updateTime, 60000);
 
-    // Ensure body is padded below fixed banner
-    function adjustBodyPadding() {
-      const banner = document.querySelector('.banner');
-      if (banner) {
-        document.body.style.paddingTop = banner.offsetHeight + 'px';
-      }
-    }
-    window.addEventListener('load', adjustBodyPadding);
-    window.addEventListener('resize', adjustBodyPadding);
-
-    // Fetch and render ticker headlines
+    // ticker fetch
     fetch('/headlines.json')
       .then(res => res.json())
       .then(data => {
