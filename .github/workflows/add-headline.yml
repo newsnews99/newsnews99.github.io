@@ -22,10 +22,10 @@ jobs:
 
       - name: Configure git
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Create headline file
+      - name: Create new headline file
         run: |
           mkdir -p content/headlines
           FILENAME="content/headlines/headline-${{ github.run_id }}.md"
@@ -35,12 +35,12 @@ jobs:
           echo "---" >> "$FILENAME"
           cat "$FILENAME"
 
-      - name: Commit and push file
+      - name: Commit and push changes
         run: |
-          git add content/headlines/
-          git status
-          git diff --cached
-          git commit -m "Add headline: ${{ github.event.inputs.title }}" || echo "Nothing to commit"
-          git push origin HEAD:main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git add content/headlines
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Add headline: ${{ github.event.inputs.title }}"
+            git push
+          fi
