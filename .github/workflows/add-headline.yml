@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       title:
-        description: 'Headline title'
+        description: 'Headline Title'
         required: true
       url:
         description: 'Headline URL'
@@ -13,28 +13,30 @@ on:
 jobs:
   add-headline:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Git user
-      run: |
-        git config user.name "GitHub Action"
-        git config user.email "action@github.com"
+      - name: Create headline file
+        run: |
+          mkdir -p content/headlines
+          FILENAME="content/headlines/$(date +%s).md"
+          echo "---" > $FILENAME
+          echo "title: ${{ github.event.inputs.title }}" >> $FILENAME
+          echo "url: ${{ github.event.inputs.url }}" >> $FILENAME
+          echo "---" >> $FILENAME
+          echo "Created file: $FILENAME"
 
-    - name: Create new headline
-      run: |
-        FILENAME="content/headlines/$(date +'%Y-%m-%d-%H-%M-%S').md"
-        echo "---" > $FILENAME
-        echo "title: ${{ github.event.inputs.title }}" >> $FILENAME
-        echo "url: ${{ github.event.inputs.url }}" >> $FILENAME
-        echo "---" >> $FILENAME
+      - name: Configure git
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
 
-    - name: Commit and push changes
-      run: |
-        git add content/headlines/
-        git commit -m "Add headline: ${{ github.event.inputs.title }}"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and push changes
+        run: |
+          git add content/headlines/*.md
+          git commit -m "Add headline: ${{ github.event.inputs.title }}"
+          git push
+        env:
+          # 👇 This ensures authentication using the GitHub Actions token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
