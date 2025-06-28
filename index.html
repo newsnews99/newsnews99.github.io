@@ -75,11 +75,14 @@
       overflow: hidden; white-space: nowrap;
     }
     .ticker-content {
-      display: inline-block; /* no CSS animation any more */
+      display: inline-block;
     }
     .ticker-content a {
-      display: inline-block; color: white; text-decoration: none;
-      margin-right: 50px; font-size: 16px;
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      margin-right: 50px;
+      font-size: 16px;
     }
     .ticker-content a:hover { color: gold; }
 
@@ -198,7 +201,7 @@
         width: 100%; margin-bottom: 10px; padding: 0 20px;
         box-sizing: border-box; text-align: center;
       }
-      /* all speeds are now JS-driven */
+      /* now JS-driven speed */
       .footer-content {
         flex-direction: column; align-items: center; text-align: center; margin-top: 20px;
       }
@@ -337,7 +340,7 @@
     updateTime();
     setInterval(updateTime, 60000);
 
-    // build seamless scroll
+    // build seamless scroll via requestAnimationFrame
     fetch('/headlines.json')
       .then(res => res.json())
       .then(data => {
@@ -351,24 +354,24 @@
         });
         // duplicate for loop
         container.innerHTML += container.innerHTML;
-        // remove gap on original last & duplicate last
-        const N = data.length;
+        // remove gap only on the *duplicate* last link
         const links = container.querySelectorAll('a');
+        const N = data.length;
         if (links.length >= 2*N) {
-          links[N-1].style.marginRight = '0';
-          links[2*N-1].style.marginRight = '0';
+          links[2*N - 1].style.marginRight = '0';
         }
 
         const tickerInner = document.querySelector('.ticker-inner');
         const halfWidth = tickerInner.scrollWidth / 2;
-        let lastTime;
+        let lastTime = null;
 
         function step(ts) {
-          if (!lastTime) lastTime = ts;
-          const delta = ts - lastTime;
+          if (lastTime !== null) {
+            const delta = ts - lastTime;
+            // move halfWidth px over 20 000 ms
+            tickerInner.scrollLeft = (tickerInner.scrollLeft + (halfWidth / 20000) * delta) % halfWidth;
+          }
           lastTime = ts;
-          // pixels per ms: halfWidth / 20000ms
-          tickerInner.scrollLeft = (tickerInner.scrollLeft + (halfWidth/20000)*delta) % halfWidth;
           requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
