@@ -17,23 +17,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Commit and push changes
-  run: |
-    git add content/headlines/*.md
-    git commit -m "Add headline: ${{ github.event.inputs.title }}" || echo "No changes to commit"
-    git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
-
-
-      - name: Configure git
+      - name: Configure Git
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
+      - name: Create new headline file
+        run: |
+          mkdir -p content/headlines
+          echo "---" > content/headlines/${{ github.run_id }}.md
+          echo "title: ${{ github.event.inputs.title }}" >> content/headlines/${{ github.run_id }}.md
+          echo "url: ${{ github.event.inputs.url }}" >> content/headlines/${{ github.run_id }}.md
+          echo "---" >> content/headlines/${{ github.run_id }}.md
+
       - name: Commit and push changes
         run: |
           git add content/headlines/*.md
-          git commit -m "Add headline: ${{ github.event.inputs.title }}"
-          git push
-        env:
-          # 👇 This ensures authentication using the GitHub Actions token
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git commit -m "Add headline: ${{ github.event.inputs.title }}" || echo "Nothing to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
