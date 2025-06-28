@@ -110,11 +110,17 @@
       white-space: nowrap;
       border-top: 1px solid #444;
       border-bottom: 1px solid #444;
+
+      /* center text vertically */
+      display: flex;
+      align-items: center;
+      height: 40px;
     }
     .ticker-content {
       display: inline-block;
       padding-left: 100%;
-      animation: ticker-scroll 20s linear infinite;
+      /* slower on desktop */
+      animation: ticker-scroll 25s linear infinite;
     }
     .ticker:hover .ticker-content {
       animation-play-state: paused;
@@ -300,6 +306,7 @@
       margin: 0;
     }
 
+    /* —– MOBILE OVERRIDES —– */
     @media (max-width: 768px) {
       body {
         padding-left: 0;
@@ -366,13 +373,25 @@
         box-sizing: border-box;
         text-align: center;
       }
-      footer .footer-content {
+
+      /* faster ticker on mobile */
+      .ticker-content {
+        animation-duration: 15s !important;
+      }
+
+      /* recenter flag section */
+      .footer-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
         margin-top: 20px;
       }
-      footer .footer-section {
+      .footer-section.left {
+        align-items: center !important;
+        text-align: center !important;
+      }
+      .footer-section.center,
+      .footer-section.right {
         margin-bottom: 20px;
       }
     }
