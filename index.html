@@ -93,11 +93,13 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      overflow-x: hidden;
+      overflow: hidden;
+      position: relative;
     }
     .ticker-track {
       display: flex;
       white-space: nowrap;
+      will-change: transform;
     }
     .ticker-track a {
       display: inline-block;
@@ -342,7 +344,7 @@
   </footer>
 
   <script>
-    // 1) banner padding
+    // adjust banner padding
     function adjustPadding() {
       const h = document.getElementById('banner').offsetHeight;
       document.documentElement.style.setProperty('--banner-height', h + 'px');
@@ -350,7 +352,7 @@
     window.addEventListener('load', adjustPadding);
     window.addEventListener('resize', adjustPadding);
 
-    // 2) clock
+    // clock
     function updateTime() {
       const now = new Date();
       document.getElementById('current-time').textContent =
@@ -367,14 +369,14 @@
     updateTime();
     setInterval(updateTime,60000);
 
-    // 3) seamless JS ticker — now with integer reset
+    // seamless JS ticker with transform
     fetch('/headlines.json')
       .then(r => r.json())
       .then(data => {
         const track = document.getElementById('ticker-track');
         const container = document.getElementById('ticker-inner');
 
-        // render one copy
+        // render one set
         track.innerHTML = '';
         data.forEach(item => {
           const a = document.createElement('a');
@@ -390,24 +392,23 @@
           });
         }
 
-        // remove final gap
+        // remove gap
         track.lastElementChild.style.marginRight = '0';
 
-        // integer width of first set
-        const raw = track.scrollWidth / (track.children.length / data.length);
-        const firstSetWidth = Math.round(raw);
-        const speed = 1; // px/frame
+        // measure one set width
+        const singleWidth = Math.round(track.scrollWidth / (track.children.length / data.length));
+        let offset = 0;
+        const speed = 1; // pixels per frame (~60px/sec)
 
-        function step() {
-          container.scrollLeft += speed;
-          if (container.scrollLeft >= firstSetWidth) {
-            container.scrollLeft -= firstSetWidth;
-          }
-          requestAnimationFrame(step);
+        function animate() {
+          offset += speed;
+          if (offset >= singleWidth) offset -= singleWidth;
+          track.style.transform = `translateX(${-offset}px)`;
+          requestAnimationFrame(animate);
         }
-        requestAnimationFrame(step);
+        requestAnimationFrame(animate);
       })
-      .catch(_ => {
+      .catch(() => {
         document.getElementById('ticker-track').textContent = 'Failed to load headlines.';
       });
   </script>
