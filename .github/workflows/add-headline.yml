@@ -18,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # ✅ Ensure push permission
+          token: ${{ secrets.GITHUB_TOKEN }}  # Ensure push permission
 
       - name: Configure git
         run: |
@@ -36,9 +36,11 @@ jobs:
           cat "$FILENAME"
 
       - name: Commit and push file
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git add content/headlines/
           git status
           git diff --cached
           git commit -m "Add headline: ${{ github.event.inputs.title }}" || echo "Nothing to commit"
-          git push origin HEAD:main
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
