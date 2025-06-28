@@ -15,31 +15,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout the repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true  # Required for GITHUB_TOKEN push
 
-      - name: Configure Git
+      - name: Set up Git
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Create headline file
+      - name: Create new headline markdown file
         run: |
           mkdir -p content/headlines
-          echo "---" > content/headlines/${{ github.run_id }}.md
-          echo "title: ${{ github.event.inputs.title }}" >> content/headlines/${{ github.run_id }}.md
-          echo "url: ${{ github.event.inputs.url }}" >> content/headlines/${{ github.run_id }}.md
-          echo "---" >> content/headlines/${{ github.run_id }}.md
+          cat <<EOF > content/headlines/${{ github.run_id }}.md
+---
+title: ${{ github.event.inputs.title }}
+url: ${{ github.event.inputs.url }}
+---
+EOF
 
-      - name: Show created file
-        run: |
-          cat content/headlines/${{ github.run_id }}.md
-          ls -l content/headlines/
-
-      - name: Commit and push
+      - name: Commit and push the new headline
         run: |
           git add content/headlines/${{ github.run_id }}.md
-          git commit -m "Add headline: ${{ github.event.inputs.title }}" || echo "Nothing to commit"
-          git push origin HEAD:main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git commit -m "Add headline: ${{ github.event.inputs.title }}" || echo "No changes to commit"
+          git push
