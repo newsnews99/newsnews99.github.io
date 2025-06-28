@@ -6,6 +6,9 @@ on:
       - "content/headlines/**.md"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,28 +24,29 @@ jobs:
       - name: Install dependencies
         run: npm install gray-matter
 
-      - name: Generate headlines.json
+      - name: Create generator script
         run: |
-          node -e "
-          const fs = require('fs');
-          const matter = require('gray-matter');
-          const dir = 'content/headlines';
-          const files = fs.readdirSync(dir).filter(f => f.endsWith('.md'));
-          const headlines = files.map(file => {
-            const content = fs.readFileSync(`${dir}/${file}`, 'utf8');
-            const { data } = matter(content);
-            return {
-              title: data.title || '',
-              url: data.url || '',
-              image: data.image || '',
-              author: data.author || '',
-              category: data.category || '',
-              published: data.published || '',
-              updated: data.updated || ''
-            };
-          });
-          fs.writeFileSync('headlines.json', JSON.stringify(headlines, null, 2));
-          "
+          echo "const fs = require('fs');" > generate.js
+          echo "const matter = require('gray-matter');" >> generate.js
+          echo "const dir = 'content/headlines';" >> generate.js
+          echo "const files = fs.readdirSync(dir).filter(f => f.endsWith('.md'));" >> generate.js
+          echo "const headlines = files.map(file => {" >> generate.js
+          echo "  const content = fs.readFileSync(\`\${dir}/\${file}\`, 'utf8');" >> generate.js
+          echo "  const { data } = matter(content);" >> generate.js
+          echo "  return {" >> generate.js
+          echo "    title: data.title || ''," >> generate.js
+          echo "    url: data.url || ''," >> generate.js
+          echo "    image: data.image || ''," >> generate.js
+          echo "    author: data.author || ''," >> generate.js
+          echo "    category: data.category || ''," >> generate.js
+          echo "    published: data.published || ''," >> generate.js
+          echo "    updated: data.updated || ''" >> generate.js
+          echo "  };" >> generate.js
+          echo "});" >> generate.js
+          echo "fs.writeFileSync('headlines.json', JSON.stringify(headlines, null, 2));" >> generate.js
+
+      - name: Run generator script
+        run: node generate.js
 
       - name: Commit headlines.json
         run: |
