@@ -152,148 +152,104 @@ body {
   from { transform: translateX(0); }
   to { transform: translateX(calc(-1 * var(--ticker-distance))); }
 }
-@media (min-width: 769px) {
-  .banner-content {
-    flex-wrap: nowrap;
-  }
-  .left-time-row {
-    width: auto;
-  }
-  .center-section {
-    width: auto;
-    margin-top: 0;
-  }
-  .right-section {
-    width: auto;
-    margin-top: 0;
-  }
-}
-.main-headline-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 20px;
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 12px;
-}
-.headline-left, .headline-right {
-  width: 48%;
-}
-.main-headline-img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 15px;
-}
-.main-headline-link {
-  display: block;
-  text-align: center;
-  font-size: 32px;
-  margin-bottom: 15px;
-  color: white;
-  text-decoration: none;
-}
-.main-headline-link:hover {
-  color: gold;
-}
-.headline-columns, .headline-right {
-  display: flex;
-  justify-content: space-between;
-}
-.column {
-  display: flex;
-  flex-direction: column;
-  width: 48%;
-}
-.column a.latest-title {
-  color: gold;
-  font-size: 18px;
-  margin-bottom: 10px;
-  text-align: center;
-  text-decoration: none;
-}
-.column a {
-  color: white;
-  text-decoration: none;
-  margin: 4px 0;
-  font-size: 16px;
-}
-.column a:hover {
-  color: gold;
-}
 @media (max-width: 768px) {
+  .banner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .left-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .time-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 13px;
+    line-height: 1.2;
+    padding-right: 4px; /* nudge left from edge */
+  }
+
+  .center-section {
+    width: 100%;
+  }
+
+  .center-section form {
+    display: flex;
+    width: 100%;
+    gap: 4px;
+  }
+
+  .center-section input[type="text"] {
+    width: 100%;
+    height: 36px;
+  }
+
+  .center-section button {
+    height: 36px;
+    padding: 0 12px;
+  }
+
+  .right-section {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-right: 4px; /* avoid clipping */
+  }
+
   .main-headline-container {
     flex-direction: column;
     align-items: center;
-  }
-  .headline-left, .headline-right, .column {
     width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
   }
-  .headline-columns, .headline-right {
+
+  .main-headline-img {
+    width: 100%;
+    margin: 0; /* no gap above */
+  }
+
+  .headline-left,
+  .headline-right {
+    width: 100%;
+    margin: 0;
+    padding: 0 12px;
+  }
+
+  .headline-columns,
+  .headline-right {
     flex-direction: column;
     align-items: center;
   }
-}
-footer {
-  background: #1e1e1e;
-  color: white;
-  padding: 20px 0;
-  border-top: 1px solid #444;
-  width: 100%;
-  margin-top: 20px;
-}
-.footer-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 12px;
-}
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.footer-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.footer-section.left { text-align: left; }
-.footer-section.center { text-align: center; align-items: center; }
-.footer-section.right { text-align: right; align-items: flex-end; }
-footer img {
-  max-width: 100px;
-  margin-bottom: 10px;
-}
-footer p, footer h3, footer a {
-  font-size: 14px;
-  line-height: 1.4;
-  margin: 6px 0;
-}
-footer form textarea {
-  width: 100%;
-  height: 100px;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
-footer form button {
-  background: #fff;
-  color: #1e1e1e;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%;
-}
-@media (max-width: 768px) {
-  .footer-content {
+
+  .headline-columns .column,
+  .headline-right .column {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  footer .footer-content {
     flex-direction: column;
+    align-items: center;
     text-align: center;
   }
-  .footer-section {
-    align-items: center;
+
+  footer .footer-section {
+    width: 100%;
+    margin-bottom: 20px;
   }
 }
 </style>
