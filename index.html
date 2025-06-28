@@ -102,7 +102,7 @@
       transform: translateY(2px);
     }
 
-    /* —– TICKER —– */
+    /* —– TICKER inside banner —– */
     .ticker {
       width: 100%;
       background-color: #222;
@@ -400,10 +400,9 @@
         <img src="icon_youtube.png" alt="YouTube" />
       </div>
     </div>
-  </div>
-
-  <div class="ticker">
-    <div class="ticker-content" id="ticker-content">Loading headlines...</div>
+    <div class="ticker">
+      <div class="ticker-content" id="ticker-content">Loading headlines...</div>
+    </div>
   </div>
 
   <div class="main-headline-container">
@@ -471,7 +470,7 @@
   </footer>
 
   <script>
-    // update body padding to banner height
+    // adjust banner height
     function adjustPadding() {
       const banner = document.getElementById('banner');
       document.documentElement.style.setProperty(
@@ -482,7 +481,7 @@
     window.addEventListener('load', adjustPadding);
     window.addEventListener('resize', adjustPadding);
 
-    // time & date
+    // update time & date
     function updateTime() {
       const now = new Date();
       const melTime = new Intl.DateTimeFormat('en-AU', {
@@ -503,7 +502,7 @@
     updateTime();
     setInterval(updateTime, 60000);
 
-    // ticker fetch
+    // fetch headlines for ticker
     fetch('/headlines.json')
       .then(res => res.json())
       .then(data => {
