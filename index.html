@@ -64,6 +64,7 @@
       width: 100%;
       min-width: 0;
       height: 60px;
+      /* Only on desktop, keep as flex row for logo and time/date side by side */
     }
     .left-section img.logo {
       height: 48px;
@@ -79,12 +80,12 @@
       font-size: 13px;
       line-height: 1.1;
       text-align: left;
-      margin-left: 10px;
       min-width: 110px;
       width: auto;
       height: 43px;
-      margin-bottom: 2px;
-      transform: none;
+      margin-left: 5px; /* Key: 5px right of logo */
+      align-self: flex-end; /* Key: bottom aligned with logo */
+      margin-bottom: 0;
       position: static;
     }
     .time-date div {
@@ -365,7 +366,7 @@
       .mobile-header-row {
         display: flex;
         flex-direction: row;
-        justify-content: space-between; /* key! logo left, time/date right */
+        justify-content: space-between; /* logo left, time/date right */
         align-items: flex-end;
         width: 100%;
         margin-bottom: 0;
@@ -403,7 +404,6 @@
         right: 0 !important;
         top: unset !important;
         transform: none !important;
-        /* force right align in header row */
         display: flex;
         flex-direction: column;
         align-self: flex-end;
@@ -493,10 +493,10 @@
       <div class="mobile-header-row">
         <div class="left-section" style="flex:1;">
           <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
-        </div>
-        <div class="time-date">
-          <div id="current-time">--:-- AEST</div>
-          <div id="current-date">--/--/----</div>
+          <div class="time-date">
+            <div id="current-time">--:-- AEST</div>
+            <div id="current-date">--/--/----</div>
+          </div>
         </div>
       </div>
       <div class="center-section">
