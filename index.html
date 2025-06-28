@@ -9,7 +9,12 @@
   <style>
     :root { --ticker-distance: 0px; --ticker-duration: 20s; }
     html, body { margin:0; font-family:'Bebas Neue',sans-serif; background:#1e1e1e; color:white; box-sizing:border-box; }
-    body { padding-left:10vw; padding-right:10vw; display:flex; flex-direction:column; align-items:center; text-align:center; }
+    body {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
     .container { width:100%; max-width:1200px; margin:0 auto; }
     img { max-width:100%; height:auto; display:block; }
     .banner { position:fixed; top:0; left:0; width:100%; background:#1e1e1e; box-shadow:0 2px 4px rgba(0,0,0,0.4); z-index:1000; }
@@ -100,45 +105,40 @@
   </style>
 </head>
 <body>
-  <div class="banner">
   <div class="container">
-    <div class="banner-content">
-      <div class="left-section">
-        <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
-        <div class="time-date">
-          <div id="current-time">--:-- AEST</div>
-          <div id="current-date">--/--/----</div>
+    <div class="banner">
+      <div class="banner-content">
+        <div class="left-section">
+          <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+          <div class="time-date">
+            <div id="current-time">--:-- AEST</div>
+            <div id="current-date">--/--/----</div>
+          </div>
+        </div>
+        <div class="center-section">
+          <form id="search-form" action="https://www.google.com/search" method="GET" target="_blank" autocomplete="off">
+            <input type="text" id="search-input" name="q" placeholder="Search..." />
+            <button type="submit">Search</button>
+          </form>
+        </div>
+        <div class="right-section">
+          <a href="https://gab.com/federationsun" target="_blank" rel="noopener"><img src="icon_gab.png" alt="Gab" /></a>
+          <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener"><img src="icon_facebook.png" alt="Facebook" /></a>
+          <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener"><img src="icon_instagram.png" alt="Instagram" /></a>
+          <a href="https://t.me/federationsun" target="_blank" rel="noopener"><img src="icon_telegram.png" alt="Telegram" /></a>
+          <a href="https://x.com/federationsun" target="_blank" rel="noopener"><img src="icon_x.png" alt="X" /></a>
+          <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube" /></a>
         </div>
       </div>
-      <div class="center-section">
-        <form id="search-form" action="https://www.google.com/search" method="GET" target="_blank" autocomplete="off">
-          <input type="text" id="search-input" name="q" placeholder="Search..." />
-          <button type="submit">Search</button>
-        </form>
-      </div>
-      <div class="right-section">
-        <a href="https://gab.com/federationsun" target="_blank" rel="noopener"><img src="icon_gab.png" alt="Gab" /></a>
-        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener"><img src="icon_facebook.png" alt="Facebook" /></a>
-        <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener"><img src="icon_instagram.png" alt="Instagram" /></a>
-        <a href="https://t.me/federationsun" target="_blank" rel="noopener"><img src="icon_telegram.png" alt="Telegram" /></a>
-        <a href="https://x.com/federationsun" target="_blank" rel="noopener"><img src="icon_x.png" alt="X" /></a>
-        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube" /></a>
-      </div>
-    </div>
-  </div>
-  <div class="ticker">
-    <div class="container">
-      <div class="ticker-inner" id="ticker-inner">
-        <div class="ticker-track" id="ticker-track">
-          Loading headlines…
+      <div class="ticker">
+        <div class="ticker-inner" id="ticker-inner">
+          <div class="ticker-track" id="ticker-track">
+            Loading headlines…
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-
-  <div class="container">
     <div class="main-headline-container">
       <div class="headline-left">
         <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
@@ -172,10 +172,12 @@
           <a href="#">HEADLINE 12</a>
         </div>
       </div>
-    </div>
+   </div>
   </div>
+
   <footer>
-    <div class="footer-wrapper">
+    <div class="container">
+      <div class="footer-wrapper">
       <div class="footer-content">
         <div class="footer-section left">
           <img src="australian_flag.png" alt="Australian Flag" />
@@ -199,9 +201,10 @@
             <button type="submit">Send tip</button>
           </form>
         </div>
-      </div>
+</div>
     </div>
   </footer>
+</body>
 
   <script>
     // Ticker clock
@@ -231,7 +234,7 @@
       const banner = document.querySelector('.banner');
       if (banner) {
         const bannerHeight = banner.offsetHeight;
-        document.body.style.paddingTop = bannerHeight + 'px';
+        document.style.paddingTop = bannerHeight + 'px';
       }
     }
     window.addEventListener('load', adjustBodyPadding);
