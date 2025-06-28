@@ -23,7 +23,6 @@ jobs:
 
       - name: Convert Markdown to JSON
         run: |
-          mkdir -p public
           node <<EOF
           const fs = require('fs');
           const matter = require('gray-matter');
@@ -45,14 +44,14 @@ jobs:
             };
           });
 
-          fs.writeFileSync('public/headlines.json', JSON.stringify(headlines, null, 2));
+          fs.writeFileSync('headlines.json', JSON.stringify(headlines, null, 2));
           EOF
 
       - name: Commit JSON
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add public/headlines.json
+          git add headlines.json
           git commit -m "Update headlines.json" || echo "No changes"
           git push
         env:
