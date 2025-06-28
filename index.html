@@ -84,7 +84,8 @@
       position: relative;
       min-width: 110px;
       width: auto;
-      transform: translateY(17px); /* 12px before + 5px down */
+      height: 43px; /* Decreased from 48px */
+      transform: translateY(17px);
     }
     .time-date div {
       text-align: left;
@@ -361,42 +362,50 @@
         padding: 5px 5px 0 5px;
         min-height: unset;
       }
+      .mobile-header-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 100%;
+        margin-bottom: 0;
+      }
       .left-section {
         flex-direction: row;
         align-items: flex-end;
         justify-content: flex-start;
-        gap: 6px;
-        height: 36px;
+        gap: 0;
+        height: 32px;
         min-width: 0;
-        position: relative;
+        padding: 0;
+        margin: 0;
       }
-      .left-section img.logo { height: 32px; }
-      /* Place time/date above search bar, right-aligned at header content limit */
-      .mobile-header-time-date-wrapper {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        align-items: flex-end;
-        width: 100%;
-        margin-bottom: 1px;
+      .left-section img.logo {
+        height: 32px;
+        display: block;
+        align-self: flex-end;
+        margin: 0;
+        padding: 0;
       }
       .time-date {
         font-size: 12px;
         align-items: flex-end;
         text-align: right;
-        height: 32px;
         margin-left: 7px;
         margin-bottom: 0;
         width: auto;
+        height: 32px;
         justify-content: flex-end;
         position: static !important;
         right: 0 !important;
         top: unset !important;
-        transform: translateY(2px) !important;
+        transform: none !important;
       }
       .time-date div { text-align: right;}
-      .center-section { 
-        flex: 1; width: 100%; min-width: 0; 
+      .center-section {
+        flex: 1;
+        width: 100%;
+        min-width: 0;
         height: 34px;
         margin-bottom: 0;
       }
@@ -474,18 +483,14 @@
 <body>
   <div class="banner">
     <div class="banner-content">
-      <div class="left-section">
-        <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+      <!-- On mobile, wrap logo and time/date in a row above search -->
+      <div class="mobile-header-row">
+        <div class="left-section">
+          <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+        </div>
         <div class="time-date">
           <div id="current-time">--:-- AEST</div>
           <div id="current-date">--/--/----</div>
-        </div>
-      </div>
-      <!-- On mobile, move time/date above search bar -->
-      <div class="mobile-header-time-date-wrapper" style="display:none;">
-        <div class="time-date">
-          <div id="current-time-mobile">--:-- AEST</div>
-          <div id="current-date-mobile">--/--/----</div>
         </div>
       </div>
       <div class="center-section">
@@ -598,10 +603,6 @@
 
       document.getElementById('current-time').textContent = `${melTime} AEST`;
       document.getElementById('current-date').textContent = `${melDate}`;
-      if(document.getElementById('current-time-mobile')) {
-        document.getElementById('current-time-mobile').textContent = `${melTime} AEST`;
-        document.getElementById('current-date-mobile').textContent = `${melDate}`;
-      }
     }
     updateTime();
     setInterval(updateTime, 60000);
@@ -652,19 +653,6 @@
       var input = document.getElementById('search-input');
       input.value = 'site:fedsun.news ' + input.value;
     });
-
-    // Responsive swap for time/date on mobile
-    function handleTimeDatePlacement() {
-      if(window.innerWidth <= 768) {
-        document.querySelector('.time-date').style.display = "none";
-        document.querySelector('.mobile-header-time-date-wrapper').style.display = "flex";
-      } else {
-        document.querySelector('.time-date').style.display = "flex";
-        document.querySelector('.mobile-header-time-date-wrapper').style.display = "none";
-      }
-    }
-    handleTimeDatePlacement();
-    window.addEventListener('resize', handleTimeDatePlacement);
   </script>
 </body>
 </html>
