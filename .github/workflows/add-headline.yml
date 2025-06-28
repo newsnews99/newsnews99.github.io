@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # ✅ Ensure push permission
 
       - name: Configure git
         run: |
@@ -34,8 +36,6 @@ jobs:
           cat "$FILENAME"
 
       - name: Commit and push file
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git add content/headlines/
           git status
