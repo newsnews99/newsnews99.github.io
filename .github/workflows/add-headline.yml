@@ -17,15 +17,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create headline file
-        run: |
-          mkdir -p content/headlines
-          FILENAME="content/headlines/$(date +%s).md"
-          echo "---" > $FILENAME
-          echo "title: ${{ github.event.inputs.title }}" >> $FILENAME
-          echo "url: ${{ github.event.inputs.url }}" >> $FILENAME
-          echo "---" >> $FILENAME
-          echo "Created file: $FILENAME"
+      - name: Commit and push changes
+  run: |
+    git add content/headlines/*.md
+    git commit -m "Add headline: ${{ github.event.inputs.title }}" || echo "No changes to commit"
+    git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+
 
       - name: Configure git
         run: |
