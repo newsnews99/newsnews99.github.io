@@ -141,4 +141,350 @@
       align-items: flex-end;
       height: 60px;
       margin: 0;
-      text-ali
+      text-align: right;
+      transform: translateY(2px);
+    }
+
+    .main-headline-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .headline-left {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .main-headline-img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .main-headline-link {
+      display: block;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 15px;
+      font-size: 32px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .main-headline-link:hover {
+      color: gold;
+    }
+
+    .headline-columns {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .headline-columns .column {
+      display: flex;
+      flex-direction: column;
+      width: 48%;
+      text-align: left;
+    }
+
+    .headline-columns .column a.latest-title {
+      color: gold;
+      font-size: 18px;
+      margin-bottom: 10px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .headline-right {
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: -7px;
+    }
+
+    .headline-right .column {
+      display: flex;
+      flex-direction: column;
+      width: 48%;
+      text-align: left;
+      padding-left: 20px;
+    }
+
+    .headline-right .column a.latest-title {
+      color: gold;
+      font-size: 18px;
+      margin-bottom: 10px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .headline-right a,
+    .headline-columns a {
+      color: white;
+      text-decoration: none;
+      margin: 4px 0;
+      font-size: 16px;
+    }
+
+    .headline-right a:hover,
+    .headline-columns a:hover {
+      color: gold;
+    }
+
+    footer {
+      background-color: #1e1e1e;
+      color: white;
+      padding: 20px 0;
+      border-top: 1px solid #444;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .footer-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 20px;
+    }
+
+    .footer-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-section.left {
+      text-align: left;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+
+    .footer-section.center {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-section.right {
+      text-align: right;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    footer img {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+
+    footer p,
+    footer h3,
+    footer a {
+      font-size: 14px;
+      line-height: 1.4;
+      margin: 6px 0;
+      text-transform: none;
+    }
+
+    footer h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    footer form {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    footer form textarea {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      font-family: inherit;
+      border-radius: 4px;
+      border: none;
+      box-sizing: border-box;
+      margin: 0 0 10px 0;
+    }
+
+    footer form button {
+      background-color: #fff;
+      color: #1e1e1e;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      font-family: inherit;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .banner-content {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+        display: flex;
+      }
+      .left-section {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+      .time-date {
+        align-items: flex-end;
+        text-align: right;
+      }
+      .center-section {
+        flex: 1;
+        width: 100%;
+      }
+      .center-section input[type="text"] {
+        width: 100%;
+      }
+      .right-section {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+        width: 100%;
+      }
+      .main-headline-container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 0;
+      }
+      .headline-left, .headline-right {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .main-headline-img {
+        width: 100%;
+      }
+      .main-headline-link {
+        width: 100%;
+        text-align: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+      }
+      .headline-columns,
+      .headline-right {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0;
+      }
+      .headline-columns .column,
+      .headline-right .column {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 0 20px;
+        box-sizing: border-box;
+        text-align: center;
+      }
+      .headline-columns .column a,
+      .headline-right .column a {
+        text-align: center;
+      }
+      .footer-wrapper {
+        padding: 0 20px;
+      }
+      .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 20px;
+      }
+      .footer-section {
+        text-align: center !important;
+        align-items: center !important;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <div class="banner-content">
+      <div class="left-section">
+        <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+        <div class="time-date">
+          <div id="current-time">--:-- AEST</div>
+          <div id="current-date">--/--/----</div>
+        </div>
+      </div>
+      <div class="center-section">
+        <input type="text" placeholder="Search..." />
+      </div>
+      <div class="right-section">
+        <img src="icon_gab.png" alt="Gab" />
+        <img src="icon_facebook.png" alt="Facebook" />
+        <img src="icon_instagram.png" alt="Instagram" />
+        <img src="icon_telegram.png" alt="Telegram" />
+        <img src="icon_x.png" alt="X" />
+        <img src="icon_youtube.png" alt="YouTube" />
+      </div>
+    </div>
+    <div class="ticker">
+      <div class="ticker-content" id="ticker-content">Loading headlines...</div>
+    </div>
+  </div>
+
+  <!-- KEEP THE REST OF YOUR CONTENT HERE -->
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const melTime = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Melbourne',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(now);
+      const melDate = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Melbourne',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).format(now);
+      document.getElementById('current-time').textContent = `${melTime} AEST`;
+      document.getElementById('current-date').textContent = melDate;
+    }
+    updateTime();
+    setInterval(updateTime, 60000);
+
+    fetch('/headlines.json')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('ticker-content');
+        container.innerHTML = '';
+        data.forEach(item => {
+          const a = document.createElement('a');
+          a.href = item.url;
+          a.textContent = item.title;
+          container.appendChild(a);
+        });
+      })
+      .catch(err => {
+        document.getElementById('ticker-content').textContent = 'Failed to load headlines.';
+      });
+  </script>
+</body>
+</html>
