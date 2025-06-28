@@ -13,6 +13,7 @@ on:
 jobs:
   add-headline:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,13 +26,17 @@ jobs:
       - name: Create new headline file
         run: |
           mkdir -p content/headlines
-          echo "---" > content/headlines/${{ github.run_id }}.md
-          echo "title: ${{ github.event.inputs.title }}" >> content/headlines/${{ github.run_id }}.md
-          echo "url: ${{ github.event.inputs.url }}" >> content/headlines/${{ github.run_id }}.md
-          echo "---" >> content/headlines/${{ github.run_id }}.md
+          cat <<EOF > content/headlines/${{ github.run_id }}.md
+          ---
+          title: ${{ github.event.inputs.title }}
+          url: ${{ github.event.inputs.url }}
+          ---
+          EOF
 
-      - name: Commit and push changes
+      - name: Commit and push
         run: |
-          git add content/headlines/*.md
+          git add content/headlines/
           git commit -m "Add headline: ${{ github.event.inputs.title }}" || echo "Nothing to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
