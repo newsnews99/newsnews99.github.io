@@ -113,17 +113,21 @@
     }
     .ticker-track {
       display: flex;
-      white-space: nowrap;
+      will-change: transform;
       animation: scroll var(--ticker-duration) linear infinite;
     }
-    .ticker-track a {
+    .ticker-group {
+      display: flex;
+      white-space: nowrap;
+    }
+    .ticker-group a {
       display: inline-block;
       margin-right: 50px;
       color: white;
       text-decoration: none;
       font-size: 16px;
     }
-    .ticker-track a:hover {
+    .ticker-group a:hover {
       color: gold;
     }
     @keyframes scroll {
@@ -478,37 +482,34 @@
     updateTime();
     setInterval(updateTime, 60000);
 
-    // CSS-driven ticker
+    // seamless CSS-driven ticker
     fetch('/headlines.json')
       .then(r => r.json())
       .then(data => {
         const container = document.getElementById('ticker-inner');
         const track = document.getElementById('ticker-track');
 
-        // render originals
+        // clear and build one group
         track.innerHTML = '';
+        const group = document.createElement('div');
+        group.className = 'ticker-group';
         data.forEach(item => {
           const a = document.createElement('a');
           a.href = item.url;
           a.textContent = item.title;
-          track.appendChild(a);
+          group.appendChild(a);
         });
+        track.appendChild(group);
 
-        // copy originals
-        const originals = Array.from(track.children);
+        // clone group once
+        track.appendChild(group.cloneNode(true));
 
-        // clone until ≥2× container width
-        while (track.scrollWidth < container.offsetWidth * 2) {
-          originals.forEach(orig => track.appendChild(orig.cloneNode(true)));
-        }
-
-        // measure loop distance & duration
-        const loops = track.children.length / data.length;
-        const singleWidth = track.scrollWidth / loops;
+        // measure distance and duration
+        const distance = group.offsetWidth;
         const speed = 60; // px per second
-        const duration = singleWidth / speed;
+        const duration = distance / speed;
 
-        document.documentElement.style.setProperty('--ticker-distance', singleWidth + 'px');
+        document.documentElement.style.setProperty('--ticker-distance', distance + 'px');
         document.documentElement.style.setProperty('--ticker-duration', duration + 's');
       })
       .catch(() => {
