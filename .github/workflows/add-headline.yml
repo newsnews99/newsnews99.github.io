@@ -18,14 +18,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # Ensure push permission
+          token: ${{ secrets.GITHUB_TOKEN }} # REQUIRED for push access
 
-      - name: Configure git
+      - name: Set up Git
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Create headline file
+      - name: Create new headline file
         run: |
           mkdir -p content/headlines
           FILENAME="content/headlines/headline-${{ github.run_id }}.md"
@@ -33,14 +33,12 @@ jobs:
           echo "title: ${{ github.event.inputs.title }}" >> "$FILENAME"
           echo "url: ${{ github.event.inputs.url }}" >> "$FILENAME"
           echo "---" >> "$FILENAME"
+          echo "Created file:"
           cat "$FILENAME"
 
-      - name: Commit and push file
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and push
         run: |
           git add content/headlines/
           git status
-          git diff --cached
           git commit -m "Add headline: ${{ github.event.inputs.title }}" || echo "Nothing to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+          git push origin HEAD:main
