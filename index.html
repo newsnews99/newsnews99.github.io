@@ -30,7 +30,8 @@
     /* —– HEADER / BANNER —– */
     .banner {
       position: fixed; top: 0; left: 0; width: 100%;
-      background-color: #1e1e1e; box-shadow: 0 2px 4px rgba(0,0,0,0.4); z-index: 1000;
+      background-color: #1e1e1e; box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+      z-index: 1000;
     }
     .banner-content {
       display: grid; grid-template-columns: 1fr auto 1fr;
@@ -45,7 +46,7 @@
     .center-section {
       display: flex; justify-content: center; width: 100%;
     }
-    .center-section input[type="text"] {
+    .center-section input {
       width: 100%; padding: 8px 12px; font-size: 16px;
       border: none; border-radius: 4px; outline: none;
     }
@@ -85,7 +86,7 @@
     .ticker-content a:hover { color: gold; }
     @keyframes ticker-scroll {
       from { transform: translateX(0); }
-      to   { transform: translateX(-100%); }
+      to   { transform: translateX(-50%); }
     }
 
     /* —– MAIN HEADLINE & COLUMNS —– */
@@ -292,7 +293,7 @@
         <div class="footer-section center">
           <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
           <p>
-            For all enquiries contact:<br />
+            For all enquiries contact:<br/>
             <a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a>
           </p>
           <p>The Federation Sun © 2025</p>
@@ -356,10 +357,12 @@
         });
         // duplicate for seamless loop
         container.innerHTML += container.innerHTML;
-        // remove margin-right on the final element to eliminate gap
+        // remove margin-right on both original last and its duplicate
+        const N = data.length;
         const links = container.querySelectorAll('a');
-        if (links.length) {
-          links[links.length - 1].style.marginRight = '0';
+        if (links.length >= 2*N) {
+          links[N - 1].style.marginRight = '0';
+          links[2*N - 1].style.marginRight = '0';
         }
       })
       .catch(() => {
