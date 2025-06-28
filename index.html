@@ -7,6 +7,8 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
+    :root { --banner-height: 0px; }
+
     html, body {
       margin: 0;
       font-family: 'Bebas Neue', sans-serif;
@@ -15,6 +17,7 @@
       box-sizing: border-box;
     }
     body {
+      padding-top: var(--banner-height);
       padding-left: 10vw;
       padding-right: 10vw;
       display: flex;
@@ -32,11 +35,9 @@
     /* —– BANNER —– */
     .banner {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+      top: 0; left: 0; width: 100%;
       background-color: #1e1e1e;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
       z-index: 1000;
     }
     .banner-content {
@@ -54,61 +55,50 @@
       justify-content: flex-start;
       gap: 10px;
     }
-    .left-section img.logo {
-      height: 60px;
-    }
+    .left-section img.logo { height: 60px; }
     .center-section {
       display: flex;
       justify-content: center;
     }
     .center-section input[type="text"] {
-      width: 100%;
-      padding: 8px 12px;
-      font-size: 16px;
-      border: none;
-      border-radius: 4px;
-      outline: none;
+      width: 100%; padding: 8px 12px; font-size: 16px;
+      border: none; border-radius: 4px; outline: none;
     }
     .right-section {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 12px;
+      display: flex; align-items: center; justify-content: flex-end; gap: 12px;
     }
     .right-section img {
-      height: 28px;
-      transition: transform 0.2s;
+      height: 28px; transition: transform 0.2s;
     }
-    .right-section img:hover {
-      transform: scale(1.1);
-    }
+    .right-section img:hover { transform: scale(1.1); }
     .time-date {
-      display: flex;
-      flex-direction: column;
-      font-size: 14px;
-      line-height: 1;
-      justify-content: flex-end;
-      align-items: flex-end;
-      height: 60px;
-      transform: translateY(2px);
+      display: flex; flex-direction: column;
+      font-size: 14px; line-height: 1;
+      justify-content: flex-end; align-items: flex-end;
+      height: 60px; transform: translateY(2px);
     }
 
     /* —– TICKER —– */
     .ticker {
-      width: 100%;
-      background-color: #222;
-      border-top: 1px solid #444;
-      border-bottom: 1px solid #444;
-      display: flex;
-      align-items: center;
-      height: 36px;
+      width: 100%; background-color: #222;
+      border-top: 1px solid #444; border-bottom: 1px solid #444;
+      display: flex; align-items: center; height: 36px;
       overflow: hidden;
     }
     .ticker-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .ticker-track {
       display: flex;
+      position: absolute;
+      top: 0; left: 0;
       white-space: nowrap;
     }
-    .ticker-inner a {
+    .ticker-track a {
       display: inline-block;
       color: white;
       text-decoration: none;
@@ -116,239 +106,145 @@
       font-size: 16px;
       white-space: nowrap;
     }
-    .ticker-inner a:hover {
+    .ticker-track a:hover {
       color: gold;
     }
-
 
     /* —– MAIN HEADLINE AREA —– */
     .main-headline-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 20px;
-      width: 100%;
-      max-width: 1200px;
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      margin-top: 20px; width: 100%; max-width: 1200px;
     }
     .headline-left {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      width: 50%; display: flex; flex-direction: column; align-items: flex-start;
     }
     .main-headline-img {
-      width: 100%;
-      margin-bottom: 15px;
+      width: 100%; margin-bottom: 15px;
     }
     .main-headline-link {
-      display: block;
-      text-align: center;
-      width: 100%;
-      margin-bottom: 15px;
-      font-size: 32px;
-      color: white;
-      text-decoration: none;
+      display: block; text-align: center; width: 100%;
+      margin-bottom: 15px; font-size: 32px;
+      color: white; text-decoration: none;
     }
-    .main-headline-link:hover {
-      color: gold;
-    }
+    .main-headline-link:hover { color: gold; }
     .headline-columns {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
+      display: flex; width: 100%; justify-content: space-between;
     }
     .headline-columns .column {
-      display: flex;
-      flex-direction: column;
-      width: 48%;
-      text-align: left;
+      display: flex; flex-direction: column; width: 48%; text-align: left;
     }
     .headline-columns .column a.latest-title {
-      color: gold;
-      font-size: 18px;
-      margin-bottom: 10px;
-      text-align: center;
-      text-decoration: none;
+      color: gold; font-size: 18px; margin-bottom: 10px;
+      text-align: center; text-decoration: none;
     }
     .headline-right {
-      width: 50%;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-top: -7px;
+      width: 50%; display: flex; justify-content: space-between;
+      align-items: flex-start; margin-top: -7px;
     }
     .headline-right .column {
-      display: flex;
-      flex-direction: column;
-      width: 48%;
-      text-align: left;
-      padding-left: 20px;
+      display: flex; flex-direction: column; width: 48%;
+      text-align: left; padding-left: 20px;
     }
     .headline-right .column a.latest-title {
-      color: gold;
-      font-size: 18px;
-      margin-bottom: 10px;
-      text-align: center;
-      text-decoration: none;
+      color: gold; font-size: 18px; margin-bottom: 10px;
+      text-align: center; text-decoration: none;
     }
-    .headline-right a,
-    .headline-columns a {
-      color: white;
-      text-decoration: none;
-      margin: 4px 0;
-      font-size: 16px;
+    .headline-right a, .headline-columns a {
+      color: white; text-decoration: none; margin: 4px 0; font-size: 16px;
     }
-    .headline-right a:hover,
-    .headline-columns a:hover {
+    .headline-right a:hover, .headline-columns a:hover {
       color: gold;
     }
 
     /* —– ORIGINAL FOOTER —– */
     footer {
-      background-color: #1e1e1e;
-      color: white;
-      padding: 20px 0;
-      border-top: 1px solid #444;
-      margin-top: 20px;
-      width: 100%;
+      background-color: #1e1e1e; color: white;
+      padding: 20px 0; border-top: 1px solid #444;
+      margin-top: 20px; width: 100%;
     }
     .footer-wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-      box-sizing: border-box;
+      max-width: 1200px; margin: 0 auto; box-sizing: border-box;
     }
     .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: stretch;
-      gap: 20px;
+      display: flex; justify-content: space-between;
+      align-items: stretch; gap: 20px;
     }
     .footer-section {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+      flex: 1; display: flex; flex-direction: column;
     }
     .footer-section.left {
-      text-align: left;
-      align-items: flex-start;
-      justify-content: flex-end;
+      text-align: left; align-items: flex-start; justify-content: flex-end;
     }
     .footer-section.center {
-      text-align: center;
-      align-items: center;
-      justify-content: center;
+      text-align: center; align-items: center; justify-content: center;
     }
     .footer-section.right {
-      text-align: right;
-      align-items: flex-end;
-      justify-content: flex-end;
+      text-align: right; align-items: flex-end; justify-content: flex-end;
     }
     footer img {
-      max-width: 100px;
-      margin-bottom: 10px;
+      max-width: 100px; margin-bottom: 10px;
     }
     footer p, footer h3, footer a {
-      font-size: 14px;
-      line-height: 1.4;
-      margin: 6px 0;
-      text-transform: none;
+      font-size: 14px; line-height: 1.4; margin: 6px 0;
     }
     footer h3 {
-      margin-bottom: 10px;
-      font-size: 16px;
+      font-size: 16px; margin-bottom: 10px;
     }
     footer form {
-      width: 100%;
-      max-width: 300px;
+      width: 100%; max-width: 300px;
     }
     footer form textarea {
-      width: 100%;
-      height: 100px;
-      padding: 10px;
-      font-family: inherit;
-      border-radius: 4px;
-      border: none;
-      box-sizing: border-box;
-      margin: 0 0 10px 0;
+      width: 100%; height: 100px; padding: 10px;
+      border: none; border-radius: 4px; resize: none;
+      box-sizing: border-box; margin: 0 0 10px 0;
     }
     footer form button {
-      background-color: #fff;
-      color: #1e1e1e;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      font-family: inherit;
-      cursor: pointer;
-      width: 100%;
-      box-sizing: border-box;
-      margin: 0;
+      background-color: #fff; color: #1e1e1e;
+      padding: 8px 16px; border: none; border-radius: 4px;
+      cursor: pointer; width: 100%; box-sizing: border-box;
     }
 
     /* —– MOBILE —– */
     @media (max-width: 768px) {
-      body {
-        padding-left: 0;
-        padding-right: 0;
-      }
+      body { padding-left: 0; padding-right: 0; }
       .banner-content {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        display: flex; flex-direction: column; gap: 10px;
       }
       .left-section {
         justify-content: space-between;
       }
-      .center-section,
-      .right-section,
-      .time-date {
+      .center-section, .right-section, .time-date {
         width: 100%;
       }
       .main-headline-container {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        margin-top: 0;
+        flex-direction: column; align-items: center; width: 100%; margin-top: 0;
       }
-      .headline-left,
-      .headline-right {
-        width: 100%;
-        margin-bottom: 20px;
-      }
-      .main-headline-img {
-        width: 100%;
+      .headline-left, .headline-right {
+        width: 100%; margin-bottom: 20px;
       }
       .main-headline-link {
-        width: 100%;
-        text-align: center;
-        padding: 0 20px;
-        box-sizing: border-box;
+        padding: 0 20px; box-sizing: border-box;
       }
-      .headline-columns,
-      .headline-right {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 0;
+      .headline-columns, .headline-right {
+        flex-direction: column; align-items: center; margin-top: 0;
       }
-      .headline-columns .column,
-      .headline-right .column {
-        width: 100%;
-        margin-bottom: 10px;
-        padding: 0 20px;
-        box-sizing: border-box;
+      .headline-columns .column, .headline-right .column {
+        width: 100%; margin-bottom: 10px;
+        padding: 0 20px; box-sizing: border-box;
         text-align: center;
       }
       .footer-wrapper {
         padding: 0 20px;
       }
       .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin-top: 20px;
+        flex-direction: column; align-items: center; text-align: center; margin-top: 20px;
       }
       .footer-section {
-        margin-bottom: 20px;
+        text-align: center !important; align-items: center !important; margin-bottom: 20px;
       }
+      .footer-section.left { order: 1; }
+      .footer-section.right { order: 2; }
+      .footer-section.center { order: 3; }
     }
   </style>
 </head>
@@ -362,11 +258,9 @@
           <div id="current-date">--/--/----</div>
         </div>
       </div>
-
       <div class="center-section">
         <input type="text" placeholder="Search..." />
       </div>
-
       <div class="right-section">
         <img src="icon_gab.png" alt="Gab" />
         <img src="icon_facebook.png" alt="Facebook" />
@@ -380,12 +274,14 @@
     <!-- seamless ticker -->
     <div class="ticker">
       <div class="ticker-inner" id="ticker-inner">
-        Loading headlines…
+        <div class="ticker-track" id="ticker-track">
+          Loading headlines…
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- main headline area -->
+  <!-- MAIN HEADLINE AREA -->
   <div class="main-headline-container">
     <div class="headline-left">
       <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
@@ -421,6 +317,7 @@
     </div>
   </div>
 
+  <!-- ORIGINAL FOOTER -->
   <footer>
     <div class="footer-wrapper">
       <div class="footer-content">
@@ -451,62 +348,61 @@
   </footer>
 
   <script>
-    // adjust padding so body sits below banner
+    // 1) fix body padding for fixed banner
     function adjustPadding() {
       const h = document.getElementById('banner').offsetHeight;
-      document.documentElement.style.setProperty('--banner-height', `${h}px`);
+      document.documentElement.style.setProperty('--banner-height', h + 'px');
     }
     window.addEventListener('load', adjustPadding);
     window.addEventListener('resize', adjustPadding);
 
-    // live clock
+    // 2) live clock
     function updateTime() {
       const now = new Date();
       document.getElementById('current-time').textContent =
-        new Intl.DateTimeFormat('en-AU', {
-          timeZone: 'Australia/Melbourne',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false
+        new Intl.DateTimeFormat('en-AU',{
+          timeZone:'Australia/Melbourne',
+          hour:'2-digit',minute:'2-digit',hour12:false
         }).format(now) + ' AEST';
       document.getElementById('current-date').textContent =
-        new Intl.DateTimeFormat('en-AU', {
-          timeZone: 'Australia/Melbourne',
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
+        new Intl.DateTimeFormat('en-AU',{
+          timeZone:'Australia/Melbourne',
+          year:'numeric',month:'2-digit',day:'2-digit'
         }).format(now);
     }
     updateTime();
-    setInterval(updateTime, 60000);
+    setInterval(updateTime,60000);
 
-    // seamless JS ticker
+    // 3) seamless JS ticker
     fetch('/headlines.json')
-      .then(r => r.json())
-      .then(data => {
-        const inner = document.getElementById('ticker-inner');
-        inner.innerHTML = '';
-        // render & duplicate
-        data.concat(data).forEach(item => {
+      .then(r=>r.json())
+      .then(data=>{
+        const track = document.getElementById('ticker-track');
+        const container = document.getElementById('ticker-inner');
+
+        // render + duplicate
+        track.innerHTML = '';
+        data.concat(data).forEach(item=>{
           const a = document.createElement('a');
           a.href = item.url;
           a.textContent = item.title;
-          inner.appendChild(a);
+          track.appendChild(a);
         });
-        // scroll loop
-        let speed = 0.5; // px per frame, adjust up/down for readability
-        function step() {
-          inner.parentElement.scrollLeft += speed;
-          // reset seamlessly at halfway point
-          if (inner.parentElement.scrollLeft >= inner.scrollWidth / 2) {
-            inner.parentElement.scrollLeft = 0;
+
+        // scrolling
+        const speed = 1; // px per frame at ~60fps (~60px/s)
+        function step(){
+          container.scrollLeft += speed;
+          // when we've scrolled half the track (one full list), reset
+          if(container.scrollLeft >= track.scrollWidth/2){
+            container.scrollLeft = 0;
           }
           requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
       })
-      .catch(_ => {
-        document.getElementById('ticker-inner').textContent = 'Failed to load headlines.';
+      .catch(_=>{
+        document.getElementById('ticker-track').textContent = 'Failed to load headlines.';
       });
   </script>
 </body>
