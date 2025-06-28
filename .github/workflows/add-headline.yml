@@ -1,0 +1,40 @@
+name: Add New Headline
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: 'Headline title'
+        required: true
+      url:
+        description: 'Headline URL'
+        required: true
+
+jobs:
+  add-headline:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Git user
+      run: |
+        git config user.name "GitHub Action"
+        git config user.email "action@github.com"
+
+    - name: Create new headline
+      run: |
+        FILENAME="content/headlines/$(date +'%Y-%m-%d-%H-%M-%S').md"
+        echo "---" > $FILENAME
+        echo "title: ${{ github.event.inputs.title }}" >> $FILENAME
+        echo "url: ${{ github.event.inputs.url }}" >> $FILENAME
+        echo "---" >> $FILENAME
+
+    - name: Commit and push changes
+      run: |
+        git add content/headlines/
+        git commit -m "Add headline: ${{ github.event.inputs.title }}"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
