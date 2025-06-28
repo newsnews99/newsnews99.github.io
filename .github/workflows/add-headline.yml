@@ -20,12 +20,12 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Configure Git
+      - name: Configure git
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - name: Create new headline file
+      - name: Create headline file
         run: |
           mkdir -p content/headlines
           FILENAME="content/headlines/headline-${{ github.run_id }}.md"
@@ -35,8 +35,12 @@ jobs:
           echo "---" >> "$FILENAME"
           cat "$FILENAME"
 
-      - name: Commit and push
+      - name: Commit and push file
+        run: |
+          git add content/headlines/
+          git status
+          git diff --cached
+          git commit -m "Add headline: ${{ github.event.inputs.title }}" || echo "Nothing to commit"
+          git push origin HEAD:main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git add
