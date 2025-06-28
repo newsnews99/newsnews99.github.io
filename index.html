@@ -61,16 +61,9 @@
       justify-content: flex-start;
       gap: 8px;
       width: 100%;
+      position: relative;
     }
     .left-section img.logo { height: 48px; }
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
-      line-height: 1;
-      height: 48px;
-    }
     .center-section {
       display: flex;
       justify-content: center;
@@ -132,14 +125,14 @@
     .right-section a:hover img { transform: scale(1.12);}
     .time-date {
       position: absolute;
-      left: 0;
-      bottom: 2px;
+      left: 56px; /* aligns with right edge of logo image */
+      bottom: 0px;
       font-size: 13px;
       line-height: 1.1;
       text-align: left;
       height: auto;
       margin: 0;
-      padding-left: 60px;
+      padding-left: 8px;
       width: 180px;
       display: flex;
       flex-direction: column;
@@ -151,9 +144,6 @@
     .time-date div {
       text-align: left;
       width: 100%;
-    }
-    .banner-content > .left-section {
-      position: relative;
     }
     /* Ticker */
     .ticker {
@@ -369,14 +359,14 @@
         align-items: flex-end;
         justify-content: flex-start;
         gap: 5px;
+        position: relative;
       }
       .left-section img.logo { height: 32px; }
-      .logo-text { height: 32px; font-size: 18px;}
       .time-date {
         position: absolute;
         left: unset;
         right: 0;
-        bottom: 2px;
+        bottom: 0px;
         font-size: 12px;
         align-items: flex-end;
         text-align: right;
@@ -464,9 +454,6 @@
     <div class="banner-content">
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
-        <div class="logo-text">
-          <span style="font-size:20px;letter-spacing:1.5px;">THE<br/>FEDERATION SUN</span>
-        </div>
         <div class="time-date">
           <div id="current-time">--:-- AEST</div>
           <div id="current-date">--/--/----</div>
