@@ -471,6 +471,66 @@
     text-align: center !important;
   }
 }
+    @media (max-width: 768px) {
+  /* HEADER adjustments */
+  .banner-content {
+    grid-template-areas:
+      "logo time"
+      "search search"
+      "social social";
+  }
+
+  .left-section {
+    align-items: flex-end;
+  }
+
+  .left-section img.logo {
+    margin-bottom: 4px;
+  }
+
+  .time-date {
+    align-items: flex-end;
+    margin-bottom: 4px;
+    margin-right: 4px; /* Push slightly left from screen edge */
+  }
+
+  .center-section form {
+    gap: 4px; /* Decrease space between search input and button */
+  }
+
+  .right-section {
+    justify-content: flex-end;
+    padding-right: 4px; /* Push slightly left so icons aren't cut off */
+  }
+
+  /* MAIN HEADLINE IMAGE */
+  .main-headline-container {
+    margin-top: 0;
+  }
+
+  .main-headline-img {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  /* FOOTER: Move anonymous tips section above footer logo section */
+  footer .footer-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  footer .footer-section.right {
+    order: 1;
+  }
+
+  footer .footer-section.left {
+    order: 2;
+  }
+
+  footer .footer-section.center {
+    order: 3;
+  }
+}
   </style>
 </head>
 <body>
