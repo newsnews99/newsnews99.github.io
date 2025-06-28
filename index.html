@@ -28,8 +28,7 @@
 
     /* —– BANNER —– */
     .banner {
-      position: fixed;
-      top: 0; left: 0; width: 100%;
+      position: fixed; top: 0; left: 0; width: 100%;
       background-color: #1e1e1e;
       box-shadow: 0 2px 4px rgba(0,0,0,0.4);
       z-index: 1000;
@@ -49,20 +48,14 @@
       justify-content: flex-start;
       gap: 10px;
     }
-    .left-section img.logo {
-      height: 60px;
-    }
+    .left-section img.logo { height: 60px; }
     .center-section {
       display: flex;
       justify-content: center;
     }
     .center-section input {
-      width: 100%;
-      padding: 8px 12px;
-      font-size: 16px;
-      border: none;
-      border-radius: 4px;
-      outline: none;
+      width: 100%; padding: 8px 12px; font-size: 16px;
+      border: none; border-radius: 4px; outline: none;
     }
     .right-section {
       display: flex;
@@ -71,19 +64,14 @@
       gap: 12px;
     }
     .right-section img {
-      height: 28px;
-      transition: transform 0.2s;
+      height: 28px; transition: transform 0.2s;
     }
     .right-section img:hover { transform: scale(1.1); }
     .time-date {
-      display: flex;
-      flex-direction: column;
-      font-size: 14px;
-      line-height: 1;
-      justify-content: flex-end;
-      align-items: flex-end;
-      height: 60px;
-      transform: translateY(2px);
+      display: flex; flex-direction: column;
+      font-size: 14px; line-height: 1;
+      justify-content: flex-end; align-items: flex-end;
+      height: 60px; transform: translateY(2px);
     }
 
     /* —– TICKER —– */
@@ -92,21 +80,16 @@
       background-color: #222;
       border-top: 1px solid #444;
       border-bottom: 1px solid #444;
-      display: flex;
-      align-items: center;
-      height: 36px;
+      display: flex; align-items: center; height: 36px;
     }
     .ticker-inner {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      overflow: hidden;
-      white-space: nowrap;
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      overflow: hidden; white-space: nowrap;
     }
     .ticker-content {
-      display: inline-block;
-      white-space: nowrap;
-      /* pure CSS animation, uses dynamically set --scroll */
+      display: inline-block; white-space: nowrap;
+    }
+    .ticker-content.animate {
       animation: ticker-scroll 20s linear infinite;
     }
     .ticker-content a {
@@ -122,122 +105,106 @@
       to   { transform: translateX(calc(-1 * var(--scroll))); }
     }
 
-    /* —– MAIN SECTION —– */
+    /* —– MAIN HEADLINE & COLUMNS —– */
     .main-headline-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 20px;
-      width: 100%;
-      max-width: 1200px;
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      margin-top: 20px; width: 100%; max-width: 1200px;
     }
-    .headline-left, .headline-right {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
+    .headline-left {
+      width: 50%; display: flex; flex-direction: column; align-items: flex-start;
     }
     .main-headline-img {
-      width: 100%;
-      margin-bottom: 15px;
+      width: 100%; height: auto; margin-bottom: 15px;
     }
     .main-headline-link {
-      font-size: 32px;
-      color: white;
+      display: block; text-align: center; width: 100%;
+      margin-bottom: 15px; font-size: 32px; color: white;
       text-decoration: none;
-      margin-bottom: 15px;
     }
     .main-headline-link:hover { color: gold; }
-    .headline-columns, .headline-right {
-      display: flex;
-      justify-content: space-between;
+    .headline-columns {
+      display: flex; width: 100%; justify-content: space-between;
     }
-    .column {
-      width: 48%;
-      display: flex;
-      flex-direction: column;
-      text-align: left;
+    .headline-columns .column {
+      display: flex; flex-direction: column; width: 48%; text-align: left;
     }
-    .latest-title {
-      color: gold;
-      font-size: 18px;
-      margin-bottom: 10px;
-      text-decoration: none;
-      text-align: center;
+    .headline-columns .column a.latest-title {
+      color: gold; font-size: 18px; margin-bottom: 10px;
+      text-align: center; text-decoration: none;
     }
-    .column a:not(.latest-title) {
-      color: white;
-      font-size: 16px;
-      margin: 4px 0;
-      text-decoration: none;
+    .headline-right {
+      width: 50%; display: flex; justify-content: space-between;
+      align-items: flex-start; margin-top: -7px;
     }
-    .column a:not(.latest-title):hover { color: gold; }
+    .headline-right .column {
+      display: flex; flex-direction: column; width: 48%;
+      text-align: left; padding-left: 20px;
+    }
+    .headline-right .column a.latest-title {
+      color: gold; font-size: 18px; margin-bottom: 10px;
+      text-align: center; text-decoration: none;
+    }
+    .headline-right a, .headline-columns a {
+      color: white; text-decoration: none; margin: 4px 0; font-size: 16px;
+    }
+    .headline-right a:hover, .headline-columns a:hover { color: gold; }
 
     /* —– FOOTER —– */
     footer {
-      background-color: #1e1e1e;
-      padding: 20px 0;
-      border-top: 1px solid #444;
-      margin-top: 20px;
-      width: 100%;
+      background-color: #1e1e1e; padding: 20px 0;
+      border-top: 1px solid #444; margin-top: 20px; width: 100%;
     }
-    .footer-wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .footer-wrapper { max-width: 1200px; margin: 0 auto; }
     .footer-content {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
+      display: flex; justify-content: space-between; gap: 20px;
     }
     .footer-section {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+      flex: 1; display: flex; flex-direction: column;
     }
     .footer-section img {
-      max-width: 100px;
-      margin-bottom: 10px;
+      max-width: 100px; margin-bottom: 10px;
     }
     .footer-section p, .footer-section h3, .footer-section a {
-      font-size: 14px;
-      line-height: 1.4;
-      margin: 6px 0;
+      font-size: 14px; line-height: 1.4; margin: 6px 0;
     }
-    .footer-section h3 {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
+    .footer-section h3 { font-size: 16px; margin-bottom: 10px; }
     .footer-section form textarea {
-      width: 100%;
-      height: 100px;
-      padding: 10px;
-      border: none;
-      border-radius: 4px;
-      resize: none;
+      width: 100%; height: 100px; padding: 10px;
+      border: none; border-radius: 4px; resize: none;
     }
     .footer-section form button {
-      width: 100%;
-      padding: 8px 16px;
-      background: #fff;
-      color: #1e1e1e;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+      width: 100%; padding: 8px 16px;
+      background: #fff; color: #1e1e1e; border: none;
+      border-radius: 4px; cursor: pointer;
     }
 
     /* —– MOBILE —– */
     @media (max-width: 768px) {
       body { padding-left: 0; padding-right: 0; }
-      .banner-content { display: flex; flex-direction: column; gap: 10px; }
+      .banner-content {
+        display: flex; flex-direction: column; gap: 10px;
+      }
       .left-section { justify-content: space-between; }
       .center-section, .right-section, .time-date { width: 100%; }
-      .ticker-content { animation-duration: 20s !important; }
-      .main-headline-container { flex-direction: column; align-items: center; }
+      .ticker-content.animate {
+        animation-duration: 20s !important;
+      }
+      .main-headline-container {
+        flex-direction: column; align-items: center;
+      }
       .headline-left, .headline-right { width: 100%; margin-bottom: 20px; }
-      .main-headline-link { padding: 0 20px; box-sizing: border-box; }
-      .headline-columns, .headline-right { flex-direction: column; text-align: center; }
-      .column { width: 100%; padding: 0 20px; box-sizing: border-box; }
-      .footer-content { flex-direction: column; align-items: center; text-align: center; }
+      .main-headline-link {
+        padding: 0 20px; box-sizing: border-box;
+      }
+      .headline-columns, .headline-right {
+        flex-direction: column; text-align: center;
+      }
+      .headline-columns .column, .headline-right .column {
+        width: 100%; padding: 0 20px; box-sizing: border-box;
+      }
+      .footer-content {
+        flex-direction: column; align-items: center; text-align: center;
+      }
       .footer-section { margin-bottom: 20px; }
     }
   </style>
@@ -252,9 +219,11 @@
           <div id="current-date">--/--/----</div>
         </div>
       </div>
+
       <div class="center-section">
         <input type="text" placeholder="Search..." />
       </div>
+
       <div class="right-section">
         <img src="icon_gab.png" alt="Gab" />
         <img src="icon_facebook.png" alt="Facebook" />
@@ -265,15 +234,17 @@
       </div>
     </div>
 
-    <!-- TICKER BELOW BANNER CONTENT -->
+    <!-- TICKER -->
     <div class="ticker">
       <div class="ticker-inner">
-        <div class="ticker-content" id="ticker-content">Loading headlines…</div>
+        <div class="ticker-content" id="ticker-content">
+          Loading headlines…
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- MAIN PAGE CONTENT -->
+  <!-- MAIN HEADLINE AREA -->
   <div class="main-headline-container">
     <div class="headline-left">
       <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
@@ -309,6 +280,7 @@
     </div>
   </div>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-wrapper">
       <div class="footer-content">
@@ -339,7 +311,7 @@
   </footer>
 
   <script>
-    // 1) adjust banner height
+    // 1) Banner padding
     function adjustPadding() {
       const h = document.getElementById('banner').offsetHeight;
       document.documentElement.style.setProperty('--banner-height', h + 'px');
@@ -347,13 +319,13 @@
     window.addEventListener('load', adjustPadding);
     window.addEventListener('resize', adjustPadding);
 
-    // 2) live clock
+    // 2) Clock
     function updateTime() {
       const now = new Date();
       document.getElementById('current-time').textContent =
         new Intl.DateTimeFormat('en-AU', {
           timeZone: 'Australia/Melbourne',
-          hour: '2-digit', minute: '2-digit', hour12: false
+          hour:'2-digit', minute:'2-digit', hour12:false
         }).format(now) + ' AEST';
       document.getElementById('current-date').textContent =
         new Intl.DateTimeFormat('en-AU', {
@@ -364,7 +336,7 @@
     updateTime();
     setInterval(updateTime, 60000);
 
-    // 3) build seamless, infinite ticker
+    // 3) Ticker
     fetch('/headlines.json')
       .then(r => r.json())
       .then(data => {
@@ -376,18 +348,20 @@
           a.textContent = item.title;
           tc.appendChild(a);
         });
-        // duplicate for loop
+        // duplicate for seamless loop
         tc.innerHTML += tc.innerHTML;
-        // remove gap on duplicate last link
+        // remove gap on *duplicate* last link only
         const links = tc.querySelectorAll('a');
         const N = data.length;
         if (links.length >= 2*N) {
           links[2*N - 1].style.marginRight = '0';
         }
-        // measure original width & set CSS var
-        const fullW = tc.scrollWidth;       // double width
-        const origW = fullW / 2;           // one cycle
-        tc.style.setProperty('--scroll', origW + 'px');
+        // measure the width of one cycle & kick off CSS animation
+        const totalW = tc.scrollWidth;     // double length
+        const cycleW = totalW / 2;         // one cycle
+        tc.style.setProperty('--scroll', cycleW + 'px');
+        // now add animate class
+        tc.classList.add('animate');
       })
       .catch(() => {
         document.getElementById('ticker-content').textContent = 'Failed to load headlines.';
