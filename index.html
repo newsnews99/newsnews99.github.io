@@ -1,4 +1,3 @@
-<!-- Part 1: Head and Styles -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -231,7 +230,6 @@
       font-size: 16px;
     }
     .column a:hover { color: gold; }
-
     /* — MOBILE OVERRIDES — */
     @media(max-width: 768px) {
       body { padding-left: 0; padding-right: 0; }
@@ -244,6 +242,7 @@
         align-items: flex-end;
         padding: 8px 8px 0;
         gap: 6px;
+        row-gap: 0; /* ensures only 4px between header and search */
       }
       .left-section { order: 1; align-self: flex-end; }
       .left-section img.logo { height: 38px; }
@@ -282,7 +281,7 @@
         width: 100%;
         max-width: 100%;
         min-width: 0;
-        margin-top: 4px;
+        margin-top: 4px; /* total 4px from banner bottom */
       }
       .center-section form { display: flex; width: 100%; gap: 5px; }
       .center-section input[type="text"] { flex: 1; height: 28px; font-size: 14px; padding: 3px 7px; }
@@ -307,7 +306,6 @@
     }
   </style>
 </head>
-<!-- Part 2: Body and Scripts -->
 <body>
   <div class="banner">
     <div class="banner-content">
