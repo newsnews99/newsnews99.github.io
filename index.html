@@ -203,14 +203,16 @@
       }
       .left-section {
         grid-column: 1; grid-row: 1;
-        align-self: end;    /* bottom-align logo */
+        align-self: end;    
+        transform: translateY(-3px); /* bump logo up */
       }
       .left-section img.logo { height: 38px; }
 
       .social-section {
         grid-column: 2; grid-row: 1;
         justify-self: center;
-        align-self: end;    /* bottom-align icons */
+        align-self: end;    
+        transform: translateY(-3px); /* bump icons up */
       }
       .social-section a img {
         max-height: 19px; width: auto; height: auto;
@@ -219,7 +221,7 @@
       .time-section {
         grid-column: 3; grid-row: 1;
         justify-self: end;
-        align-self: end;    /* bottom-align time/date */
+        align-self: end;    
         transform: none;
       }
 
