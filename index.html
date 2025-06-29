@@ -233,7 +233,10 @@
 
     /* — MOBILE OVERRIDES — */
     @media(max-width: 768px) {
-      body { padding-left: 0; padding-right: 0; }
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
 
       .banner-content {
         position: relative;
@@ -243,7 +246,7 @@
         align-items: center;
         padding: 8px 8px 0;
         gap: 6px;
-        row-gap: 0; /* keeps exactly 4px to search */
+        row-gap: 0;
       }
       .left-section {
         order: 1;
@@ -255,10 +258,8 @@
       .right-section {
         order: 2;
         display: flex;
-        justify-content: center;
-        flex-wrap: nowrap;
+        align-items: center;
         gap: 7px;
-        width: 100%;
         position: relative;
         align-self: center;
       }
@@ -280,32 +281,62 @@
 
       .center-section {
         order: 3;
-        flex-basis: 100%;
         width: 100%;
-        max-width: 100%;
-        min-width: 0;
         margin-top: 4px;
         align-self: center;
       }
-      .center-section form { display: flex; width: 100%; gap: 5px; }
-      .center-section input[type="text"] { flex: 1; height: 28px; font-size: 14px; padding: 3px 7px; }
-      .center-section button { min-width: 70px; height: 28px; font-size: 14px; padding: 0 10px; }
+      .center-section form {
+        display: flex;
+        width: 100%;
+        gap: 5px;
+      }
+      .center-section input[type="text"] {
+        flex: 1;
+        height: 28px;
+        font-size: 14px;
+        padding: 3px 7px;
+      }
+      .center-section button {
+        min-width: 70px;
+        height: 28px;
+        font-size: 14px;
+        padding: 0 10px;
+      }
+
       .main-headline-container {
         flex-direction: column;
         align-items: center;
         margin-top: 0;
       }
-      .headline-left, .headline-right { width: 100%; margin-bottom: 20px; }
+      .headline-left, .headline-right {
+        width: 100%;
+        margin-bottom: 20px;
+      }
       .headline-columns, .headline-right {
         flex-direction: column;
         align-items: center;
         margin-top: 0;
       }
-      .column { width: 100%; margin-bottom: 10px; padding: 0 8px; text-align: center; }
-      .column:first-child { align-items: center; }
+      .column {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 0 8px;
+        text-align: center;
+      }
+      .column:first-child {
+        align-items: center;
+      }
 
-      .container, .ticker-inner, .footer-wrapper { max-width: 100vw !important; width: 100% !important; }
-      .main-headline-img { width: 100% !important; height: auto !important; }
+      .container,
+      .ticker-inner,
+      .footer-wrapper {
+        max-width: 100vw !important;
+        width: 100% !important;
+      }
+      .main-headline-img {
+        width: 100% !important;
+        height: auto !important;
+      }
     }
   </style>
 </head>
@@ -412,7 +443,6 @@
   </footer>
 
   <script>
-    // update both desktop & mobile time
     function updateTime() {
       const now = new Date();
       const timeOpts = { timeZone:'Australia/Melbourne', hour:'2-digit', minute:'2-digit', hour12:false };
@@ -427,7 +457,6 @@
     updateTime();
     setInterval(updateTime, 60000);
 
-    // adjust padding for fixed header
     function adjustBodyPadding() {
       const b = document.querySelector('.banner');
       if (b) document.body.style.paddingTop = b.offsetHeight + 'px';
@@ -435,7 +464,6 @@
     window.addEventListener('load', adjustBodyPadding);
     window.addEventListener('resize', adjustBodyPadding);
 
-    // ticker loader
     fetch('/headlines.json')
       .then(r => r.json())
       .then(data => {
@@ -459,7 +487,6 @@
       })
       .catch(_ => document.getElementById('ticker-track').textContent = 'Failed to load headlines.');
 
-    // site-search hack
     document.getElementById('search-form').addEventListener('submit', e => {
       const inp = document.getElementById('search-input');
       inp.value = 'site:fedsun.news ' + inp.value;
