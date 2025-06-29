@@ -7,7 +7,7 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
-    :root { --ticker-distance: 0px; --ticker-duration: 20s; }
+    :root { --ticker-distance:0px; --ticker-duration:20s; }
     html, body { margin:0; font-family:'Bebas Neue',sans-serif; background:#1e1e1e; color:white; box-sizing:border-box; }
     body { padding-left:10vw; padding-right:10vw; display:flex; flex-direction:column; align-items:center; text-align:center; }
     .container { width:100%; max-width:1200px; margin:0 auto; }
@@ -19,14 +19,15 @@
       background:#1e1e1e; box-shadow:0 2px 4px rgba(0,0,0,0.4); z-index:1000;
     }
     .banner-content {
-      display:grid;
-      grid-template-columns:1fr auto 1fr;
-      align-items:center;
-      max-width:1200px; margin:0 auto;
+      display:grid; grid-template-columns:1fr auto 1fr;
+      align-items:center; max-width:1200px; margin:0 auto;
       padding:12px 0; gap:8px; box-sizing:border-box;
     }
-    .left-section { display:flex; align-items:flex-end; justify-content:flex-start; gap:8px; }
+    .left-section {
+      display:flex; align-items:flex-end; justify-content:flex-start; gap:8px;
+    }
     .left-section img.logo { height:48px; }
+    .left-section .time-date { /* hidden on mobile */ }
     .time-date {
       display:flex; flex-direction:column;
       font-size:13px; line-height:1.1;
@@ -36,7 +37,9 @@
     }
     .time-date div { width:100%; text-align:left; }
 
-    .center-section { display:flex; justify-content:center; width:100%; min-width:0; }
+    .center-section {
+      display:flex; justify-content:center; width:100%; min-width:0;
+    }
     .center-section form {
       width:100%; max-width:300px;
       display:flex; gap:6px;
@@ -54,18 +57,14 @@
       height:32px; box-sizing:border-box;
     }
 
-    .right-section { display:flex; align-items:center; justify-content:flex-end; gap:8px; }
-    .right-section .time-mobile {
-      display:none; flex-direction:column;
-      font-size:13px; line-height:1.1;
-      text-align:right; margin-left:12px;
+    .right-section {
+      display:flex; align-items:center; justify-content:flex-end; gap:8px;
     }
-    .right-section .time-mobile div { width:100%; }
-
     .right-section a img {
       height:24px; transition:transform .2s; display:inline-block;
     }
     .right-section a:hover img { transform:scale(1.1); }
+    .right-section .time-mobile { display:none; }
 
     .ticker {
       width:100%; overflow:hidden; height:32px; position:relative; z-index:999;
@@ -88,13 +87,6 @@
     .ticker-group a:hover { color:gold; }
     @keyframes scroll { from{transform:translateX(0);} to{transform:translateX(calc(-1*var(--ticker-distance)));} }
 
-    /* — FOOTER CROP — */
-    footer { background:#1e1e1e; color:white; padding:20px 0; margin-top:20px; }
-    .footer-wrapper {
-      max-width:1200px; margin:0 auto; box-sizing:border-box;
-      border-top:1px solid #444;
-    }
-
     /* — MAIN CONTENT — */
     .main-headline-container {
       display:flex; flex-wrap:wrap; justify-content:space-between;
@@ -102,44 +94,96 @@
     }
     .headline-left, .headline-right { width:50%; }
     .headline-left { display:flex; flex-direction:column; align-items:flex-start; }
-    .headline-right { display:flex; justify-content:space-between; align-items:flex-start; margin-top:-7px; }
-
+    .headline-right {
+      display:flex; justify-content:space-between; align-items:flex-start;
+      margin-top:-7px;
+    }
     .main-headline-img { width:100%; height:auto; margin-bottom:15px; }
     .main-headline-link {
       display:block; text-align:center; width:100%; margin-bottom:15px;
       font-size:32px; color:white; text-decoration:none;
     }
     .main-headline-link:hover { color:gold; }
-
     .headline-columns, .headline-right { display:flex; width:100%; justify-content:space-between; }
-    .headline-columns .column, .headline-right .column {
+    .column {
       display:flex; flex-direction:column; width:48%; text-align:left;
     }
     .column a.latest-title {
-      color:gold; font-size:18px; margin-bottom:10px; text-align:center; text-decoration:none;
+      color:gold; font-size:18px; margin-bottom:10px;
+      text-align:center; text-decoration:none;
     }
-    .column a { color:white; text-decoration:none; margin:4px 0; font-size:16px; }
+    .column a {
+      color:white; text-decoration:none; margin:4px 0; font-size:16px;
+    }
     .column a:hover { color:gold; }
 
+    /* — FOOTER — */
+    footer {
+      background:#1e1e1e; color:white; padding:20px 0;
+      margin-top:20px; width:100%;
+    }
+    .footer-wrapper {
+      max-width:1200px; margin:0 auto; box-sizing:border-box;
+      border-top:1px solid #444;
+    }
+    .footer-content {
+      display:flex; justify-content:space-between; align-items:stretch; gap:20px;
+    }
+    .footer-section { flex:1; display:flex; flex-direction:column; }
+    .footer-section.left {
+      text-align:left; align-items:flex-start; justify-content:flex-end;
+    }
+    .footer-section.center {
+      text-align:center; align-items:center; justify-content:center;
+    }
+    .footer-section.right {
+      text-align:right; align-items:flex-end; justify-content:flex-end;
+    }
+    footer img { max-width:100px; margin-bottom:10px; }
+    footer p, footer h3, footer a {
+      font-size:14px; line-height:1.4; margin:6px 0; text-transform:none;
+    }
+    footer h3 { margin-bottom:10px; font-size:16px; }
+    footer form { width:100%; max-width:300px; }
+    footer form textarea {
+      width:100%; height:100px; padding:10px; font-family:inherit;
+      border-radius:4px; border:none; box-sizing:border-box; margin:0 0 10px;
+    }
+    footer form button {
+      background:#fff; color:#1e1e1e; padding:8px 16px;
+      border:none; border-radius:4px; font-family:inherit;
+      cursor:pointer; width:100%; box-sizing:border-box; margin:0;
+    }
+
     @media(max-width:768px){
-      /* Restore original padding */
+      /* restore original padding */
       body { padding-left:0; padding-right:0; }
 
-      /* Header layout */
+      /* header */
       .banner-content {
-        display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;
-        padding:8px; gap:6px;
+        display:flex; flex-wrap:wrap; justify-content:space-between;
+        align-items:center; padding:8px; gap:6px;
       }
       .left-section { order:1; }
       .left-section img.logo { height:38px; }
       .left-section .time-date { display:none; }
-      .right-section { order:2; }
-      .right-section .time-mobile { display:flex; }
-      .right-section a img { height:19px; }
 
-      /* Search full width */
-      .center-section { order:3; flex:1; width:100%; min-width:0; margin-top:8px; }
-      .center-section form { width:100%; max-width:100%; gap:5px; }
+      .right-section {
+        order:2; flex-wrap:nowrap; justify-content:flex-start; gap:7px; width:auto;
+      }
+      .right-section a img { height:19px; }
+      .right-section .time-mobile {
+        display:flex; flex-direction:column; font-size:13px; line-height:1.1;
+        text-align:right; margin-left:12px;
+      }
+      .right-section .time-mobile div { width:100%; }
+
+      .center-section {
+        order:3; flex:1; width:100%; min-width:0; margin-top:8px;
+      }
+      .center-section form {
+        width:100%; max-width:100%; gap:5px;
+      }
       .center-section input[type="text"] {
         width:100%; max-width:100%; height:28px; font-size:14px; padding:3px 7px;
       }
@@ -147,24 +191,28 @@
         min-width:70px; height:28px; font-size:14px; padding:0 10px;
       }
 
-      /* Content width override */
+      /* content width overrides */
       .container, .main-headline-container, .ticker-inner, .footer-wrapper {
         max-width:100vw!important; width:100%!important;
       }
-      .main-headline-container { flex-direction:column; align-items:center; margin-top:0; }
+      .main-headline-container {
+        flex-direction:column; align-items:center; margin-top:0;
+      }
       .headline-left, .headline-right { width:100%; margin-bottom:20px; }
-      .main-headline-link { padding:0 8px; }
-      .headline-columns, .headline-right { flex-direction:column; align-items:center; margin-top:0; }
-      .headline-columns .column, .headline-right .column {
+      .main-headline-link { padding:0 8px; box-sizing:border-box; }
+      .headline-columns, .headline-right {
+        flex-direction:column; align-items:center; margin-top:0;
+      }
+      .column {
         width:100%; margin-bottom:10px; padding:0 8px; text-align:center;
       }
-      .headline-columns .column a, .headline-right .column a { text-align:center; }
-      .headline-columns .column:first-child { align-items:center; }
+      .column a { text-align:center; }
+      .column:first-child { align-items:center; }
 
-      /* Footer mobile styling */
+      /* footer mobile */
       .footer-wrapper { padding:0 8px; }
       .footer-content {
-        display:flex; flex-direction:column; align-items:center; text-align:center; margin-top:20px;
+        flex-direction:column; align-items:center; text-align:center; margin-top:20px;
       }
       .footer-section { width:100%; margin-bottom:20px; }
       .footer-section.left { order:1; }
@@ -174,9 +222,9 @@
   </style>
 </head>
 <body>
-
   <div class="banner">
     <div class="banner-content">
+
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
         <div class="time-date">
@@ -205,14 +253,13 @@
         </form>
       </div>
 
-    </div><!-- /.banner-content -->
-
+    </div>
     <div class="ticker">
       <div class="ticker-inner" id="ticker-inner">
         <div class="ticker-track" id="ticker-track">Loading headlines…</div>
       </div>
     </div>
-  </div><!-- /.banner -->
+  </div>
   <div class="container">
     <div class="main-headline-container">
 
@@ -250,8 +297,8 @@
         </div>
       </div>
 
-    </div><!-- /.main-headline-container -->
-  </div><!-- /.container -->
+    </div>
+  </div>
 
   <footer>
     <div class="footer-wrapper">
@@ -283,27 +330,30 @@
   </footer>
 
   <script>
+    // update both desktop & mobile time
     function updateTime() {
       const now = new Date();
       const timeOpts = { timeZone:'Australia/Melbourne', hour:'2-digit', minute:'2-digit', hour12:false };
       const dateOpts = { timeZone:'Australia/Melbourne', weekday:'short', year:'numeric', month:'2-digit', day:'2-digit' };
-      const t = new Intl.DateTimeFormat('en-AU', timeOpts).format(now);
-      const d = new Intl.DateTimeFormat('en-AU', dateOpts).format(now);
-      document.getElementById('current-time').textContent = t + ' AEST';
+      const t = new Intl.DateTimeFormat('en-AU',timeOpts).format(now);
+      const d = new Intl.DateTimeFormat('en-AU',dateOpts).format(now);
+      document.getElementById('current-time').textContent = t+' AEST';
       document.getElementById('current-date').textContent = d;
-      document.getElementById('current-time-mobile').textContent = t + ' AEST';
+      document.getElementById('current-time-mobile').textContent = t+' AEST';
       document.getElementById('current-date-mobile').textContent = d;
     }
     updateTime();
     setInterval(updateTime,60000);
 
+    // adjust padding for fixed header
     function adjustBodyPadding() {
       const b = document.querySelector('.banner');
-      if (b) document.body.style.paddingTop = b.offsetHeight + 'px';
+      if (b) document.body.style.paddingTop = b.offsetHeight+'px';
     }
     window.addEventListener('load',adjustBodyPadding);
     window.addEventListener('resize',adjustBodyPadding);
 
+    // ticker
     fetch('/headlines.json')
       .then(r=>r.json())
       .then(data=>{
@@ -312,21 +362,25 @@
         const grp = document.createElement('div');
         grp.className = 'ticker-group';
         data.forEach(item=>{
-          const a=document.createElement('a');
-          a.href=item.url; a.textContent=item.title;
+          const a = document.createElement('a');
+          a.href = item.url;
+          a.textContent = item.title;
           grp.appendChild(a);
         });
         track.appendChild(grp);
         track.appendChild(grp.cloneNode(true));
-        const dist=grp.offsetWidth, speed=20, dur=dist/speed;
-        document.documentElement.style.setProperty('--ticker-distance', dist+'px');
-        document.documentElement.style.setProperty('--ticker-duration', dur+'s');
+        const dist = grp.offsetWidth;
+        const speed = 20;
+        const dur = dist/speed;
+        document.documentElement.style.setProperty('--ticker-distance',dist+'px');
+        document.documentElement.style.setProperty('--ticker-duration',dur+'s');
       })
       .catch(_=>document.getElementById('ticker-track').textContent='Failed to load headlines.');
 
-    document.getElementById('search-form').addEventListener('submit',function(e){
-      const inp=document.getElementById('search-input');
-      inp.value = 'site:fedsun.news ' + inp.value;
+    // site search
+    document.getElementById('search-form').addEventListener('submit',e=>{
+      const inp = document.getElementById('search-input');
+      inp.value = 'site:fedsun.news '+inp.value;
     });
   </script>
 </body>
