@@ -170,62 +170,17 @@
     @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(calc(-1 * var(--ticker-distance))); } }
 
     /* — MAIN CONTENT (desktop) — */
-    .main-headline-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 20px;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    .main-headline-container { display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 20px; width: 100%; max-width: 1200px; margin: 0 auto; }
     .headline-left, .headline-right { width: 48%; }
-    .headline-left {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .headline-right {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-top: -7px;
-    }
-    .main-headline-img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 15px;
-    }
-    .main-headline-link {
-      display: block;
-      text-align: center;
-      width: 100%;
-      margin-bottom: 15px;
-      font-size: 32px;
-      color: white;
-      text-decoration: none;
-    }
+    .headline-left { display: flex; flex-direction: column; align-items: flex-start; }
+    .headline-right { display: flex; justify-content: space-between; align-items: flex-start; margin-top: -7px; }
+    .main-headline-img { width: 100%; height: auto; margin-bottom: 15px; }
+    .main-headline-link { display: block; text-align: center; width: 100%; margin-bottom: 15px; font-size: 32px; color: white; text-decoration: none; }
     .main-headline-link:hover { color: gold; }
     .headline-columns, .headline-right { display: flex; width: 100%; justify-content: space-between; }
-    .column {
-      display: flex;
-      flex-direction: column;
-      width: 48%;
-      text-align: left;
-    }
-    .column a.latest-title {
-      color: gold;
-      font-size: 18px;
-      margin-bottom: 10px;
-      text-align: center;
-      text-decoration: none;
-    }
-    .column a {
-      color: white;
-      text-decoration: none;
-      margin: 4px 0;
-      font-size: 16px;
-    }
+    .column { display: flex; flex-direction: column; width: 48%; text-align: left; }
+    .column a.latest-title { color: gold; font-size: 18px; margin-bottom: 10px; text-align: center; text-decoration: none; }
+    .column a { color: white; text-decoration: none; margin: 4px 0; font-size: 16px; }
     .column a:hover { color: gold; }
 
     /* — MOBILE OVERRIDES — */
@@ -241,7 +196,7 @@
         padding: 8px;
         gap: 6px;
       }
-      .left-section { order: 1; }
+      .left-section { order: 1; align-self: flex-end; }
       .left-section img.logo { height: 38px; }
       .left-section .time-date { display: none; }
 
@@ -253,8 +208,13 @@
         gap: 7px;
         width: 100%;
         position: relative;
+        align-self: center;
       }
-      .right-section a img { height: 19px; }
+      .right-section a img {
+        max-height: 19px;
+        width: auto;
+        height: auto;
+      }
       .right-section .time-mobile {
         position: absolute;
         right: 8px;
@@ -275,35 +235,13 @@
         min-width: 0;
         margin-top: 8px;
       }
-      .center-section form {
-        display: flex;
-        width: 100%;
-        gap: 5px;
-      }
-      .center-section input[type="text"] {
-        flex: 1;
-        height: 28px;
-        font-size: 14px;
-        padding: 3px 7px;
-      }
-      .center-section button {
-        min-width: 70px;
-        height: 28px;
-        font-size: 14px;
-        padding: 0 10px;
-      }
+      .center-section form { display: flex; width: 100%; gap: 5px; }
+      .center-section input[type="text"] { flex: 1; height: 28px; font-size: 14px; padding: 3px 7px; }
+      .center-section button { min-width: 70px; height: 28px; font-size: 14px; padding: 0 10px; }
 
-      .main-headline-container {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 0;
-      }
+      .main-headline-container { flex-direction: column; align-items: center; margin-top: 0; }
       .headline-left, .headline-right { width: 100%; margin-bottom: 20px; }
-      .headline-columns, .headline-right {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 0;
-      }
+      .headline-columns, .headline-right { flex-direction: column; align-items: center; margin-top: 0; }
       .column { width: 100%; margin-bottom: 10px; padding: 0 8px; text-align: center; }
       .column:first-child { align-items: center; }
 
@@ -312,7 +250,6 @@
     }
   </style>
 </head>
-
 <!-- Part 2: Body and Scripts -->
 <body>
   <div class="banner">
@@ -392,11 +329,16 @@
       <div class="footer-content">
         <div class="footer-section left">
           <img src="australian_flag.png" alt="Australian Flag" />
-          <p>The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.</p>
+          <p>
+            The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
+          </p>
         </div>
         <div class="footer-section center">
           <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
-          <p>For all enquiries contact:<br /><a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a></p>
+          <p>
+            For all enquiries contact:<br />
+            <a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a>
+          </p>
           <p>The Federation Sun © 2025</p>
         </div>
         <div class="footer-section right">
