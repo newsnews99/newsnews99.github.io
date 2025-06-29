@@ -25,8 +25,6 @@
       align-items:center; max-width:1200px; margin:0 auto;
       padding:12px 0; gap:8px; box-sizing:border-box;
     }
-
-    /* logo + desktop time */
     .left-section { grid-column:1; display:flex; align-items:flex-end; justify-content:flex-start; gap:8px; }
     .left-section img.logo { height:48px; }
     .time-date {
@@ -38,7 +36,6 @@
     }
     .time-date div { width:100%; text-align:left; }
 
-    /* socials centered */
     .right-section {
       grid-column:2;
       display:flex; align-items:center; justify-self:center; gap:8px;
@@ -47,7 +44,6 @@
     .right-section a:hover img { transform:scale(1.1); }
     .right-section .time-mobile { display:none; }
 
-    /* search flushed right */
     .center-section {
       grid-column:3;
       display:flex; justify-self:end; width:100%; max-width:300px; gap:6px;
@@ -66,7 +62,7 @@
       height:32px; box-sizing:border-box;
     }
 
-    /* ticker still in header */
+    /* — TICKER (still inside .banner) — */
     .ticker {
       width:100%; overflow:hidden; height:32px; position:relative; z-index:999;
     }
@@ -87,6 +83,36 @@
     }
     .ticker-group a:hover { color:gold; }
     @keyframes scroll { from{transform:translateX(0);} to{transform:translateX(calc(-1*var(--ticker-distance)));} }
+
+    /* — MAIN CONTENT (desktop) — */
+    .main-headline-container {
+      display:flex; flex-wrap:wrap; justify-content:space-between;
+      margin-top:20px; width:100%; max-width:1200px; margin:0 auto;
+    }
+    .headline-left, .headline-right { width:48%; }
+    .headline-left { display:flex; flex-direction:column; align-items:flex-start; }
+    .headline-right {
+      display:flex; justify-content:space-between; align-items:flex-start;
+      margin-top:-7px;
+    }
+    .main-headline-img { width:100%; height:auto; margin-bottom:15px; }
+    .main-headline-link {
+      display:block; text-align:center; width:100%; margin-bottom:15px;
+      font-size:32px; color:white; text-decoration:none;
+    }
+    .main-headline-link:hover { color:gold; }
+    .headline-columns, .headline-right { display:flex; width:100%; justify-content:space-between; }
+    .column {
+      display:flex; flex-direction:column; width:48%; text-align:left;
+    }
+    .column a.latest-title {
+      color:gold; font-size:18px; margin-bottom:10px;
+      text-align:center; text-decoration:none;
+    }
+    .column a {
+      color:white; text-decoration:none; margin:4px 0; font-size:16px;
+    }
+    .column a:hover { color:gold; }
 
     /* — MOBILE OVERRIDES — */
     @media(max-width:768px){
@@ -110,22 +136,29 @@
       }
       .right-section .time-mobile div { width:100%; }
 
-      /* mobile search: input + button side-by-side */
+      /* force search into its own row on mobile */
       .center-section {
-        order:3; flex:1; width:100%; min-width:0; margin-top:8px;
+        order:3; flex-basis:100%; width:100%; min-width:0; margin-top:8px;
       }
       .center-section form {
         display:flex; width:100%; max-width:100%; gap:5px;
       }
       .center-section input[type="text"] {
-        flex:1; width:auto; height:28px; font-size:14px; padding:3px 7px;
+        flex:1; height:28px; font-size:14px; padding:3px 7px;
       }
       .center-section button {
         min-width:70px; height:28px; font-size:14px; padding:0 10px;
       }
 
-      /* keep full-width content on mobile */
-      .container, .main-headline-container, .ticker-inner, .footer-wrapper {
+      /* stack main content on mobile */
+      .main-headline-container { flex-direction:column; align-items:center; margin-top:0; }
+      .headline-left, .headline-right { width:100%; margin-bottom:20px; }
+      .headline-columns, .headline-right { flex-direction:column; align-items:center; margin-top:0; }
+      .column { width:100%; margin-bottom:10px; padding:0 8px; text-align:center; }
+      .column:first-child { align-items:center; }
+
+      /* full-width wrappers */
+      .container, .ticker-inner, .footer-wrapper {
         max-width:100vw!important; width:100%!important;
       }
     }
@@ -134,7 +167,6 @@
 <body>
   <div class="banner">
     <div class="banner-content">
-
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
         <div class="time-date">
@@ -142,30 +174,37 @@
           <div id="current-date">--/--/----</div>
         </div>
       </div>
-
       <div class="right-section">
-        <!-- social icons -->
-        <a href="https://gab.com/federationsun" target="_blank" rel="noopener"><img src="icon_gab.png" alt="Gab" /></a>
-        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener"><img src="icon_facebook.png" alt="Facebook" /></a>
-        <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener"><img src="icon_instagram.png" alt="Instagram" /></a>
-        <a href="https://t.me/federationsun" target="_blank" rel="noopener"><img src="icon_telegram.png" alt="Telegram" /></a>
-        <a href="https://x.com/federationsun" target="_blank" rel="noopener"><img src="icon_x.png" alt="X" /></a>
-        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube" /></a>
+        <a href="https://gab.com/federationsun" target="_blank" rel="noopener">
+          <img src="icon_gab.png" alt="Gab" />
+        </a>
+        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener">
+          <img src="icon_facebook.png" alt="Facebook" />
+        </a>
+        <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener">
+          <img src="icon_instagram.png" alt="Instagram" />
+        </a>
+        <a href="https://t.me/federationsun" target="_blank" rel="noopener">
+          <img src="icon_telegram.png" alt="Telegram" />
+        </a>
+        <a href="https://x.com/federationsun" target="_blank" rel="noopener">
+          <img src="icon_x.png" alt="X" />
+        </a>
+        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener">
+          <img src="icon_youtube.png" alt="YouTube" />
+        </a>
         <div class="time-mobile">
           <div id="current-time-mobile">--:-- AEST</div>
           <div id="current-date-mobile">--/--/----</div>
         </div>
       </div>
-
       <div class="center-section">
         <form id="search-form" action="https://www.google.com/search" method="GET" target="_blank" autocomplete="off">
           <input type="text" id="search-input" name="q" placeholder="Search..." />
           <button type="submit">Search</button>
         </form>
       </div>
-
     </div>
-
     <div class="ticker">
       <div class="ticker-inner" id="ticker-inner">
         <div class="ticker-track" id="ticker-track">Loading headlines…</div>
@@ -173,26 +212,8 @@
     </div>
   </div>
   <div class="container">
-    <!-- right-side columns now live *below* header + ticker -->
-    <div class="headline-right" style="margin-top:20px;">
-      <div class="column">
-        <a href="#" class="latest-title">Latest</a>
-        <a href="#">HEADLINE 7</a>
-        <a href="#">HEADLINE 8</a>
-        <a href="#">HEADLINE 9</a>
-      </div>
-      <div class="column">
-        <a href="#" class="latest-title">Latest</a>
-        <a href="#">HEADLINE 10</a>
-        <a href="#">HEADLINE 11</a>
-        <a href="#">HEADLINE 12</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
     <div class="main-headline-container">
-      <!-- the big main image + first two columns remain below -->
+      <!-- left side: image + two “left” columns -->
       <div class="headline-left">
         <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
         <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
@@ -209,6 +230,21 @@
             <a href="#">HEADLINE 5</a>
             <a href="#">HEADLINE 6</a>
           </div>
+        </div>
+      </div>
+      <!-- right side: two “right” columns -->
+      <div class="headline-right">
+        <div class="column">
+          <a href="#" class="latest-title">Latest</a>
+          <a href="#">HEADLINE 7</a>
+          <a href="#">HEADLINE 8</a>
+          <a href="#">HEADLINE 9</a>
+        </div>
+        <div class="column">
+          <a href="#" class="latest-title">Latest</a>
+          <a href="#">HEADLINE 10</a>
+          <a href="#">HEADLINE 11</a>
+          <a href="#">HEADLINE 12</a>
         </div>
       </div>
     </div>
@@ -244,7 +280,7 @@
   </footer>
 
   <script>
-    // time updates
+    // update both desktop & mobile time
     function updateTime() {
       const now = new Date();
       const timeOpts = { timeZone:'Australia/Melbourne', hour:'2-digit', minute:'2-digit', hour12:false };
@@ -259,7 +295,7 @@
     updateTime();
     setInterval(updateTime,60000);
 
-    // adjust body padding for fixed header
+    // adjust padding for fixed header
     function adjustBodyPadding() {
       const b = document.querySelector('.banner');
       if (b) document.body.style.paddingTop = b.offsetHeight+'px';
@@ -267,7 +303,7 @@
     window.addEventListener('load',adjustBodyPadding);
     window.addEventListener('resize',adjustBodyPadding);
 
-    // ticker fill
+    // ticker loader
     fetch('/headlines.json')
       .then(r=>r.json())
       .then(data=>{
