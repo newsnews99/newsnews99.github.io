@@ -82,11 +82,11 @@
       justify-content: flex-end;
       align-items: flex-end;
       height: 48px;
-      margin: 0;
       text-align: right;
       transform: translateY(4px);
     }
 
+    /* desktop search sizing */
     .center-section {
       grid-column: 3;
       display: flex;
@@ -127,121 +127,57 @@
       box-sizing: border-box;
     }
 
-    /* — TICKER — */
-    .ticker {
-      width: 100%;
-      overflow: hidden;
-      height: 32px;
-      position: relative;
-      z-index: 999;
-    }
+    /* — TICKER — (unchanged) */
+    .ticker { width: 100%; overflow: hidden; height: 32px; position: relative; z-index: 999; }
     .ticker-inner {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      background: #222;
-      border-top: 1px solid #444;
-      border-bottom: 1px solid #444;
-      overflow: hidden;
-      height: 32px;
-      display: flex;
-      align-items: center;
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      background: #222; border-top: 1px solid #444; border-bottom: 1px solid #444;
+      overflow: hidden; height: 32px; display: flex; align-items: center;
     }
     .ticker-track {
-      display: flex;
-      will-change: transform;
+      display: flex; will-change: transform;
       animation: scroll var(--ticker-duration) linear infinite;
     }
-    .ticker:hover .ticker-track {
-      animation-play-state: paused;
-    }
-    .ticker-group {
-      display: flex;
-      white-space: nowrap;
-    }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+    .ticker-group { display: flex; white-space: nowrap; }
     .ticker-group a {
-      display: inline-block;
-      margin-right: 40px;
-      color: white;
-      text-decoration: none;
-      font-size: 15px;
+      display: inline-block; margin-right: 40px;
+      color: white; text-decoration: none; font-size: 15px;
     }
-    .ticker-group a:hover {
-      color: gold;
-    }
+    .ticker-group a:hover { color: gold; }
     @keyframes scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
-    /* — MAIN CONTENT (desktop) — */
+    /* — MAIN CONTENT (desktop) — (unchanged) */
     .main-headline-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 20px;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      margin-top: 20px; width: 100%; max-width: 1200px; margin: 0 auto;
     }
-    .headline-left, .headline-right {
-      width: 48%;
-    }
-    .headline-left {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .headline-right {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-top: -7px;
-    }
-    .main-headline-img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 15px;
-    }
+    .headline-left, .headline-right { width: 48%; }
+    .headline-left { display: flex; flex-direction: column; align-items: flex-start; }
+    .headline-right { display: flex; justify-content: space-between; align-items: flex-start; margin-top: -7px; }
+    .main-headline-img { width: 100%; height: auto; margin-bottom: 15px; }
     .main-headline-link {
-      display: block;
-      text-align: center;
-      width: 100%;
-      margin-bottom: 15px;
-      font-size: 32px;
-      color: white;
-      text-decoration: none;
+      display: block; text-align: center; width: 100%;
+      margin-bottom: 15px; font-size: 32px; color: white; text-decoration: none;
     }
-    .main-headline-link:hover {
-      color: gold;
-    }
+    .main-headline-link:hover { color: gold; }
     .headline-columns, .headline-right {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
+      display: flex; width: 100%; justify-content: space-between;
     }
     .column {
-      display: flex;
-      flex-direction: column;
-      width: 48%;
-      text-align: left;
+      display: flex; flex-direction: column; width: 48%; text-align: left;
     }
     .column a.latest-title {
-      color: gold;
-      font-size: 18px;
-      margin-bottom: 10px;
-      text-align: center;
-      text-decoration: none;
+      color: gold; font-size: 18px; margin-bottom: 10px;
+      text-align: center; text-decoration: none;
     }
     .column a {
-      color: white;
-      text-decoration: none;
-      margin: 4px 0;
-      font-size: 16px;
+      color: white; text-decoration: none; margin: 4px 0; font-size: 16px;
     }
-    .column a:hover {
-      color: gold;
-    }
+    .column a:hover { color: gold; }
 
     /* — MOBILE OVERRIDES — */
     @media(max-width: 768px) {
@@ -256,32 +192,33 @@
         align-items: center;
         padding: 8px 8px 0;
         gap: 6px;
-        row-gap: 0;
+        row-gap: 0; /* exactly 4px before search */
       }
       .left-section {
         grid-column: 1; grid-row: 1;
         align-self: center;
       }
-      .left-section img.logo {
-        height: 38px;
-      }
+      .left-section img.logo { height: 38px; }
+
       .social-section {
         grid-column: 2; grid-row: 1;
         justify-self: center;
       }
       .social-section a img {
-        max-height: 19px;
-        width: auto;
-        height: auto;
+        max-height: 19px; width: auto; height: auto;
       }
+
       .time-section {
         grid-column: 3; grid-row: 1;
         justify-self: end;
       }
+
+      /* FULL-WIDTH SEARCH ON MOBILE */
       .center-section {
         grid-column: 1 / span 3;
         grid-row: 2;
         width: 100%;
+        max-width: 100%;
         margin-top: 4px;
         align-self: center;
       }
@@ -303,6 +240,7 @@
         padding: 0 10px;
       }
 
+      /* stack headlines under main image */
       .main-headline-container {
         flex-direction: column;
         align-items: center;
@@ -450,7 +388,6 @@
   </footer>
 
   <script>
-    // update time
     function updateTime() {
       const now = new Date();
       const t = new Intl.DateTimeFormat('en-AU', {
@@ -467,7 +404,6 @@
     updateTime();
     setInterval(updateTime, 60000);
 
-    // adjust body padding for fixed header
     function adjustBodyPadding() {
       const b = document.querySelector('.banner');
       if (b) document.body.style.paddingTop = b.offsetHeight + 'px';
@@ -475,7 +411,6 @@
     window.addEventListener('load', adjustBodyPadding);
     window.addEventListener('resize', adjustBodyPadding);
 
-    // load ticker
     fetch('/headlines.json')
       .then(r => r.json())
       .then(data => {
@@ -497,7 +432,6 @@
       })
       .catch(_ => document.getElementById('ticker-track').textContent = 'Failed to load headlines.');
 
-    // search hack
     document.getElementById('search-form').addEventListener('submit', e => {
       const inp = document.getElementById('search-input');
       inp.value = 'site:fedsun.news ' + inp.value;
