@@ -13,7 +13,7 @@
     .container { width:100%; max-width:1200px; margin:0 auto; }
     img { max-width:100%; height:auto; display:block; }
 
-    /* — Header — */
+    /* — HEADER — */
     .banner {
       position:fixed; top:0; left:0; width:100%;
       background:#1e1e1e; box-shadow:0 2px 4px rgba(0,0,0,0.4); z-index:1000;
@@ -37,7 +37,10 @@
     .time-date div { width:100%; text-align:left; }
 
     .center-section { display:flex; justify-content:center; width:100%; min-width:0; }
-    .center-section form { width:100%; max-width:300px; display:flex; gap:6px; }
+    .center-section form {
+      width:100%; max-width:300px;
+      display:flex; gap:6px;
+    }
     .center-section input[type="text"] {
       flex:1; padding:4px 8px; font-size:15px;
       border:none; border-radius:4px; outline:none;
@@ -52,15 +55,17 @@
     }
 
     .right-section { display:flex; align-items:center; justify-content:flex-end; gap:8px; }
+    .right-section .time-mobile {
+      display:none; flex-direction:column;
+      font-size:13px; line-height:1.1;
+      text-align:right; margin-left:12px;
+    }
+    .right-section .time-mobile div { width:100%; }
+
     .right-section a img {
       height:24px; transition:transform .2s; display:inline-block;
     }
     .right-section a:hover img { transform:scale(1.1); }
-
-    .icons-mobile { display:none; gap:8px; }
-    .icons-mobile a img { width:24px; height:24px; }
-
-    .time-mobile { display:none; }
 
     .ticker {
       width:100%; overflow:hidden; height:32px; position:relative; z-index:999;
@@ -83,76 +88,93 @@
     .ticker-group a:hover { color:gold; }
     @keyframes scroll { from{transform:translateX(0);} to{transform:translateX(calc(-1*var(--ticker-distance)));} }
 
-    /* — Mobile header tweaks — */
-    @media(max-width:768px){
-      body { padding-left:0; padding-right:0; }
-      .banner-content {
-        display:grid;
-        grid-template-areas:
-          "left date"
-          "search search";
-        grid-template-columns:auto auto;
-        grid-template-rows:auto auto;
-        padding:8px; gap:8px;
-      }
-      .left-section   { grid-area:left; }
-      .center-section { grid-area:search; margin-top:8px; }
-      .right-section  { grid-area:date; justify-content:flex-end; }
-
-      /* restore original time/date next to logo */
-      .left-section .time-date { display:flex; }
-
-      /* keep only one time element */
-      .time-mobile { display:none !important; }
-
-      .icons-mobile { display:flex; }
-      .right-section { display:none; }
-
-      .left-section img.logo { height:38px; }
-      .icons-mobile a img { width:19px; height:19px; }
-      .center-section input[type="text"] { height:28px; font-size:14px; padding:3px 7px; }
-      .center-section button { height:28px; font-size:14px; padding:0 10px; min-width:70px; }
-    }
-
-    /* — Crop footer line to content width — */
+    /* — FOOTER CROP — */
     footer { background:#1e1e1e; color:white; padding:20px 0; margin-top:20px; }
     .footer-wrapper {
       max-width:1200px; margin:0 auto; box-sizing:border-box;
       border-top:1px solid #444;
     }
 
-    /* — Original styles below — */
+    /* — MAIN CONTENT — */
     .main-headline-container {
       display:flex; flex-wrap:wrap; justify-content:space-between;
       margin-top:20px; width:100%; max-width:1200px; margin-left:auto; margin-right:auto;
     }
-    .headline-left { width:50%; display:flex; flex-direction:column; align-items:flex-start; }
-    .headline-right { width:50%; display:flex; justify-content:space-between; align-items:flex-start; margin-top:-7px; }
+    .headline-left, .headline-right { width:50%; }
+    .headline-left { display:flex; flex-direction:column; align-items:flex-start; }
+    .headline-right { display:flex; justify-content:space-between; align-items:flex-start; margin-top:-7px; }
+
     .main-headline-img { width:100%; height:auto; margin-bottom:15px; }
     .main-headline-link {
       display:block; text-align:center; width:100%; margin-bottom:15px;
       font-size:32px; color:white; text-decoration:none;
     }
     .main-headline-link:hover { color:gold; }
-    .headline-columns {
-      display:flex; width:100%; justify-content:space-between;
-    }
-    .headline-columns .column,
-    .headline-right .column {
+
+    .headline-columns, .headline-right { display:flex; width:100%; justify-content:space-between; }
+    .headline-columns .column, .headline-right .column {
       display:flex; flex-direction:column; width:48%; text-align:left;
     }
-    .headline-columns .column a.latest-title,
-    .headline-right .column a.latest-title {
+    .column a.latest-title {
       color:gold; font-size:18px; margin-bottom:10px; text-align:center; text-decoration:none;
     }
-    .headline-columns a, .headline-right a {
-      color:white; text-decoration:none; margin:4px 0; font-size:16px;
-    }
-    .headline-columns a:hover, .headline-right a:hover { color:gold; }
+    .column a { color:white; text-decoration:none; margin:4px 0; font-size:16px; }
+    .column a:hover { color:gold; }
 
+    @media(max-width:768px){
+      /* Restore original padding */
+      body { padding-left:0; padding-right:0; }
+
+      /* Header layout */
+      .banner-content {
+        display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;
+        padding:8px; gap:6px;
+      }
+      .left-section { order:1; }
+      .left-section img.logo { height:38px; }
+      .left-section .time-date { display:none; }
+      .right-section { order:2; }
+      .right-section .time-mobile { display:flex; }
+      .right-section a img { height:19px; }
+
+      /* Search full width */
+      .center-section { order:3; flex:1; width:100%; min-width:0; margin-top:8px; }
+      .center-section form { width:100%; max-width:100%; gap:5px; }
+      .center-section input[type="text"] {
+        width:100%; max-width:100%; height:28px; font-size:14px; padding:3px 7px;
+      }
+      .center-section button {
+        min-width:70px; height:28px; font-size:14px; padding:0 10px;
+      }
+
+      /* Content width override */
+      .container, .main-headline-container, .ticker-inner, .footer-wrapper {
+        max-width:100vw!important; width:100%!important;
+      }
+      .main-headline-container { flex-direction:column; align-items:center; margin-top:0; }
+      .headline-left, .headline-right { width:100%; margin-bottom:20px; }
+      .main-headline-link { padding:0 8px; }
+      .headline-columns, .headline-right { flex-direction:column; align-items:center; margin-top:0; }
+      .headline-columns .column, .headline-right .column {
+        width:100%; margin-bottom:10px; padding:0 8px; text-align:center;
+      }
+      .headline-columns .column a, .headline-right .column a { text-align:center; }
+      .headline-columns .column:first-child { align-items:center; }
+
+      /* Footer mobile styling */
+      .footer-wrapper { padding:0 8px; }
+      .footer-content {
+        display:flex; flex-direction:column; align-items:center; text-align:center; margin-top:20px;
+      }
+      .footer-section { width:100%; margin-bottom:20px; }
+      .footer-section.left { order:1; }
+      .footer-section.right { order:2; }
+      .footer-section.center { order:3; }
+    }
   </style>
 </head>
 <body>
+
   <div class="banner">
     <div class="banner-content">
       <div class="left-section">
@@ -161,38 +183,39 @@
           <div id="current-time">--:-- AEST</div>
           <div id="current-date">--/--/----</div>
         </div>
-        <div class="icons-mobile">
-          <a href="https://gab.com/federationsun" target="_blank" rel="noopener"><img src="icon_gab.png" alt="Gab"/></a>
-          <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener"><img src="icon_facebook.png" alt="Facebook"/></a>
-          <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener"><img src="icon_instagram.png" alt="Instagram"/></a>
-          <a href="https://t.me/federationsun" target="_blank" rel="noopener"><img src="icon_telegram.png" alt="Telegram"/></a>
-          <a href="https://x.com/federationsun" target="_blank" rel="noopener"><img src="icon_x.png" alt="X"/></a>
-          <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube"/></a>
+      </div>
+
+      <div class="right-section">
+        <a href="https://gab.com/federationsun" target="_blank" rel="noopener"><img src="icon_gab.png" alt="Gab" /></a>
+        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener"><img src="icon_facebook.png" alt="Facebook" /></a>
+        <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener"><img src="icon_instagram.png" alt="Instagram" /></a>
+        <a href="https://t.me/federationsun" target="_blank" rel="noopener"><img src="icon_telegram.png" alt="Telegram" /></a>
+        <a href="https://x.com/federationsun" target="_blank" rel="noopener"><img src="icon_x.png" alt="X" /></a>
+        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube" /></a>
+        <div class="time-mobile">
+          <div id="current-time-mobile">--:-- AEST</div>
+          <div id="current-date-mobile">--/--/----</div>
         </div>
       </div>
+
       <div class="center-section">
         <form id="search-form" action="https://www.google.com/search" method="GET" target="_blank" autocomplete="off">
           <input type="text" id="search-input" name="q" placeholder="Search..." />
           <button type="submit">Search</button>
         </form>
       </div>
-      <div class="right-section">
-        <a href="https://gab.com/federationsun" target="_blank" rel="noopener"><img src="icon_gab.png" alt="Gab"/></a>
-        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener"><img src="icon_facebook.png" alt="Facebook"/></a>
-        <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener"><img src="icon_instagram.png" alt="Instagram"/></a>
-        <a href="https://t.me/federationsun" target="_blank" rel="noopener"><img src="icon_telegram.png" alt="Telegram"/></a>
-        <a href="https://x.com/federationsun" target="_blank" rel="noopener"><img src="icon_x.png" alt="X"/></a>
-        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube"/></a>
-      </div>
-    </div>
+
+    </div><!-- /.banner-content -->
+
     <div class="ticker">
       <div class="ticker-inner" id="ticker-inner">
         <div class="ticker-track" id="ticker-track">Loading headlines…</div>
       </div>
     </div>
-  </div>
+  </div><!-- /.banner -->
   <div class="container">
     <div class="main-headline-container">
+
       <div class="headline-left">
         <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
         <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
@@ -211,6 +234,7 @@
           </div>
         </div>
       </div>
+
       <div class="headline-right">
         <div class="column">
           <a href="#" class="latest-title">Latest</a>
@@ -225,8 +249,9 @@
           <a href="#">HEADLINE 12</a>
         </div>
       </div>
-    </div>
-  </div>
+
+    </div><!-- /.main-headline-container -->
+  </div><!-- /.container -->
 
   <footer>
     <div class="footer-wrapper">
@@ -260,10 +285,14 @@
   <script>
     function updateTime() {
       const now = new Date();
-      const t = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
-      const d = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
+      const timeOpts = { timeZone:'Australia/Melbourne', hour:'2-digit', minute:'2-digit', hour12:false };
+      const dateOpts = { timeZone:'Australia/Melbourne', weekday:'short', year:'numeric', month:'2-digit', day:'2-digit' };
+      const t = new Intl.DateTimeFormat('en-AU', timeOpts).format(now);
+      const d = new Intl.DateTimeFormat('en-AU', dateOpts).format(now);
       document.getElementById('current-time').textContent = t + ' AEST';
       document.getElementById('current-date').textContent = d;
+      document.getElementById('current-time-mobile').textContent = t + ' AEST';
+      document.getElementById('current-date-mobile').textContent = d;
     }
     updateTime();
     setInterval(updateTime,60000);
@@ -279,9 +308,9 @@
       .then(r=>r.json())
       .then(data=>{
         const track = document.getElementById('ticker-track');
-        track.innerHTML='';
+        track.innerHTML = '';
         const grp = document.createElement('div');
-        grp.className='ticker-group';
+        grp.className = 'ticker-group';
         data.forEach(item=>{
           const a=document.createElement('a');
           a.href=item.url; a.textContent=item.title;
@@ -290,14 +319,14 @@
         track.appendChild(grp);
         track.appendChild(grp.cloneNode(true));
         const dist=grp.offsetWidth, speed=20, dur=dist/speed;
-        document.documentElement.style.setProperty('--ticker-distance',dist+'px');
-        document.documentElement.style.setProperty('--ticker-duration',dur+'s');
+        document.documentElement.style.setProperty('--ticker-distance', dist+'px');
+        document.documentElement.style.setProperty('--ticker-duration', dur+'s');
       })
       .catch(_=>document.getElementById('ticker-track').textContent='Failed to load headlines.');
 
     document.getElementById('search-form').addEventListener('submit',function(e){
       const inp=document.getElementById('search-input');
-      inp.value='site:fedsun.news '+inp.value;
+      inp.value = 'site:fedsun.news ' + inp.value;
     });
   </script>
 </body>
