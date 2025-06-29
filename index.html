@@ -127,7 +127,7 @@
       box-sizing: border-box;
     }
 
-    /* — TICKER — (unchanged) */
+    /* — TICKER — */
     .ticker { width: 100%; overflow: hidden; height: 32px; position: relative; z-index: 999; }
     .ticker-inner {
       width: 100%; max-width: 1200px; margin: 0 auto;
@@ -150,7 +150,7 @@
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
-    /* — MAIN CONTENT (desktop) — (unchanged) */
+    /* — MAIN CONTENT (desktop) — */
     .main-headline-container {
       display: flex; flex-wrap: wrap; justify-content: space-between;
       margin-top: 20px; width: 100%; max-width: 1200px; margin: 0 auto;
@@ -219,7 +219,8 @@
       .time-section {
         grid-column: 3; grid-row: 1;
         justify-self: end;
-        transform: none;    /* remove the desktop translateY */
+        align-self: end;    /* bottom-align time/date */
+        transform: none;
       }
 
       /* full-width search on mobile */
@@ -249,7 +250,6 @@
         padding: 0 10px;
       }
 
-      /* stack headlines under main image */
       .main-headline-container {
         flex-direction: column;
         align-items: center;
