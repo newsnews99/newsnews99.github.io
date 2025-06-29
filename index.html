@@ -57,6 +57,11 @@
     }
     .right-section a:hover img { transform:scale(1.1); }
 
+    .icons-mobile { display:none; gap:8px; }
+    .icons-mobile a img { width:24px; height:24px; }
+
+    .time-mobile { display:none; }
+
     .ticker {
       width:100%; overflow:hidden; height:32px; position:relative; z-index:999;
     }
@@ -94,18 +99,29 @@
       .center-section { grid-area:search; margin-top:8px; }
       .right-section  { grid-area:date; justify-content:flex-end; }
 
-      /* remove duplicate time next to logo */
-      .left-section .time-date { display:none; }
-      /* social icons move next to logo */
-      .right-section  { order:-1; }
-      .right-section a img { height:19px; width:19px; }
+      /* restore original time/date next to logo */
+      .left-section .time-date { display:flex; }
+
+      /* keep only one time element */
+      .time-mobile { display:none !important; }
+
+      .icons-mobile { display:flex; }
+      .right-section { display:none; }
 
       .left-section img.logo { height:38px; }
+      .icons-mobile a img { width:19px; height:19px; }
       .center-section input[type="text"] { height:28px; font-size:14px; padding:3px 7px; }
       .center-section button { height:28px; font-size:14px; padding:0 10px; min-width:70px; }
     }
 
-    /* — Original styles for content below — */
+    /* — Crop footer line to content width — */
+    footer { background:#1e1e1e; color:white; padding:20px 0; margin-top:20px; }
+    .footer-wrapper {
+      max-width:1200px; margin:0 auto; box-sizing:border-box;
+      border-top:1px solid #444;
+    }
+
+    /* — Original styles below — */
     .main-headline-container {
       display:flex; flex-wrap:wrap; justify-content:space-between;
       margin-top:20px; width:100%; max-width:1200px; margin-left:auto; margin-right:auto;
@@ -134,32 +150,6 @@
     }
     .headline-columns a:hover, .headline-right a:hover { color:gold; }
 
-    footer {
-      background:#1e1e1e; color:white; padding:20px 0;
-      border-top:1px solid #444; margin-top:20px; width:100%;
-    }
-    .footer-wrapper { max-width:1200px; margin:0 auto; box-sizing:border-box; }
-    .footer-content {
-      display:flex; justify-content:space-between; align-items:stretch; gap:20px;
-    }
-    .footer-section { flex:1; display:flex; flex-direction:column; }
-    .footer-section.left { text-align:left; align-items:flex-start; justify-content:flex-end; }
-    .footer-section.center { text-align:center; align-items:center; justify-content:center; }
-    .footer-section.right { text-align:right; align-items:flex-end; justify-content:flex-end; }
-    footer img { max-width:100px; margin-bottom:10px; }
-    footer p, footer h3, footer a {
-      font-size:14px; line-height:1.4; margin:6px 0; text-transform:none;
-    }
-    footer h3 { margin-bottom:10px; font-size:16px; }
-    footer form { width:100%; max-width:300px; }
-    footer form textarea {
-      width:100%; height:100px; padding:10px; font-family:inherit;
-      border-radius:4px; border:none; box-sizing:border-box; margin:0 0 10px;
-    }
-    footer form button {
-      background:#fff; color:#1e1e1e; padding:8px 16px;
-      border:none; border-radius:4px; cursor:pointer; width:100%; box-sizing:border-box; margin:0;
-    }
   </style>
 </head>
 <body>
@@ -170,6 +160,14 @@
         <div class="time-date">
           <div id="current-time">--:-- AEST</div>
           <div id="current-date">--/--/----</div>
+        </div>
+        <div class="icons-mobile">
+          <a href="https://gab.com/federationsun" target="_blank" rel="noopener"><img src="icon_gab.png" alt="Gab"/></a>
+          <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener"><img src="icon_facebook.png" alt="Facebook"/></a>
+          <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener"><img src="icon_instagram.png" alt="Instagram"/></a>
+          <a href="https://t.me/federationsun" target="_blank" rel="noopener"><img src="icon_telegram.png" alt="Telegram"/></a>
+          <a href="https://x.com/federationsun" target="_blank" rel="noopener"><img src="icon_x.png" alt="X"/></a>
+          <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube"/></a>
         </div>
       </div>
       <div class="center-section">
@@ -267,7 +265,8 @@
       document.getElementById('current-time').textContent = t + ' AEST';
       document.getElementById('current-date').textContent = d;
     }
-    updateTime(); setInterval(updateTime,60000);
+    updateTime();
+    setInterval(updateTime,60000);
 
     function adjustBodyPadding() {
       const b = document.querySelector('.banner');
@@ -280,17 +279,17 @@
       .then(r=>r.json())
       .then(data=>{
         const track = document.getElementById('ticker-track');
-        track.innerHTML = '';
-        const group = document.createElement('div');
-        group.className='ticker-group';
+        track.innerHTML='';
+        const grp = document.createElement('div');
+        grp.className='ticker-group';
         data.forEach(item=>{
           const a=document.createElement('a');
           a.href=item.url; a.textContent=item.title;
-          group.appendChild(a);
+          grp.appendChild(a);
         });
-        track.appendChild(group);
-        track.appendChild(group.cloneNode(true));
-        const dist=group.offsetWidth, speed=20, dur=dist/speed;
+        track.appendChild(grp);
+        track.appendChild(grp.cloneNode(true));
+        const dist=grp.offsetWidth, speed=20, dur=dist/speed;
         document.documentElement.style.setProperty('--ticker-distance',dist+'px');
         document.documentElement.style.setProperty('--ticker-duration',dur+'s');
       })
@@ -303,4 +302,3 @@
   </script>
 </body>
 </html>
-
