@@ -86,7 +86,7 @@
       transform: translateY(4px);
     }
 
-    /* desktop search sizing */
+    /* — DESKTOP SEARCH — */
     .center-section {
       grid-column: 3;
       display: flex;
@@ -156,9 +156,16 @@
       margin-top: 20px; width: 100%; max-width: 1200px; margin: 0 auto;
     }
     .headline-left, .headline-right { width: 48%; }
-    .headline-left { display: flex; flex-direction: column; align-items: flex-start; }
-    .headline-right { display: flex; justify-content: space-between; align-items: flex-start; margin-top: -7px; }
-    .main-headline-img { width: 100%; height: auto; margin-bottom: 15px; }
+    .headline-left {
+      display: flex; flex-direction: column; align-items: flex-start;
+    }
+    .headline-right {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-top: -7px;
+    }
+    .main-headline-img {
+      width: 100%; height: auto; margin-bottom: 15px;
+    }
     .main-headline-link {
       display: block; text-align: center; width: 100%;
       margin-bottom: 15px; font-size: 32px; color: white; text-decoration: none;
@@ -192,17 +199,18 @@
         align-items: center;
         padding: 8px 8px 0;
         gap: 6px;
-        row-gap: 0; /* exactly 4px before search */
+        row-gap: 0;  /* exactly 4px before search */
       }
       .left-section {
         grid-column: 1; grid-row: 1;
-        align-self: center;
+        align-self: end;    /* bottom-align logo */
       }
       .left-section img.logo { height: 38px; }
 
       .social-section {
         grid-column: 2; grid-row: 1;
         justify-self: center;
+        align-self: end;    /* bottom-align icons */
       }
       .social-section a img {
         max-height: 19px; width: auto; height: auto;
@@ -211,9 +219,10 @@
       .time-section {
         grid-column: 3; grid-row: 1;
         justify-self: end;
+        transform: none;    /* remove the desktop translateY */
       }
 
-      /* FULL-WIDTH SEARCH ON MOBILE */
+      /* full-width search on mobile */
       .center-section {
         grid-column: 1 / span 3;
         grid-row: 2;
