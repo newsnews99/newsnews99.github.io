@@ -133,24 +133,22 @@
       z-index: 999;
     }
     .ticker-inner {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #222;
-  border-top: 1px solid #444;
-  border-bottom: 1px solid #444;
-  display: flex;
-  align-items: center;
-  height: 32px;
-}
-
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #222;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      display: flex;
+      align-items: center;
+      height: 32px;
+      overflow: hidden; /* keep ticker text cropped */
+    }
     .ticker-track {
       display: flex;
       will-change: transform;
       animation: scroll var(--ticker-duration) linear infinite;
-    }
-    .ticker:hover .ticker-track {
-      animation-play-state: paused;
+      width: max-content; /* keep ticker text constrained */
     }
     .ticker-group {
       display: flex;
@@ -350,10 +348,8 @@
         timeZone: 'Australia/Melbourne',
         weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit'
       }).format(now);
-      // Update desktop time/date
       document.getElementById('current-time').textContent = t + ' AEST';
       document.getElementById('current-date').textContent = d;
-      // Update mobile time/date
       document.getElementById('current-time-mobile').textContent = t + ' AEST';
       document.getElementById('current-date-mobile').textContent = d;
     }
