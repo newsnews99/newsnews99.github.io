@@ -36,9 +36,7 @@
     .banner-content {
       display: grid;
       grid-template-columns: auto 1fr auto;
-      grid-template-rows: auto auto;
       grid-template-areas:
-        "time . ."
         "social logo search";
       align-items: end;
       max-width: 1200px;
@@ -46,30 +44,25 @@
       padding: 12px 0;
       column-gap: 8px;
     }
-    .time-section {
-      grid-area: time;
+    .social-section {
+      grid-area: social;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-end;
+      margin: 0;
+    }
+    .time-subsection {
       font-size: 13px;
       line-height: 1;
       text-align: left;
-      margin: 0 0 5px 0;
-      align-self: start;
+      margin-bottom: 5px;
+      display: none; /* hidden by default */
     }
-    .social-section {
-      grid-area: social;
+    .icons-subsection {
       display: flex;
-      justify-content: center;
       gap: 8px;
       align-items: center;
-      align-self: end;
-      margin: 0;
-    }
-    .social-section a img {
-      height: 24px;
-      transition: transform .2s;
     }
     .left-section {
       grid-area: logo;
@@ -118,6 +111,14 @@
       justify-content: center;
       height: 32px;
       box-sizing: border-box;
+    }
+
+    .time-section {
+      grid-area: time;
+      font-size: 13px;
+      line-height: 1;
+      text-align: right;
+      display: none; /* hidden by default */
     }
 
     .ticker {
@@ -175,7 +176,6 @@
       .banner-content {
         display: grid;
         grid-template-columns: auto 1fr auto;
-        grid-template-rows: auto auto;
         grid-template-areas:
           "logo social time"
           "search search search";
@@ -185,15 +185,19 @@
         align-items: end;
       }
       .time-section {
-        text-align: right;
-        align-items: flex-end;
-        margin: 0;
+        display: block; /* show time/date for mobile */
       }
-      .social-section a img {
-        max-height: 19px;
+      .time-subsection {
+        display: none; /* hide inside social-section on mobile */
       }
       .left-section img.logo {
         height: 38px;
+      }
+      .icons-subsection {
+        gap: 6px;
+      }
+      .icons-subsection a img {
+        max-height: 19px;
       }
       .center-section {
         width: 100%;
@@ -215,22 +219,37 @@
         padding: 0 10px;
       }
     }
+
+    @media (min-width: 769px) {
+      .time-section {
+        display: none; /* hide separate time/date on desktop */
+      }
+      .time-subsection {
+        display: block; /* show inside social-section on desktop */
+      }
+    }
   </style>
 </head>
 <body>
   <div class="banner">
     <div class="banner-content">
-      <div class="time-section">
-        <div id="current-time">--:-- AEST</div>
-        <div id="current-date">--/--/----</div>
-      </div>
       <div class="social-section">
-        <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
-        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
-        <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
-        <a href="https://t.me/federationsun" target="_blank"><img src="icon_telegram.png" alt="Telegram"></a>
-        <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
-        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
+        <div class="time-subsection">
+          <div id="current-time">--:-- AEST</div>
+          <div id="current-date">--/--/----</div>
+        </div>
+        <div class="icons-subsection">
+          <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
+          <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
+          <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
+          <a href="https://t.me/federationsun" target="_blank"><img src="icon_telegram.png" alt="Telegram"></a>
+          <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
+          <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
+        </div>
+      </div>
+      <div class="time-section">
+        <div id="current-time-mobile">--:-- AEST</div>
+        <div id="current-date-mobile">--/--/----</div>
       </div>
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo">
@@ -325,8 +344,12 @@
         timeZone: 'Australia/Melbourne',
         weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit'
       }).format(now);
+      // Update desktop time/date
       document.getElementById('current-time').textContent = t + ' AEST';
       document.getElementById('current-date').textContent = d;
+      // Update mobile time/date
+      document.getElementById('current-time-mobile').textContent = t + ' AEST';
+      document.getElementById('current-date-mobile').textContent = d;
     }
     updateTime();
     setInterval(updateTime, 60000);
