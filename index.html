@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
     :root { --ticker-distance: 0px; --ticker-duration: 20s; }
+
     html, body {
       margin: 0;
       font-family: 'Bebas Neue', sans-serif;
@@ -66,7 +67,7 @@
       line-height: 1.1;
       height: 48px;
       text-align: left;
-      margin-left: -3px;  /* 8px gap reduced to 5px */
+      margin-left: -3px;  /* 8px default gap → 5px effective */
       margin-top: 0;
     }
 
@@ -80,20 +81,6 @@
     .social-section a img {
       height: 24px;
       transition: transform .2s;
-    }
-    @media (min-width: 769px) {
-      .social-section a img {
-        height: 24px !important;
-        width: auto;
-      }
-      .time-section {
-        margin-top: 9px;    /* lower by 4px extra on desktop */
-      }
-      .banner {
-        left: 10vw;
-        right: 10vw;
-        width: auto;
-      }
     }
 
     .center-section {
@@ -136,6 +123,22 @@
       box-sizing: border-box;
     }
 
+    /* — DESKTOP ADJUSTMENTS — */
+    @media (min-width: 769px) {
+      .time-section {
+        margin-top: 14px;    /* lowered additional 5px */
+      }
+      .banner {
+        left: 10vw;
+        right: 10vw;
+        width: auto;
+      }
+      .social-section a img {
+        height: 24px !important;
+        width: auto;
+      }
+    }
+
     /* — TICKER — */
     .ticker {
       width: 100%;
@@ -160,17 +163,28 @@
       will-change: transform;
       animation: scroll var(--ticker-duration) linear infinite;
     }
-    .ticker:hover .ticker-track { animation-play-state: paused; }
-    .ticker-group { display: flex; white-space: nowrap; }
-    .ticker-group a {
-      color: white; text-decoration: none; font-size: 15px;
-      margin-right: 40px; display: inline-block;
+    .ticker:hover .ticker-track {
+      animation-play-state: paused;
     }
-    .ticker-group a:hover { color: gold; }
+    .ticker-group {
+      display: flex;
+      white-space: nowrap;
+    }
+    .ticker-group a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      margin-right: 40px;
+      display: inline-block;
+    }
+    .ticker-group a:hover {
+      color: gold;
+    }
     @keyframes scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
+
     /* — MOBILE OVERRIDES — */
     @media (max-width: 768px) {
       .banner-content {
@@ -189,7 +203,8 @@
         transform: translateY(-3px);
       }
       .left-section img.logo {
-        height: 38px; /* original mobile logo size */
+        height: 38px;  /* original mobile logo size */
+        width: auto;
       }
       .social-section {
         grid-column: 2;
@@ -199,14 +214,16 @@
         transform: translateY(-3px);
       }
       .social-section a img {
-        max-height: 19px; width: auto; height: auto;
+        max-height: 19px;
+        width: auto;
+        height: auto;
       }
       .time-section {
         grid-column: 3;
         grid-row: 1;
         justify-self: end;    /* right-align in mobile */
         align-self: end;
-        margin-left: 0;       /* reset desktop offset */
+        margin-left: 0;       /* cancel desktop offset */
         margin-top: 0;
         text-align: right;    /* right-align text */
       }
@@ -219,13 +236,21 @@
         align-self: center;
       }
       .center-section form {
-        display: flex; width: 100%; gap: 5px;
+        display: flex;
+        width: 100%;
+        gap: 5px;
       }
       .center-section input[type="text"] {
-        flex: 1; height: 28px; font-size: 14px; padding: 3px 7px;
+        flex: 1;
+        height: 28px;
+        font-size: 14px;
+        padding: 3px 7px;
       }
       .center-section button {
-        min-width: 70px; height: 28px; font-size: 14px; padding: 0 10px;
+        min-width: 70px;
+        height: 28px;
+        font-size: 14px;
+        padding: 0 10px;
       }
     }
 
