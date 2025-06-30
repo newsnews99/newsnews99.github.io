@@ -37,14 +37,14 @@
     }
     .banner-content {
       display: grid;
+      /* Desktop: logo | time | social | search */
       grid-template-columns: auto auto 1fr auto;
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
       padding: 12px 0;
-      gap: 8px;
+      gap: 3px; /* ensure minimal gap between logo & time */
       box-sizing: border-box;
-      position: relative;
     }
 
     .left-section {
@@ -67,15 +67,6 @@
       line-height: 1.1;
       height: 48px;
       text-align: left;
-      margin: 0;    /* reset any previous offsets */
-      position: static;
-    }
-    @media (min-width: 769px) {
-      .time-section {
-        position: absolute;
-        top: 15px; /* 12px padding + 3px down */
-        left: calc(10vw + 48px + 3px); /* 10vw margin + logo width + 3px gap */
-      }
     }
 
     .social-section {
@@ -182,6 +173,7 @@
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
+    /* match header width to content on desktop */
     @media (min-width: 769px) {
       .banner {
         left: 10vw;
@@ -199,58 +191,36 @@
         row-gap: 0;
       }
       .left-section {
-        grid-column: 1;
-        grid-row: 1;
+        grid-column: 1; grid-row: 1;
         align-self: end;
         transform: translateY(-3px);
       }
       .left-section img.logo { height: 38px; }
       .social-section {
-        grid-column: 2;
-        grid-row: 1;
-        justify-self: center;
-        align-self: end;
+        grid-column: 2; grid-row: 1;
+        justify-self: center; align-self: end;
         transform: translateY(-3px);
       }
       .social-section a img {
-        max-height: 19px;
-        width: auto;
-        height: auto;
+        max-height: 19px; width: auto; height: auto;
       }
       .time-section {
-        grid-column: 3;
-        grid-row: 1;
-        justify-self: end;
-        align-self: end;
-        /* restore static positioning */
-        position: static;
-        left: auto;
-        top: auto;
+        grid-column: 3; grid-row: 1;
+        justify-self: end; align-self: end;
       }
       .center-section {
-        grid-column: 1 / span 3;
-        grid-row: 2;
-        width: 100%;
-        max-width: 100%;
-        margin-top: 4px;
-        align-self: center;
+        grid-column: 1 / span 3; grid-row: 2;
+        width: 100%; max-width: 100%;
+        margin-top: 4px; align-self: center;
       }
       .center-section form {
-        display: flex;
-        width: 100%;
-        gap: 5px;
+        display: flex; width: 100%; gap: 5px;
       }
       .center-section input[type="text"] {
-        flex: 1;
-        height: 28px;
-        font-size: 14px;
-        padding: 3px 7px;
+        flex: 1; height: 28px; font-size: 14px; padding: 3px 7px;
       }
       .center-section button {
-        min-width: 70px;
-        height: 28px;
-        font-size: 14px;
-        padding: 0 10px;
+        min-width: 70px; height: 28px; font-size: 14px; padding: 0 10px;
       }
     }
 
