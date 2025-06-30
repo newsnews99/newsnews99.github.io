@@ -26,7 +26,6 @@
     }
     img { max-width: 100%; height: auto; display: block; }
 
-    /* — HEADER — */
     .banner {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -111,7 +110,6 @@
       box-sizing: border-box;
     }
 
-    /* — TICKER — */
     .ticker {
       width: 100%;
       overflow: hidden;
@@ -156,7 +154,6 @@
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
-    /* — MAIN & FOOTER — */
     .container {
       width: 100%;
       max-width: 1200px;
@@ -164,7 +161,6 @@
       padding-top: calc(53px + 32px + 12px);
     }
 
-    /* — DESKTOP — */
     @media (min-width: 769px) {
       .banner {
         left: 10vw;
@@ -199,61 +195,36 @@
         grid-area: search;
         justify-self: end;
       }
-      .social-section a img {
-        height: 24px !important;
-        width: auto;
-      }
     }
 
-    /* — MOBILE — */
     @media (max-width: 768px) {
       .banner-content {
         display: grid;
         grid-template-columns: auto 1fr auto;
         grid-template-rows: auto auto;
-        align-items: center;
+        grid-template-areas:
+          "logo social time"
+          "search search search";
+        column-gap: 6px;
+        row-gap: 4px;
         padding: 8px 8px 0;
-        gap: 6px;
-        row-gap: 0;
+        align-items: end;
       }
-      .social-section {
-        grid-column: 2;
-        grid-row: 1;
-        justify-self: center;
-        align-self: end;
-        transform: translateY(-3px);
+      .time-section {
+        text-align: right;
+        align-items: flex-end;
       }
       .social-section a img {
         max-height: 19px;
-        width: auto;
-      }
-      .left-section {
-        grid-column: 1;
-        grid-row: 1;
-        align-self: end;
-        transform: translateY(-3px);
       }
       .left-section img.logo {
         height: 38px;
-        width: auto;
-      }
-      .time-section {
-        grid-column: 3;
-        grid-row: 1;
-        justify-self: end;
-        align-self: end;
-        text-align: right;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
       }
       .center-section {
-        grid-column: 1 / span 3;
-        grid-row: 2;
-        margin-top: 4px;
         width: 100%;
       }
       .center-section form {
+        display: flex;
         width: 100%;
         gap: 5px;
       }
@@ -302,7 +273,6 @@
       </div>
     </div>
   </div>
-
   <div class="container">
     <div class="main-headline-container">
       <div class="headline-left">
@@ -369,6 +339,7 @@
     </div>
   </footer>
 
+  </div>
   <script>
     function updateTime() {
       const now = new Date();
@@ -385,14 +356,6 @@
     }
     updateTime();
     setInterval(updateTime, 60000);
-
-    function adjustBodyPadding() {
-      const b = document.querySelector('.banner');
-      if (b) document.body.style.paddingTop = b.offsetHeight + 'px';
-    }
-    window.addEventListener('load', adjustBodyPadding);
-    window.addEventListener('resize', adjustBodyPadding);
-
     fetch('/headlines.json')
       .then(r => r.json())
       .then(data => {
@@ -413,7 +376,6 @@
         document.documentElement.style.setProperty('--ticker-duration', (dist/speed) + 's');
       })
       .catch(_ => document.getElementById('ticker-track').textContent = 'Failed to load headlines.');
-
     document.getElementById('search-form').addEventListener('submit', e => {
       const inp = document.getElementById('search-input');
       inp.value = 'site:fedsun.news ' + inp.value;
