@@ -183,8 +183,7 @@
         grid-template-areas:
           "time    .      ."
           "social  logo   search";
-        column-gap: 8px;
-        row-gap: 5px;
+        gap: 5px 8px;          /* 5px between time & socials, 8px between columns */
         align-items: end;
         padding: 12px 0;
       }
@@ -211,6 +210,10 @@
       .ticker-inner {
         margin: 0 10vw;
         max-width: none;
+      }
+      .social-section a img {
+        height: 24px !important;
+        width: auto;
       }
     }
 
@@ -311,6 +314,7 @@
         </form>
       </div>
     </div>
+
     <div class="ticker">
       <div class="ticker-inner" id="ticker-inner">
         <div class="ticker-track" id="ticker-track">Loading headlines…</div>
