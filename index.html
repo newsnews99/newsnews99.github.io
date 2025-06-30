@@ -57,7 +57,7 @@
       line-height: 1;
       text-align: left;
       margin-bottom: 5px;
-      display: none; /* hidden by default */
+      display: none;
     }
     .icons-subsection {
       display: flex;
@@ -122,7 +122,7 @@
       font-size: 13px;
       line-height: 1;
       text-align: right;
-      display: none; /* hidden by default */
+      display: none;
     }
 
     .ticker {
@@ -142,13 +142,13 @@
       display: flex;
       align-items: center;
       height: 32px;
-      overflow: hidden; /* keep ticker text cropped */
+      overflow: hidden;
     }
     .ticker-track {
       display: flex;
       will-change: transform;
       animation: scroll var(--ticker-duration) linear infinite;
-      width: max-content; /* keep ticker text constrained */
+      width: max-content;
     }
     .ticker-group {
       display: flex;
@@ -189,10 +189,10 @@
         align-items: end;
       }
       .time-section {
-        display: block; /* show time/date for mobile */
+        display: block;
       }
       .time-subsection {
-        display: none; /* hide inside social-section on mobile */
+        display: none;
       }
       .left-section img.logo {
         height: 38px;
@@ -204,11 +204,16 @@
         height: 19px;
       }
       .center-section {
+        grid-column: 1 / span 3;
+        grid-row: 2;
         width: 100%;
+        max-width: 100%;
+        margin-top: 4px;
+        align-self: center;
       }
       .center-section form {
         display: flex;
-        width: 100%;
+        width: 100%;    /* Make search span width */
         gap: 5px;
       }
       .center-section input[type="text"] {
@@ -226,10 +231,10 @@
 
     @media (min-width: 769px) {
       .time-section {
-        display: none; /* hide separate time/date on desktop */
+        display: none;
       }
       .time-subsection {
-        display: block; /* show inside social-section on desktop */
+        display: block;
       }
     }
   </style>
