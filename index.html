@@ -37,13 +37,12 @@
     }
     .banner-content {
       display: grid;
-      /* Desktop: logo | time | social | search */
       grid-template-columns: auto auto 1fr auto;
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
       padding: 12px 0;
-      gap: 3px; /* ensure minimal gap between logo & time */
+      gap: 8px; /* default gap */
       box-sizing: border-box;
     }
 
@@ -67,6 +66,8 @@
       line-height: 1.1;
       height: 48px;
       text-align: left;
+      margin-left: -3px; /* reduce default 8px gap down to 5px */
+      margin-top: 0;
     }
 
     .social-section {
@@ -83,6 +84,14 @@
     @media (min-width: 769px) {
       .social-section a img {
         height: 24px !important;
+        width: auto;
+      }
+      .time-section {
+        margin-top: 5px; /* move down 5px on desktop */
+      }
+      .banner {
+        left: 10vw;
+        right: 10vw;
         width: auto;
       }
     }
@@ -173,14 +182,6 @@
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
-    /* match header width to content on desktop */
-    @media (min-width: 769px) {
-      .banner {
-        left: 10vw;
-        right: 10vw;
-        width: auto;
-      }
-    }
     /* — MOBILE OVERRIDES — */
     @media (max-width: 768px) {
       .banner-content {
@@ -191,45 +192,33 @@
         row-gap: 0;
       }
       .left-section {
-        grid-column: 1; grid-row: 1;
+        grid-column: 1;
+        grid-row: 1;
         align-self: end;
         transform: translateY(-3px);
       }
       .left-section img.logo { height: 38px; }
       .social-section {
-        grid-column: 2; grid-row: 1;
-        justify-self: center; align-self: end;
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: center;
+        align-self: end;
         transform: translateY(-3px);
       }
       .social-section a img {
-        max-height: 19px; width: auto; height: auto;
+        max-height: 19px;
+        width: auto;
+        height: auto;
       }
       .time-section {
-        grid-column: 3; grid-row: 1;
-        justify-self: end; align-self: end;
+        grid-column: 3;
+        grid-row: 1;
+        justify-self: end;     /* right-align in mobile */
+        align-self: end;
+        margin-left: 0;        /* cancel desktop offset */
+        margin-top: 0;         /* cancel desktop shift */
+        text-align: right;     /* right-align text */
       }
-      .center-section {
-        grid-column: 1 / span 3; grid-row: 2;
-        width: 100%; max-width: 100%;
-        margin-top: 4px; align-self: center;
-      }
-      .center-section form {
-        display: flex; width: 100%; gap: 5px;
-      }
-      .center-section input[type="text"] {
-        flex: 1; height: 28px; font-size: 14px; padding: 3px 7px;
-      }
-      .center-section button {
-        min-width: 70px; height: 28px; font-size: 14px; padding: 0 10px;
-      }
-    }
-
-    /* — MAIN & FOOTER LAYOUT — */
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-top: calc(48px + 32px + 12px);
     }
   </style>
 </head>
@@ -264,7 +253,6 @@
       </div>
     </div>
   </div>
-
   <div class="container">
     <div class="main-headline-container">
       <div class="headline-left">
