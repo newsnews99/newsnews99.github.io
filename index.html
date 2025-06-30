@@ -53,7 +53,7 @@
       justify-content: flex-start;
     }
     .left-section img.logo {
-      height: 53px;    /* desktop logo height increased by 5px */
+      height: 53px;
       width: auto;
     }
 
@@ -67,7 +67,7 @@
       line-height: 1.1;
       height: 48px;
       text-align: left;
-      margin-left: -3px;  /* 8px default gap → 5px effective */
+      margin-left: -3px;
       margin-top: 0;
     }
 
@@ -137,9 +137,16 @@
         grid-template-areas:
           "social logo   search"
           ".      time   .";
-        align-items: center;
+        /* let row-1 items bottom-align, row-2 items top-align */
+        align-items: start;
         padding: 12px 0;
         gap: 8px;
+      }
+      /* bottom-align socials, logo, search in row-1 */
+      .banner-content .social-section,
+      .banner-content .left-section,
+      .banner-content .center-section {
+        align-self: end;
       }
       .banner-content .social-section {
         grid-area: social;
@@ -155,14 +162,14 @@
         width: 100%;
         max-width: 300px;
       }
+      /* tighten time/date spacing to exactly 5px above and below */
       .banner-content .time-section {
         grid-area: time;
-        flex-direction: row;   /* single line */
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         text-align: center;
-        margin-top: 5px;       /* 5px below logo */
-        margin-left: 0;
+        margin: 5px 0;
       }
       .social-section a img {
         height: 24px !important;
@@ -170,7 +177,7 @@
       }
     }
 
-    /* — TICKER — */
+    /* — TICKER (unchanged) — */
     .ticker {
       width: 100%;
       overflow: hidden;
@@ -216,7 +223,7 @@
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
-    /* — MOBILE OVERRIDES — */
+    /* — MOBILE OVERRIDES (unchanged) — */
     @media (max-width: 768px) {
       .banner-content {
         display: grid;
@@ -285,7 +292,7 @@
       }
     }
 
-    /* — MAIN & FOOTER LAYOUT — */
+    /* — MAIN & FOOTER — */
     .container {
       width: 100%;
       max-width: 1200px;
