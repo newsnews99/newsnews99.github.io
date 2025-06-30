@@ -247,17 +247,20 @@
       max-width: 1200px;
       margin: 0 auto;
       gap: 40px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       text-align: left;
     }
     .footer-section {
-      flex: 1 1 30%;
+      flex: 1 1 33.333%;
+      display: flex;
+      flex-direction: column;
     }
     .footer-section.left img {
       width: 48px;
       margin-bottom: 10px;
     }
     .footer-section.center {
+      align-items: center;
       text-align: center;
     }
     .footer-section.center img {
@@ -265,12 +268,17 @@
       margin-bottom: 10px;
     }
     .footer-section.right {
+      align-items: flex-end;
       text-align: right;
+    }
+    .footer-section.right h3 {
+      margin: 0 0 10px 0;
     }
     .footer-section.right form {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      width: 100%;
     }
     .footer-section.right textarea {
       width: 100%;
@@ -281,6 +289,7 @@
       resize: vertical;
     }
     .footer-section.right button {
+      width: 100%;
       padding: 8px;
       background: #fff;
       color: #000;
@@ -290,7 +299,6 @@
       cursor: pointer;
     }
 
-    /* Separator above footer */
     .footer-separator {
       width: 100%;
       max-width: 1200px;
@@ -432,7 +440,7 @@
           <p>The Federation Sun © 2025</p>
         </div>
         <div class="footer-section right">
-          <h3>Anonymous tips</h3>
+          <h3>ANONYMOUS TIPS</h3>
           <form action="https://formspree.io/f/meokpdkj" method="POST">
             <textarea name="tip" placeholder="Type your tip here..."></textarea>
             <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
