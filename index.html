@@ -308,9 +308,16 @@
       .container {
         padding-top: calc(53px + 32px + 12px + 10px + 20px);
       }
-      /* Show last two columns side by side on desktop */
+      /* Center main headline text */
+      .main-headline-link {
+        text-align: center;
+      }
+      /* Equal width left/right headline content */
+      .main-headline-left {
+        flex: 1 1 48%;
+      }
       .two-columns-right {
-        grid-template-columns: repeat(2, 1fr);
+        flex: 1 1 48%;
       }
     }
   </style>
