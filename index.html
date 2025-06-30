@@ -116,7 +116,6 @@
       height: 32px;
       box-sizing: border-box;
     }
-
     .time-section {
       grid-area: time;
       font-size: 13px;
@@ -124,7 +123,6 @@
       text-align: right;
       display: none;
     }
-
     .ticker {
       width: 100%;
       overflow: hidden;
@@ -168,65 +166,48 @@
       from { transform: translateX(0); }
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
-
     .container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding-top: calc(53px + 32px + 12px);
     }
-
-    /* NEW STYLES FOR DESKTOP AND MOBILE LAYOUTS */
     .main-headline-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 20px;
-    }
-
-    .main-headline-img {
-      width: 45%;
-      margin-left: auto;
-    }
-
-    .main-headline-link {
-      display: block;
-      width: 45%;
-      margin-left: auto;
-      text-align: center;
-      font-size: 24px;
-      margin-top: 10px;
-    }
-
-    .headline-left {
-      width: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-bottom: 40px;
     }
-
-    .headline-left .headline-columns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
+    .main-headline-img-wrapper {
+      width: 100%;
+      max-width: 800px;
+    }
+    .main-headline-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .main-headline-link {
       margin-top: 20px;
+      font-size: 28px;
+      text-align: center;
+      display: block;
     }
-
-    .headline-right {
-      width: 45%;
+    .four-columns {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    .four-columns .column {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 10px;
     }
-
-    .headline-right .column {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .four-columns .latest-title {
+      font-weight: bold;
+      color: gold;
+      text-transform: uppercase;
     }
-
     @media (max-width: 768px) {
       .banner-content {
         display: grid;
@@ -278,33 +259,8 @@
         font-size: 14px;
         padding: 0 10px;
       }
-      .main-headline-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .main-headline-img {
-        width: 100%;
-        margin: 0;
-      }
-      .main-headline-link {
-        width: 100%;
-        margin: 10px 0 0 0;
-        text-align: center;
-      }
-      .headline-left,
-      .headline-right {
-        width: 100%;
-        align-items: center;
-      }
-      .headline-left .headline-columns,
-      .headline-right {
-        flex-direction: column;
-        gap: 20px;
-        align-items: center;
-      }
-      .headline-right .column,
-      .headline-left .column {
-        align-items: center;
+      .four-columns {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -358,37 +314,35 @@
 
   <div class="container">
     <div class="main-headline-container">
-      <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
-      <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
-      <div class="headline-left">
-        <div class="headline-columns">
-          <div class="column">
-            <a href="#" class="latest-title">Latest</a>
-            <a href="#">HEADLINE 1</a>
-            <a href="#">HEADLINE 2</a>
-            <a href="#">HEADLINE 3</a>
-          </div>
-          <div class="column">
-            <a href="#" class="latest-title">Latest</a>
-            <a href="#">HEADLINE 4</a>
-            <a href="#">HEADLINE 5</a>
-            <a href="#">HEADLINE 6</a>
-          </div>
-        </div>
+      <div class="main-headline-img-wrapper">
+        <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
       </div>
-      <div class="headline-right">
-        <div class="column">
-          <a href="#" class="latest-title">Latest</a>
-          <a href="#">HEADLINE 7</a>
-          <a href="#">HEADLINE 8</a>
-          <a href="#">HEADLINE 9</a>
-        </div>
-        <div class="column">
-          <a href="#" class="latest-title">Latest</a>
-          <a href="#">HEADLINE 10</a>
-          <a href="#">HEADLINE 11</a>
-          <a href="#">HEADLINE 12</a>
-        </div>
+      <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
+    </div>
+    <div class="four-columns">
+      <div class="column">
+        <a href="#" class="latest-title">LATEST</a>
+        <a href="#">HEADLINE 1</a>
+        <a href="#">HEADLINE 2</a>
+        <a href="#">HEADLINE 3</a>
+      </div>
+      <div class="column">
+        <a href="#" class="latest-title">LATEST</a>
+        <a href="#">HEADLINE 4</a>
+        <a href="#">HEADLINE 5</a>
+        <a href="#">HEADLINE 6</a>
+      </div>
+      <div class="column">
+        <a href="#" class="latest-title">LATEST</a>
+        <a href="#">HEADLINE 7</a>
+        <a href="#">HEADLINE 8</a>
+        <a href="#">HEADLINE 9</a>
+      </div>
+      <div class="column">
+        <a href="#" class="latest-title">LATEST</a>
+        <a href="#">HEADLINE 10</a>
+        <a href="#">HEADLINE 11</a>
+        <a href="#">HEADLINE 12</a>
       </div>
     </div>
   </div>
