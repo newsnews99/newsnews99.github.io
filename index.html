@@ -170,7 +170,7 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding-top: calc(53px + 32px + 12px);
+      padding-top: calc(53px + 32px + 12px + 10px + 20px);
     }
     .main-headline-layout {
       display: flex;
@@ -305,9 +305,12 @@
       .time-subsection {
         display: block;
       }
-      /* Updated padding to move content down by 20px extra */
       .container {
         padding-top: calc(53px + 32px + 12px + 10px + 20px);
+      }
+      /* Show last two columns side by side on desktop */
+      .two-columns-right {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
