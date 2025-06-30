@@ -9,17 +9,6 @@
   <style>
     :root { --ticker-distance: 0px; --ticker-duration: 20s; }
 
-    /* — Global resets — */<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Federation Sun 2025</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
-  <style>
-    :root { --ticker-distance: 0px; --ticker-duration: 20s; }
-
     html, body {
       margin: 0;
       font-family: 'Bebas Neue', sans-serif;
@@ -141,7 +130,6 @@
         right: 10vw;
         width: auto;
       }
-
       .banner-content {
         display: grid;
         grid-template-columns: auto 1fr auto;
@@ -179,7 +167,7 @@
       }
     }
 
-    /* — TICKER (restored exactly) — */
+    /* — TICKER (exactly as original) — */
     .ticker {
       width: 100%;
       overflow: hidden;
@@ -222,7 +210,7 @@
     }
     @keyframes scroll {
       from { transform: translateX(0); }
-      to { transform: translateX(calc(-1 * var(--ticker-distance))); }
+      to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
     /* — MOBILE OVERRIDES (<=768px) — */
@@ -294,7 +282,7 @@
       }
     }
 
-    /* — MAIN & FOOTER LAYOUT — */
+    /* — PAGE CONTENT PADDING — */
     .container {
       width: 100%;
       max-width: 1200px;
@@ -404,13 +392,13 @@
   <script>
     function updateTime() {
       const now = new Date();
-      const t = new Intl.DateTimeFormat('en-AU', {
-        timeZone: 'Australia/Melbourne',
-        hour: '2-digit', minute: '2-digit', hour12: false
+      const t = new Intl.DateTimeFormat('en-AU',{
+        timeZone:'Australia/Melbourne',
+        hour:'2-digit',minute:'2-digit',hour12:false
       }).format(now);
-      const d = new Intl.DateTimeFormat('en-AU', {
-        timeZone: 'Australia/Melbourne',
-        weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit'
+      const d = new Intl.DateTimeFormat('en-AU',{
+        timeZone:'Australia/Melbourne',
+        weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'
       }).format(now);
       document.getElementById('current-time').textContent = t + ' AEST';
       document.getElementById('current-date').textContent = d;
@@ -447,306 +435,6 @@
       .catch(_ => document.getElementById('ticker-track').textContent = 'Failed to load headlines.');
 
     document.getElementById('search-form').addEventListener('submit', e => {
-      const inp = document.getElementById('search-input');
-      inp.value = 'site:fedsun.news ' + inp.value;
-    });
-  </script>
-</body>
-</html>
-
-    html, body {
-      margin: 0;
-      font-family: 'Bebas Neue', sans-serif;
-      background: #1e1e1e;
-      color: white;
-      box-sizing: border-box;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding-left: 10vw;
-      padding-right: 10vw;
-    }
-    img { max-width: 100%; height: auto; display: block; }
-
-    /* — HEADER MOBILE & SMALL DESKTOP — */
-    .banner {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: #1e1e1e;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-      z-index: 1000;
-    }
-    .banner-content {
-      display: grid;
-      grid-template-columns: auto auto 1fr auto;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 12px 0;
-      gap: 8px;
-      box-sizing: border-box;
-    }
-    .left-section img.logo { height: 53px; width: auto; }
-    .time-section {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      font-size: 13px; line-height: 1.1;
-      height: 48px; text-align: left;
-      margin-left: -3px;
-    }
-    .social-section {
-      display: flex; justify-content: center;
-      gap: 8px; align-items: center;
-    }
-    .social-section a img { height: 24px; transition: transform .2s; }
-    .center-section form {
-      display: flex; width: 100%; gap: 6px;
-    }
-    .center-section input {
-      flex: 1; height: 32px; padding: 4px 8px;
-      font-size: 15px; border: none; border-radius: 4px;
-      outline: none; background: #fff; color: #1e1e1e;
-      box-sizing: border-box;
-    }
-    .center-section button {
-      padding: 0 12px; font-size: 15px;
-      background: gold; color: #1e1e1e;
-      border: none; border-radius: 4px;
-      cursor: pointer; display: flex;
-      align-items: center; justify-content: center;
-      height: 32px; box-sizing: border-box;
-    }
-
-    /* — TICKER — */
-    .ticker { width: 100%; overflow: hidden; height: 32px; position: relative; z-index: 999; }
-    .ticker-inner {
-      width: 100%; max-width: 1200px; margin: 0 auto;
-      background: #222; border-top:1px solid #444; border-bottom:1px solid #444;
-      display: flex; align-items: center; height: 32px;
-    }
-    .ticker-track { display:flex; will-change:transform; animation:scroll var(--ticker-duration) linear infinite; }
-    .ticker:hover .ticker-track { animation-play-state: paused; }
-    .ticker-group a {
-      color:white; text-decoration:none; font-size:15px; margin-right:40px; display:inline-block;
-    }
-    .ticker-group a:hover { color:gold; }
-    @keyframes scroll { from{transform:translateX(0);} to{transform:translateX(calc(-1 * var(--ticker-distance)));} }
-
-    /* — DESKTOP REPOSITIONING — */
-    @media (min-width: 769px) {
-      .banner {
-        left: 10vw; right: 10vw; width: auto;
-      }
-      .social-section a img { height:24px!important; }
-
-      .banner-content {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        grid-template-rows: auto auto;
-        grid-template-areas:
-          "social center search"
-          "social center search";
-        align-items: center;
-        padding: 12px 0;
-        gap: 8px;
-      }
-      /* social icons on left, spanning both rows */
-      .banner-content .social-section {
-        grid-area: social;
-        justify-self: start;
-      }
-      /* logo + time stacked, centered */
-      .banner-content .left-section,
-      .banner-content .time-section {
-        grid-area: center;
-        justify-self: center;
-      }
-      /* search form on right, spanning both rows */
-      .banner-content .center-section {
-        grid-area: search;
-        justify-self: end;
-        width: 100%;
-        max-width: 300px;
-      }
-      /* nudge time 5px down relative to logo */
-      .time-section { margin-top: 5px; align-items: center; text-align: center; }
-    }
-
-    /* — MOBILE OVERRIDES — */
-    @media (max-width: 768px) {
-      .banner-content {
-        grid-template-columns: auto 1fr auto;
-        grid-template-rows: auto auto;
-        padding: 8px;
-        gap: 6px;
-      }
-      .left-section { grid-column:1; grid-row:1; transform:translateY(-3px); }
-      .left-section img.logo { height:38px; }
-      .social-section { grid-column:2; grid-row:1; justify-self:center; transform:translateY(-3px); }
-      .time-section {
-        grid-column:3; grid-row:1;
-        justify-self:end; align-self:end;
-        text-align:right; margin-left:0; margin-top:0;
-      }
-      .center-section {
-        grid-column:1 / span 3; grid-row:2;
-        margin-top:4px; width:100%;
-      }
-      .center-section input { height:28px; font-size:14px; padding:3px 7px; }
-      .center-section button { height:28px; font-size:14px; padding:0 10px; }
-    }
-
-    /* — PAGE LAYOUT PADDING — */
-    .container {
-      width: 100%; max-width: 1200px;
-      margin: 0 auto;
-      padding-top: calc(53px + 32px + 12px);
-    }
-  </style>
-</head>
-<body>
-  <div class="banner">
-    <div class="banner-content">
-      <div class="social-section">
-        <a href="https://gab.com/federationsun" target="_blank" rel="noopener"><img src="icon_gab.png" alt="Gab" /></a>
-        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener"><img src="icon_facebook.png" alt="Facebook" /></a>
-        <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener"><img src="icon_instagram.png" alt="Instagram" /></a>
-        <a href="https://t.me/federationsun" target="_blank" rel="noopener"><img src="icon_telegram.png" alt="Telegram" /></a>
-        <a href="https://x.com/federationsun" target="_blank" rel="noopener"><img src="icon_x.png" alt="X" /></a>
-        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube" /></a>
-      </div>
-      <div class="left-section">
-        <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
-      </div>
-      <div class="time-section">
-        <div id="current-time">--:-- AEST</div>
-        <div id="current-date">--/--/----</div>
-      </div>
-      <div class="center-section">
-        <form id="search-form" action="https://www.google.com/search" method="GET" target="_blank" autocomplete="off">
-          <input type="text" id="search-input" name="q" placeholder="Search..." />
-          <button type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-    <div class="ticker">
-      <div class="ticker-inner" id="ticker-inner">
-        <div class="ticker-track" id="ticker-track">Loading headlines…</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="main-headline-container">
-      <div class="headline-left">
-        <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
-        <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
-        <div class="headline-columns">
-          <div class="column">
-            <a href="#" class="latest-title">Latest</a>
-            <a href="#">HEADLINE 1</a>
-            <a href="#">HEADLINE 2</a>
-            <a href="#">HEADLINE 3</a>
-          </div>
-          <div class="column">
-            <a href="#" class="latest-title">Latest</a>
-            <a href="#">HEADLINE 4</a>
-            <a href="#">HEADLINE 5</a>
-            <a href="#">HEADLINE 6</a>
-          </div>
-        </div>
-      </div>
-      <div class="headline-right">
-        <div class="column">
-          <a href="#" class="latest-title">Latest</a>
-          <a href="#">HEADLINE 7</a>
-          <a href="#">HEADLINE 8</a>
-          <a href="#">HEADLINE 9</a>
-        </div>
-        <div class="column">
-          <a href="#" class="latest-title">Latest</a>
-          <a href="#">HEADLINE 10</a>
-          <a href="#">HEADLINE 11</a>
-          <a href="#">HEADLINE 12</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-wrapper">
-      <div class="footer-content">
-        <div class="footer-section left">
-          <img src="australian_flag.png" alt="Australian Flag" />
-          <p>
-            The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
-          </p>
-        </div>
-        <div class="footer-section center">
-          <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
-          <p>
-            For all enquiries contact:<br />
-            <a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a>
-          </p>
-          <p>The Federation Sun © 2025</p>
-        </div>
-        <div class="footer-section right">
-          <h3>Anonymous tips</h3>
-          <form action="https://formspree.io/f/meokpdkj" method="POST">
-            <textarea name="tip" placeholder="Type your tip here..."></textarea>
-            <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
-            <button type="submit">Send tip</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    function updateTime() {
-      const now = new Date();
-      const t = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
-      const d = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
-      document.getElementById('current-time').textContent = t + ' AEST';
-      document.getElementById('current-date').textContent = d;
-    }
-    updateTime();
-    setInterval(updateTime,60000);
-
-    function adjustBodyPadding() {
-      const b = document.querySelector('.banner');
-      if(b) document.body.style.paddingTop = b.offsetHeight + 'px';
-    }
-    window.addEventListener('load', adjustBodyPadding);
-    window.addEventListener('resize', adjustBodyPadding);
-
-    fetch('/headlines.json')
-      .then(r=>r.json())
-      .then(data=>{
-        const track = document.getElementById('ticker-track');
-        track.innerHTML = '';
-        const grp = document.createElement('div');
-        grp.className = 'ticker-group';
-        data.forEach(item=>{
-          const a = document.createElement('a');
-          a.href = item.url;
-          a.textContent = item.title;
-          grp.appendChild(a);
-        });
-        track.appendChild(grp);
-        track.appendChild(grp.cloneNode(true));
-        const dist = grp.offsetWidth, speed = 20;
-        document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
-        document.documentElement.style.setProperty('--ticker-duration', (dist/speed) + 's');
-      })
-      .catch(_=>document.getElementById('ticker-track').textContent='Failed to load headlines.');
-
-    document.getElementById('search-form').addEventListener('submit', e=>{
       const inp = document.getElementById('search-input');
       inp.value = 'site:fedsun.news ' + inp.value;
     });
