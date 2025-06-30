@@ -16,19 +16,13 @@
       box-sizing: border-box;
     }
     body {
-      padding-left: 10vw;
-      padding-right: 10vw;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      padding-left: 10vw;
+      padding-right: 10vw;
     }
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    img { max-width: 100%; height: auto; display: block; }
 
     /* — HEADER — */
     .banner {
@@ -41,7 +35,6 @@
     }
     .banner-content {
       display: grid;
-      /* four columns: logo | time | flexible gap+social | search */
       grid-template-columns: auto auto 1fr auto;
       align-items: center;
       max-width: 1200px;
@@ -50,33 +43,32 @@
       gap: 8px;
       box-sizing: border-box;
     }
+
     .left-section {
       grid-column: 1;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 8px;
     }
-    .left-section img.logo { height: 48px; }
+    .left-section img.logo {
+      height: 48px;
+    }
 
     .time-section {
-      /* now in column 2, immediately right of logo */
       grid-column: 2;
       justify-self: start;
       margin-left: 4px;
       display: flex;
       flex-direction: column;
-      font-size: 13px;
-      line-height: 1.1;
       justify-content: center;
       align-items: flex-end;
+      font-size: 13px;
+      line-height: 1.1;
       height: 48px;
       text-align: right;
-      transform: none;
     }
 
     .social-section {
-      /* social icons now in column 3 (flexible center area) */
       grid-column: 3;
       display: flex;
       justify-content: center;
@@ -87,22 +79,20 @@
       height: 24px;
       transition: transform .2s;
     }
-    @media (min-width: 769px) {
+    @media(min-width:769px){
       .social-section a img {
         height: 24px !important;
         width: auto;
       }
     }
 
-    /* — DESKTOP SEARCH — */
     .center-section {
-      /* search form now in column 4 */
       grid-column: 4;
       display: flex;
       justify-self: end;
-      width: 100%;
-      max-width: 300px;
       gap: 6px;
+      max-width: 300px;
+      width: 100%;
     }
     .center-section form {
       display: flex;
@@ -111,12 +101,12 @@
     }
     .center-section input[type="text"] {
       flex: 1;
+      height: 32px;
       padding: 4px 8px;
       font-size: 15px;
       border: none;
       border-radius: 4px;
       outline: none;
-      height: 32px;
       background: #fff;
       color: #1e1e1e;
       box-sizing: border-box;
@@ -145,28 +135,44 @@
       z-index: 999;
     }
     .ticker-inner {
-      width: 100%; max-width: 1200px; margin: 0 auto;
-      background: #222; border-top: 1px solid #444; border-bottom: 1px solid #444;
-      overflow: hidden; height: 32px; display: flex; align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #222;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      display: flex;
+      align-items: center;
+      height: 32px;
     }
     .ticker-track {
-      display: flex; will-change: transform;
+      display: flex;
+      will-change: transform;
       animation: scroll var(--ticker-duration) linear infinite;
     }
-    .ticker:hover .ticker-track { animation-play-state: paused; }
-    .ticker-group { display: flex; white-space: nowrap; }
-    .ticker-group a {
-      display: inline-block; margin-right: 40px;
-      color: white; text-decoration: none; font-size: 15px;
+    .ticker:hover .ticker-track {
+      animation-play-state: paused;
     }
-    .ticker-group a:hover { color: gold; }
+    .ticker-group {
+      display: flex;
+      white-space: nowrap;
+    }
+    .ticker-group a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      margin-right: 40px;
+      display: inline-block;
+    }
+    .ticker-group a:hover {
+      color: gold;
+    }
     @keyframes scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
-    /* crop header to content width on desktop */
-    @media (min-width: 769px) {
+    @media(min-width:769px){
       .banner {
         left: 10vw;
         right: 10vw;
@@ -174,15 +180,12 @@
       }
     }
 
-    /* — MAIN CONTENT (desktop) — */
-    .main-headline-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 20px;
+    /* — MAIN LAYOUT — */
+    .container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
+      padding-top: calc(48px + 32px + 12px); /* banner height + ticker + gap */
     }
   </style>
 </head>
@@ -210,15 +213,13 @@
           <button type="submit">Search</button>
         </form>
       </div>
-
-      <div class="ticker">
-        <div class="ticker-inner" id="ticker-inner">
-          <div class="ticker-track" id="ticker-track">Loading headlines…</div>
-        </div>
+    </div>
+    <div class="ticker">
+      <div class="ticker-inner" id="ticker-inner">
+        <div class="ticker-track" id="ticker-track">Loading headlines…</div>
       </div>
     </div>
   </div>
-
   <div class="container">
     <div class="main-headline-container">
       <div class="headline-left">
