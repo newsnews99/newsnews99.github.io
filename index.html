@@ -69,8 +69,7 @@
       height: 24px;
       transition: transform .2s;
     }
-
-    /* — pin desktop icons at their original size — */
+    /* pin desktop icons at original size */
     @media (min-width: 769px) {
       .social-section a img {
         height: 24px !important;
@@ -133,29 +132,53 @@
     }
 
     /* — TICKER — */
-    .ticker { width: 100%; overflow: hidden; height: 32px; position: relative; z-index: 999; }
+    .ticker {
+      width: 100%;
+      overflow: hidden;
+      height: 32px;
+      position: relative;
+      z-index: 999;
+    }
     .ticker-inner {
-      width: 100%; max-width: 1200px; margin: 0 auto;
-      background: #222; border-top: 1px solid #444; border-bottom: 1px solid #444;
-      overflow: hidden; height: 32px; display: flex; align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #222;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      overflow: hidden;
+      height: 32px;
+      display: flex;
+      align-items: center;
     }
     .ticker-track {
-      display: flex; will-change: transform;
+      display: flex;
+      will-change: transform;
       animation: scroll var(--ticker-duration) linear infinite;
     }
-    .ticker:hover .ticker-track { animation-play-state: paused; }
-    .ticker-group { display: flex; white-space: nowrap; }
-    .ticker-group a {
-      display: inline-block; margin-right: 40px;
-      color: white; text-decoration: none; font-size: 15px;
+    .ticker:hover .ticker-track {
+      animation-play-state: paused;
     }
-    .ticker-group a:hover { color: gold; }
+    .ticker-group {
+      display: flex;
+      white-space: nowrap;
+    }
+    .ticker-group a {
+      display: inline-block;
+      margin-right: 40px;
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+    .ticker-group a:hover {
+      color: gold;
+    }
     @keyframes scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
-    /* — MATCH HEADER WIDTH TO CONTENT (DESKTOP ONLY) — */
+    /* match header width to content (desktop) */
     @media (min-width: 769px) {
       .banner {
         left: 10vw;
@@ -166,8 +189,13 @@
 
     /* — MAIN CONTENT (desktop) — */
     .main-headline-container {
-      display: flex; flex-wrap: wrap; justify-content: space-between;
-      margin-top: 20px; width: 100%; max-width: 1200px; margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -178,24 +206,12 @@
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
       </div>
       <div class="social-section">
-        <a href="https://gab.com/federationsun" target="_blank" rel="noopener">
-          <img src="icon_gab.png" alt="Gab" />
-        </a>
-        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener">
-          <img src="icon_facebook.png" alt="Facebook" />
-        </a>
-        <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener">
-          <img src="icon_instagram.png" alt="Instagram" />
-        </a>
-        <a href="https://t.me/federationsun" target="_blank" rel="noopener">
-          <img src="icon_telegram.png" alt="Telegram" />
-        </a>
-        <a href="https://x.com/federationsun" target="_blank" rel="noopener">
-          <img src="icon_x.png" alt="X" />
-        </a>
-        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener">
-          <img src="icon_youtube.png" alt="YouTube" />
-        </a>
+        <a href="https://gab.com/federationsun" target="_blank" rel="noopener"><img src="icon_gab.png" alt="Gab" /></a>
+        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener"><img src="icon_facebook.png" alt="Facebook" /></a>
+        <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener"><img src="icon_instagram.png" alt="Instagram" /></a>
+        <a href="https://t.me/federationsun" target="_blank" rel="noopener"><img src="icon_telegram.png" alt="Telegram" /></a>
+        <a href="https://x.com/federationsun" target="_blank" rel="noopener"><img src="icon_x.png" alt="X" /></a>
+        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube" /></a>
       </div>
       <div class="time-section">
         <div id="current-time">--:-- AEST</div>
@@ -208,7 +224,6 @@
         </form>
       </div>
     </div>
-
     <div class="ticker">
       <div class="ticker-inner" id="ticker-inner">
         <div class="ticker-track" id="ticker-track">Loading headlines…</div>
