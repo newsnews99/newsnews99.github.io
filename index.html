@@ -1,3 +1,4 @@
+<!-- PART 1 of 2 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +53,8 @@
     .left-section {
       grid-column: 1;
       display: flex;
-      align-items: flex-end;
+-      align-items: flex-end;
++      align-items: center;
       justify-content: flex-start;
       gap: 8px;
     }
@@ -65,13 +67,6 @@
       gap: 8px;
       align-items: center;
     }
-    .social-section a img {
-      height: 24px;
-      transition: transform .2s;
-    }
-    .social-section a:hover img {
-      transform: scale(1.1);
-    }
 
     .time-section {
       grid-column: 3;
@@ -79,11 +74,14 @@
       flex-direction: column;
       font-size: 13px;
       line-height: 1.1;
-      justify-content: flex-end;
-      align-items: flex-end;
+-      justify-content: flex-end;
+-      align-items: flex-end;
+-      transform: translateY(4px);
++      justify-content: center;
++      align-items: flex-end;
++      transform: none;
       height: 48px;
       text-align: right;
-      transform: translateY(4px);
     }
 
     /* — DESKTOP SEARCH — */
@@ -164,6 +162,8 @@
       display: flex; flex-wrap: wrap; justify-content: space-between;
       margin-top: 20px; width: 100%; max-width: 1200px; margin: 0 auto;
     }
+
+<!-- PART 2 of 2 -->
     .headline-left, .headline-right { width: 48%; }
     .headline-left {
       display: flex; flex-direction: column; align-items: flex-start;
