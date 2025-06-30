@@ -169,7 +169,7 @@
       padding-top: calc(53px + 32px + 12px);
     }
 
-    /* — DESKTOP REPOSITIONING & TICKER EXTENSION — */
+    /* — DESKTOP REPOSITIONING & 5px BETWEEN TIME & SOCIALS — */
     @media (min-width: 769px) {
       .banner {
         left: 10vw;
@@ -183,7 +183,10 @@
         grid-template-areas:
           "time    .      ."
           "social  logo   search";
-        gap: 5px 8px;          /* 5px between time & socials, 8px between columns */
+        /* vertical gap exactly 5px between time and socials */
+        row-gap: 5px;
+        /* horizontal gap stays 8px between columns */
+        column-gap: 8px;
         align-items: end;
         padding: 12px 0;
       }
