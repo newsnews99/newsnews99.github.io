@@ -182,7 +182,7 @@
     .main-headline-left {
       display: flex;
       flex-direction: column;
-      flex: 1 1 60%;
+      flex: 1 1 48%;
       text-align: left;
     }
     .main-headline-img-wrapper {
@@ -197,6 +197,7 @@
       font-size: 28px;
       color: white;
       text-decoration: none;
+      text-align: center;
     }
     .two-columns-below {
       display: grid;
@@ -214,7 +215,7 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 40px;
-      flex: 0 0 35%;
+      flex: 1 1 48%;
     }
     .two-columns-right .latest-title,
     .two-columns-below .latest-title {
@@ -308,16 +309,15 @@
       .container {
         padding-top: calc(53px + 32px + 12px + 10px + 20px);
       }
-      /* Center main headline text */
-      .main-headline-link {
-        text-align: center;
-      }
-      /* Equal width left/right headline content */
-      .main-headline-left {
-        flex: 1 1 48%;
-      }
+      /* Make last two columns side by side */
       .two-columns-right {
-        flex: 1 1 48%;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      /* Center all headline column text */
+      .main-headline-left,
+      .two-columns-below .column,
+      .two-columns-right .column {
+        text-align: center;
       }
     }
   </style>
