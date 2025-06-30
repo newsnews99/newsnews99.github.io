@@ -233,6 +233,57 @@
     .main-headline-link:hover {
       color: gold;
     }
+
+    /* Footer Styles Matching Screenshot */
+    .footer-wrapper {
+      width: 100%;
+      background: #1e1e1e;
+      padding: 30px 0;
+    }
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 40px;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+    .footer-section {
+      flex: 1 1 30%;
+    }
+    .footer-section.left img {
+      width: 48px;
+      margin-bottom: 10px;
+    }
+    .footer-section.center img {
+      width: 120px;
+      margin-bottom: 10px;
+    }
+    .footer-section.right form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-section.right textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      resize: vertical;
+    }
+    .footer-section.right button {
+      padding: 8px;
+      background: #fff;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
     @media (max-width: 768px) {
       body {
         padding-left: 0;
@@ -242,69 +293,6 @@
       .container {
         padding-left: 5vw;
         padding-right: 5vw;
-      }
-      .banner-content {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        grid-template-areas:
-          "logo social time"
-          "search search search";
-        column-gap: 6px;
-        row-gap: 4px;
-        padding: 8px 8px 0;
-        align-items: end;
-      }
-      .time-section {
-        display: block;
-      }
-      .time-subsection {
-        display: none;
-      }
-      .left-section img.logo {
-        height: 38px;
-      }
-      .icons-subsection {
-        gap: 6px;
-      }
-      .icons-subsection img {
-        height: 19px;
-      }
-      .center-section {
-        grid-column: 1 / span 3;
-        grid-row: 2;
-        width: 100%;
-        max-width: 100%;
-        margin-top: 4px;
-        align-self: center;
-      }
-      .center-section form {
-        display: flex;
-        width: 100%;
-        gap: 5px;
-      }
-      .center-section input[type="text"] {
-        height: 28px;
-        font-size: 14px;
-        padding: 3px 7px;
-      }
-      .center-section button {
-        min-width: 70px;
-        height: 28px;
-        font-size: 14px;
-        padding: 0 10px;
-      }
-      .main-headline-layout {
-        flex-direction: column;
-      }
-      .two-columns-below {
-        grid-template-columns: 1fr;
-      }
-      .two-columns-right {
-        grid-template-columns: 1fr;
-        width: 100%;
-      }
-      .main-headline-left {
-        text-align: center;
       }
       .main-headline-img-wrapper {
         width: 100%;
@@ -328,26 +316,6 @@
       .ticker-group {
         flex-wrap: nowrap;
         min-width: 0;
-      }
-    }
-
-    @media (min-width: 769px) {
-      .time-section {
-        display: none;
-      }
-      .time-subsection {
-        display: block;
-      }
-      .container {
-        padding-top: calc(53px + 32px + 12px + 10px + 20px);
-      }
-      .two-columns-right {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .main-headline-left,
-      .two-columns-below .column,
-      .two-columns-right .column {
-        text-align: center;
       }
     }
   </style>
