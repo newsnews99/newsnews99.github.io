@@ -169,7 +169,7 @@
       padding-top: calc(53px + 32px + 12px);
     }
 
-    /* — DESKTOP REPOSITIONING & 5px BETWEEN TIME & SOCIALS — */
+    /* — DESKTOP REPOSITIONING & TICKER EXTENSION — */
     @media (min-width: 769px) {
       .banner {
         left: 10vw;
@@ -183,9 +183,9 @@
         grid-template-areas:
           "time    .      ."
           "social  logo   search";
-        /* vertical gap exactly 5px between time and socials */
+        /* vertical gap exactly 5px between time & socials */
         row-gap: 5px;
-        /* horizontal gap stays 8px between columns */
+        /* horizontal gap remains 8px between columns */
         column-gap: 8px;
         align-items: end;
         padding: 12px 0;
@@ -210,13 +210,10 @@
         width: 100%;
         max-width: 300px;
       }
+      /* ensure the ticker full width under header */
       .ticker-inner {
         margin: 0 10vw;
         max-width: none;
-      }
-      .social-section a img {
-        height: 24px !important;
-        width: auto;
       }
     }
 
@@ -232,10 +229,8 @@
         row-gap: 0;
       }
       .social-section {
-        grid-column: 2;
-        grid-row: 1;
-        justify-self: center;
-        align-self: end;
+        grid-column: 2; grid-row: 1;
+        justify-self: center; align-self: end;
         transform: translateY(-3px);
       }
       .social-section a img {
@@ -243,48 +238,29 @@
         width: auto;
       }
       .left-section {
-        grid-column: 1;
-        grid-row: 1;
+        grid-column: 1; grid-row: 1;
         align-self: end;
         transform: translateY(-3px);
       }
       .left-section img.logo {
-        height: 38px;
-        width: auto;
+        height: 38px; width: auto;
       }
       .time-section {
-        grid-column: 3;
-        grid-row: 1;
-        justify-self: end;
-        align-self: end;
-        margin: 0;
-        text-align: right;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
+        grid-column: 3; grid-row: 1;
+        justify-self: end; align-self: end;
+        margin: 0; text-align: right;
+        display: flex; flex-direction: column; align-items: flex-end;
       }
       .center-section {
-        grid-column: 1 / span 3;
-        grid-row: 2;
-        margin-top: 4px;
-        width: 100%;
-        max-width: 100%;
-        align-self: center;
+        grid-column: 1 / span 3; grid-row: 2;
+        margin-top: 4px; width: 100%; max-width: 100%; align-self: center;
       }
-      .center-section form {
-        width: 100%;
-        gap: 5px;
-      }
+      .center-section form { width: 100%; gap: 5px; }
       .center-section input[type="text"] {
-        height: 28px;
-        font-size: 14px;
-        padding: 3px 7px;
+        height: 28px; font-size: 14px; padding: 3px 7px;
       }
       .center-section button {
-        min-width: 70px;
-        height: 28px;
-        font-size: 14px;
-        padding: 0 10px;
+        min-width: 70px; height: 28px; font-size: 14px; padding: 0 10px;
       }
     }
   </style>
