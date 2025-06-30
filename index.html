@@ -67,12 +67,14 @@
       line-height: 1.1;
       height: 48px;
       text-align: left;
+      margin: 0;    /* reset any previous offsets */
+      position: static;
     }
     @media (min-width: 769px) {
       .time-section {
         position: absolute;
-        top: calc(12px + 6px);
-        left: calc(10vw + 5px);
+        top: 15px; /* 12px padding + 3px down */
+        left: calc(10vw + 48px + 3px); /* 10vw margin + logo width + 3px gap */
       }
     }
 
@@ -220,6 +222,10 @@
         grid-row: 1;
         justify-self: end;
         align-self: end;
+        /* restore static positioning */
+        position: static;
+        left: auto;
+        top: auto;
       }
       .center-section {
         grid-column: 1 / span 3;
@@ -288,6 +294,7 @@
       </div>
     </div>
   </div>
+
   <div class="container">
     <div class="main-headline-container">
       <div class="headline-left">
