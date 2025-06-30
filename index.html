@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
     :root { --ticker-distance: 0px; --ticker-duration: 20s; }
-
     html, body {
       margin: 0;
       font-family: 'Bebas Neue', sans-serif;
@@ -42,7 +41,7 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 12px 0;
-      gap: 8px; /* default gap */
+      gap: 8px;
       box-sizing: border-box;
     }
 
@@ -53,7 +52,8 @@
       justify-content: flex-start;
     }
     .left-section img.logo {
-      height: 48px;
+      height: 53px;    /* desktop logo height increased by 5px */
+      width: auto;
     }
 
     .time-section {
@@ -66,7 +66,7 @@
       line-height: 1.1;
       height: 48px;
       text-align: left;
-      margin-left: -3px; /* reduce default 8px gap down to 5px */
+      margin-left: -3px;  /* 8px gap reduced to 5px */
       margin-top: 0;
     }
 
@@ -87,7 +87,7 @@
         width: auto;
       }
       .time-section {
-        margin-top: 5px; /* move down 5px on desktop */
+        margin-top: 9px;    /* lower by 4px extra on desktop */
       }
       .banner {
         left: 10vw;
@@ -160,33 +160,24 @@
       will-change: transform;
       animation: scroll var(--ticker-duration) linear infinite;
     }
-    .ticker:hover .ticker-track {
-      animation-play-state: paused;
-    }
-    .ticker-group {
-      display: flex;
-      white-space: nowrap;
-    }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+    .ticker-group { display: flex; white-space: nowrap; }
     .ticker-group a {
-      color: white;
-      text-decoration: none;
-      font-size: 15px;
-      margin-right: 40px;
-      display: inline-block;
+      color: white; text-decoration: none; font-size: 15px;
+      margin-right: 40px; display: inline-block;
     }
-    .ticker-group a:hover {
-      color: gold;
-    }
+    .ticker-group a:hover { color: gold; }
     @keyframes scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
-
     /* — MOBILE OVERRIDES — */
     @media (max-width: 768px) {
       .banner-content {
+        display: grid;
         grid-template-columns: auto 1fr auto;
         grid-template-rows: auto auto;
+        align-items: center;
         padding: 8px 8px 0;
         gap: 6px;
         row-gap: 0;
@@ -197,7 +188,9 @@
         align-self: end;
         transform: translateY(-3px);
       }
-      .left-section img.logo { height: 38px; }
+      .left-section img.logo {
+        height: 38px; /* original mobile logo size */
+      }
       .social-section {
         grid-column: 2;
         grid-row: 1;
@@ -206,19 +199,42 @@
         transform: translateY(-3px);
       }
       .social-section a img {
-        max-height: 19px;
-        width: auto;
-        height: auto;
+        max-height: 19px; width: auto; height: auto;
       }
       .time-section {
         grid-column: 3;
         grid-row: 1;
-        justify-self: end;     /* right-align in mobile */
+        justify-self: end;    /* right-align in mobile */
         align-self: end;
-        margin-left: 0;        /* cancel desktop offset */
-        margin-top: 0;         /* cancel desktop shift */
-        text-align: right;     /* right-align text */
+        margin-left: 0;       /* reset desktop offset */
+        margin-top: 0;
+        text-align: right;    /* right-align text */
       }
+      .center-section {
+        grid-column: 1 / span 3;
+        grid-row: 2;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 4px;
+        align-self: center;
+      }
+      .center-section form {
+        display: flex; width: 100%; gap: 5px;
+      }
+      .center-section input[type="text"] {
+        flex: 1; height: 28px; font-size: 14px; padding: 3px 7px;
+      }
+      .center-section button {
+        min-width: 70px; height: 28px; font-size: 14px; padding: 0 10px;
+      }
+    }
+
+    /* — MAIN & FOOTER LAYOUT — */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: calc(53px + 32px + 12px);
     }
   </style>
 </head>
@@ -253,6 +269,7 @@
       </div>
     </div>
   </div>
+
   <div class="container">
     <div class="main-headline-container">
       <div class="headline-left">
