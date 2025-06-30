@@ -7,260 +7,142 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
-    :root { --ticker-distance: 0px; --ticker-duration: 20s; }
+    :root {
+  --ticker-distance: 0px;
+  --ticker-duration: 20s;
+}
 
-    html, body {
-      margin: 0;
-      font-family: 'Bebas Neue', sans-serif;
-      background: #1e1e1e;
-      color: white;
-      box-sizing: border-box;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding-left: 10vw;
-      padding-right: 10vw;
-    }
-    img { max-width: 100%; height: auto; display: block; }
+/* Global resets */
+html, body {
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  background-color: #1e1e1e;
+  color: white;
+  box-sizing: border-box;
+}
+body {
+  padding-left: 10vw;
+  padding-right: 10vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
-    /* — HEADER — */
-    .banner {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      background: #1e1e1e;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-      z-index: 1000;
-    }
-    .banner-content {
-      display: grid;
-      grid-template-columns: auto auto 1fr auto;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 12px 0;
-      gap: 8px;
-      box-sizing: border-box;
-    }
+/* Container to center content */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-    .left-section {
-      grid-column: 1;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
-    .left-section img.logo {
-      height: 53px;    /* desktop logo height increased by 5px */
-      width: auto;
-    }
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
-    .time-section {
-      grid-column: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: flex-start;
-      font-size: 13px;
-      line-height: 1.1;
-      height: 48px;
-      text-align: left;
-      margin-left: -3px;  /* 8px default gap → 5px effective */
-      margin-top: 0;
-    }
+/* Header default layout (mobile & small desktop) */
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
 
-    .social-section {
-      grid-column: 3;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      align-items: center;
-    }
-    .social-section a img {
-      height: 24px;
-      transition: transform .2s;
-    }
+.header .social-icons {
+  display: flex;
+  gap: 0.5rem;
+}
 
-    .center-section {
-      grid-column: 4;
-      display: flex;
-      justify-self: end;
-      gap: 6px;
-      max-width: 300px;
-      width: 100%;
-    }
-    .center-section form {
-      display: flex;
-      width: 100%;
-      gap: 6px;
-    }
-    .center-section input[type="text"] {
-      flex: 1;
-      height: 32px;
-      padding: 4px 8px;
-      font-size: 15px;
-      border: none;
-      border-radius: 4px;
-      outline: none;
-      background: #fff;
-      color: #1e1e1e;
-      box-sizing: border-box;
-    }
-    .center-section button {
-      padding: 0 12px;
-      font-size: 15px;
-      background: gold;
-      color: #1e1e1e;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 32px;
-      box-sizing: border-box;
-    }
+.header .logo {
+  max-height: 60px;
+  width: auto;
+}
 
-    /* — DESKTOP ADJUSTMENTS — */
-    @media (min-width: 769px) {
-      .time-section {
-        margin-top: 14px;    /* lowered additional 5px */
-      }
-      .banner {
-        left: 10vw;
-        right: 10vw;
-        width: auto;
-      }
-      .social-section a img {
-        height: 24px !important;
-        width: auto;
-      }
-    }
+.header .time-date {
+  font-size: 0.9rem;
+}
 
-    /* — TICKER — */
-    .ticker {
-      width: 100%;
-      overflow: hidden;
-      height: 32px;
-      position: relative;
-      z-index: 999;
-    }
-    .ticker-inner {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      background: #222;
-      border-top: 1px solid #444;
-      border-bottom: 1px solid #444;
-      display: flex;
-      align-items: center;
-      height: 32px;
-    }
-    .ticker-track {
-      display: flex;
-      will-change: transform;
-      animation: scroll var(--ticker-duration) linear infinite;
-    }
-    .ticker:hover .ticker-track {
-      animation-play-state: paused;
-    }
-    .ticker-group {
-      display: flex;
-      white-space: nowrap;
-    }
-    .ticker-group a {
-      color: white;
-      text-decoration: none;
-      font-size: 15px;
-      margin-right: 40px;
-      display: inline-block;
-    }
-    .ticker-group a:hover {
-      color: gold;
-    }
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
-    }
+/* Search form styling */
+.search-form {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
 
-    /* — MOBILE OVERRIDES — */
-    @media (max-width: 768px) {
-      .banner-content {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        grid-template-rows: auto auto;
-        align-items: center;
-        padding: 8px 8px 0;
-        gap: 6px;
-        row-gap: 0;
-      }
-      .left-section {
-        grid-column: 1;
-        grid-row: 1;
-        align-self: end;
-        transform: translateY(-3px);
-      }
-      .left-section img.logo {
-        height: 38px;  /* original mobile logo size */
-        width: auto;
-      }
-      .social-section {
-        grid-column: 2;
-        grid-row: 1;
-        justify-self: center;
-        align-self: end;
-        transform: translateY(-3px);
-      }
-      .social-section a img {
-        max-height: 19px;
-        width: auto;
-        height: auto;
-      }
-      .time-section {
-        grid-column: 3;
-        grid-row: 1;
-        justify-self: end;    /* right-align in mobile */
-        align-self: end;
-        margin-left: 0;       /* cancel desktop offset */
-        margin-top: 0;
-        text-align: right;    /* right-align text */
-      }
-      .center-section {
-        grid-column: 1 / span 3;
-        grid-row: 2;
-        width: 100%;
-        max-width: 100%;
-        margin-top: 4px;
-        align-self: center;
-      }
-      .center-section form {
-        display: flex;
-        width: 100%;
-        gap: 5px;
-      }
-      .center-section input[type="text"] {
-        flex: 1;
-        height: 28px;
-        font-size: 14px;
-        padding: 3px 7px;
-      }
-      .center-section button {
-        min-width: 70px;
-        height: 28px;
-        font-size: 14px;
-        padding: 0 10px;
-      }
-    }
+.search-form input[type="text"] {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+}
 
-    /* — MAIN & FOOTER LAYOUT — */
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-top: calc(53px + 32px + 12px);
-    }
+.search-form button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Ticker styling */
+.ticker {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 1rem 0;
+}
+
+.ticker p {
+  display: inline-block;
+  padding-left: var(--ticker-distance);
+  animation: scroll-ticker var(--ticker-duration) linear infinite;
+}
+
+@keyframes scroll-ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Desktop-specific header repositioning */
+@media screen and (min-width: 1024px) {
+  .header {
+    display: grid;
+    grid-template-areas:
+      "social logo logo"
+      "social time  time";
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .header .social-icons {
+    grid-area: social;
+    justify-self: start;
+  }
+
+  .header .logo {
+    grid-area: logo;
+  }
+
+  .header .time-date {
+    grid-area: time;
+    margin-top: 0.25rem;
+  }
+
+  /* keep search form below grid header but within width limit */
+  .header .search-form {
+    grid-column: 1 / -1;
+    margin-top: 1rem;
+    justify-self: center;
+    width: 100%;
+  }
+}
+
   </style>
 </head>
 <body>
