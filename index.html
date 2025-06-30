@@ -132,47 +132,23 @@
     }
 
     /* — TICKER — */
-    .ticker {
-      width: 100%;
-      overflow: hidden;
-      height: 32px;
-      position: relative;
-      z-index: 999;
-    }
+    .ticker { width: 100%; overflow: hidden; height: 32px; position: relative; z-index: 999; }
     .ticker-inner {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      background: #222;
-      border-top: 1px solid #444;
-      border-bottom: 1px solid #444;
-      overflow: hidden;
-      height: 32px;
-      display: flex;
-      align-items: center;
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      background: #222; border-top: 1px solid #444; border-bottom: 1px solid #444;
+      overflow: hidden; height: 32px; display: flex; align-items: center;
     }
     .ticker-track {
-      display: flex;
-      will-change: transform;
+      display: flex; will-change: transform;
       animation: scroll var(--ticker-duration) linear infinite;
     }
-    .ticker:hover .ticker-track {
-      animation-play-state: paused;
-    }
-    .ticker-group {
-      display: flex;
-      white-space: nowrap;
-    }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+    .ticker-group { display: flex; white-space: nowrap; }
     .ticker-group a {
-      display: inline-block;
-      margin-right: 40px;
-      color: white;
-      text-decoration: none;
-      font-size: 15px;
+      display: inline-block; margin-right: 40px;
+      color: white; text-decoration: none; font-size: 15px;
     }
-    .ticker-group a:hover {
-      color: gold;
-    }
+    .ticker-group a:hover { color: gold; }
     @keyframes scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
@@ -189,13 +165,138 @@
 
     /* — MAIN CONTENT (desktop) — */
     .main-headline-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 20px;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      margin-top: 20px; width: 100%; max-width: 1200px; margin: 0 auto;
+    }
+    .headline-left, .headline-right { width: 48%; }
+    .headline-left {
+      display: flex; flex-direction: column; align-items: flex-start;
+    }
+    .headline-right {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-top: -7px;
+    }
+    .main-headline-img {
+      width: 100%; height: auto; margin-bottom: 15px;
+    }
+    .main-headline-link {
+      display: block; text-align: center; width: 100%;
+      margin-bottom: 15px; font-size: 32px; color: white; text-decoration: none;
+    }
+    .main-headline-link:hover { color: gold; }
+    .headline-columns, .headline-right {
+      display: flex; width: 100%; justify-content: space-between;
+    }
+    .column {
+      display: flex; flex-direction: column; width: 48%; text-align: left;
+    }
+    .column a.latest-title {
+      color: gold; font-size: 18px; margin-bottom: 10px;
+      text-align: center; text-decoration: none;
+    }
+    .column a {
+      color: white; text-decoration: none; margin: 4px 0; font-size: 16px;
+    }
+    .column a:hover { color: gold; }
+
+    /* — MOBILE OVERRIDES — */
+    @media(max-width: 768px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .banner-content {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        padding: 8px 8px 0;
+        gap: 6px;
+        row-gap: 0;  /* exactly 4px before search */
+      }
+      .left-section {
+        grid-column: 1; grid-row: 1;
+        align-self: end;
+        transform: translateY(-3px); /* bump logo up */
+      }
+      .left-section img.logo { height: 38px; }
+      .social-section {
+        grid-column: 2; grid-row: 1;
+        justify-self: center;
+        align-self: end;
+        transform: translateY(-3px); /* bump icons up */
+      }
+      .social-section a img {
+        max-height: 19px; width: auto; height: auto;
+      }
+      .time-section {
+        grid-column: 3; grid-row: 1;
+        justify-self: end;
+        align-self: end;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        height: 48px;
+        text-align: right;
+        transform: none;
+      }
+      .center-section {
+        grid-column: 1 / span 3;
+        grid-row: 2;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 4px;
+        align-self: center;
+      }
+      .center-section form {
+        display: flex;
+        width: 100%;
+        gap: 5px;
+      }
+      .center-section input[type="text"] {
+        flex: 1;
+        height: 28px;
+        font-size: 14px;
+        padding: 3px 7px;
+      }
+      .center-section button {
+        min-width: 70px;
+        height: 28px;
+        font-size: 14px;
+        padding: 0 10px;
+      }
+      .main-headline-container {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0;
+      }
+      .headline-left, .headline-right {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .headline-columns, .headline-right {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0;
+      }
+      .column {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 0 8px;
+        text-align: center;
+      }
+      .column:first-child {
+        align-items: center;
+      }
+      .container, .ticker-inner, .footer-wrapper {
+        max-width: 100vw !important;
+        width: 100% !important;
+      }
+      .main-headline-img {
+        width: 100% !important;
+        height: auto !important;
+      }
     }
   </style>
 </head>
@@ -224,6 +325,7 @@
         </form>
       </div>
     </div>
+
     <div class="ticker">
       <div class="ticker-inner" id="ticker-inner">
         <div class="ticker-track" id="ticker-track">Loading headlines…</div>
