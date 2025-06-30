@@ -29,59 +29,59 @@
     /* — HEADER — */
     .banner {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%;
+      top: 0; left: 0; right: 0;
       background: #1e1e1e;
       box-shadow: 0 2px 4px rgba(0,0,0,0.4);
       z-index: 1000;
     }
     .banner-content {
       display: grid;
-      grid-template-columns: auto auto 1fr auto;
-      align-items: center;
+      grid-template-columns: auto 1fr auto;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "social logo   search"
+        ".      time   .";
       max-width: 1200px;
       margin: 0 auto;
       padding: 12px 0;
-      gap: 8px;
       box-sizing: border-box;
+      /* bottom-align first-row items */
+      align-items: start;
+      gap: 0 8px;       /* 0 row-gap (we use margin on time), 8px column-gap */
+      row-gap: 0;
     }
 
-    .left-section {
-      grid-column: 1;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
+    /* SOCIALS, LOGO, SEARCH in row-1 bottom-aligned */
+    .banner-content .social-section,
+    .banner-content .left-section,
+    .banner-content .center-section {
+      align-self: end;
     }
-    .left-section img.logo {
-      height: 53px;
-      width: auto;
+    .banner-content .social-section {
+      grid-area: social;
+      justify-self: start;
+    }
+    .banner-content .left-section {
+      grid-area: logo;
+      justify-self: center;
+    }
+    .banner-content .center-section {
+      grid-area: search;
+      justify-self: end;
     }
 
-    .time-section {
-      grid-column: 2;
-      display: flex;
-      justify-content: center;
-      font-size: 13px;
-      line-height: 1.1;
-      text-align: center;
-    }
-
-    .social-section {
-      grid-column: 3;
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      align-items: center;
-    }
     .social-section a img {
       height: 24px;
       transition: transform .2s;
     }
 
+    .left-section img.logo {
+      height: 53px;
+      width: auto;
+    }
+
     .center-section {
-      grid-column: 4;
       display: flex;
-      justify-self: end;
       gap: 6px;
       max-width: 300px;
       width: 100%;
@@ -118,72 +118,60 @@
       box-sizing: border-box;
     }
 
-    /* — DESKTOP: time above logo; bottom-align socials & search with logo — */
-    @media (min-width: 769px) {
-      .banner {
-        left: 10vw;
-        right: 10vw;
-        width: auto;
-      }
-      .banner-content {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        grid-template-rows: auto auto;
-        grid-template-areas:
-          "social time   search"
-          ".      logo   .";
-        padding: 12px 0;
-        gap: 8px;
-        align-items: start;  /* so we can individually bottom-align row-1 */
-      }
-      .banner-content .social-section,
-      .banner-content .center-section {
-        grid-area: social;
-        align-self: end;
-        justify-self: start;
-      }
-      .banner-content .center-section {
-        grid-area: search;
-        align-self: end;
-        justify-self: end;
-      }
-      .banner-content .left-section {
-        grid-area: logo;
-        align-self: end;
-        justify-self: center;
-      }
-      .banner-content .time-section {
-        grid-area: time;
-        align-self: start;
-        margin-bottom: 5px; /* spacing under time above logo */
-      }
-      .social-section a img {
-        height: 24px !important;
-        width: auto;
-      }
+    /* TIME/DATE in row-2, spaced 5px below logo */
+    .banner-content .time-section {
+      grid-area: time;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 5px 0;   /* 5px above & below */
+      font-size: 13px;
+      line-height: 1.1;
     }
 
     /* — TICKER (unchanged) — */
     .ticker {
-      width: 100%; overflow: hidden; height: 32px;
-      position: relative; z-index: 999;
+      width: 100%;
+      overflow: hidden;
+      height: 32px;
+      position: relative;
+      z-index: 999;
     }
     .ticker-inner {
-      width: 100%; max-width: 1200px; margin: 0 auto;
-      background: #222; border-top:1px solid #444; border-bottom:1px solid #444;
-      display: flex; align-items: center; height: 32px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #222;
+      border-top: 1px solid #444;
+      border-bottom: 1px solid #444;
+      display: flex;
+      align-items: center;
+      height: 32px;
     }
     .ticker-track {
-      display: flex; will-change: transform;
+      display: flex;
+      will-change: transform;
       animation: scroll var(--ticker-duration) linear infinite;
     }
-    .ticker:hover .ticker-track { animation-play-state: paused; }
-    .ticker-group { display: flex; white-space: nowrap; }
-    .ticker-group a {
-      color:white; text-decoration:none; font-size:15px;
-      margin-right:40px; display:inline-block;
+    .ticker:hover .ticker-track {
+      animation-play-state: paused;
     }
-    .ticker-group a:hover { color: gold; }
+    .ticker-group {
+      display: flex;
+      white-space: nowrap;
+    }
+    .ticker-group a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      margin-right: 40px;
+      display: inline-block;
+    }
+    .ticker-group a:hover {
+      color: gold;
+    }
     @keyframes scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
@@ -192,13 +180,11 @@
     /* — MOBILE OVERRIDES (unchanged) — */
     @media (max-width: 768px) {
       .banner-content {
-        display: grid;
         grid-template-columns: auto 1fr auto;
         grid-template-rows: auto auto;
         align-items: center;
         padding: 8px 8px 0;
         gap: 6px;
-        row-gap: 0;
       }
       .left-section {
         grid-column: 1; grid-row: 1;
@@ -210,23 +196,29 @@
         justify-self: center; align-self: end;
         transform: translateY(-3px);
       }
-      .social-section a img { max-height:19px; }
+      .social-section a img {
+        max-height: 19px;
+        width: auto;
+        height: auto;
+      }
       .time-section {
         grid-column: 3; grid-row: 1;
         justify-self: end; align-self: end;
         text-align: right;
+        margin: 0;
       }
       .center-section {
         grid-column: 1 / span 3; grid-row: 2;
         width: 100%; margin-top: 4px; align-self: center;
       }
-      .center-section input { height:28px; font-size:14px; padding:3px 7px; }
-      .center-section button { height:28px; font-size:14px; padding:0 10px; }
+      .center-section input[type="text"] { height: 28px; font-size: 14px; padding: 3px 7px; }
+      .center-section button { min-width: 70px; height: 28px; font-size: 14px; padding: 0 10px; }
     }
 
     /* — MAIN & FOOTER — */
     .container {
-      width:100%; max-width:1200px; margin:0 auto;
+      width: 100%; max-width: 1200px;
+      margin: 0 auto;
       padding-top: calc(53px + 32px + 12px);
     }
   </style>
@@ -235,30 +227,19 @@
   <div class="banner">
     <div class="banner-content">
       <div class="social-section">
-        <a href="https://gab.com/federationsun" target="_blank" rel="noopener">
-          <img src="icon_gab.png" alt="Gab" />
-        </a>
-        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener">
-          <img src="icon_facebook.png" alt="Facebook" />
-        </a>
-        <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener">
-          <img src="icon_instagram.png" alt="Instagram" />
-        </a>
-        <a href="https://t.me/federationsun" target="_blank" rel="noopener">
-          <img src="icon_telegram.png" alt="Telegram" />
-        </a>
-        <a href="https://x.com/federationsun" target="_blank" rel="noopener">
-          <img src="icon_x.png" alt="X" />
-        </a>
-        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener">
-          <img src="icon_youtube.png" alt="YouTube" />
-        </a>
-      </div>
-      <div class="time-section">
-        <div id="current-time-date">--:--AEST, --/---/----</div>
+        <a href="https://gab.com/federationsun" target="_blank" rel="noopener"><img src="icon_gab.png" alt="Gab" /></a>
+        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank" rel="noopener"><img src="icon_facebook.png" alt="Facebook" /></a>
+        <a href="https://www.instagram.com/fedsun.news/" target="_blank" rel="noopener"><img src="icon_instagram.png" alt="Instagram" /></a>
+        <a href="https://t.me/federationsun" target="_blank" rel="noopener"><img src="icon_telegram.png" alt="Telegram" /></a>
+        <a href="https://x.com/federationsun" target="_blank" rel="noopener"><img src="icon_x.png" alt="X" /></a>
+        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank" rel="noopener"><img src="icon_youtube.png" alt="YouTube" /></a>
       </div>
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+      </div>
+      <div class="time-section">
+        <div id="current-time">--:-- AEST</div>
+        <div id="current-date">--/--/----</div>
       </div>
       <div class="center-section">
         <form id="search-form" action="https://www.google.com/search" method="GET" target="_blank" autocomplete="off">
@@ -343,18 +324,16 @@
   <script>
     function updateTime() {
       const now = new Date();
-      // format time
       const t = new Intl.DateTimeFormat('en-AU', {
         timeZone: 'Australia/Melbourne',
         hour: '2-digit', minute: '2-digit', hour12: false
       }).format(now);
-      // format date as DD-MMM-YYYY
-      const day = String(now.getDate()).padStart(2,'0');
-      const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      const month = monthNames[now.getMonth()];
-      const year = now.getFullYear();
-      const dt = `${day}-${month}-${year}`;
-      document.getElementById('current-time-date').textContent = `${t}AEST, ${dt}`;
+      const d = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Melbourne',
+        weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit'
+      }).format(now);
+      document.getElementById('current-time').textContent = t + ' AEST';
+      document.getElementById('current-date').textContent = d;
     }
     updateTime();
     setInterval(updateTime, 60000);
