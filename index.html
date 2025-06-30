@@ -234,7 +234,7 @@
       color: gold;
     }
 
-    /* Footer Styles Matching Screenshot */
+    /* Footer Styles */
     .footer-wrapper {
       width: 100%;
       background: #1e1e1e;
@@ -257,9 +257,15 @@
       width: 48px;
       margin-bottom: 10px;
     }
+    .footer-section.center {
+      text-align: center;
+    }
     .footer-section.center img {
       width: 120px;
       margin-bottom: 10px;
+    }
+    .footer-section.right {
+      text-align: right;
     }
     .footer-section.right form {
       display: flex;
@@ -282,6 +288,15 @@
       border: none;
       border-radius: 4px;
       cursor: pointer;
+    }
+
+    /* Separator above footer */
+    .footer-separator {
+      width: 100%;
+      max-width: 1200px;
+      margin: 40px auto 0 auto;
+      border: none;
+      border-top: 1px solid #444;
     }
 
     @media (max-width: 768px) {
@@ -396,6 +411,8 @@
       </div>
     </div>
   </div>
+
+  <hr class="footer-separator" />
 
   <footer>
     <div class="footer-wrapper">
