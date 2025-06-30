@@ -53,7 +53,7 @@
       justify-content: flex-start;
     }
     .left-section img.logo {
-      height: 53px;
+      height: 53px;    /* desktop logo height increased by 5px */
       width: auto;
     }
 
@@ -67,7 +67,7 @@
       line-height: 1.1;
       height: 48px;
       text-align: left;
-      margin-left: -3px;
+      margin-left: -3px;  /* 8px default gap → 5px effective */
       margin-top: 0;
     }
 
@@ -123,7 +123,7 @@
       box-sizing: border-box;
     }
 
-    /* — DESKTOP LAYOUT (>=769px) — */
+    /* — DESKTOP REPOSITIONING — */
     @media (min-width: 769px) {
       .banner {
         left: 10vw;
@@ -133,41 +133,44 @@
       .banner-content {
         display: grid;
         grid-template-columns: auto 1fr auto;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: auto auto;
         grid-template-areas:
-          "social .      search"
-          ".      logo    ."
-          ".      time    .";
+          "social logo   search"
+          ".      time   .";
         align-items: center;
         padding: 12px 0;
         gap: 8px;
       }
-      .social-section {
+      .banner-content .social-section {
         grid-area: social;
         justify-self: start;
       }
-      .center-section {
+      .banner-content .left-section {
+        grid-area: logo;
+        justify-self: center;
+      }
+      .banner-content .center-section {
         grid-area: search;
         justify-self: end;
         width: 100%;
         max-width: 300px;
       }
-      .left-section {
-        grid-area: logo;
-        justify-self: center;
-      }
-      .time-section {
+      .banner-content .time-section {
         grid-area: time;
-        flex-direction: row;          /* single line */
+        flex-direction: row;   /* single line */
         justify-content: center;
         align-items: center;
         text-align: center;
-        margin-top: 5px;              /* 5px below logo */
+        margin-top: 5px;       /* 5px below logo */
         margin-left: 0;
+      }
+      .social-section a img {
+        height: 24px !important;
+        width: auto;
       }
     }
 
-    /* — TICKER (exactly as original) — */
+    /* — TICKER — */
     .ticker {
       width: 100%;
       overflow: hidden;
@@ -213,7 +216,7 @@
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
-    /* — MOBILE OVERRIDES (<=768px) — */
+    /* — MOBILE OVERRIDES — */
     @media (max-width: 768px) {
       .banner-content {
         display: grid;
@@ -249,11 +252,11 @@
       .time-section {
         grid-column: 3;
         grid-row: 1;
-        justify-self: end;
+        justify-self: end;    /* flush right */
         align-self: end;
         margin-left: 0;
         margin-top: 0;
-        text-align: right;            /* both lines flush right */
+        text-align: right;    /* both lines flush right */
       }
       .center-section {
         grid-column: 1 / span 3;
@@ -282,7 +285,7 @@
       }
     }
 
-    /* — PAGE CONTENT PADDING — */
+    /* — MAIN & FOOTER LAYOUT — */
     .container {
       width: 100%;
       max-width: 1200px;
@@ -392,13 +395,13 @@
   <script>
     function updateTime() {
       const now = new Date();
-      const t = new Intl.DateTimeFormat('en-AU',{
-        timeZone:'Australia/Melbourne',
-        hour:'2-digit',minute:'2-digit',hour12:false
+      const t = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Melbourne',
+        hour: '2-digit', minute: '2-digit', hour12: false
       }).format(now);
-      const d = new Intl.DateTimeFormat('en-AU',{
-        timeZone:'Australia/Melbourne',
-        weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'
+      const d = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Melbourne',
+        weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit'
       }).format(now);
       document.getElementById('current-time').textContent = t + ' AEST';
       document.getElementById('current-date').textContent = d;
