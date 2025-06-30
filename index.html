@@ -176,6 +176,57 @@
       padding-top: calc(53px + 32px + 12px);
     }
 
+    /* NEW STYLES FOR DESKTOP AND MOBILE LAYOUTS */
+    .main-headline-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .main-headline-img {
+      width: 45%;
+      margin-left: auto;
+    }
+
+    .main-headline-link {
+      display: block;
+      width: 45%;
+      margin-left: auto;
+      text-align: center;
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    .headline-left {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .headline-left .headline-columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .headline-right {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .headline-right .column {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
     @media (max-width: 768px) {
       .banner-content {
         display: grid;
@@ -213,7 +264,7 @@
       }
       .center-section form {
         display: flex;
-        width: 100%;    /* Make search span width */
+        width: 100%;
         gap: 5px;
       }
       .center-section input[type="text"] {
@@ -226,6 +277,34 @@
         height: 28px;
         font-size: 14px;
         padding: 0 10px;
+      }
+      .main-headline-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .main-headline-img {
+        width: 100%;
+        margin: 0;
+      }
+      .main-headline-link {
+        width: 100%;
+        margin: 10px 0 0 0;
+        text-align: center;
+      }
+      .headline-left,
+      .headline-right {
+        width: 100%;
+        align-items: center;
+      }
+      .headline-left .headline-columns,
+      .headline-right {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      }
+      .headline-right .column,
+      .headline-left .column {
+        align-items: center;
       }
     }
 
@@ -276,11 +355,12 @@
       </div>
     </div>
   </div>
+
   <div class="container">
     <div class="main-headline-container">
+      <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
+      <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
       <div class="headline-left">
-        <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
-        <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
         <div class="headline-columns">
           <div class="column">
             <a href="#" class="latest-title">Latest</a>
