@@ -172,49 +172,63 @@
       margin: 0 auto;
       padding-top: calc(53px + 32px + 12px);
     }
-    .main-headline-container {
+    .main-headline-layout {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .main-headline-left {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      margin-bottom: 40px;
+      flex: 1 1 60%;
+      text-align: left;
     }
     .main-headline-img-wrapper {
       width: 100%;
-      max-width: 800px;
     }
     .main-headline-img {
       width: 100%;
       height: auto;
-      display: block;
     }
     .main-headline-link {
       margin-top: 20px;
       font-size: 28px;
-      text-align: center;
-      display: block;
       color: white;
       text-decoration: none;
     }
-    .four-columns {
+    .two-columns-below {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 40px;
+      margin-top: 30px;
     }
-    .four-columns .column {
+    .two-columns-below .column,
+    .two-columns-right .column {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    .four-columns .latest-title {
+    .two-columns-right {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      flex: 0 0 35%;
+    }
+    .two-columns-right .latest-title,
+    .two-columns-below .latest-title {
       font-weight: bold;
       color: gold;
       text-transform: uppercase;
     }
-    .four-columns .column a {
+    .two-columns-right .column a,
+    .two-columns-below .column a {
       color: white;
       text-decoration: none;
     }
-    .four-columns .column a:hover,
+    .two-columns-right .column a:hover,
+    .two-columns-below .column a:hover,
     .main-headline-link:hover {
       color: gold;
     }
@@ -269,8 +283,18 @@
         font-size: 14px;
         padding: 0 10px;
       }
-      .four-columns {
+      .main-headline-layout {
+        flex-direction: column;
+      }
+      .two-columns-below {
         grid-template-columns: 1fr;
+      }
+      .two-columns-right {
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+      .main-headline-left {
+        text-align: center;
       }
     }
 
@@ -323,36 +347,40 @@
   </div>
 
   <div class="container">
-    <div class="main-headline-container">
-      <div class="main-headline-img-wrapper">
-        <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
+    <div class="main-headline-layout">
+      <div class="main-headline-left">
+        <div class="main-headline-img-wrapper">
+          <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
+        </div>
+        <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
+        <div class="two-columns-below">
+          <div class="column">
+            <a href="#" class="latest-title">LATEST</a>
+            <a href="#">HEADLINE 1</a>
+            <a href="#">HEADLINE 2</a>
+            <a href="#">HEADLINE 3</a>
+          </div>
+          <div class="column">
+            <a href="#" class="latest-title">LATEST</a>
+            <a href="#">HEADLINE 4</a>
+            <a href="#">HEADLINE 5</a>
+            <a href="#">HEADLINE 6</a>
+          </div>
+        </div>
       </div>
-      <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
-    </div>
-    <div class="four-columns">
-      <div class="column">
-        <a href="#" class="latest-title">LATEST</a>
-        <a href="#">HEADLINE 1</a>
-        <a href="#">HEADLINE 2</a>
-        <a href="#">HEADLINE 3</a>
-      </div>
-      <div class="column">
-        <a href="#" class="latest-title">LATEST</a>
-        <a href="#">HEADLINE 4</a>
-        <a href="#">HEADLINE 5</a>
-        <a href="#">HEADLINE 6</a>
-      </div>
-      <div class="column">
-        <a href="#" class="latest-title">LATEST</a>
-        <a href="#">HEADLINE 7</a>
-        <a href="#">HEADLINE 8</a>
-        <a href="#">HEADLINE 9</a>
-      </div>
-      <div class="column">
-        <a href="#" class="latest-title">LATEST</a>
-        <a href="#">HEADLINE 10</a>
-        <a href="#">HEADLINE 11</a>
-        <a href="#">HEADLINE 12</a>
+      <div class="two-columns-right">
+        <div class="column">
+          <a href="#" class="latest-title">LATEST</a>
+          <a href="#">HEADLINE 7</a>
+          <a href="#">HEADLINE 8</a>
+          <a href="#">HEADLINE 9</a>
+        </div>
+        <div class="column">
+          <a href="#" class="latest-title">LATEST</a>
+          <a href="#">HEADLINE 10</a>
+          <a href="#">HEADLINE 11</a>
+          <a href="#">HEADLINE 12</a>
+        </div>
       </div>
     </div>
   </div>
