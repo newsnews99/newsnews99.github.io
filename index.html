@@ -15,14 +15,14 @@
       background: #1e1e1e;
       color: white;
       box-sizing: border-box;
+      overflow-x: hidden;
     }
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding-left: 10vw;
-      padding-right: 10vw;
+      padding: 0;
     }
     img { max-width: 100%; height: auto; display: block; }
 
@@ -33,31 +33,31 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.4);
       z-index: 1000;
     }
+
     .banner-content {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       grid-template-areas:
         "social logo search";
-      align-items: end;
+      align-items: center;
       max-width: 1200px;
       margin: 0 auto;
       padding: 12px 0;
       column-gap: 8px;
     }
+
     .social-section {
       grid-area: social;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      justify-content: flex-end;
-      margin: 0;
+      gap: 4px;
     }
     .time-subsection {
       font-size: 13px;
       line-height: 1;
       text-align: left;
-      margin-bottom: 5px;
-      display: none;
+      display: block;
     }
     .icons-subsection {
       display: flex;
@@ -68,6 +68,7 @@
       height: 24px;
       width: auto;
     }
+
     .left-section {
       grid-area: logo;
       display: flex;
@@ -77,6 +78,7 @@
       height: 53px;
       width: auto;
     }
+
     .center-section {
       grid-area: search;
       display: flex;
@@ -116,13 +118,11 @@
       height: 32px;
       box-sizing: border-box;
     }
+
     .time-section {
-      grid-area: time;
-      font-size: 13px;
-      line-height: 1;
-      text-align: right;
       display: none;
     }
+
     .ticker {
       width: 100%;
       overflow: hidden;
@@ -162,16 +162,19 @@
     .ticker-group a:hover {
       color: gold;
     }
+
     @keyframes scroll {
       from { transform: translateX(0); }
       to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
+
     .container {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding-top: calc(53px + 32px + 12px + 10px + 20px);
     }
+
     .main-headline-layout {
       display: flex;
       justify-content: space-between;
@@ -199,6 +202,7 @@
       text-decoration: none;
       text-align: center;
     }
+
     .two-columns-below {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -316,54 +320,46 @@
     }
 
     @media (max-width: 768px) {
-      body {
-        padding-left: 0;
-        padding-right: 0;
-      }
-      .container {
-        width: 100%;
-        max-width: 100%;
-      }
       .banner-content {
         display: grid;
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: auto 1fr;
         grid-template-areas:
-          "logo social time"
-          "search search search";
-        column-gap: 6px;
-        row-gap: 4px;
-        padding: 8px 8px 0;
-        align-items: end;
+          "logo right"
+          "search search";
+        row-gap: 8px;
+        column-gap: 8px;
+        align-items: start;
+        padding: 8px;
       }
-      .time-section {
-        display: block;
+      .social-section {
+        grid-area: right;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        gap: 4px;
       }
-      .time-subsection {
-        display: none;
+      .left-section {
+        grid-area: logo;
+        justify-content: flex-start;
       }
       .center-section {
-        grid-column: 1 / span 3;
-        grid-row: 2;
+        grid-area: search;
         width: 100%;
         max-width: 100%;
-        margin-top: 4px;
-        align-self: center;
       }
-      .center-section form {
-        display: flex;
+      .container,
+      .main-headline-layout,
+      .two-columns-below,
+      .two-columns-right,
+      .footer-content,
+      .footer-section,
+      .footer-section.right form,
+      .footer-section.right textarea,
+      .footer-section.right button {
         width: 100%;
-        gap: 5px;
-      }
-      .center-section input[type="text"] {
-        height: 28px;
-        font-size: 14px;
-        padding: 3px 7px;
-      }
-      .center-section button {
-        min-width: 70px;
-        height: 28px;
-        font-size: 14px;
-        padding: 0 10px;
+        max-width: 100%;
+        box-sizing: border-box;
       }
       .main-headline-layout {
         flex-direction: column;
@@ -374,37 +370,32 @@
       }
       .two-columns-right {
         grid-template-columns: 1fr;
-        width: 100%;
       }
       .footer-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        width: 100%;
-        max-width: 100%;
-        padding: 0 10vw;
-        box-sizing: border-box;
+        padding: 0;
       }
       .footer-section {
-        width: 100%;
-        max-width: 100%;
+        padding: 0 16px;
       }
       .footer-section.left img {
         width: 33vw;
         margin: 0 auto 10px auto;
-        display: block;
       }
-      .footer-section.left {
-        order: 1;
-      }
-      .footer-section.right {
-        order: 2;
-        align-items: center;
+      .footer-section.left p,
+      .footer-section.right,
+      .footer-section.center {
         text-align: center;
       }
-      .footer-section.center {
-        order: 3;
+      .footer-section.right {
+        align-items: center;
       }
+      .time-subsection {
+    width: 100%;
+    text-align: right;
+  }
     }
 
     @media (min-width: 769px) {
@@ -433,10 +424,6 @@
           <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
           <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
         </div>
-      </div>
-      <div class="time-section">
-        <div id="current-time-mobile">--:-- AEST</div>
-        <div id="current-date-mobile">--/--/----</div>
       </div>
       <div class="left-section">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo">
@@ -538,8 +525,6 @@
       }).format(now);
       document.getElementById('current-time').textContent = t + ' AEST';
       document.getElementById('current-date').textContent = d;
-      document.getElementById('current-time-mobile').textContent = t + ' AEST';
-      document.getElementById('current-date-mobile').textContent = d;
     }
     updateTime();
     setInterval(updateTime, 60000);
