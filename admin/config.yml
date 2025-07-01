@@ -1,3 +1,10 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
 collections:
   - name: "headlines"
     label: "Headlines"
@@ -12,14 +19,11 @@ collections:
 
   - name: "mainheadline"
     label: "Main Headline"
-    folder: "content/mainheadline"
-    create: false
     files:
-      - file: "content/mainheadline/main.md"
+      - file: "content/main-headline.md"
         label: "Main Headline"
-        name: "main"
+        name: "mainheadline"
         fields:
           - { name: "title", label: "Title" }
           - { name: "url", label: "URL" }
           - { name: "image", label: "Main Image", widget: "image" }
-          - { name: "date", label: "Date", widget: "datetime" }
