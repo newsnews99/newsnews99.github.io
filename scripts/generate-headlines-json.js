@@ -9,7 +9,8 @@ const files = glob.sync('content/headlines/*.md');
 const headlines = files
   .map(file => {
     const content = fs.readFileSync(file, 'utf-8');
-    const { data } = matter(content);
+    const parsed = matter(content);
+    const data = parsed.data || {};
     return {
       title: data.title || '',
       url: data.url || '#',
@@ -33,7 +34,8 @@ fs.writeFileSync('data/archive.json', JSON.stringify(archive, null, 2));
 // Load main headline
 if (fs.existsSync('content/main-headline.md')) {
   const content = fs.readFileSync('content/main-headline.md', 'utf-8');
-  const { data } = matter(content);
+  const parsed = matter(content);
+  const data = parsed.data || {};
   const mainHeadline = {
     title: data.title || '',
     url: data.url || '#',
