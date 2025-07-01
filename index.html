@@ -316,8 +316,16 @@
       border-top: 1px solid #444;
     }
 
-    /* Mobile adjustments for stacking and footer order */
+    /* Mobile adjustments for stacking and full width */
     @media (max-width: 768px) {
+      body {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .container {
+        width: 100%;
+        max-width: 100%;
+      }
       .banner-content {
         display: grid;
         grid-template-columns: auto 1fr auto;
