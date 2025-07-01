@@ -1,21 +1,25 @@
-backend:
-  name: github
-  repo: newsnews99/newsnews99.github.io
-  branch: main
-
-media_folder: "static/uploads"
-public_folder: "/uploads"
-
 collections:
   - name: "headlines"
     label: "Headlines"
     folder: "content/headlines"
     create: true
-    slug: "headline-{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
+    slug: "headline-{{timestamp}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "URL", name: "url", widget: "string" }
-      - { label: "Author", name: "author", widget: "string", default: "editor" }
-      - { label: "Published", name: "published", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss[Z]" }
-      - { label: "Updated", name: "updated", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss[Z]" }
-      - { label: "Category", name: "category", widget: "string", default: "news" }
+      - { name: "title", label: "Title" }
+      - { name: "url", label: "URL" }
+      - { name: "date", label: "Date", widget: "datetime" }
+      - { name: "image", label: "Thumbnail Image", widget: "image" }
+
+  - name: "mainheadline"
+    label: "Main Headline"
+    folder: "content/mainheadline"
+    create: false
+    files:
+      - file: "content/mainheadline/main.md"
+        label: "Main Headline"
+        name: "main"
+        fields:
+          - { name: "title", label: "Title" }
+          - { name: "url", label: "URL" }
+          - { name: "image", label: "Main Image", widget: "image" }
+          - { name: "date", label: "Date", widget: "datetime" }
