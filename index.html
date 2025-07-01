@@ -56,13 +56,15 @@
     .time-subsection {
       font-size: 13px;
       line-height: 1;
-      text-align: left;
+      text-align: right;
       display: block;
+      width: 100%;
     }
     .icons-subsection {
       display: flex;
       gap: 8px;
       align-items: center;
+      justify-content: flex-end;
     }
     .icons-subsection img {
       height: 24px;
@@ -335,6 +337,10 @@
         text-align: right;
         gap: 4px;
       }
+      .time-subsection {
+        width: 100%;
+        text-align: right;
+      }
       .left-section {
         grid-area: logo;
         justify-content: flex-start;
@@ -347,9 +353,14 @@
       .container,
       .main-headline-layout,
       .two-columns-below,
-      .two-columns-right {
+      .two-columns-right,
+      .footer-content,
+      .footer-section,
+      .footer-section.right form,
+      .footer-section.right textarea,
+      .footer-section.right button {
         width: 100%;
-        max-width: 100%;
+        max-width: 1200px;
         box-sizing: border-box;
       }
       .main-headline-layout {
@@ -368,27 +379,16 @@
         text-align: center;
         padding: 0;
       }
-      .footer-section {
-        width: 100%;
-        max-width: 100%;
-        padding: 0 16px;
-        box-sizing: border-box;
-      }
       .footer-section.left {
         order: 1;
       }
-      .footer-section.right {
+      .footer-section.center {
         order: 2;
+      }
+      .footer-section.right {
+        order: 3;
         align-items: center;
         text-align: center;
-      }
-      .footer-section.center {
-        order: 3;
-      }
-      .footer-section.right textarea,
-      .footer-section.right button {
-        width: 100%;
-        max-width: 100%;
       }
     }
   </style>
@@ -477,14 +477,6 @@
             The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
           </p>
         </div>
-        <div class="footer-section right">
-          <h3>ANONYMOUS TIPS</h3>
-          <form action="https://formspree.io/f/meokpdkj" method="POST">
-            <textarea name="tip" placeholder="Type your tip here..."></textarea>
-            <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
-            <button type="submit">Send tip</button>
-          </form>
-        </div>
         <div class="footer-section center">
           <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
           <p>
@@ -492,6 +484,14 @@
             <a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a>
           </p>
           <p>The Federation Sun © 2025</p>
+        </div>
+        <div class="footer-section right">
+          <h3>ANONYMOUS TIPS</h3>
+          <form action="https://formspree.io/f/meokpdkj" method="POST">
+            <textarea name="tip" placeholder="Type your tip here..."></textarea>
+            <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
+            <button type="submit">Send tip</button>
+          </form>
         </div>
       </div>
     </div>
