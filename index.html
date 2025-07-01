@@ -15,6 +15,7 @@
       background: #1e1e1e;
       color: white;
       box-sizing: border-box;
+      overflow-x: hidden; /* Prevent any horizontal scrollbar globally */
     }
     body {
       display: flex;
@@ -316,12 +317,26 @@
     }
 
     @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden;
+      }
       body {
         padding: 0 !important;
+        align-items: center;
+        text-align: center;
       }
-      .container {
-        width: 100%;
-        max-width: 100%;
+      .container,
+      .main-headline-layout,
+      .two-columns-below,
+      .two-columns-right,
+      .footer-content,
+      .footer-section,
+      .footer-section.right form,
+      .footer-section.right textarea,
+      .footer-section.right button {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
       }
       .banner-content {
         display: grid;
@@ -367,27 +382,22 @@
       .main-headline-layout {
         flex-direction: column;
         align-items: center;
+        text-align: center;
       }
       .two-columns-below {
         grid-template-columns: 1fr;
       }
       .two-columns-right {
         grid-template-columns: 1fr;
-        width: 100%;
       }
       .footer-content {
         flex-direction: column;
-        align-items: stretch;
-        text-align: left;
-        width: 100% !important;
-        max-width: none !important;
+        align-items: center;
+        text-align: center;
         margin: 0 !important;
         padding: 0 !important;
-        box-sizing: border-box;
       }
       .footer-section {
-        width: 100% !important;
-        max-width: 100% !important;
         padding: 0 16px;
       }
       .footer-section.left {
@@ -399,22 +409,16 @@
         display: block;
       }
       .footer-section.left p {
-        width: 100%;
-        text-align: left;
+        text-align: center;
       }
       .footer-section.right {
         order: 2;
-        align-items: stretch;
-        text-align: left;
-      }
-      .footer-section.right form,
-      .footer-section.right textarea,
-      .footer-section.right button {
-        width: 100%;
+        align-items: center;
+        text-align: center;
       }
       .footer-section.center {
         order: 3;
-        text-align: left;
+        text-align: center;
       }
     }
 
