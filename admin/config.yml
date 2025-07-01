@@ -3,46 +3,43 @@ backend:
   repo: newsnews99/newsnews99.github.io
   branch: main
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "public/uploads"
+public_folder: "/uploads"
 
 collections:
   - name: "headlines"
     label: "Headlines"
     folder: "content/headlines"
     create: true
-    slug: "{{slug}}"
+    slug: "headline-{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "URL", name: "url", widget: "string" }
-      - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Body", name: "body", widget: "markdown", required: false }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Image", name: "image", widget: "image" }
+
+  - name: "mainheadline"
+    label: "Main Headline"
+    file: "content/main-headline.md"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "URL", name: "url", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
 
   - name: "ticker"
-    label: "News Ticker"
+    label: "Ticker Headlines"
     folder: "content/ticker"
     create: true
-    slug: "{{slug}}"
+    slug: "ticker-{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
     fields:
-      - { label: "Ticker Text", name: "text", widget: "string" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "URL", name: "url", widget: "string" }
 
   - name: "polls"
     label: "Polls"
     folder: "content/polls"
     create: true
-    slug: "{{slug}}"
+    slug: "poll-{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
     fields:
       - { label: "Question", name: "question", widget: "string" }
-      - label: "Options"
-        name: "options"
-        widget: "list"
-        field: { label: "Option", name: "option", widget: "string" }
-
-  - name: "videos"
-    label: "Video Embeds"
-    folder: "content/videos"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Embed URL", name: "embed", widget: "string" }
+      - { label: "Options", name: "options", widget: "list" }
