@@ -579,31 +579,63 @@ width: 33vw;
     updateTime();
     setInterval(updateTime, 60000);
 
-    fetch('/headlines.json')
-      .then(r => r.json())
-      .then(data => {
-        const track = document.getElementById('ticker-track');
-        track.innerHTML = '';
-        const grp = document.createElement('div');
-        grp.className = 'ticker-group';
-        data.forEach(item => {
-          const a = document.createElement('a');
-          a.href = item.url;
-          a.textContent = item.title;
-          grp.appendChild(a);
-        });
-        track.appendChild(grp);
-        track.appendChild(grp.cloneNode(true));
-        const dist = grp.offsetWidth, speed = 20;
-        document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
-        document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
-      })
-      .catch(_ => document.getElementById('ticker-track').textContent = 'Failed to load headlines.');
+    // Load main headline
+fetch('/data/main-headline.json')
+  .then(r => r.json())
+  .then(data => {
+    document.querySelector('.main-headline-img').src = data.image;
+    document.querySelector('.main-headline-link').textContent = data.title;
+    document.querySelector('.main-headline-link').href = data.url;
+  });
 
-    document.getElementById('search-form').addEventListener('submit', e => {
-      const inp = document.getElementById('search-input');
-      inp.value = 'site:fedsun.news ' + inp.value;
+// Load headlines for ticker and columns
+fetch('/data/headlines.json')
+  .then(r => r.json())
+  .then(data => {
+    // === Ticker ===
+    const track = document.getElementById('ticker-track');
+    track.innerHTML = '';
+    const grp = document.createElement('div');
+    grp.className = 'ticker-group';
+    data.forEach(item => {
+      const a = document.createElement('a');
+      a.href = item.url;
+      a.textContent = item.title;
+      grp.appendChild(a);
     });
+    track.appendChild(grp);
+    track.appendChild(grp.cloneNode(true));
+    const dist = grp.offsetWidth, speed = 20;
+    document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
+    document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
+
+    // === Columns ===
+    const col1 = document.getElementById('latest-headlines');
+    const col2 = document.getElementById('more-headlines');
+    const col3 = document.getElementById('right-column-1');
+    const col4 = document.getElementById('right-column-2');
+    [col1, col2, col3, col4].forEach(c => c.innerHTML = '');
+
+    const perCol = Math.ceil(data.length / 4);
+    [col1, col2, col3, col4].forEach((col, i) => {
+      data.slice(i * perCol, (i + 1) * perCol).forEach(item => {
+        const wrapper = document.createElement('div');
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.title;
+        img.style.width = '100%';
+        img.style.aspectRatio = '16/9';
+        img.style.objectFit = 'cover';
+        const a = document.createElement('a');
+        a.href = item.url;
+        a.textContent = item.title;
+        wrapper.appendChild(img);
+        wrapper.appendChild(a);
+        col.appendChild(wrapper);
+      });
+    });
+  });
+
   </script>
 </body>
 </html>
