@@ -278,10 +278,8 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      width: 100%;
     }
     .footer-section.right textarea {
-      width: 100%;
       min-height: 80px;
       padding: 8px;
       border: none;
@@ -290,7 +288,6 @@
       box-sizing: border-box;
     }
     .footer-section.right button {
-      width: 100%;
       padding: 8px;
       background: #fff;
       color: #000;
@@ -298,6 +295,13 @@
       border: none;
       border-radius: 4px;
       cursor: pointer;
+    }
+
+    /* Constrain tips form to content width on desktop */
+    .footer-section.right form,
+    .footer-section.right textarea,
+    .footer-section.right button {
+      width: auto;
     }
 
     .footer-separator {
@@ -391,7 +395,6 @@
       .time-subsection {
         display: block;
       }
-      /* No footer order rules here—desktop remains as HTML order */
     }
   </style>
 </head>
