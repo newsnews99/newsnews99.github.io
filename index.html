@@ -251,14 +251,19 @@
       text-align: left;
     }
     .footer-section {
-      flex: 0 0 auto;
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .footer-section.left,
+    .footer-section.center,
+    .footer-section.right {
+      max-width: 33%;
     }
     .footer-section.center {
-      margin: 0 80px;
-      text-align: center;
-      align-items: center;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
     .footer-section.left img {
       width: 48px;
@@ -273,7 +278,6 @@
       flex-direction: column;
       align-items: flex-start;
       text-align: left;
-      max-width: 300px;
     }
     .footer-section.right h3 {
       margin: 0 0 10px 0;
