@@ -382,28 +382,38 @@
         text-align: center;
         width: 100%;
         max-width: 100%;
-        padding: 0 10vw;
+        padding: 0;
         box-sizing: border-box;
       }
       .footer-section {
         width: 100%;
         max-width: 100%;
       }
+      .footer-section.left {
+        order: 1;
+      }
       .footer-section.left img {
         width: 33vw;
         margin: 0 auto 10px auto;
         display: block;
       }
-      .footer-section.left {
-        order: 1;
+      .footer-section.left p {
+        width: 100%;
       }
       .footer-section.right {
         order: 2;
         align-items: center;
         text-align: center;
+        width: 100%;
+      }
+      .footer-section.right form,
+      .footer-section.right textarea,
+      .footer-section.right button {
+        width: 100%;
       }
       .footer-section.center {
         order: 3;
+        width: 100%;
       }
     }
 
