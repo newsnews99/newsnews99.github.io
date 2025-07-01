@@ -378,16 +378,18 @@
       }
       .footer-content {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: stretch;
+        text-align: left;
         width: 100%;
-        max-width: 100%;
+        max-width: none;
+        margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
       .footer-section {
         width: 100%;
         max-width: 100%;
+        padding: 0 16px;
       }
       .footer-section.left {
         order: 1;
@@ -399,11 +401,12 @@
       }
       .footer-section.left p {
         width: 100%;
+        text-align: left;
       }
       .footer-section.right {
         order: 2;
-        align-items: center;
-        text-align: center;
+        align-items: stretch;
+        text-align: left;
         width: 100%;
       }
       .footer-section.right form,
@@ -414,6 +417,7 @@
       .footer-section.center {
         order: 3;
         width: 100%;
+        text-align: left;
       }
     }
 
