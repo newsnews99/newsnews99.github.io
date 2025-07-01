@@ -234,7 +234,6 @@
       color: gold;
     }
 
-    /* Footer Styles */
     .footer-wrapper {
       width: 100%;
       background: #1e1e1e;
@@ -316,7 +315,6 @@
       border-top: 1px solid #444;
     }
 
-    /* Mobile adjustments for stacking and full width */
     @media (max-width: 768px) {
       body {
         padding-left: 0;
@@ -382,10 +380,19 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 10vw;
+        box-sizing: border-box;
       }
       .footer-section {
         width: 100%;
-        max-width: 600px;
+        max-width: 100%;
+      }
+      .footer-section.left img {
+        width: 33vw;
+        margin: 0 auto 10px auto;
+        display: block;
       }
       .footer-section.left {
         order: 1;
