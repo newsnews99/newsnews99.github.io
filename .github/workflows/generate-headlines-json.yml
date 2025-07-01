@@ -2,58 +2,61 @@ name: Generate Headlines JSON
 
 on:
   push:
+    branches:
+      - main
     paths:
-      - "content/headlines/**.md"
-  workflow_dispatch:
-
-permissions:
-  contents: write
+      - 'content/headlines/**'
+      - 'content/mainheadline/**'
 
 jobs:
-  build:
+  build-json:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: '16'
 
-      - name: Install dependencies
+      - name: Install gray-matter
         run: npm install gray-matter
 
-      - name: Create generator script
+      - name: Generate JSON
         run: |
-          echo "const fs = require('fs');" > generate.js
-          echo "const matter = require('gray-matter');" >> generate.js
-          echo "const dir = 'content/headlines';" >> generate.js
-          echo "const files = fs.readdirSync(dir).filter(f => f.endsWith('.md'));" >> generate.js
-          echo "const headlines = files.map(file => {" >> generate.js
-          echo "  const content = fs.readFileSync(\`\${dir}/\${file}\`, 'utf8');" >> generate.js
-          echo "  const { data } = matter(content);" >> generate.js
-          echo "  return {" >> generate.js
-          echo "    title: data.title || ''," >> generate.js
-          echo "    url: data.url || ''," >> generate.js
-          echo "    image: data.image || ''," >> generate.js
-          echo "    author: data.author || ''," >> generate.js
-          echo "    category: data.category || ''," >> generate.js
-          echo "    published: data.published || ''," >> generate.js
-          echo "    updated: data.updated || ''" >> generate.js
-          echo "  };" >> generate.js
-          echo "});" >> generate.js
-          echo "fs.writeFileSync('headlines.json', JSON.stringify(headlines, null, 2));" >> generate.js
+          node <<EOF
+          const fs = require('fs');
+          const matter = require('gray-matter');
+          const headlines = [];
 
-      - name: Run generator script
-        run: node generate.js
+          // Process headlines
+          fs.readdirSync('content/headlines').forEach(file => {
+            if (file.endsWith('.md')) {
+              const content = fs.readFileSync(\`content/headlines/\${file}\`, 'utf8');
+              const data = matter(content).data;
+              headlines.push(data);
+            }
+          });
 
-      - name: Commit headlines.json
+          headlines.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+          const latest = headlines.slice(0, 40);
+          const archive = headlines.slice(40);
+
+          fs.writeFileSync('data/headlines.json', JSON.stringify(latest, null, 2));
+          fs.writeFileSync('data/archive.json', JSON.stringify(archive, null, 2));
+
+          // Process main headline
+          const mainContent = fs.readFileSync('content/mainheadline/main.md', 'utf8');
+          const mainData = matter(mainContent).data;
+          fs.writeFileSync('data/main-headline.json', JSON.stringify(mainData, null, 2));
+          EOF
+
+      - name: Commit JSON
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add headlines.json
-          git commit -m "Update headlines.json" || echo "No changes"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/*.json
+          git commit -m "Update headlines JSON"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
