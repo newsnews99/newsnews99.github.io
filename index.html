@@ -242,7 +242,7 @@
     }
     .footer-content {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: flex-start;
       max-width: 1200px;
       margin: 0 auto;
@@ -251,17 +251,18 @@
       text-align: left;
     }
     .footer-section {
-      flex: 0 0 33.3333%;
+      flex: 0 0 auto;
+    }
+    .footer-section.center {
+      margin: 0 80px;
+      text-align: center;
+      align-items: center;
       display: flex;
       flex-direction: column;
     }
     .footer-section.left img {
       width: 48px;
       margin-bottom: 10px;
-    }
-    .footer-section.center {
-      align-items: center;
-      text-align: center;
     }
     .footer-section.center img {
       width: 120px;
