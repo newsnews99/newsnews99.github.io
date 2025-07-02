@@ -3,7 +3,7 @@ backend:
   repo: newsnews99/newsnews99.github.io
   branch: main
 
-media_folder: "public/uploads"
+media_folder: "uploads"
 public_folder: "/uploads"
 
 collections:
