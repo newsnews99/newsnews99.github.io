@@ -701,23 +701,66 @@ fetch('/data/poll.json?' + new Date().getTime())
     if (!container) return;
     if (!poll || !poll.question || !poll.options) return;
     let html = `<form id="poll-form"><h3>${poll.question}</h3>`;
-
     poll.options.forEach(opt => {
       html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
     });
     html += `<button type="submit">Vote</button></form>`;
     container.innerHTML = html;
+
     const form = document.getElementById('poll-form');
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
       const selected = form.elements['pollOption'].value;
-      alert('Thank you for voting for: ' + selected);
+
+      // Insert vote into Supabase
+      const { error } = await supabase
+        .from('poll_votes')
+        .insert([{ option: selected }]);
+
+      if (error) {
+        alert('Error saving vote: ' + error.message);
+      } else {
+        alert('Thank you for voting for: ' + selected);
+        // Optionally refresh vote totals here
+        loadVoteCounts();
+      }
     });
   })
   .catch(e => console.error('Fetch error:', e));
+
 </script>
-  
+  async function loadVoteCounts() {
+  const { data, error } = await supabase
+    .from('poll_votes')
+    .select('option');
+
+  if (error) {
+    console.error('Error loading votes:', error);
+    return;
+  }
+
+  // Count votes
+  const counts = {};
+  data.forEach(row => {
+    counts[row.option] = (counts[row.option] || 0) + 1;
+  });
+
+  // Show counts in an alert or in your page
+  let results = 'Vote Totals:\n';
+  Object.entries(counts).forEach(([opt, count]) => {
+    results += `${opt}: ${count}\n`;
+  });
+  alert(results);
+}
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+// Replace with your values:
+const supabaseUrl = 'https://fpsykizmderxiwovqcwk.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwc3lraXptZGVyeGl3b3ZxY3drIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0OTUyMDksImV4cCI6MjA2NzA3MTIwOX0.GkLxj8sTj9uK_6taRK0HH2b_FobLRUa3UhxfgN7QssA';
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+  
 </body>
 </html>
