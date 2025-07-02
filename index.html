@@ -713,6 +713,8 @@ fetch('/data/poll.json?' + new Date().getTime())
     const container = document.getElementById('poll-container');
     if (!container) return;
     if (!poll || !poll.question || !poll.options) return;
+
+    // Build the poll form
     let html = `<form id="poll-form"><h3>${poll.question}</h3>`;
     poll.options.forEach(opt => {
       html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
@@ -725,44 +727,51 @@ fetch('/data/poll.json?' + new Date().getTime())
       e.preventDefault();
       const selected = form.elements['pollOption'].value;
 
-     const { error } = await supabaseClient
-  .from('poll_votes')
-  .insert([{ option: selected }]);
-
+      // Save the vote
+      const { error } = await supabaseClient
+        .from('poll_votes')
+        .insert([{ option: selected }]);
 
       if (error) {
-        alert('Error saving vote: ' + error.message);
+        container.innerHTML = `<p style="color:red;">Error saving vote: ${error.message}</p>`;
       } else {
-        alert('Thank you for voting for: ' + selected);
-        loadVoteCounts();
+        // Show thank you + results
+        loadVoteCounts(selected);
       }
     });
   })
   .catch(e => console.error('Fetch error:', e));
 
-async function loadVoteCounts() {
-  const { data, error } = await supabaseClient
-  .from('poll_votes')
-  .select('option');
+async function loadVoteCounts(votedOption) {
+  const container = document.getElementById('poll-container');
+  container.innerHTML = `<p style="color: gold;">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p><p>Loading results...</p>`;
 
+  const { data, error } = await supabaseClient
+    .from('poll_votes')
+    .select('option');
 
   if (error) {
-    console.error('Error loading votes:', error);
+    container.innerHTML = `<p style="color:red;">Error loading results: ${error.message}</p>`;
     return;
   }
 
+  // Count votes
   const counts = {};
   data.forEach(row => {
     counts[row.option] = (counts[row.option] || 0) + 1;
   });
 
-  let results = 'Vote Totals:\n';
+  // Build results HTML
+  let resultsHtml = '<h3>Vote Totals</h3><ul style="list-style:none;padding:0;">';
   Object.entries(counts).forEach(([opt, count]) => {
-    results += `${opt}: ${count}\n`;
+    resultsHtml += `<li>${opt}: ${count}</li>`;
   });
-  alert(results);
+  resultsHtml += '</ul>';
+
+  container.innerHTML = `<p style="color: gold;">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p>` + resultsHtml;
 }
 </script>
+
 
 
   
