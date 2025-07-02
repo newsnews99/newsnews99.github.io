@@ -33,19 +33,16 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.4);
       z-index: 1000;
     }
-
     .banner-content {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
-      grid-template-areas:
-        "social logo search";
+      grid-template-areas: "social logo search";
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
       padding: 12px 0;
       column-gap: 8px;
     }
-
     .social-section {
       grid-area: social;
       display: flex;
@@ -68,7 +65,6 @@
       height: 24px;
       width: auto;
     }
-
     .left-section {
       grid-area: logo;
       display: flex;
@@ -78,7 +74,6 @@
       height: 53px;
       width: auto;
     }
-
     .center-section {
       grid-area: search;
       display: flex;
@@ -118,11 +113,7 @@
       height: 32px;
       box-sizing: border-box;
     }
-
-    .time-section {
-      display: none;
-    }
-
+    .time-section { display: none; }
     .ticker {
       width: 100%;
       overflow: hidden;
@@ -159,13 +150,10 @@
       margin-right: 40px;
       display: inline-block;
     }
-    .ticker-group a:hover {
-      color: gold;
-    }
-
+    .ticker-group a:hover { color: gold; }
     @keyframes scroll {
       from { transform: translateX(0); }
-      to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
+      to { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
     .container {
@@ -174,7 +162,6 @@
       margin: 0 auto;
       padding-top: calc(53px + 32px + 12px + 10px + 20px);
     }
-
     .main-headline-layout {
       display: flex;
       justify-content: space-between;
@@ -188,13 +175,8 @@
       flex: 1 1 48%;
       text-align: center;
     }
-    .main-headline-img-wrapper {
-      width: 100%;
-    }
-    .main-headline-img {
-      width: 100%;
-      height: auto;
-    }
+    .main-headline-img-wrapper { width: 100%; }
+    .main-headline-img { width: 100%; height: auto; }
     .main-headline-link {
       margin-top: 20px;
       font-size: 28px;
@@ -202,7 +184,6 @@
       text-decoration: none;
       text-align: center;
     }
-
     .two-columns-below {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -238,87 +219,21 @@
       color: gold;
     }
 
-    .footer-wrapper {
-      width: 100%;
-      background: #1e1e1e;
-      padding: 30px 0;
-    }
-    .footer-content {
+    /* Headline entry style */
+    .headline-entry {
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      max-width: 1200px;
-      margin: 0 auto;
-      gap: 40px;
-      flex-wrap: nowrap;
-      text-align: left;
-    }
-    .footer-section {
-      flex: 1 1 0;
-      min-width: 0;
-    }
-    .footer-section.left,
-    .footer-section.center,
-    .footer-section.right {
-      max-width: 33%;
-    }
-    .footer-section.center {
-      display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
-    }
-    .footer-section.left img {
-      
-width: 33vw;
- 
-      margin-bottom: 10px;
-    }
-    .footer-section.center img {
-      width: 120px;
-      margin-bottom: 10px;
-    }
-    .footer-section.right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-    }
-    .footer-section.right h3 {
-      margin: 0 0 10px 0;
-    }
-    .footer-section.right form {
-      display: flex;
-      flex-direction: column;
       gap: 10px;
-      width: 100%;
     }
-    .footer-section.right textarea {
-      width: 100%;
-      min-height: 80px;
-      padding: 8px;
-      border: none;
-      border-radius: 4px;
-      resize: vertical;
-      box-sizing: border-box;
+    .headline-entry img {
+      width: 20%;
+      height: auto;
+      object-fit: cover;
     }
-    .footer-section.right button {
-      width: 100%;
-      padding: 8px;
-      background: #fff;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .footer-separator {
-      width: 100%;
-      max-width: 1200px;
-      margin: 40px auto 0 auto;
-      border: none;
-      border-top: 1px solid #444;
+    .headline-entry a {
+      flex: 1;
+      text-align: left;
+      font-size: 18px;
     }
 
     @media (max-width: 768px) {
@@ -367,12 +282,8 @@ width: 33vw;
         flex-direction: column;
         align-items: center;
       }
-      .two-columns-below {
-        grid-template-columns: 1fr;
-      }
-      .two-columns-right {
-        grid-template-columns: 1fr;
-      }
+      .two-columns-below { grid-template-columns: 1fr; }
+      .two-columns-right { grid-template-columns: 1fr; }
       .footer-content {
         flex-direction: column;
         align-items: center;
@@ -384,9 +295,9 @@ width: 33vw;
         max-width: 100%;
       }
       .footer-section.left img {
-       width: 33vw;
- margin: 0 auto 10px auto;
-}
+        width: 33vw;
+        margin: 0 auto 10px auto;
+      }
       .footer-section.left p,
       .footer-section.right,
       .footer-section.center {
@@ -396,39 +307,26 @@ width: 33vw;
         align-items: center;
       }
       .time-subsection {
-    width: 100%;
-    text-align: right;
-  }
+        width: 100%;
+        text-align: right;
+      }
       .footer-section.left,
-.footer-section.center,
-.footer-section.right {
-  max-width: 100%;
-}
-.footer-section.left {
-  order: 1;
-}
-.footer-section.right {
-  order: 2;
-}
-.footer-section.center {
-  order: 3;
-}
+      .footer-section.center,
+      .footer-section.right {
+        max-width: 100%;
+      }
+      .footer-section.left { order: 1; }
+      .footer-section.right { order: 2; }
+      .footer-section.center { order: 3; }
     }
-
     @media (min-width: 769px) {
-      .time-section {
-        display: none;
+      .time-section { display: none; }
+      .time-subsection { display: block; }
+      .footer-section.left img { width: 20vw; }
+      .footer-section.right h3 {
+        text-align: right;
+        width: 100%;
       }
-      .time-subsection {
-        display: block;
-      }
-      .footer-section.left img {
-    width: 20vw;
-  }
-  .footer-section.right h3 {
-    text-align: right;
-    width: 100%;
-  }
     }
   </style>
 </head>
@@ -474,15 +372,16 @@ width: 33vw;
         </div>
         <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
         <div class="two-columns-below">
-  <div class="column" id="latest-headlines"></div>
-  <div class="column" id="more-headlines"></div>
-</div>
-<div class="two-columns-right">
-  <div class="column" id="right-column-1"></div>
-  <div class="column" id="right-column-2"></div>
-</div>
-
-    
+          <div class="column" id="latest-headlines"></div>
+          <div class="column" id="more-headlines"></div>
+        </div>
+        <div class="two-columns-right">
+          <div class="column" id="right-column-1"></div>
+          <div class="column" id="right-column-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <hr class="footer-separator" />
 
@@ -532,86 +431,83 @@ width: 33vw;
     updateTime();
     setInterval(updateTime, 60000);
 
-    // Load main headline
-fetch('/data/main-headline.json')
-  .then(r => r.json())
-  .then(data => {
-    document.querySelector('.main-headline-img').src = data.image;
-    document.querySelector('.main-headline-link').textContent = data.title;
-    document.querySelector('.main-headline-link').href = data.url;
-  });
-
-// Load headlines for ticker and columns
-fetch('/data/headlines.json')
-  .then(r => r.json())
-  .then(data => {
-    const today = new Date();
-    // Filter for the last 7 days
-    const recent = data.filter(item => {
-      const d = new Date(item.date);
-      const diff = (today - d) / (1000 * 60 * 60 * 24);
-      return diff <= 7;
-    });
-
-    // === Ticker ===
-    const track = document.getElementById('ticker-track');
-    track.innerHTML = '';
-    const grp = document.createElement('div');
-    grp.className = 'ticker-group';
-    recent.forEach(item => {
-      const a = document.createElement('a');
-      a.href = item.url;
-      a.textContent = item.title;
-      grp.appendChild(a);
-    });
-    track.appendChild(grp);
-    track.appendChild(grp.cloneNode(true));
-    const dist = grp.offsetWidth, speed = 20;
-    document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
-    document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
-
-    // === Columns ===
-    const col1 = document.getElementById('latest-headlines');
-    const col2 = document.getElementById('more-headlines');
-    const col3 = document.getElementById('right-column-1');
-    const col4 = document.getElementById('right-column-2');
-    [col1, col2, col3, col4].forEach(c => c.innerHTML = '');
-
-    const perCol = Math.ceil(recent.length / 4);
-    [col1, col2, col3, col4].forEach((col, i) => {
-      recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
-        const wrapper = document.createElement('div');
-        const img = document.createElement('img');
-        img.src = item.image;
-        img.alt = item.title;
-        img.style.width = '100%';
-        img.style.aspectRatio = '16/9';
-        img.style.objectFit = 'cover';
-        const a = document.createElement('a');
-        a.href = item.url;
-        a.textContent = item.title;
-        wrapper.appendChild(img);
-        wrapper.appendChild(a);
-        col.appendChild(wrapper);
+    fetch('/data/main-headline.json')
+      .then(r => r.json())
+      .then(data => {
+        document.querySelector('.main-headline-img').src = data.image;
+        document.querySelector('.main-headline-link').textContent = data.title;
+        document.querySelector('.main-headline-link').href = data.url;
       });
-    });
-  });
 
-
-  </script>
-        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
+    fetch('/data/headlines.json')
+      .then(r => r.json())
+      .then(data => {
+        const today = new Date();
+        const recent = data.filter(item => {
+          const d = new Date(item.date);
+          const diff = (today - d) / (1000 * 60 * 60 * 24);
+          return diff <= 7;
         });
-      }
-    });
-    window.netlifyIdentity.init();
-  }
-</script>
 
+        const track = document.getElementById('ticker-track');
+        track.innerHTML = '';
+        const grp = document.createElement('div');
+        grp.className = 'ticker-group';
+        recent.forEach(item => {
+          const a = document.createElement('a');
+          a.href = item.url;
+          a.textContent = item.title;
+          grp.appendChild(a);
+        });
+        track.appendChild(grp);
+        track.appendChild(grp.cloneNode(true));
+        const dist = grp.offsetWidth, speed = 20;
+        document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
+        document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
+
+        const cols = [
+          document.getElementById('latest-headlines'),
+          document.getElementById('more-headlines'),
+          document.getElementById('right-column-1'),
+          document.getElementById('right-column-2')
+        ];
+        cols.forEach(c => c.innerHTML = '');
+
+        const perCol = Math.ceil(recent.length / 4);
+        cols.forEach((col, i) => {
+          recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'headline-entry';
+            const img = document.createElement('img');
+            img.src = item.image;
+            img.alt = item.title;
+            const a = document.createElement('a');
+            a.href = item.url;
+            a.textContent = item.title;
+            wrapper.appendChild(img);
+            wrapper.appendChild(a);
+            col.appendChild(wrapper);
+          });
+        });
+      });
+
+    document.getElementById('search-form').addEventListener('submit', e => {
+      const inp = document.getElementById('search-input');
+      inp.value = 'site:fedsun.news ' + inp.value;
+    });
+  </script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+      window.netlifyIdentity.init();
+    }
+  </script>
 </body>
 </html>
