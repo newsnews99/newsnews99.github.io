@@ -1,17 +1,50 @@
-{
-  "items": [
-    {
-      "title": "WEBSITE UNDER CONSTRUCTION",
-      "link": "#"
-    },
-    {
-      "title": "HEADLINE 1",
-      "link": "#"
-    },
-    {
-      "title": "HEADLINE 2",
-      "link": "#"
-    }
-  ]
-}
-
+[
+  {
+    "title": "test",
+    "url": "https://x.com/home",
+    "date": "1970-01-01",
+    "image": ""
+  },
+  {
+    "title": "Pellentesque Habitant Morbi Tristique: Senectus Et Netus Et Malesuada",
+    "url": "https://x.com/federationsun",
+    "date": "1970-01-01",
+    "image": ""
+  },
+  {
+    "title": "Vestibulum Ante Ipsum Primis: In Faucibus Orci Luctus Ultrices",
+    "url": "https://x.com/home",
+    "date": "1970-01-01",
+    "image": ""
+  },
+  {
+    "title": "Lorem Ipsum Dolor Sit Amet: Consectetur Adipiscing Elit Vitae Nunc",
+    "url": "https://x.com/federationsun",
+    "date": "1970-01-01",
+    "image": ""
+  },
+  {
+    "title": "Nothing ever happens",
+    "url": "https://x.com/home",
+    "date": "1970-01-01",
+    "image": ""
+  },
+  {
+    "title": "Breaking news",
+    "url": "https://www.abc.net.au/news/2025-06-27/millionaires-who-pay-no-tax-and-richest-and-poorest-postcodes/105468666",
+    "date": "1970-01-01",
+    "image": ""
+  },
+  {
+    "title": "Breaking news",
+    "url": "https://www.abc.net.au/news/2025-06-27/millionaires-who-pay-no-tax-and-richest-and-poorest-postcodes/105468666",
+    "date": "1970-01-01",
+    "image": ""
+  },
+  {
+    "title": "Breaking news",
+    "url": "https://www.abc.net.au/news/2025-06-27/millionaires-who-pay-no-tax-and-richest-and-poorest-postcodes/105468666",
+    "date": "1970-01-01",
+    "image": ""
+  }
+]
