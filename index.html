@@ -478,7 +478,7 @@
 .three-columns-below .column {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 @media (max-width: 768px) {
   .three-columns-below {
@@ -488,7 +488,7 @@
 .three-columns-below .column {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .three-columns-below .column a {
@@ -656,7 +656,7 @@ const col3 = document.getElementById('column-3');
   recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
     const wrapper = document.createElement('div');
     wrapper.style.display = 'flex';
-    wrapper.style.gap = '20px';
+    wrapper.style.gap = '10px';
     wrapper.style.alignItems = 'flex-start';
 
     const img = document.createElement('img');
