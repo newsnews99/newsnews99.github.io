@@ -206,12 +206,13 @@ img { max-width: 100%; height: auto; display: block; }
   display: grid;
   gap: 15px;
 }
-.two-columns-below .column > div,
+.two-columns-below .column > div.headline-item,
 .right-column > div {
   display: flex;
   gap: 10px;
   align-items: flex-start;
 }
+
 .two-columns-below img,
 .right-column img {
   width: 33%;
@@ -544,11 +545,9 @@ col3.innerHTML = '';
         const perCol = Math.ceil(recent.length / 3);
         [col1, col2, col3].forEach((col, i) => {
           recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
-  const wrapper = document.createElement('div');
-  wrapper.style.display = 'flex';
-  wrapper.style.gap = '10px';
-  wrapper.style.alignItems = 'flex-start';
-  wrapper.style.marginBottom = '10px';
+ const wrapper = document.createElement('div');
+wrapper.className = 'headline-item';
+wrapper.style.marginBottom = '10px';
 
   const img = document.createElement('img');
   img.src = item.image;
