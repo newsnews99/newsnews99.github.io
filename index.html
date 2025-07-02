@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
     :root { --ticker-distance: 0px; --ticker-duration: 20s; }
-
     html, body {
       margin: 0;
       font-family: 'Bebas Neue', sans-serif;
@@ -37,8 +36,7 @@
     .banner-content {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
-      grid-template-areas:
-        "social logo search";
+      grid-template-areas: "social logo search";
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
@@ -68,7 +66,6 @@
       height: 24px;
       width: auto;
     }
-
     .left-section {
       grid-area: logo;
       display: flex;
@@ -78,7 +75,6 @@
       height: 53px;
       width: auto;
     }
-
     .center-section {
       grid-area: search;
       display: flex;
@@ -105,36 +101,27 @@
       box-sizing: border-box;
     }
     .center-section button {
-  /* Background image and styling */
-  background-image: url('australian_flag.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  
-  /* Keep other styling as before */
-   border: 1px solid white; 
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  padding: 0 12px;
-  box-sizing: border-box;
-  
-  /* Text styling */
-  color: white;
-  font-size: 15px;
-  font-weight: bold;
-  text-shadow:
-    -1px -1px 0 #1e1e1e,
-     1px -1px 0 #1e1e1e,
-    -1px  1px 0 #1e1e1e,
-     1px  1px 0 #1e1e1e;
-}
-
-    .time-section {
-      display: none;
+      background-image: url('australian_flag.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: 1px solid white;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      padding: 0 12px;
+      box-sizing: border-box;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      text-shadow:
+        -1px -1px 0 #1e1e1e,
+         1px -1px 0 #1e1e1e,
+        -1px  1px 0 #1e1e1e,
+         1px  1px 0 #1e1e1e;
     }
 
     .ticker {
@@ -189,19 +176,13 @@
       padding-top: calc(53px + 32px + 12px + 10px + 20px);
     }
 
-    .main-headline-layout {
-      display: flex;
-      justify-content: space-between;
+    .main-headline-layout.three-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
-      align-items: flex-start;
-      flex-wrap: wrap;
+      margin-top: 30px;
     }
-    .main-headline-left {
-      display: flex;
-      flex-direction: column;
-      flex: 1 1 48%;
-      text-align: center;
-    }
+
     .main-headline-img-wrapper {
       width: 100%;
     }
@@ -215,40 +196,8 @@
       color: white;
       text-decoration: none;
       text-align: center;
+      display: block;
     }
-
-    .two-columns-below {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin-top: 30px;
-    }
-    .two-columns-below .column,
-    .two-columns-right .column {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .two-columns-right {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      flex: 1 1 48%;
-    }
-    .two-columns-right .latest-title,
-    .two-columns-below .latest-title {
-      font-weight: bold;
-      color: gold;
-      text-transform: uppercase;
-    }
-    .two-columns-right .column a,
-    .two-columns-below .column a {
-      text-align: left;
-      color: white;
-      text-decoration: none;
-    }
-    .two-columns-right .column a:hover,
-    .two-columns-below .column a:hover,
     .main-headline-link:hover {
       color: gold;
     }
@@ -325,7 +274,6 @@
       border-radius: 4px;
       cursor: pointer;
     }
-
     .footer-separator {
       width: 100%;
       max-width: 1200px;
@@ -338,9 +286,7 @@
       .banner-content {
         display: grid;
         grid-template-columns: auto 1fr;
-        grid-template-areas:
-          "logo right"
-          "search search";
+        grid-template-areas: "logo right" "search search";
         row-gap: 8px;
         column-gap: 8px;
         align-items: start;
@@ -364,9 +310,7 @@
         max-width: 100%;
       }
       .container,
-      .main-headline-layout,
-      .two-columns-below,
-      .two-columns-right,
+      .main-headline-layout.three-columns,
       .footer-content,
       .footer-section,
       .footer-section.right form,
@@ -376,21 +320,13 @@
         max-width: 100%;
         box-sizing: border-box;
       }
-      .main-headline-layout {
-        flex-direction: column;
-        align-items: center;
-      }
-      .two-columns-below {
-        grid-template-columns: 1fr;
-      }
-      .two-columns-right {
+      .main-headline-layout.three-columns {
         grid-template-columns: 1fr;
       }
       .footer-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 0;
       }
       .footer-section {
         padding: 0 16px;
@@ -400,76 +336,41 @@
         width: 33vw;
         margin: 0 auto 10px auto;
       }
-      .footer-section.left p,
-      .footer-section.right,
-      .footer-section.center {
-        text-align: center;
-      }
       .footer-section.right {
         align-items: center;
       }
-      .time-subsection {
-        width: 100%;
-        text-align: right;
-      }
-      .footer-section.left,
-      .footer-section.center,
-      .footer-section.right {
-        max-width: 100%;
-      }
-      .footer-section.left { order: 1; }
-      .footer-section.right { order: 2; }
-      .footer-section.center { order: 3; }
     }
 
-    @media (min-width: 769px) {
-      .time-section {
-        display: none;
-      }
-      .time-subsection {
-        display: block;
-      }
-      .footer-section.left img {
-        width: 20vw;
-      }
-      .footer-section.right h3 {
-        text-align: right;
-        width: 100%;
-      }
-      .main-headline-layout {
-        flex-wrap: nowrap;
-      }
-    }
     .ticker-inner:hover .ticker-track {
-  animation-play-state: paused;
-}
-    #poll-container {
-  background: #222;
-  border: 1px solid #444;
-  padding: 16px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-}
-#poll-container h3 {
-  margin-top: 0;
-  font-size: 18px;
-  color: gold;
-}
-#poll-container label {
-  display: block;
-  margin: 8px 0;
-  cursor: pointer;
-}
-#poll-container button {
-  margin-top: 10px;
-  padding: 6px 12px;
-  background: gold;
-  color: #1e1e1e;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+      animation-play-state: paused;
+    }
 
+    #poll-container {
+      background: #222;
+      border: 1px solid #444;
+      padding: 16px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
+    #poll-container h3 {
+      margin-top: 0;
+      font-size: 18px;
+      color: gold;
+    }
+    #poll-container label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    #poll-container button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background: gold;
+      color: #1e1e1e;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -505,26 +406,15 @@
       </div>
     </div>
   </div>
+
   <div class="container">
-    <div class="main-headline-layout">
-      <div class="main-headline-left">
-        <div class="main-headline-img-wrapper">
-          <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
-        </div>
-        <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
-        
-         <div class="two-columns-below">
-          <div class="column" id="latest-headlines"></div>
-          <div class="column" id="more-headlines">
-            <div id="poll-container"></div>
-    <div id="more-headlines-list"></div>
-             </div>
-        </div>
+    <div class="main-headline-layout three-columns">
+      <div class="column" id="latest-headlines"></div>
+      <div class="column" id="more-headlines">
+        <div id="poll-container"></div>
+        <div id="more-headlines-list"></div>
       </div>
-      <div class="two-columns-right">
-        <div class="column" id="right-column-1"></div>
-        <div class="column" id="right-column-2"></div>
-      </div>
+      <div class="column" id="right-column-1"></div>
     </div>
   </div>
 
@@ -585,7 +475,7 @@
         document.querySelector('.main-headline-link').href = data.url;
       });
 
-    // Load headlines
+    // Load headlines into 3 columns
     fetch('/data/headlines.json?' + new Date().getTime())
       .then(r => r.json())
       .then(data => {
@@ -617,40 +507,33 @@
         const col1 = document.getElementById('latest-headlines');
         const col2 = document.getElementById('more-headlines-list');
         const col3 = document.getElementById('right-column-1');
-        const col4 = document.getElementById('right-column-2');
-        [col1, col2, col3, col4].forEach(c => c.innerHTML = '');
+        [col1, col2, col3].forEach(c => c.innerHTML = '');
 
-        const perCol = Math.ceil(recent.length / 4);
-        [col1, col2, col3, col4].forEach((col, i) => {
+        const perCol = Math.ceil(recent.length / 3);
+        [col1, col2, col3].forEach((col, i) => {
           recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
             const wrapper = document.createElement('div');
             wrapper.style.display = 'flex';
             wrapper.style.gap = '10px';
-            wrapper.style.alignItems = 'flex-start'; // Top align text with image
-
+            wrapper.style.alignItems = 'flex-start';
             const img = document.createElement('img');
             img.src = item.image;
             img.alt = item.title;
             img.style.width = '33%';
             img.style.aspectRatio = '16/9';
             img.style.objectFit = 'cover';
-
             const a = document.createElement('a');
             a.href = item.url;
             a.textContent = item.title;
             a.style.flex = '1';
             a.style.textAlign = 'left';
-
             wrapper.appendChild(img);
             wrapper.appendChild(a);
             col.appendChild(wrapper);
           });
         });
       });
-
-    
-    
-</script>
+  </script>
 
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
@@ -666,41 +549,31 @@
     }
   </script>
 
-<script>
-fetch('/data/poll.json?' + new Date().getTime())
-  .then(r => r.json())
-  .then(poll => {
-    const container = document.getElementById('poll-container');
-    if (!container) {
-      console.error('Poll container not found.');
-      return;
-    }
-    if (!poll || !poll.question || !poll.options) {
-      console.error('Poll data incomplete.');
-      return;
-    }
-
-    let html = `<h3>${poll.question}</h3><form id="poll-form">`;
-    poll.options.forEach(opt => {
-      html += `
-        <label>
-          <input type="radio" name="pollOption" value="${opt}">
-          ${opt}
-        </label>`;
-    });
-    html += `<button type="submit">Vote</button></form>`;
-    container.innerHTML = html;
-
-    const form = document.getElementById('poll-form');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const selected = form.elements['pollOption'].value;
-      alert('Thank you for voting for: ' + selected);
-    });
-  })
-  .catch(e => console.error('Fetch error:', e));
-</script>
-
-  
+  <script>
+    fetch('/data/poll.json?' + new Date().getTime())
+      .then(r => r.json())
+      .then(poll => {
+        const container = document.getElementById('poll-container');
+        if (!container) return;
+        if (!poll || !poll.question || !poll.options) return;
+        let html = `<h3>${poll.question}</h3><form id="poll-form">`;
+        poll.options.forEach(opt => {
+          html += `
+            <label>
+              <input type="radio" name="pollOption" value="${opt}">
+              ${opt}
+            </label>`;
+        });
+        html += `<button type="submit">Vote</button></form>`;
+        container.innerHTML = html;
+        const form = document.getElementById('poll-form');
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const selected = form.elements['pollOption'].value;
+          alert('Thank you for voting for: ' + selected);
+        });
+      })
+      .catch(e => console.error('Fetch error:', e));
+  </script>
 </body>
 </html>
