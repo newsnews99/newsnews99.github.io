@@ -735,7 +735,7 @@ fetch('/data/poll.json?' + new Date().getTime())
       if (error) {
         container.innerHTML = `<p style="color:red;">Error saving vote: ${error.message}</p>`;
       } else {
-        // Show thank you + results
+        // Show results
         loadVoteCounts(selected);
       }
     });
@@ -761,16 +761,27 @@ async function loadVoteCounts(votedOption) {
     counts[row.option] = (counts[row.option] || 0) + 1;
   });
 
+  // Calculate total votes
+  const totalVotes = Object.values(counts).reduce((a, b) => a + b, 0);
+
   // Build results HTML
-  let resultsHtml = '<h3>Vote Totals</h3><ul style="list-style:none;padding:0;">';
+  let resultsHtml = '<h3>Vote Results</h3><div style="width:100%;text-align:left;">';
   Object.entries(counts).forEach(([opt, count]) => {
-    resultsHtml += `<li>${opt}: ${count}</li>`;
+    const percent = ((count / totalVotes) * 100).toFixed(1);
+    resultsHtml += `
+      <div style="margin-bottom:8px;">
+        <div style="margin-bottom:4px;">${opt}: ${count} vote${count!==1?'s':''} (${percent}%)</div>
+        <div style="background:#555;width:100%;height:14px;border-radius:4px;overflow:hidden;">
+          <div style="background:gold;width:${percent}%;height:100%;"></div>
+        </div>
+      </div>`;
   });
-  resultsHtml += '</ul>';
+  resultsHtml += '</div>';
 
   container.innerHTML = `<p style="color: gold;">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p>` + resultsHtml;
 }
 </script>
+
 
 
 
