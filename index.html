@@ -443,6 +443,33 @@
     .ticker-inner:hover .ticker-track {
   animation-play-state: paused;
 }
+    #poll-container {
+  background: #222;
+  border: 1px solid #444;
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+#poll-container h3 {
+  margin-top: 0;
+  font-size: 18px;
+  color: gold;
+}
+#poll-container label {
+  display: block;
+  margin: 8px 0;
+  cursor: pointer;
+}
+#poll-container button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: gold;
+  color: #1e1e1e;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
   </style>
 </head>
 <body>
@@ -487,7 +514,9 @@
         <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
         <div class="two-columns-below">
           <div class="column" id="latest-headlines"></div>
-          <div class="column" id="more-headlines"></div>
+          <div class="column" id="more-headlines">
+            <div id="poll-container"></div>
+          </div>
         </div>
       </div>
       <div class="two-columns-right">
@@ -616,6 +645,35 @@
           });
         });
       });
+
+    
+    fetch('/data/poll.json?' + new Date().getTime())
+  .then(r => r.json())
+  .then(poll => {
+    const container = document.getElementById('poll-container');
+    if (!poll || !poll.question || !poll.options) return;
+
+    let html = `<h3>${poll.question}</h3><form id="poll-form">`;
+    poll.options.forEach((opt, i) => {
+      html += `
+        <label>
+          <input type="radio" name="pollOption" value="${opt}">
+          ${opt}
+        </label>`;
+    });
+    html += `<button type="submit">Vote</button></form>`;
+    container.innerHTML = html;
+
+    // Handle vote submission
+    const form = document.getElementById('poll-form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const selected = form.elements['pollOption'].value;
+      alert('Thank you for voting for: ' + selected);
+      // Optionally: POST to a serverless function or Formspree
+    });
+  });
+
 </script>
 
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
