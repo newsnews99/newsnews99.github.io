@@ -528,7 +528,7 @@
     setInterval(updateTime, 60000);
 
     // Load main headline
-    fetch('/data/main-headline.json')
+    fetch('/data/main-headline.json' + new Date().getTime())
       .then(r => r.json())
       .then(data => {
         document.querySelector('.main-headline-img').src = data.image;
@@ -537,7 +537,7 @@
       });
 
     // Load headlines
-    fetch('/data/headlines.json')
+    fetch('/data/headlines.json' + new Date().getTime())
       .then(r => r.json())
       .then(data => {
         const today = new Date();
