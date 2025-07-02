@@ -1,0 +1,54 @@
+fetch('/data/headlines.json')
+  .then(r => r.json())
+  .then(data => {
+    const today = new Date();
+    // Filter for the last 7 days
+    const recent = data.filter(item => {
+      const d = new Date(item.date);
+      const diff = (today - d) / (1000 * 60 * 60 * 24);
+      return diff > 7;
+    });
+
+    // === Ticker ===
+    const track = document.getElementById('ticker-track');
+    track.innerHTML = '';
+    const grp = document.createElement('div');
+    grp.className = 'ticker-group';
+    recent.forEach(item => {
+      const a = document.createElement('a');
+      a.href = item.url;
+      a.textContent = item.title;
+      grp.appendChild(a);
+    });
+    track.appendChild(grp);
+    track.appendChild(grp.cloneNode(true));
+    const dist = grp.offsetWidth, speed = 20;
+    document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
+    document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
+
+    // === Columns ===
+    const col1 = document.getElementById('latest-headlines');
+    const col2 = document.getElementById('more-headlines');
+    const col3 = document.getElementById('right-column-1');
+    const col4 = document.getElementById('right-column-2');
+    [col1, col2, col3, col4].forEach(c => c.innerHTML = '');
+
+    const perCol = Math.ceil(recent.length / 4);
+    [col1, col2, col3, col4].forEach((col, i) => {
+      recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
+        const wrapper = document.createElement('div');
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.title;
+        img.style.width = '100%';
+        img.style.aspectRatio = '16/9';
+        img.style.objectFit = 'cover';
+        const a = document.createElement('a');
+        a.href = item.url;
+        a.textContent = item.title;
+        wrapper.appendChild(img);
+        wrapper.appendChild(a);
+        col.appendChild(wrapper);
+      });
+    });
+  });
