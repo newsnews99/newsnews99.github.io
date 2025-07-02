@@ -448,16 +448,16 @@
 }
 @media (max-width: 768px) {
   .three-columns-below {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px; /* horizontal space between columns */
-}
+    display: grid;
+    grid-template-columns: 1fr; /* stack columns on mobile */
+    gap: 20px; /* vertical space between stacked columns */
+  }
 
-.three-columns-below .column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* vertical space between rows in each column */
-}
+  .three-columns-below .column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* vertical space between headlines in each column */
+  }
 
 
 .three-columns-below .column a {
