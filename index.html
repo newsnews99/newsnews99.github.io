@@ -545,9 +545,8 @@ col3.innerHTML = '';
         const perCol = Math.ceil(recent.length / 3);
         [col1, col2, col3].forEach((col, i) => {
           recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
- const wrapper = document.createElement('div');
-wrapper.className = 'headline-item';
-
+  const wrapper = document.createElement('div');
+  wrapper.className = 'headline-item';
 
   const img = document.createElement('img');
   img.src = item.image;
@@ -567,6 +566,7 @@ wrapper.className = 'headline-item';
   wrapper.appendChild(a);
   col.appendChild(wrapper);
 });
+
 
         });
       });
