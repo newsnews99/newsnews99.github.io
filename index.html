@@ -545,12 +545,20 @@ fetch('/data/main-headline.json')
 fetch('/data/headlines.json')
   .then(r => r.json())
   .then(data => {
+    const today = new Date();
+    // Filter for the last 7 days
+    const recent = data.filter(item => {
+      const d = new Date(item.date);
+      const diff = (today - d) / (1000 * 60 * 60 * 24);
+      return diff <= 7;
+    });
+
     // === Ticker ===
     const track = document.getElementById('ticker-track');
     track.innerHTML = '';
     const grp = document.createElement('div');
     grp.className = 'ticker-group';
-    data.forEach(item => {
+    recent.forEach(item => {
       const a = document.createElement('a');
       a.href = item.url;
       a.textContent = item.title;
@@ -569,9 +577,9 @@ fetch('/data/headlines.json')
     const col4 = document.getElementById('right-column-2');
     [col1, col2, col3, col4].forEach(c => c.innerHTML = '');
 
-    const perCol = Math.ceil(data.length / 4);
+    const perCol = Math.ceil(recent.length / 4);
     [col1, col2, col3, col4].forEach((col, i) => {
-      data.slice(i * perCol, (i + 1) * perCol).forEach(item => {
+      recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
         const wrapper = document.createElement('div');
         const img = document.createElement('img');
         img.src = item.image;
@@ -588,6 +596,7 @@ fetch('/data/headlines.json')
       });
     });
   });
+
 
   </script>
         <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
