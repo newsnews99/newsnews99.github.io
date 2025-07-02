@@ -554,9 +554,86 @@ img { max-width: 100%; height: auto; display: block; }
         col1.innerHTML = '';
 document.getElementById('more-headlines-list').innerHTML = '';
 col3.innerHTML = '';
-        const perCol = Math.ceil(recent.length / 3);
-        [col1, col2, col3].forEach((col, i) => {
-          recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
+        // Split headlines manually
+const col1Headlines = recent.slice(0, 3);               // first 3 go to column 1
+const col2Headlines = recent.slice(3, 6);               // next up to 3 go to column 2
+const col3Headlines = recent.slice(6);                  // the rest go to column 3
+
+// Column 1
+col1.innerHTML = '';
+col1Headlines.forEach(item => {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'headline-item';
+
+  const img = document.createElement('img');
+  img.src = item.image;
+  img.alt = item.title;
+  img.style.width = '33%';
+  img.style.aspectRatio = '16/9';
+  img.style.objectFit = 'cover';
+
+  const a = document.createElement('a');
+  a.href = item.url;
+  a.textContent = item.title;
+  a.style.flex = '1';
+  a.style.textAlign = 'left';
+  a.style.color = 'white';
+
+  wrapper.appendChild(img);
+  wrapper.appendChild(a);
+  col1.appendChild(wrapper);
+});
+
+// Column 2
+document.getElementById('more-headlines-list').innerHTML = '';
+col2Headlines.forEach(item => {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'headline-item';
+
+  const img = document.createElement('img');
+  img.src = item.image;
+  img.alt = item.title;
+  img.style.width = '33%';
+  img.style.aspectRatio = '16/9';
+  img.style.objectFit = 'cover';
+
+  const a = document.createElement('a');
+  a.href = item.url;
+  a.textContent = item.title;
+  a.style.flex = '1';
+  a.style.textAlign = 'left';
+  a.style.color = 'white';
+
+  wrapper.appendChild(img);
+  wrapper.appendChild(a);
+  document.getElementById('more-headlines-list').appendChild(wrapper);
+});
+
+// Column 3
+col3.innerHTML = '';
+col3Headlines.forEach(item => {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'headline-item';
+
+  const img = document.createElement('img');
+  img.src = item.image;
+  img.alt = item.title;
+  img.style.width = '33%';
+  img.style.aspectRatio = '16/9';
+  img.style.objectFit = 'cover';
+
+  const a = document.createElement('a');
+  a.href = item.url;
+  a.textContent = item.title;
+  a.style.flex = '1';
+  a.style.textAlign = 'left';
+  a.style.color = 'white';
+
+  wrapper.appendChild(img);
+  wrapper.appendChild(a);
+  col3.appendChild(wrapper);
+});
+
   const wrapper = document.createElement('div');
   wrapper.className = 'headline-item';
 
