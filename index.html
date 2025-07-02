@@ -498,6 +498,11 @@
   color: gold;
 }
 
+.headlines-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
   </style>
 </head>
@@ -646,6 +651,9 @@ const col3 = document.getElementById('column-3');
 
         const perCol = Math.ceil(recent.length / 3);
 [ col1, col2, col3 ].forEach((col, i) => {
+  const listWrapper = document.createElement('div');
+  listWrapper.className = 'headlines-list';
+
   recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
     const wrapper = document.createElement('div');
     wrapper.className = 'headline-wrapper';
@@ -660,9 +668,12 @@ const col3 = document.getElementById('column-3');
 
     wrapper.appendChild(img);
     wrapper.appendChild(a);
-    col.appendChild(wrapper);
+    listWrapper.appendChild(wrapper);
   });
+
+  col.appendChild(listWrapper);
 });
+
 
 
       });
