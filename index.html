@@ -578,12 +578,12 @@
             const wrapper = document.createElement('div');
             wrapper.style.display = 'flex';
             wrapper.style.gap = '10px';
-            wrapper.style.alignItems = 'center';
+            wrapper.style.alignItems = 'flex-start'; // Top align text with image
 
             const img = document.createElement('img');
             img.src = item.image;
             img.alt = item.title;
-            img.style.width = '33%';
+            img.style.width = '20%';
             img.style.aspectRatio = '16/9';
             img.style.objectFit = 'cover';
 
@@ -591,6 +591,7 @@
             a.href = item.url;
             a.textContent = item.title;
             a.style.flex = '1';
+            a.style.textAlign = 'left';
 
             wrapper.appendChild(img);
             wrapper.appendChild(a);
@@ -598,7 +599,8 @@
           });
         });
       });
-  </script>
+</script>
+
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
     if (window.netlifyIdentity) {
