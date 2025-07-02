@@ -700,7 +700,9 @@ col3Headlines.forEach(item => {
 <script>
   const supabaseUrl = 'https://fpsykizmderxiwovqcwk.supabase.co';
   const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwc3lraXptZGVyeGl3b3ZxY3drIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0OTUyMDksImV4cCI6MjA2NzA3MTIwOX0.GkLxj8sTj9uK_6taRK0HH2b_FobLRUa3UhxfgN7QssA';
-  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+  const { createClient } = supabase;
+const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
 </script>
 
 <!-- 3️⃣ Your vote form script -->
@@ -723,9 +725,10 @@ fetch('/data/poll.json?' + new Date().getTime())
       e.preventDefault();
       const selected = form.elements['pollOption'].value;
 
-      const { error } = await supabase
-        .from('poll_votes')
-        .insert([{ option: selected }]);
+     const { error } = await supabaseClient
+  .from('poll_votes')
+  .insert([{ option: selected }]);
+
 
       if (error) {
         alert('Error saving vote: ' + error.message);
@@ -738,9 +741,10 @@ fetch('/data/poll.json?' + new Date().getTime())
   .catch(e => console.error('Fetch error:', e));
 
 async function loadVoteCounts() {
-  const { data, error } = await supabase
-    .from('poll_votes')
-    .select('option');
+  const { data, error } = await supabaseClient
+  .from('poll_votes')
+  .select('option');
+
 
   if (error) {
     console.error('Error loading votes:', error);
