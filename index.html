@@ -693,7 +693,18 @@ col3Headlines.forEach(item => {
     }
   </script>
 
-  <script>
+ <!-- 1️⃣ Load the Supabase library FIRST -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- 2️⃣ Initialize Supabase -->
+<script>
+  const supabaseUrl = 'https://fpsykizmderxiwovqcwk.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwc3lraXptZGVyeGl3b3ZxY3drIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0OTUyMDksImV4cCI6MjA2NzA3MTIwOX0.GkLxj8sTj9uK_6taRK0HH2b_FobLRUa3UhxfgN7QssA';
+  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+</script>
+
+<!-- 3️⃣ Your vote form script -->
+<script>
 fetch('/data/poll.json?' + new Date().getTime())
   .then(r => r.json())
   .then(poll => {
@@ -712,7 +723,6 @@ fetch('/data/poll.json?' + new Date().getTime())
       e.preventDefault();
       const selected = form.elements['pollOption'].value;
 
-      // Insert vote into Supabase
       const { error } = await supabase
         .from('poll_votes')
         .insert([{ option: selected }]);
@@ -721,15 +731,13 @@ fetch('/data/poll.json?' + new Date().getTime())
         alert('Error saving vote: ' + error.message);
       } else {
         alert('Thank you for voting for: ' + selected);
-        // Optionally refresh vote totals here
         loadVoteCounts();
       }
     });
   })
   .catch(e => console.error('Fetch error:', e));
 
-</script>
-  async function loadVoteCounts() {
+async function loadVoteCounts() {
   const { data, error } = await supabase
     .from('poll_votes')
     .select('option');
@@ -739,27 +747,19 @@ fetch('/data/poll.json?' + new Date().getTime())
     return;
   }
 
-  // Count votes
   const counts = {};
   data.forEach(row => {
     counts[row.option] = (counts[row.option] || 0) + 1;
   });
 
-  // Show counts in an alert or in your page
   let results = 'Vote Totals:\n';
   Object.entries(counts).forEach(([opt, count]) => {
     results += `${opt}: ${count}\n`;
   });
   alert(results);
 }
+</script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-// Replace with your values:
-const supabaseUrl = 'https://fpsykizmderxiwovqcwk.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwc3lraXptZGVyeGl3b3ZxY3drIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0OTUyMDksImV4cCI6MjA2NzA3MTIwOX0.GkLxj8sTj9uK_6taRK0HH2b_FobLRUa3UhxfgN7QssA';
-
-const supabase = createClient(supabaseUrl, supabaseKey);
 
   
 </body>
