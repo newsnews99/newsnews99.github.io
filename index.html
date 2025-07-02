@@ -588,4 +588,28 @@ col3.innerHTML = '';
     }
   </script>
 </body>
+
+  <script>
+fetch('/data/poll.json?' + new Date().getTime())
+  .then(r => r.json())
+  .then(poll => {
+    const container = document.getElementById('poll-container');
+    if (!container) return;
+    if (!poll || !poll.question || !poll.options) return;
+    let html = `<h3>${poll.question}</h3><form id="poll-form">`;
+    poll.options.forEach(opt => {
+      html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
+    });
+    html += `<button type="submit">Vote</button></form>`;
+    container.innerHTML = html;
+    const form = document.getElementById('poll-form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const selected = form.elements['pollOption'].value;
+      alert('Thank you for voting for: ' + selected);
+    });
+  })
+  .catch(e => console.error('Fetch error:', e));
+</script>
+
 </html>
