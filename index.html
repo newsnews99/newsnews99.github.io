@@ -532,6 +532,7 @@ img { max-width: 100%; height: auto; display: block; }
           const diff = (today - d) / (1000 * 60 * 60 * 24);
           return diff <= 7;
         });
+        .catch(e => console.error('Fetch error loading headlines:', e));
         const track = document.getElementById('ticker-track');
         track.innerHTML = '';
         const grp = document.createElement('div');
