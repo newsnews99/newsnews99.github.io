@@ -46,3 +46,14 @@ collections:
     fields:
       - { label: "Question", name: "question", widget: "string" }
       - { label: "Options", name: "options", widget: "list" }
+
+  - name: "poll"
+    label: "Poll"
+    files:
+      - file: "data/poll.json"
+        label: "Poll Data"
+        name: "poll"
+        fields:
+          - {label: "Question", name: "question", widget: "string"}
+          - {label: "Options", name: "options", widget: "list"}
+
