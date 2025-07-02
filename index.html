@@ -409,6 +409,10 @@ img { max-width: 100%; height: auto; display: block; }
   .two-columns-below .column {
   align-content: start;
 }
+#more-headlines-list {
+  display: grid;
+  gap: 15px;
+}
 
 </style>
 </head>
@@ -556,9 +560,9 @@ img { max-width: 100%; height: auto; display: block; }
 document.getElementById('more-headlines-list').innerHTML = '';
 col3.innerHTML = '';
         // Split headlines manually
-const col1Headlines = recent.slice(0, 3);               // first 3 go to column 1
-const col2Headlines = recent.slice(3, 6);               // next up to 3 go to column 2
-const col3Headlines = recent.slice(6);                  // the rest go to column 3
+const col1Headlines = recent.slice(0, 6);               // First 6 go to column 1
+const col2Headlines = recent.slice(6, 9);               // Next 3 go to column 2
+const col3Headlines = recent.slice(9);                  // The rest go to column 3
 
 // Column 1
 col1.innerHTML = '';
