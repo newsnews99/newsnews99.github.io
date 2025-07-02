@@ -105,19 +105,33 @@
       box-sizing: border-box;
     }
     .center-section button {
-      padding: 0 12px;
-      font-size: 15px;
-      background: gold;
-      color: #1e1e1e;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 32px;
-      box-sizing: border-box;
-    }
+  /* Background image and styling */
+  background-image: url('australian_flag.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  /* Keep other styling as before */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  
+  /* Text styling */
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 0 #1e1e1e,
+     1px -1px 0 #1e1e1e,
+    -1px  1px 0 #1e1e1e,
+     1px  1px 0 #1e1e1e;
+}
 
     .time-section {
       display: none;
