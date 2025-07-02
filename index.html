@@ -206,12 +206,13 @@ img { max-width: 100%; height: auto; display: block; }
   display: grid;
   gap: 15px;
 }
-.two-columns-below .column > div,
+.two-columns-below .column > div:not(#poll-container),
 .right-column > div {
   display: flex;
   gap: 10px;
   align-items: flex-start;
 }
+
 .two-columns-below img,
 .right-column img {
   width: 33%;
