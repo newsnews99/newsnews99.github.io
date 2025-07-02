@@ -538,7 +538,9 @@ img { max-width: 100%; height: auto; display: block; }
         const col1 = document.getElementById('latest-headlines');
         const col2 = document.getElementById('more-headlines');
         const col3 = document.getElementById('right-column-1');
-        [col1, col2, col3].forEach(c => c.innerHTML = '');
+        col1.innerHTML = '';
+document.getElementById('more-headlines-list').innerHTML = '';
+col3.innerHTML = '';
         const perCol = Math.ceil(recent.length / 3);
         [col1, col2, col3].forEach((col, i) => {
           recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
