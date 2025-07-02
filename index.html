@@ -647,32 +647,34 @@
       });
 
     
-    fetch('/data/poll.json?' + new Date().getTime())
-  .then(r => r.json())
-  .then(poll => {
-    const container = document.getElementById('poll-container');
-    if (!poll || !poll.question || !poll.options) return;
+    document.addEventListener('DOMContentLoaded', function() {
+  fetch('/data/poll.json?' + new Date().getTime())
+    .then(r => r.json())
+    .then(poll => {
+      const container = document.getElementById('poll-container');
+      if (!container) return;
+      if (!poll || !poll.question || !poll.options) return;
 
-    let html = `<h3>${poll.question}</h3><form id="poll-form">`;
-    poll.options.forEach((opt, i) => {
-      html += `
-        <label>
-          <input type="radio" name="pollOption" value="${opt}">
-          ${opt}
-        </label>`;
-    });
-    html += `<button type="submit">Vote</button></form>`;
-    container.innerHTML = html;
+      let html = `<h3>${poll.question}</h3><form id="poll-form">`;
+      poll.options.forEach((opt, i) => {
+        html += `
+          <label>
+            <input type="radio" name="pollOption" value="${opt}">
+            ${opt}
+          </label>`;
+      });
+      html += `<button type="submit">Vote</button></form>`;
+      container.innerHTML = html;
 
-    // Handle vote submission
-    const form = document.getElementById('poll-form');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const selected = form.elements['pollOption'].value;
-      alert('Thank you for voting for: ' + selected);
-      // Optionally: POST to a serverless function or Formspree
+      const form = document.getElementById('poll-form');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const selected = form.elements['pollOption'].value;
+        alert('Thank you for voting for: ' + selected);
+      });
     });
-  });
+});
+
 
 </script>
 
