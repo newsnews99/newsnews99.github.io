@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
   <style>
     :root { --ticker-distance: 0px; --ticker-duration: 20s; }
-
     html, body {
       margin: 0;
       font-family: 'Bebas Neue', sans-serif;
@@ -37,8 +36,7 @@
     .banner-content {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
-      grid-template-areas:
-        "social logo search";
+      grid-template-areas: "social logo search";
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
@@ -98,7 +96,6 @@
       outline: none;
       background: #fff;
       color: #1e1e1e;
-      box-sizing: border-box;
     }
     .center-section button {
       padding: 0 12px;
@@ -112,7 +109,6 @@
       align-items: center;
       justify-content: center;
       height: 32px;
-      box-sizing: border-box;
     }
     .ticker {
       width: 100%;
@@ -148,14 +144,11 @@
       text-decoration: none;
       font-size: 15px;
       margin-right: 40px;
-      display: inline-block;
     }
-    .ticker-group a:hover {
-      color: gold;
-    }
+    .ticker-group a:hover { color: gold; }
     @keyframes scroll {
       from { transform: translateX(0); }
-      to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
+      to { transform: translateX(calc(-1 * var(--ticker-distance))); }
     }
 
     .container {
@@ -164,7 +157,6 @@
       margin: 0 auto;
       padding-top: calc(53px + 32px + 12px + 10px + 20px);
     }
-
     .main-headline-layout {
       display: flex;
       justify-content: space-between;
@@ -175,16 +167,11 @@
     .main-headline-left {
       display: flex;
       flex-direction: column;
-      flex: 1 1 100%;
+      flex: 1 1 48%;
       text-align: center;
     }
-    .main-headline-img-wrapper {
-      width: 100%;
-    }
-    .main-headline-img {
-      width: 100%;
-      height: auto;
-    }
+    .main-headline-img-wrapper { width: 100%; }
+    .main-headline-img { width: 100%; height: auto; }
     .main-headline-link {
       margin-top: 20px;
       font-size: 28px;
@@ -219,9 +206,7 @@
       color: white;
       text-decoration: none;
     }
-    .headline-item a:hover {
-      color: gold;
-    }
+    .headline-item a:hover { color: gold; }
 
     .footer-wrapper {
       width: 100%;
@@ -242,17 +227,33 @@
       flex: 1 1 0;
       min-width: 0;
     }
-    .footer-section.left img {width: 20vw;}
-    .footer-section.center img {width:120px;margin-bottom:10px;}
-    .footer-section.right h3 {margin:0 0 10px 0;}
-    .footer-section.right form {display:flex;flex-direction:column;gap:10px;width:100%;}
-    .footer-section.right textarea {width:100%;min-height:80px;padding:8px;border:none;border-radius:4px;resize:vertical;box-sizing:border-box;}
-    .footer-section.right button {width:100%;padding:8px;background:#fff;color:#000;font-weight:bold;border:none;border-radius:4px;cursor:pointer;}
-
+    .footer-section.left img { width:33vw;margin-bottom:10px; }
+    .footer-section.center img { width:120px;margin-bottom:10px; }
+    .footer-section.right h3 { margin:0 0 10px 0; }
+    .footer-section.right form {
+      display:flex;flex-direction:column;gap:10px;width:100%;
+    }
+    .footer-section.right textarea {
+      width:100%;min-height:80px;padding:8px;border:none;border-radius:4px;resize:vertical;
+    }
+    .footer-section.right button {
+      width:100%;padding:8px;background:#fff;color:#000;font-weight:bold;border:none;border-radius:4px;cursor:pointer;
+    }
+    .footer-separator {
+      width:100%;
+      max-width:1200px;
+      margin:40px auto 0;
+      border:none;
+      border-top:1px solid #444;
+    }
     @media (max-width:768px){
-      .two-columns-below,.two-columns-right {grid-template-columns:1fr;}
-      .footer-content {flex-direction:column;align-items:center;text-align:center;}
-      .footer-section.left img{width:33vw;margin:0 auto 10px auto;}
+      .two-columns-below,.two-columns-right { grid-template-columns:1fr; }
+      .footer-content {
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+      }
+      .footer-section.left img { width:33vw;margin:0 auto 10px auto; }
     }
   </style>
 </head>
@@ -289,12 +290,11 @@
       </div>
     </div>
   </div>
-
   <div class="container">
     <div class="main-headline-layout">
       <div class="main-headline-left">
         <div class="main-headline-img-wrapper">
-          <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
+          <img src="1st.jpg" alt="Main Headline" class="main-headline-img"/>
         </div>
         <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
         <div class="two-columns-below">
@@ -308,100 +308,126 @@
       </div>
     </div>
   </div>
-
-  <hr class="footer-separator" />
+  <hr class="footer-separator"/>
   <footer>
     <div class="footer-wrapper">
       <div class="footer-content">
         <div class="footer-section left">
-          <img src="australian_flag.png" alt="Australian Flag" />
-          <p>The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.</p>
+          <img src="australian_flag.png" alt="Australian Flag"/>
+          <p>The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia.</p>
         </div>
         <div class="footer-section center">
-          <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
-          <p>Contact:<br><a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a></p>
+          <img src="fedsun__logo_footer.png" alt="Federation Sun Logo"/>
+          <p>Contact:<br/><a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a></p>
           <p>The Federation Sun © 2025</p>
         </div>
         <div class="footer-section right">
           <h3>ANONYMOUS TIPS</h3>
           <form action="https://formspree.io/f/meokpdkj" method="POST">
             <textarea name="tip" placeholder="Type your tip here..."></textarea>
-            <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
+            <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html"/>
             <button type="submit">Send tip</button>
           </form>
         </div>
       </div>
     </div>
   </footer>
-
-<script>
-function updateTime(){
-  const now=new Date();
-  const t=new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
-  const d=new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
-  document.getElementById('current-time').textContent=t+' AEST';
-  document.getElementById('current-date').textContent=d;
-}
-updateTime();setInterval(updateTime,60000);
-
-fetch('/data/main-headline.json').then(r=>r.json()).then(data=>{
-  document.querySelector('.main-headline-img').src=data.image;
-  document.querySelector('.main-headline-link').textContent=data.title;
-  document.querySelector('.main-headline-link').href=data.url;
-});
-
-fetch('/data/headlines.json').then(r=>r.json()).then(data=>{
-  const today=new Date();
-  const recent=data.filter(item=>{
-    const d=new Date(item.date);
-    return (today-d)/(1000*60*60*24)<=7;
-  });
-
-  const track=document.getElementById('ticker-track');
-  track.innerHTML='';
-  const grp=document.createElement('div');
-  grp.className='ticker-group';
-  recent.forEach(item=>{
-    const a=document.createElement('a');
-    a.href=item.url;
-    a.textContent=item.title;
-    grp.appendChild(a);
-  });
-  track.appendChild(grp);
-  track.appendChild(grp.cloneNode(true));
-  const dist=grp.offsetWidth,speed=20;
-  document.documentElement.style.setProperty('--ticker-distance',dist+'px');
-  document.documentElement.style.setProperty('--ticker-duration',(dist/speed)+'s');
-
-  const cols=[document.getElementById('latest-headlines'),document.getElementById('more-headlines'),document.getElementById('right-column-1'),document.getElementById('right-column-2')];
-  cols.forEach(c=>c.innerHTML='');
-  const perCol=Math.ceil(recent.length/4);
-  cols.forEach((col,i)=>{
-    recent.slice(i*perCol,(i+1)*perCol).forEach(item=>{
-      const wrapper=document.createElement('div');
-      wrapper.className='headline-item';
-      const img=document.createElement('img');
-      img.src=item.image;img.alt=item.title;
-      const a=document.createElement('a');
-      a.href=item.url;
-      a.textContent=item.title;
-      wrapper.appendChild(img);
-      wrapper.appendChild(a);
-      col.appendChild(wrapper);
-    });
-  });
-});
-</script>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-if(window.netlifyIdentity){
-  window.netlifyIdentity.on("init",user=>{
-    if(!user){
-      window.netlifyIdentity.on("login",()=>{document.location.href="/admin/";});
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const t = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Melbourne',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }).format(now);
+      const d = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Melbourne',
+        weekday: 'short',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).format(now);
+      document.getElementById('current-time').textContent = t + ' AEST';
+      document.getElementById('current-date').textContent = d;
     }
-  });
-  window.netlifyIdentity.init();
-}
-</script>
+    updateTime();
+    setInterval(updateTime, 60000);
+
+    // Load main headline
+    fetch('/data/main-headline.json')
+      .then(r => r.json())
+      .then(data => {
+        document.querySelector('.main-headline-img').src = data.image;
+        document.querySelector('.main-headline-link').textContent = data.title;
+        document.querySelector('.main-headline-link').href = data.url;
+      });
+
+    // Load headlines for ticker and columns
+    fetch('/data/headlines.json')
+      .then(r => r.json())
+      .then(data => {
+        const today = new Date();
+        const recent = data.filter(item => {
+          const d = new Date(item.date);
+          const diff = (today - d) / (1000 * 60 * 60 * 24);
+          return diff <= 7;
+        });
+
+        // === Ticker ===
+        const track = document.getElementById('ticker-track');
+        track.innerHTML = '';
+        const grp = document.createElement('div');
+        grp.className = 'ticker-group';
+        recent.forEach(item => {
+          const a = document.createElement('a');
+          a.href = item.url;
+          a.textContent = item.title;
+          grp.appendChild(a);
+        });
+        track.appendChild(grp);
+        track.appendChild(grp.cloneNode(true));
+        const dist = grp.offsetWidth, speed = 20;
+        document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
+        document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
+
+        // === Columns ===
+        const col1 = document.getElementById('latest-headlines');
+        const col2 = document.getElementById('more-headlines');
+        const col3 = document.getElementById('right-column-1');
+        const col4 = document.getElementById('right-column-2');
+        [col1, col2, col3, col4].forEach(c => c.innerHTML = '');
+
+        const perCol = Math.ceil(recent.length / 4);
+        [col1, col2, col3, col4].forEach((col, i) => {
+          recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'headline-item';
+            const img = document.createElement('img');
+            img.src = item.image;
+            img.alt = item.title;
+            const a = document.createElement('a');
+            a.href = item.url;
+            a.textContent = item.title;
+            wrapper.appendChild(img);
+            wrapper.appendChild(a);
+            col.appendChild(wrapper);
+          });
+        });
+      });
+  </script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+      window.netlifyIdentity.init();
+    }
+  </script>
 </body>
 </html>
