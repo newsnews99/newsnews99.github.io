@@ -26,11 +26,9 @@ headlines.slice(0, 20).forEach(item => {
 });
 
 // Write feed.xml with XSL reference
-// Write feed.xml with XSL reference
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="/rss-style.xsl"?>
-${feed.end({ pretty: true })}`;
+const xml =
+  '<?xml version="1.0" encoding="UTF-8"?>\n' +
+  '<?xml-stylesheet type="text/xsl" href="/rss-style.xsl"?>\n' +
+  feed.end({ pretty: true });
 
-fs.writeFileSync('feed.xml', xml.trimStart());
-
-console.log('✅ feed.xml generated.');
+fs.writeFileSync('feed.xml', Buffer.from(xml), { encoding: 'utf8' });
