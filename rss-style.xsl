@@ -65,6 +65,30 @@
             </div>
           </div>
         </xsl:for-each>
+        <script>
+  // Convert all GMT dates to AEST
+  document.querySelectorAll('.date').forEach(el => {
+    const gmtText = el.textContent.trim();
+    const parsed = new Date(gmtText);
+    if (!isNaN(parsed)) {
+      // Format as AEST
+      const options = {
+        timeZone: 'Australia/Sydney',
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      };
+      const formatter = new Intl.DateTimeFormat('en-AU', options);
+      el.textContent = formatter.format(parsed) + ' AEST';
+    }
+  });
+</script>
+
       </body>
     </html>
   </xsl:template>
