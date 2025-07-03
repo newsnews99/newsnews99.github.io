@@ -29,6 +29,6 @@ headlines.slice(0, 20).forEach(item => {
 const xml =
   '<?xml version="1.0" encoding="UTF-8"?>\n' +
   '<?xml-stylesheet type="text/xsl" href="/rss-style.xsl"?>\n' +
-  feed.end({ pretty: true });
+  feed.end({ pretty: true, headless: true });
 
 fs.writeFileSync('feed.xml', Buffer.from(xml), { encoding: 'utf8' });
