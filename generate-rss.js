@@ -26,10 +26,11 @@ headlines.slice(0, 20).forEach(item => {
 });
 
 // Write feed.xml with XSL reference
-fs.writeFileSync('feed.xml',
-`<?xml version="1.0" encoding="UTF-8"?>
+// Write feed.xml with XSL reference
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/rss-style.xsl"?>
-${feed.end({ pretty: true })}
-`);
+${feed.end({ pretty: true })}`;
+
+fs.writeFileSync('feed.xml', xml.trimStart());
 
 console.log('✅ feed.xml generated.');
