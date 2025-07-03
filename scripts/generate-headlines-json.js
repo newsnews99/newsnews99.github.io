@@ -16,14 +16,14 @@ const headlines = files
       url: data.url || '#',
       date: data.date || '1970-01-01',
       image: data.image || '',
-      author: data.author || 'The Federation Sun',
-      description: data.description || 'Aenean non mattis sapien, a euismod nisi. Phasellus aliquam, nunc nec convallis pellentesque, eros metus aliquam nibh, a porta ligula ligula tincidunt metus. Vivamus placerat purus sed arcu faucibus finibus. Nam luctus sem.'
+      author: data.author || '',
+      description: data.description || ''
     };
   })
   .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-// Split into latest N and archive
-const N = 40;
+// Split into newest 18 and archive
+const N = 18;
 const latest = headlines.slice(0, N);
 const archive = headlines.slice(N);
 
@@ -33,7 +33,7 @@ fs.writeFileSync('data/headlines.json', JSON.stringify(latest, null, 2));
 // Write archive.json
 fs.writeFileSync('data/archive.json', JSON.stringify(archive, null, 2));
 
-// Load main headline
+// Load main headline if it exists
 if (fs.existsSync('content/main-headline.md')) {
   const content = fs.readFileSync('content/main-headline.md', 'utf-8');
   const parsed = matter(content);
