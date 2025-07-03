@@ -4,8 +4,8 @@ const builder = require('xmlbuilder');
 // Load headlines.json
 const headlines = JSON.parse(fs.readFileSync('data/headlines.json', 'utf-8'));
 
-// Create RSS XML
-const feed = builder.create('rss', { encoding: 'utf-8' }).att('version', '2.0');
+// Create RSS XML without XML declaration
+const feed = builder.create('rss', { encoding: 'utf-8', headless: true }).att('version', '2.0');
 
 const channel = feed.ele('channel');
 channel.ele('title', {}, 'The Federation Sun');
@@ -25,14 +25,14 @@ headlines.slice(0, 20).forEach(item => {
     .ele('guid', {}, item.url);
 });
 
-// Build XML string ourselves to avoid double declarations
+// Build XML string without declaration
 const body = feed.end({ pretty: true, headless: true });
 
-// Compose final XML string
+// Compose final XML string with *one* declaration + stylesheet
 const xml =
   '<?xml version="1.0" encoding="UTF-8"?>\n' +
   '<?xml-stylesheet type="text/xsl" href="/rss-style.xsl"?>\n' +
-  body;
+  body.trim();
 
 // Write to file
-fs.writeFileSync('feed.xml', xml.trim(), { encoding: 'utf8' });
+fs.writeFileSync('feed.xml', xml, { encoding: 'utf8' });
