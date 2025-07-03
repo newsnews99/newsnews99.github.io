@@ -379,12 +379,7 @@ img { max-width: 100%; height: auto; display: block; }
   text-shadow: none !important;
 }
 
-/* Remove text glow from everything on the page */
-*,
-*::before,
-*::after {
-  text-shadow: none !important;
-}
+
 /* Make all text normal weight */
 body,
 body * {
@@ -588,19 +583,27 @@ body * {
 .footer-section.right button.button-flag {
   width: auto;
 }
-button,
+
+  #poll-container,
+#poll-container * {
+  text-shadow: none !important;
+}
+
+  
+  button,
 .button-flag {
   color: white;
   text-shadow:
     -2px -2px 0 #000,
-     0   -2px 0 #000,
      2px -2px 0 #000,
-    -2px  0   0 #000,
-     2px  0   0 #000,
     -2px  2px 0 #000,
+     2px  2px 0 #000,
      0    2px 0 #000,
-     2px  2px 0 #000;
+     2px  0   0 #000,
+     0   -2px 0 #000,
+    -2px  0   0 #000;
 }
+
 
 
 
