@@ -59,4 +59,13 @@
           <div class="item">
             <a href="{link}">
               <xsl:value-of select="title"/>
-            </
+            </a>
+            <div class="date">
+              <xsl:value-of select="pubDate"/>
+            </div>
+          </div>
+        </xsl:for-each>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
