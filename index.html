@@ -373,11 +373,6 @@ img { max-width: 100%; height: auto; display: block; }
   animation-play-state: paused;
 }
 
-/* Remove text-shadow only in poll */
-#poll-container,
-#poll-container * {
-  text-shadow: none !important;
-}
 
 
 /* Make all text normal weight */
@@ -584,24 +579,31 @@ body * {
   width: auto;
 }
 
-  #poll-container,
-#poll-container * {
-  text-shadow: none !important;
-}
-
+ 
   
-  button,
-.button-flag {
+  .button-flag {
+  background-image: url('australian_flag.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  box-sizing: border-box;
   color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
   text-shadow:
     -2px -2px 0 #000,
      2px -2px 0 #000,
     -2px  2px 0 #000,
-     2px  2px 0 #000,
-     0    2px 0 #000,
-     2px  0   0 #000,
-     0   -2px 0 #000,
-    -2px  0   0 #000;
+     2px  2px 0 #000;
 }
 
 
