@@ -1,20 +1,134 @@
-fetch('/data/headlines.json')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Federation Sun Archive</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+<style>
+/* 🎨 Same CSS as homepage */
+/* (You can literally reuse your entire homepage <style> block unchanged) */
+:root { --ticker-distance: 0px; --ticker-duration: 20s; }
+/* [ ...your entire CSS from the homepage here... ] */
+/* For brevity, not repeating all the CSS text again. Just copy-paste it from homepage. */
+</style>
+</head>
+<body>
+
+<!-- ✅ Header and ticker identical to homepage -->
+<div class="banner">
+  <div class="banner-content">
+    <div class="social-section">
+      <div class="time-subsection">
+        <div id="current-time">--:-- AEST</div>
+        <div id="current-date">--/--/----</div>
+      </div>
+      <div class="icons-subsection">
+        <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
+        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
+        <a href="https://t.me/federationsun" target="_blank"><img src="icon_telegram.png" alt="Telegram"></a>
+        <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
+        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
+      </div>
+    </div>
+    <div class="left-section">
+      <img src="fedsun_logo_hoz.png" alt="Logo" class="logo">
+    </div>
+    <div class="center-section">
+      <form id="search-form" action="https://www.google.com/search" method="GET" target="_blank" autocomplete="off">
+        <input type="text" id="search-input" name="q" placeholder="Search...">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+  <div class="ticker">
+    <div class="ticker-inner" id="ticker-inner">
+      <div class="ticker-track" id="ticker-track">Loading headlines…</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="main-headline-layout">
+    <div class="main-headline-left">
+      <a href="#" class="main-headline-link">ARCHIVED HEADLINES</a>
+      <div class="two-columns-below">
+        <div class="column" id="latest-headlines"></div>
+        <div class="column" id="more-headlines">
+          <div id="more-headlines-list"></div>
+        </div>
+      </div>
+    </div>
+    <div class="right-column" id="right-column-1"></div>
+  </div>
+</div>
+
+<hr class="footer-separator" />
+<footer>
+  <div class="footer-wrapper">
+    <div class="footer-content">
+      <div class="footer-section left">
+        <img src="australian_flag.png" alt="Australian Flag" />
+        <p>
+          The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
+        </p>
+      </div>
+      <div class="footer-section center">
+        <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
+        <p>Contact:<br />
+          <a href="mailto:editor@fedsun.news" style="color:white;">editor@fedsun.news</a>
+        </p>
+        <p>The Federation Sun © 2025</p>
+      </div>
+      <div class="footer-section right">
+        <h3>ANONYMOUS TIPS</h3>
+        <form action="https://formspree.io/f/meokpdkj" method="POST">
+          <textarea name="tip" placeholder="Type your tip here..."></textarea>
+          <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
+          <button type="submit">Send tip</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Update time */
+function updateTime() {
+  const now = new Date();
+  const t = new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'Australia/Melbourne',
+    hour: '2-digit', minute: '2-digit', hour12: false
+  }).format(now);
+  const d = new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'Australia/Melbourne',
+    weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).format(now);
+  document.getElementById('current-time').textContent = t + ' AEST';
+  document.getElementById('current-date').textContent = d;
+}
+updateTime();
+setInterval(updateTime, 60000);
+
+/* Fetch headlines JSON and load **only older headlines** */
+fetch('/data/headlines.json?' + new Date().getTime())
   .then(r => r.json())
   .then(data => {
     const today = new Date();
-    // Filter for the last 7 days
-    const recent = data.filter(item => {
+    const archived = data.filter(item => {
       const d = new Date(item.date);
       const diff = (today - d) / (1000 * 60 * 60 * 24);
       return diff > 7;
     });
 
-    // === Ticker ===
+    // Ticker
     const track = document.getElementById('ticker-track');
     track.innerHTML = '';
     const grp = document.createElement('div');
     grp.className = 'ticker-group';
-    recent.forEach(item => {
+    archived.forEach(item => {
       const a = document.createElement('a');
       a.href = item.url;
       a.textContent = item.title;
@@ -26,29 +140,36 @@ fetch('/data/headlines.json')
     document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
     document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
 
-    // === Columns ===
+    // Split into columns
     const col1 = document.getElementById('latest-headlines');
-    const col2 = document.getElementById('more-headlines');
+    const col2 = document.getElementById('more-headlines-list');
     const col3 = document.getElementById('right-column-1');
-    const col4 = document.getElementById('right-column-2');
-    [col1, col2, col3, col4].forEach(c => c.innerHTML = '');
+    [col1, col2, col3].forEach(c => c.innerHTML = '');
 
-    const perCol = Math.ceil(recent.length / 4);
-    [col1, col2, col3, col4].forEach((col, i) => {
-      recent.slice(i * perCol, (i + 1) * perCol).forEach(item => {
+    const perCol = Math.ceil(archived.length / 3);
+    [col1, col2, col3].forEach((col, i) => {
+      archived.slice(i * perCol, (i + 1) * perCol).forEach(item => {
         const wrapper = document.createElement('div');
+        wrapper.className = 'headline-item';
         const img = document.createElement('img');
         img.src = item.image;
         img.alt = item.title;
-        img.style.width = '100%';
+        img.style.width = '33%';
         img.style.aspectRatio = '16/9';
         img.style.objectFit = 'cover';
         const a = document.createElement('a');
         a.href = item.url;
         a.textContent = item.title;
+        a.style.flex = '1';
+        a.style.textAlign = 'left';
         wrapper.appendChild(img);
         wrapper.appendChild(a);
         col.appendChild(wrapper);
       });
     });
-  });
+  })
+  .catch(e => console.error('Fetch error loading headlines:', e));
+</script>
+
+</body>
+</html>
