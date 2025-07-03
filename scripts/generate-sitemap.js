@@ -41,11 +41,17 @@ headlines.forEach(item => {
 
 // Add unique URLs
 urlSet.forEach(url => {
+  if (!url.startsWith(BASE_URL)) {
+    // Skip external links
+    return;
+  }
+
   sitemap += `  <url>\n`;
   sitemap += `    <loc>${url}</loc>\n`;
   sitemap += `    <lastmod>${today}</lastmod>\n`;
   sitemap += `  </url>\n`;
 });
+
 
 sitemap += `</urlset>\n`;
 
