@@ -567,6 +567,32 @@ body * {
 .two-columns-below {
   margin-top: 15px; /* Increase as needed */
 }
+.button-flag {
+  background-image: url('australian_flag.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.button-flag {
+  text-shadow:
+    -1px -1px 0 #1e1e1e,
+     1px -1px 0 #1e1e1e,
+    -1px  1px 0 #1e1e1e,
+     1px  1px 0 #1e1e1e;
+}
 
 </style>
 
@@ -599,7 +625,7 @@ body * {
       <div class="center-section">
         <form id="search-form" action="https://www.google.com/search" method="GET" target="_blank" autocomplete="off">
           <input type="text" id="search-input" name="q" placeholder="Search...">
-          <button type="submit">Search</button>
+          <button type="submit" class="button-flag">Search</button>
         </form>
       </div>
     </div>
@@ -657,7 +683,7 @@ body * {
           <form action="https://formspree.io/f/meokpdkj" method="POST">
             <textarea name="tip" placeholder="Type your tip here..."></textarea>
             <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
-            <button type="submit">Send tip</button>
+            <button type="submit" class="button-flag">Send tip</button>
           </form>
         </div>
       </div>
