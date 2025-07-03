@@ -638,10 +638,13 @@ body * {
 </div>
 
       <div class="center-section">
-        <form id="search-form" action="https://www.google.com/search" method="GET" target="_blank" autocomplete="off">
-          <input type="text" id="search-input" name="q" placeholder="Search...">
-          <button type="submit" class="button-flag">Search</button>
-        </form>
+        <form id="search-form" autocomplete="off">
+  <input type="text" id="search-input" placeholder="Search...">
+  <button type="submit" class="button-flag">Search</button>
+</form>
+<div id="search-filters" style="margin-top:10px;"></div>
+<div id="search-results" style="margin-top:20px;"></div>
+<div id="search-pagination" style="margin-top:10px;"></div>
       </div>
     </div>
     <div class="ticker">
@@ -992,6 +995,125 @@ document.getElementById('search-form').addEventListener('submit', function(e) {
     const searchUrl = 'https://www.google.com/search?q=' + encodedQuery;
     window.open(searchUrl, '_blank');
   }
+});
+</script>
+
+  <script>
+document.getElementById("search-form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const query = document.getElementById("search-input").value.trim().toLowerCase();
+  const resultsContainer = document.getElementById("search-results");
+  const filtersContainer = document.getElementById("search-filters");
+  const paginationContainer = document.getElementById("search-pagination");
+
+  resultsContainer.innerHTML = "<p>Loading results...</p>";
+  filtersContainer.innerHTML = "";
+  paginationContainer.innerHTML = "";
+
+  // Fetch headlines
+  const res = await fetch('/data/headlines.json');
+  const headlines = await res.json();
+
+  // Filter by query
+  let filtered = headlines.filter(item =>
+    item.title.toLowerCase().includes(query) ||
+    (item.description && item.description.toLowerCase().includes(query))
+  );
+
+  if (filtered.length === 0) {
+    resultsContainer.innerHTML = "<p>No results found.</p>";
+    return;
+  }
+
+  // Create date filter
+  const uniqueDates = [...new Set(filtered.map(item => item.date.slice(0,10)))];
+  if (uniqueDates.length > 1) {
+    const select = document.createElement("select");
+    select.innerHTML = `<option value="">Filter by date</option>` +
+      uniqueDates.map(d => `<option value="${d}">${d}</option>`).join("");
+    select.addEventListener("change", function() {
+      const date = this.value;
+      if (date) {
+        filtered = filtered.filter(i => i.date.startsWith(date));
+      } else {
+        filtered = headlines.filter(item =>
+          item.title.toLowerCase().includes(query) ||
+          (item.description && item.description.toLowerCase().includes(query))
+        );
+      }
+      renderPage(1);
+    });
+    filtersContainer.appendChild(select);
+  }
+
+  // Pagination
+  const itemsPerPage = 5;
+  function renderPage(page) {
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageItems = filtered.slice(start, end);
+
+    resultsContainer.innerHTML = "";
+    pageItems.forEach(item => {
+      const wrapper = document.createElement("div");
+      wrapper.style.borderBottom = "1px solid #444";
+      wrapper.style.padding = "10px 0";
+      wrapper.style.textAlign = "left";
+
+      const titleLink = document.createElement("a");
+      titleLink.href = item.url;
+      titleLink.target = "_blank";
+      titleLink.style.color = "white";
+      titleLink.style.textDecoration = "none";
+      titleLink.style.fontFamily = "'Oswald', sans-serif";
+      titleLink.style.fontSize = "20px";
+      titleLink.style.display = "block";
+      titleLink.style.marginBottom = "4px";
+
+      // Highlight keywords
+      const highlightedTitle = item.title.replace(new RegExp(query, "gi"), match => `<span style="background:gold;color:black;">${match}</span>`);
+      titleLink.innerHTML = highlightedTitle;
+
+      const desc = document.createElement("div");
+      desc.style.fontSize = "14px";
+      desc.style.color = "#ccc";
+      desc.style.fontFamily = "'Roboto', sans-serif";
+      desc.innerHTML = (item.description || "").replace(new RegExp(query, "gi"), match => `<span style="background:gold;color:black;">${match}</span>`);
+
+      const meta = document.createElement("div");
+      meta.style.fontSize = "12px";
+      meta.style.color = "#aaa";
+      meta.textContent = `Published: ${item.date.slice(0,10)}${item.author ? " — " + item.author : ""}`;
+
+      wrapper.appendChild(titleLink);
+      wrapper.appendChild(desc);
+      wrapper.appendChild(meta);
+
+      resultsContainer.appendChild(wrapper);
+    });
+
+    // Pagination buttons
+    const totalPages = Math.ceil(filtered.length / itemsPerPage);
+    paginationContainer.innerHTML = "";
+    if (totalPages > 1) {
+      for (let i=1; i<=totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        btn.style.margin = "0 4px";
+        btn.style.padding = "4px 8px";
+        btn.style.background = "#333";
+        btn.style.color = "white";
+        btn.style.border = "1px solid #555";
+        btn.style.cursor = "pointer";
+        if (i === page) btn.style.background = "gold";
+        btn.addEventListener("click", ()=>renderPage(i));
+        paginationContainer.appendChild(btn);
+      }
+    }
+  }
+
+  renderPage(1);
 });
 </script>
 
