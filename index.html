@@ -470,6 +470,13 @@ img { max-width: 100%; height: auto; display: block; }
   color: white;
 }
 
+  .poll-thank-you {
+  color: white;
+}
+.poll-thank-you b {
+  color: white;
+}
+
   
 </style>
 </head>
@@ -772,7 +779,8 @@ fetch('/data/poll.json?' + new Date().getTime())
 
 async function loadVoteCounts(votedOption) {
   const container = document.getElementById('poll-container');
-  container.innerHTML = `<p style="color: gold;">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p><p>Loading results...</p>`;
+  container.innerHTML = `<p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p><p>Loading results...</p>`;
+
 
   const { data, error } = await supabaseClient
     .from('poll_votes')
@@ -806,7 +814,8 @@ async function loadVoteCounts(votedOption) {
   });
   resultsHtml += '</div>';
 
-  container.innerHTML = `<p style="color: gold;">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p>` + resultsHtml;
+  container.innerHTML = `<p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p>` + resultsHtml;
+
 }
 </script>
 
