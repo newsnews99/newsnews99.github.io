@@ -3,17 +3,12 @@
 const fs = require("fs");
 const path = require("path");
 
-// Path to your headlines JSON
 const headlinesPath = path.join(__dirname, "../data/headlines.json");
 const headlines = JSON.parse(fs.readFileSync(headlinesPath, "utf-8"));
 
-// Base URL of your site
 const BASE_URL = "https://fedsun.news";
-
-// Today's date in YYYY-MM-DD
 const today = new Date().toISOString().split("T")[0];
 
-// Start XML
 let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
 sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
@@ -23,18 +18,37 @@ sitemap += `    <loc>${BASE_URL}/</loc>\n`;
 sitemap += `    <lastmod>${today}</lastmod>\n`;
 sitemap += `  </url>\n`;
 
-// Add headlines
+// Collect unique URLs
+const urlSet = new Set();
+
 headlines.forEach(item => {
+  if (!item.url) return;
+
+  let fullUrl = "";
+  if (item.url.startsWith("http")) {
+    // Absolute URL, use as-is
+    fullUrl = item.url;
+  } else if (item.url.startsWith("/")) {
+    // Relative URL
+    fullUrl = BASE_URL + item.url;
+  } else {
+    // Invalid URL (e.g., empty or missing slash)
+    return;
+  }
+
+  urlSet.add(fullUrl);
+});
+
+// Add unique URLs
+urlSet.forEach(url => {
   sitemap += `  <url>\n`;
-  sitemap += `    <loc>${BASE_URL}${item.url}</loc>\n`;
-  sitemap += `    <lastmod>${item.date ? item.date.split("T")[0] : today}</lastmod>\n`;
+  sitemap += `    <loc>${url}</loc>\n`;
+  sitemap += `    <lastmod>${today}</lastmod>\n`;
   sitemap += `  </url>\n`;
 });
 
-// Close XML
 sitemap += `</urlset>\n`;
 
-// Output to public/sitemap.xml
 const outputPath = path.join(__dirname, "../sitemap.xml");
 fs.writeFileSync(outputPath, sitemap, "utf-8");
 
