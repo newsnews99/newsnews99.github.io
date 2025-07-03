@@ -699,6 +699,28 @@ col3Headlines.forEach(item => {
   wrapper.appendChild(a);
   col3.appendChild(wrapper);
 });
+// Add "View Archive" link centered below headlines
+const archiveLinkWrapper = document.createElement('div');
+archiveLinkWrapper.style.textAlign = 'center';
+archiveLinkWrapper.style.marginTop = '20px';
+
+const archiveLink = document.createElement('a');
+archiveLink.href = 'https://fedsun.news/archive';
+archiveLink.textContent = 'View All Archived Headlines';
+archiveLink.style.color = 'white';
+archiveLink.style.textDecoration = 'none';
+archiveLink.style.fontSize = '18px';
+
+archiveLink.addEventListener('mouseover', () => {
+  archiveLink.style.color = 'gold';
+});
+archiveLink.addEventListener('mouseout', () => {
+  archiveLink.style.color = 'white';
+});
+
+archiveLinkWrapper.appendChild(archiveLink);
+col3.appendChild(archiveLinkWrapper);
+
 
 
   
