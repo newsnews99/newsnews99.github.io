@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
 <style>
 :root { --ticker-distance: 0px; --ticker-duration: 20s; }
-
 html, body {
   margin: 0;
   font-family: 'Bebas Neue', sans-serif;
@@ -17,7 +16,6 @@ html, body {
   box-sizing: border-box;
   overflow-x: hidden;
 }
-
 body {
   display: flex;
   flex-direction: column;
@@ -25,9 +23,7 @@ body {
   text-align: center;
   padding: 0;
 }
-
 img { max-width: 100%; height: auto; display: block; }
-
 .banner {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -35,7 +31,6 @@ img { max-width: 100%; height: auto; display: block; }
   box-shadow: 0 2px 4px rgba(0,0,0,0.4);
   z-index: 1000;
 }
-
 .banner-content {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -46,65 +41,63 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 12px 0;
   column-gap: 8px;
 }
-
-/* (Other general styles remain unchanged...) */
-
-.ticker-inner:hover .ticker-track {
-  animation-play-state: paused;
-}
-
-/* Poll Container Styles */
-#poll-container {
+.social-section {
+  grid-area: social;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background: #222;
-  border: 1px solid #444;
-  padding: 16px;
-  margin-bottom: 20px;
-  border-radius: 4px;
+  align-items: flex-start;
+  gap: 4px;
 }
-
-#poll-container h3 {
-  margin: 0 0 12px 0;
-  font-size: 18px;
-  color: gold;
-  text-shadow: none !important;
+.time-subsection {
+  font-size: 13px;
+  line-height: 1;
+  text-align: left;
+  display: block;
 }
-
-#poll-container label {
-  display: inline-flex;
+.icons-subsection {
+  display: flex;
+  gap: 8px;
   align-items: center;
-  gap: 6px;
-  margin: 4px 0;
+}
+.icons-subsection img {
+  height: 24px;
+  width: auto;
+}
+.left-section {
+  grid-area: logo;
+  display: flex;
   justify-content: center;
-  cursor: pointer;
-  color: white;
 }
-
-#poll-container form {
+.left-section img.logo {
+  height: 53px;
+  width: auto;
+}
+.center-section {
+  grid-area: search;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-self: end;
+  gap: 6px;
+  max-width: 300px;
+  width: 100%;
 }
-
-#poll-container p {
-  color: white;
-  text-shadow: none !important;
+.center-section form {
+  display: flex;
+  width: 100%;
+  gap: 6px;
 }
-
-#poll-container .poll-thank-you {
-  color: white;
-  text-shadow: none !important;
+.center-section input[type="text"] {
+  flex: 1;
+  height: 32px;
+  padding: 4px 8px;
+  font-size: 15px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  background: #fff;
+  color: #1e1e1e;
+  box-sizing: border-box;
 }
-
-#poll-container .poll-thank-you b {
-  color: white;
-}
-
-/* Button Flag */
-.button-flag {
+.center-section button {
   background-image: url('australian_flag.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -121,15 +114,270 @@ img { max-width: 100%; height: auto; display: block; }
   color: white;
   font-size: 15px;
   font-weight: bold;
-  margin-top: 12px;
-  text-shadow: none !important;
+  text-shadow:
+    -1px -1px 0 #1e1e1e,
+     1px -1px 0 #1e1e1e,
+    -1px  1px 0 #1e1e1e,
+     1px  1px 0 #1e1e1e;
+}
+.ticker {
+  width: 100%;
+  overflow: hidden;
+  height: 32px;
+  position: relative;
+  z-index: 999;
+}
+.ticker-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #222;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex;
+  will-change: transform;
+  animation: scroll var(--ticker-duration) linear infinite;
+  width: max-content;
+}
+.ticker-group {
+  display: flex;
+  white-space: nowrap;
+}
+.ticker-group a {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  margin-right: 40px;
+  display: inline-block;
+}
+.ticker-group a:hover {
+  color: gold;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
+}
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: calc(53px + 32px + 12px + 10px + 20px);
+}
+.main-headline-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+  align-items: start;
+}
+.main-headline-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.main-headline-img-wrapper {
+  width: 100%;
+}
+.main-headline-img {
+  width: 100%;
+  height: auto;
+}
+.main-headline-link {
+  font-size: 28px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+.main-headline-link:hover {
+  color: gold;
+}
+.two-columns-below {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+.two-columns-below .column,
+.right-column {
+  display: grid;
+  gap: 15px;
+}
+.two-columns-below .column > div.headline-item,
+.right-column > div {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.two-columns-below img,
+.right-column img {
+  width: 33%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.two-columns-below a,
+.right-column a {
+  line-height: 1.2;
+}
+.footer-wrapper {
+  width: 100%;
+  background: #1e1e1e;
+  padding: 30px 0;
+}
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  flex-wrap: nowrap;
+  text-align: left;
+}
+.footer-section {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.footer-section.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.footer-section.left img {
+  width: 33vw;
+  margin-bottom: 10px;
+}
+.footer-section.center img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+.footer-section.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.footer-section.right h3 {
+  margin: 0 0 10px 0;
+}
+.footer-section.right form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.footer-section.right textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+.footer-section.right button {
+  width: 100%;
+  padding: 8px;
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.footer-separator {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  border: none;
+  border-top: 1px solid #444;
+}
+@media (max-width: 768px) {
+  .banner-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "logo right"
+      "search search";
+    row-gap: 8px;
+    column-gap: 8px;
+    align-items: start;
+    padding: 8px;
+  }
+  .social-section {
+    grid-area: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 4px;
+  }
+  .time-subsection {
+    width: 100%;
+    text-align: right;
+  }
+  .left-section {
+    grid-area: logo;
+    justify-content: flex-start;
+  }
+  .center-section {
+    grid-area: search;
+    width: 100%;
+    max-width: 100%;
+  }
+  .container,
+  .main-headline-layout,
+  .two-columns-below,
+  .right-column,
+  .footer-content,
+  .footer-section,
+  .footer-section.right form,
+  .footer-section.right textarea,
+  .footer-section.right button {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .main-headline-layout {
+    grid-template-columns: 1fr;
+  }
+  .two-columns-below {
+    grid-template-columns: 1fr;
+  }
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-section {
+    padding: 0 16px;
+    max-width: 100%;
+  }
+  .footer-section.left img {
+    width: 33vw;
+    margin: 0 auto 10px auto;
+  }
+  .footer-section.left { order: 1; }
+  .footer-section.right { order: 2; }
+  .footer-section.center { order: 3; }
+}
+.ticker-inner:hover .ticker-track {
+  animation-play-state: paused;
 }
 
-/* Make sure all h3 and p in poll have no shadow */
+/* POLL ONLY: Remove text shadow */
 #poll-container h3,
 #poll-container p,
-#poll-container .poll-thank-you {
+#poll-container label,
+#poll-container .poll-thank-you,
+#poll-container .poll-thank-you b {
   text-shadow: none !important;
+  color: white;
 }
 </style>
 
