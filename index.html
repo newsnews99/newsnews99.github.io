@@ -444,6 +444,31 @@ img { max-width: 100%; height: auto; display: block; }
   margin-top: 12px;
 }
 
+  .button-flag {
+  background-image: url('australian_flag.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 0 #1e1e1e,
+     1px -1px 0 #1e1e1e,
+    -1px  1px 0 #1e1e1e,
+     1px  1px 0 #1e1e1e;
+}
+
+  
 </style>
 </head>
 <body>
@@ -719,7 +744,8 @@ fetch('/data/poll.json?' + new Date().getTime())
     poll.options.forEach(opt => {
       html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
     });
-    html += `<button type="submit">Vote</button></form>`;
+    html += `<button type="submit" class="button-flag">Vote</button></form>`;
+
     container.innerHTML = html;
 
     const form = document.getElementById('poll-form');
