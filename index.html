@@ -393,6 +393,13 @@ img { max-width: 100%; height: auto; display: block; }
 #poll-container *::after {
   text-shadow: none !important;
 }
+#poll-container * {
+  text-shadow: none !important;
+}
+
+  #poll-container .button-flag {
+  text-shadow: none !important;
+}
 
   
 </style>
@@ -443,7 +450,8 @@ img { max-width: 100%; height: auto; display: block; }
         <div class="two-columns-below">
           <div class="column" id="latest-headlines"></div>
           <div class="column" id="more-headlines">
-  <div id="poll-container" class="headline-item"></div>
+  <div id="poll-container"></div>
+
   <div id="more-headlines-list"></div>
 </div>
 
