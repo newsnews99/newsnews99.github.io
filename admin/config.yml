@@ -17,6 +17,8 @@ collections:
       - { label: "URL", name: "url", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Image", name: "image", widget: "image" }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
 
   - name: "mainheadline"
     label: "Main Headline"
