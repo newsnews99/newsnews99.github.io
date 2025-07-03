@@ -15,7 +15,9 @@ const headlines = files
       title: data.title || '',
       url: data.url || '#',
       date: data.date || '1970-01-01',
-      image: data.image || ''
+      image: data.image || '',
+      author: data.author || 'The Federation Sun',
+      description: data.description || 'Aenean non mattis sapien, a euismod nisi. Phasellus aliquam, nunc nec convallis pellentesque, eros metus aliquam nibh, a porta ligula ligula tincidunt metus. Vivamus placerat purus sed arcu faucibus finibus. Nam luctus sem.'
     };
   })
   .sort((a, b) => new Date(b.date) - new Date(a.date));
