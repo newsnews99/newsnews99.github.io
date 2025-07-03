@@ -580,7 +580,6 @@ body * {
 </footer>
 
 <script>
-/* Update time */
 function updateTime() {
   const now = new Date();
   const t = new Intl.DateTimeFormat('en-AU', {
@@ -597,27 +596,79 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 60000);
 
-/* Fetch headlines JSON and load **only older headlines** */
+// Utility to format date
+function formatDateAEST(dateStr) {
+  const date = new Date(dateStr);
+  return new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'Australia/Sydney',
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  }).format(date) + ' AEST';
+}
+
+// Create headline element
+function createHeadlineItem(item) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'headline-item';
+  wrapper.style.display = 'flex';
+  wrapper.style.gap = '10px';
+  wrapper.style.alignItems = 'flex-start';
+
+  const img = document.createElement('img');
+  img.src = item.image;
+  img.alt = item.title;
+  img.style.width = '33%';
+  img.style.aspectRatio = '16/9';
+  img.style.objectFit = 'cover';
+  img.style.flexShrink = '0';
+
+  const content = document.createElement('div');
+  content.style.flex = '1';
+  content.style.textAlign = 'left';
+
+  const link = document.createElement('a');
+  link.href = item.url;
+  link.textContent = item.title;
+  link.style.color = 'white';
+  link.style.display = 'block';
+  link.style.marginBottom = '4px';
+
+  const meta = document.createElement('div');
+  meta.style.fontSize = '12px';
+  meta.style.color = '#ccc';
+  meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
+
+  const desc = document.createElement('div');
+  desc.style.fontSize = '14px';
+  desc.style.color = '#eee';
+  desc.textContent = item.description || '';
+
+  content.appendChild(link);
+  content.appendChild(meta);
+  content.appendChild(desc);
+
+  wrapper.appendChild(img);
+  wrapper.appendChild(content);
+
+  return wrapper;
+}
+
+// Load headlines.json for the ticker
 fetch('/data/headlines.json?' + new Date().getTime())
   .then(r => r.json())
   .then(data => {
     const today = new Date();
-
-    // Define recent (for ticker)
     const recent = data.filter(item => {
       const d = new Date(item.date);
       const diff = (today - d) / (1000 * 60 * 60 * 24);
       return diff <= 7;
     });
 
-    // Define archived (for columns)
-    const archived = data.filter(item => {
-      const d = new Date(item.date);
-      const diff = (today - d) / (1000 * 60 * 60 * 24);
-      return diff > 7;
-    });
-
-    // === Ticker ===
     const track = document.getElementById('ticker-track');
     track.innerHTML = '';
     const grp = document.createElement('div');
@@ -633,38 +684,28 @@ fetch('/data/headlines.json?' + new Date().getTime())
     const dist = grp.offsetWidth, speed = 20;
     document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
     document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
+  })
+  .catch(e => console.error('Ticker fetch error:', e));
 
-    // === Columns ===
+// Load archive.json for columns
+fetch('/data/archive.json?' + new Date().getTime())
+  .then(r => r.json())
+  .then(data => {
     const col1 = document.getElementById('latest-headlines');
     const col2 = document.getElementById('more-headlines-list');
     const col3 = document.getElementById('right-column-1');
     [col1, col2, col3].forEach(c => c.innerHTML = '');
 
-    const perCol = Math.ceil(archived.length / 3);
+    const perCol = Math.ceil(data.length / 3);
     [col1, col2, col3].forEach((col, i) => {
-      archived.slice(i * perCol, (i + 1) * perCol).forEach(item => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'headline-item';
-        const img = document.createElement('img');
-        img.src = item.image;
-        img.alt = item.title;
-        img.style.width = '33%';
-        img.style.aspectRatio = '16/9';
-        img.style.objectFit = 'cover';
-        const a = document.createElement('a');
-        a.href = item.url;
-        a.textContent = item.title;
-        a.style.flex = '1';
-        a.style.textAlign = 'left';
-        wrapper.appendChild(img);
-        wrapper.appendChild(a);
-        col.appendChild(wrapper);
+      data.slice(i * perCol, (i + 1) * perCol).forEach(item => {
+        col.appendChild(createHeadlineItem(item));
       });
     });
   })
-  .catch(e => console.error('Fetch error loading headlines:', e));
-
+  .catch(e => console.error('Archive fetch error:', e));
 </script>
+
 
 </body>
 </html>
