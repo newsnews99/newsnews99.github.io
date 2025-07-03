@@ -6,6 +6,8 @@
 <title>Federation Sun 2025</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
 <style>
 :root { --ticker-distance: 0px; --ticker-duration: 20s; }
 html, body {
@@ -481,6 +483,12 @@ body * {
 .footer-section a:focus {
   outline: none;
 }
+/* Use Roboto for headline descriptions */
+.headline-description {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
 
 </style>
 
@@ -686,9 +694,9 @@ body * {
   meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
 
   const desc = document.createElement('div');
-  desc.style.fontSize = '14px';
-  desc.style.color = '#eee';
-  desc.textContent = item.description || '';
+desc.className = 'headline-description';
+desc.textContent = item.description || '';
+
 
   content.appendChild(link);
   content.appendChild(meta);
