@@ -1,0 +1,33 @@
+name: Generate RSS Feed
+
+on:
+  push:
+    paths:
+      - 'data/headlines.json'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install xmlbuilder
+
+      - name: Generate RSS feed
+        run: node generate-rss.js
+
+      - name: Commit feed.xml
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add feed.xml
+          git commit -m "Update feed.xml" || echo "No changes to commit"
+          git push
