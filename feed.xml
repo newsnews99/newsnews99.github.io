@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/rss-style.xsl"?>
-<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
   <channel>
     <title>The Federation Sun</title>
     <link>https://fedsun.news</link>
     <description>Latest headlines and updates from The Federation Sun.</description>
     <language>en-au</language>
-    <lastBuildDate>Thu, 03 Jul 2025 05:55:22 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 03 Jul 2025 05:59:32 GMT</lastBuildDate>
     <item>
       <title>Vivamus Fringilla Leo Aenean Vehicula Quam</title>
       <link>https://x.com/home</link>
