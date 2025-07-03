@@ -984,19 +984,7 @@ async function loadVoteCounts(votedOption) {
 
 
 
-<script>
-document.getElementById('search-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const input = document.getElementById('search-input');
-  const query = input.value.trim();
-  if (query) {
-    const siteQuery = 'site:fedsun.news ' + query;
-    const encodedQuery = encodeURIComponent(siteQuery);
-    const searchUrl = 'https://www.google.com/search?q=' + encodedQuery;
-    window.open(searchUrl, '_blank');
-  }
-});
-</script>
+
 
   <script>
 document.getElementById("search-form").addEventListener("submit", async function(e) {
