@@ -387,6 +387,12 @@ img { max-width: 100%; height: auto; display: block; }
 #poll-container *:after {
   text-shadow: none !important;
 }
+/* Remove text-shadow from all text inside #poll-container, including buttons */
+#poll-container *,
+#poll-container *::before,
+#poll-container *::after {
+  text-shadow: none !important;
+}
 
   
 </style>
