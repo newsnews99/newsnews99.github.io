@@ -1,64 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-  <xsl:output method="html" indent="yes"/>
-  <xsl:template match="/rss">
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:output method="html" encoding="UTF-8"/>
+
+  <xsl:template match="/">
     <html>
       <head>
         <title>Federation Sun RSS Feed</title>
         <style>
           body {
-            font-family: 'Bebas Neue', sans-serif;
             background: #1e1e1e;
             color: white;
+            font-family: 'Bebas Neue', sans-serif;
             margin: 0;
-            padding: 20px;
-          }
-          a {
-            color: gold;
-            text-decoration: none;
-          }
-          a:hover {
-            text-decoration: underline;
+            padding: 40px;
           }
           h1 {
             text-align: center;
-            margin-bottom: 40px;
+            font-size: 32px;
+          }
+          a.home-link {
+            display: block;
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+          }
+          a.home-link:hover {
+            color: gold;
           }
           .item {
             border-bottom: 1px solid #444;
-            padding: 10px 0;
-            margin-bottom: 20px;
+            padding: 20px 0;
           }
-          .item-title {
+          .title {
             font-size: 20px;
-            margin-bottom: 5px;
+            color: gold;
+            text-decoration: none;
           }
-          .item-date {
-            font-size: 12px;
-            color: #aaa;
-            margin-bottom: 5px;
-          }
-          .item-description {
+          .pubDate {
             font-size: 14px;
-            line-height: 1.4;
+            color: #ccc;
           }
         </style>
       </head>
       <body>
-        <h1>Federation Sun RSS Feed</h1>
-        <xsl:for-each select="channel/item">
+        <h1>FEDERATION SUN RSS FEED</h1>
+        <a class="home-link" href="https://fedsun.news">← Back to Homepage</a>
+        <xsl:for-each select="rss/channel/item">
           <div class="item">
-            <div class="item-title">
-              <a href="{link}">
-                <xsl:value-of select="title"/>
-              </a>
-            </div>
-            <div class="item-date">
+            <a class="title">
+              <xsl:attribute name="href">
+                <xsl:value-of select="link"/>
+              </xsl:attribute>
+              <xsl:value-of select="title"/>
+            </a>
+            <div class="pubDate">
               <xsl:value-of select="pubDate"/>
-            </div>
-            <div class="item-description">
-              <xsl:value-of select="description"/>
             </div>
           </div>
         </xsl:for-each>
