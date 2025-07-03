@@ -25,10 +25,14 @@ headlines.slice(0, 20).forEach(item => {
     .ele('guid', {}, item.url);
 });
 
-// Write feed.xml with XSL reference
+// Build XML string ourselves to avoid double declarations
+const body = feed.end({ pretty: true, headless: true });
+
+// Compose final XML string
 const xml =
   '<?xml version="1.0" encoding="UTF-8"?>\n' +
   '<?xml-stylesheet type="text/xsl" href="/rss-style.xsl"?>\n' +
-  feed.end({ pretty: true, headless: true });
+  body;
 
-fs.writeFileSync('feed.xml', Buffer.from(xml), { encoding: 'utf8' });
+// Write to file
+fs.writeFileSync('feed.xml', xml.trim(), { encoding: 'utf8' });
