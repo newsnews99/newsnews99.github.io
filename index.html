@@ -216,9 +216,10 @@ img { max-width: 100%; height: auto; display: block; }
 .two-columns-below .column > div.headline-item,
 .right-column > div {
   display: flex;
-  gap: 10px;
-  align-items: flex-start;
+  flex-direction: column; /* stack vertically */
+  gap: 8px;
 }
+
 .two-columns-below img,
 .right-column img {
   width: 33%;
