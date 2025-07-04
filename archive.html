@@ -1000,5 +1000,76 @@ link.className = 'archive-headline-link'; // Add class
   });
 });
 </script>
+
+<script>
+Promise.all([
+  fetch('/data/headlines.json?' + new Date().getTime()).then(r => r.json()),
+  fetch('/data/ticker_extra.json?' + new Date().getTime()).then(r => r.json())
+])
+.then(([headlines, extras]) => {
+  const today = new Date();
+  const recent = headlines
+    .filter(item => {
+      const d = new Date(item.date);
+      const diff = (today - d) / (1000 * 60 * 60 * 24);
+      return diff <= 7;
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  const track = document.getElementById('ticker-track');
+  track.innerHTML = '';
+
+  function createTickerGroup(extras, headlines) {
+    const grp = document.createElement('div');
+    grp.className = 'ticker-group';
+
+    extras.forEach(item => {
+      const sep = document.createElement('div');
+      sep.className = 'ticker-separator';
+      const img = document.createElement('img');
+      img.src = '/flag_au1.png';
+      img.alt = 'AU Flag';
+      sep.appendChild(img);
+      grp.appendChild(sep);
+
+      const span = document.createElement('span');
+      span.textContent = item.text;
+      span.className = 'ticker-extra';
+      grp.appendChild(span);
+    });
+
+    headlines.forEach(item => {
+      const sep = document.createElement('div');
+      sep.className = 'ticker-separator';
+      const img = document.createElement('img');
+      img.src = '/flag_au1.png';
+      img.alt = 'AU Flag';
+      sep.appendChild(img);
+      grp.appendChild(sep);
+
+      const a = document.createElement('a');
+      a.href = item.url;
+      a.textContent = item.title;
+      grp.appendChild(a);
+    });
+
+    return grp;
+  }
+
+  const group1 = createTickerGroup(extras, recent.slice(0, 6));
+  const group2 = createTickerGroup(extras, recent.slice(0, 6));
+
+  track.appendChild(group1);
+  track.appendChild(group2);
+
+  const dist = track.scrollWidth / 2;
+  const speed = 20;
+  document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
+  document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
+})
+.catch(e => console.error('Fetch error loading headlines:', e));
+</script>
+
+  
 </body>
 </html>
