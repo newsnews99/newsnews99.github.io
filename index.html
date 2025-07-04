@@ -656,15 +656,17 @@ body * {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 0 12px;
-  height: 32px; /* Align with ticker height */
+  height: 32px;           /* Same height as ticker */
+  flex-shrink: 0;         /* Prevent shrinking */
+  margin: 0 12px;         /* Horizontal gap */
 }
 
 .ticker-separator img {
-  height: 16px;
+  height: 16px;           /* Reasonable icon size */
   width: auto;
   display: block;
 }
+
 
 
 </style>
