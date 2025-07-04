@@ -835,9 +835,12 @@ body * {
         document.querySelector('.main-headline-link').href = data.url;
       });
 
-    fetch('/data/headlines.json?' + new Date().getTime())
-  .then(r => r.json())
-  .then(data => {
+    Promise.all([
+  fetch('/data/headlines.json?' + new Date().getTime()).then(r => r.json()),
+  fetch('/data/ticker_extra.json?' + new Date().getTime()).then(r => r.json())
+])
+.then(([headlines, extras]) => {
+
     const today = new Date();
     const recent = data.filter(item => {
       const d = new Date(item.date);
@@ -845,37 +848,43 @@ body * {
       return diff <= 7;
     });
 
+  const tickerItems = [
+    ...recent.map(h => ({ type: 'headline', data: h })),
+    ...extras.map(e => ({ type: 'extra', data: e }))
+  ];
+
     // Update ticker
     const track = document.getElementById('ticker-track');
     track.innerHTML = '';
     const grp = document.createElement('div');
     grp.className = 'ticker-group';
-    recent.forEach((item, index) => {
-  // Create the link
-  const a = document.createElement('a');
-  a.href = item.url;
-  a.textContent = item.title;
-  grp.appendChild(a);
+    tickerItems.forEach((item, index) => {
+  if (item.type === 'headline') {
+    const a = document.createElement('a');
+    a.href = item.data.url;
+    a.textContent = item.data.title;
+    grp.appendChild(a);
+  } else if (item.type === 'extra') {
+    const div = document.createElement('div');
+    div.textContent = item.data.text;
+    div.style.color = 'white';
+    div.style.fontSize = '15px';
+    div.style.marginRight = '40px';
+    grp.appendChild(div);
+  }
 
-  // Add the emoji separator unless it's the last item
-  // Add the emoji separator unless it's the last item
-if (index < recent.length - 1) {
-  const sep = document.createElement('div');
-  sep.className = 'ticker-separator';
-
-  const img = document.createElement('img');
-  img.src = '/flag_au1.png';
-  img.alt = 'AU Flag';
-
-  console.log('Adding flag separator after headline:', item.title);
-
-  sep.appendChild(img);
-  grp.appendChild(sep);
-}
-
-
-
+  // Add flag separator unless last item
+  if (index < tickerItems.length - 1) {
+    const sep = document.createElement('div');
+    sep.className = 'ticker-separator';
+    const img = document.createElement('img');
+    img.src = '/flag_au.png';
+    img.alt = 'AU Flag';
+    sep.appendChild(img);
+    grp.appendChild(sep);
+  }
 });
+
 
 
     track.appendChild(grp);
