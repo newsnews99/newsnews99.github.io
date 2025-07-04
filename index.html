@@ -488,11 +488,18 @@ body * {
 .two-columns-below a,
 .right-column a,
 .main-headline-link,
-.ticker-group a {
+.ticker-group > a {
   text-transform: uppercase;
   font-family: 'Oswald', sans-serif;
-
 }
+
+
+/* prevent ticker separators inheriting uppercase */
+.ticker-separator {
+  text-transform: none;
+  font-family: Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif;
+}
+
 
 /* Make all header text uppercase and Anton */
 .banner {
