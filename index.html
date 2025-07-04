@@ -892,11 +892,7 @@ body * {
         document.querySelector('.main-headline-link').href = data.url;
       });
 
-    Promise.all([
-  fetch('/data/headlines.json?' + new Date().getTime()).then(r => r.json()),
-  fetch('/data/ticker_extra.json?' + new Date().getTime()).then(r => r.json())
-])
-.then(([headlines, extras]) => {
+
 
     Promise.all([
   fetch('/data/headlines.json?' + new Date().getTime()).then(r => r.json()),
