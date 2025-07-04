@@ -1,47 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thank You – Federation Sun</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      background-color: #1e1e1e;
-      color: white;
-      font-family: 'Bebas Neue', sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thank You – Federation Sun</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
+<style>
+html, body {
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  background: #1e1e1e;
+  color: white;
+  text-align: center;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-    p {
-      font-size: 20px;
-      max-width: 600px;
-    }
+.header {
+  background: #1e1e1e;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-    a {
-      color: #ffffff;
-      text-decoration: underline;
-      margin-top: 20px;
-      display: inline-block;
-      font-size: 18px;
-    }
-  </style>
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-content img.logo {
+  height: 53px;
+  width: auto;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.main h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.main p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color: #ccc;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.button-flag {
+  background-image: url('australian_flag.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow:
+    -1px -1px 0 #1e1e1e,
+     1px -1px 0 #1e1e1e,
+    -1px  1px 0 #1e1e1e,
+     1px  1px 0 #1e1e1e;
+}
+
+.button-flag:hover {
+  color: gold;
+}
+</style>
 </head>
 <body>
-  <h1>Thank You</h1>
-  <p>Your anonymous tip has been received. We appreciate your contribution to the truth.</p>
-  <a href="index.html">← Back to Federation Sun</a>
+
+<div class="header">
+  <div class="header-content">
+    <a href="https://fedsun.news">
+      <img src="fedsun_logo_hoz.png" alt="Federation Sun Logo" class="logo">
+    </a>
+  </div>
+</div>
+
+<main class="main">
+  <h1>Thank You for Your Tip</h1>
+  <p>Your message has been received. Our editorial team will review it shortly.</p>
+  <a href="https://fedsun.news" class="button-flag">Back to Homepage</a>
+</main>
+
 </body>
 </html>
