@@ -810,13 +810,14 @@ body * {
 
   // Add the emoji separator unless it's the last item
   if (index < recent.length - 1) {
-    const sep = document.createElement('span');
-sep.className = 'ticker-separator';
-sep.textContent = ' 🇦🇺 ';
-grp.appendChild(sep);
+  const sep = document.createElement('span');
+  sep.className = 'ticker-separator';
+  sep.innerHTML = `
+    <img src="/images/flag_au.png" alt="AU Flag" style="height:16px;vertical-align:middle;margin:0 8px;">
+  `;
+  grp.appendChild(sep);
+}
 
-
-  }
 });
 
 
