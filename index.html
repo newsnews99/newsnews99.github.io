@@ -606,6 +606,23 @@ body * {
      1px  1px 0 #1e1e1e;
 }
 
+#search-results > div {
+  border-bottom: 1px solid #444;
+  padding: 10px 0;
+  text-align: left;
+}
+#search-results a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+}
+#search-results a:hover {
+  color: gold;
+}
+#search-results div {
+  font-family: 'Roboto', sans-serif;
+}
 
 
 
@@ -642,9 +659,7 @@ body * {
   <input type="text" id="search-input" placeholder="Search...">
   <button type="submit" class="button-flag">Search</button>
 </form>
-<div id="search-filters" style="margin-top:10px;"></div>
-<div id="search-results" style="margin-top:20px;"></div>
-<div id="search-pagination" style="margin-top:10px;"></div>
+
       </div>
     </div>
     <div class="ticker">
@@ -655,6 +670,9 @@ body * {
   </div>
 
   <div class="container">
+    <div id="search-filters" style="margin-top:10px;"></div>
+<div id="search-results" style="margin-top:20px;"></div>
+<div id="search-pagination" style="margin-top:10px;"></div>
     <div class="main-headline-layout">
       <div class="main-headline-left">
         <div class="main-headline-img-wrapper">
