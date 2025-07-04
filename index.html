@@ -788,12 +788,10 @@ body * {
   // Add the emoji separator unless it's the last item
   if (index < recent.length - 1) {
     const sep = document.createElement('span');
+sep.className = 'ticker-separator';
 sep.textContent = ' 🇦🇺 ';
-sep.style.margin = '0 20px';
-sep.style.fontSize = '18px';
-sep.style.textTransform = 'none'; // prevent uppercase
-sep.style.fontFamily = 'sans-serif, Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji'; // ensure emoji support
 grp.appendChild(sep);
+
 
   }
 });
