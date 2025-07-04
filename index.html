@@ -216,9 +216,11 @@ img { max-width: 100%; height: auto; display: block; }
 .two-columns-below .column > div.headline-item,
 .right-column > div {
   display: flex;
-  flex-direction: column; /* stack vertically */
-  gap: 8px;
+  flex-direction: row;  /* this is default but you can specify it */
+  gap: 10px;
+  align-items: flex-start;
 }
+
 
 .two-columns-below img,
 .right-column img {
@@ -805,7 +807,19 @@ html, body {
   hyphens: auto;
 }
 
+.two-columns-below img,
+.right-column img {
+  width: 33%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  flex-shrink: 0;
+}
 
+.headline-description {
+  margin-top: 4px;
+  text-align: justify;
+  hyphens: auto;
+}
 </style>
 
 </head>
