@@ -1050,9 +1050,10 @@ desc.textContent = item.description || '';
 requestAnimationFrame(() => {
   const banner = document.querySelector('.banner');
   const bannerHeight = banner.offsetHeight;
-  const mainWrapper = document.querySelector('.main-headline-wrapper');
-  mainWrapper.style.paddingTop = `${bannerHeight}px`;
+  const container = document.querySelector('.container');
+  container.style.paddingTop = `${bannerHeight}px`;
 });
+
 
   
   })
