@@ -898,48 +898,38 @@ body * {
 ])
 .then(([headlines, extras]) => {
 
-    const today = new Date();
-    const recent = headlines
-  .filter(item => {
-    const d = new Date(item.date);
-    const diff = (today - d) / (1000 * 60 * 60 * 24);
-    return diff <= 7;
-  })
-  .sort((a, b) => new Date(b.date) - new Date(a.date));
+    Promise.all([
+  fetch('/data/headlines.json?' + new Date().getTime()).then(r => r.json()),
+  fetch('/data/ticker_extra.json?' + new Date().getTime()).then(r => r.json())
+])
+.then(([headlines, extras]) => {
 
+  const today = new Date();
+  const recent = headlines
+    .filter(item => {
+      const d = new Date(item.date);
+      const diff = (today - d) / (1000 * 60 * 60 * 24);
+      return diff <= 7;
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  const tickerItems = [
-  ...recent.slice(0,6).map(h => ({ type: 'headline', data: h })),
-  ...extras.map(e => ({ type: 'extra', data: e }))
-];
+  // Prepare ticker container
+  const track = document.getElementById('ticker-track');
+  track.innerHTML = '';
 
+  // This function creates a ticker group with extras, flag, then headlines
+  function createTickerGroup(extras, headlines) {
+    const grp = document.createElement('div');
+    grp.className = 'ticker-group';
 
-    // Update ticker
-    // Update ticker
-// Prepare track container
-const track = document.getElementById('ticker-track');
-track.innerHTML = '';
-
-// Utility to create one group of items
-function createTickerGroup(items) {
-  const grp = document.createElement('div');
-  grp.className = 'ticker-group';
-
-  items.forEach((item, index) => {
-    if (item.type === 'headline') {
-      const a = document.createElement('a');
-      a.href = item.data.url;
-      a.textContent = item.data.title;
-      grp.appendChild(a);
-    } else if (item.type === 'extra') {
+    // Add extras first
+    extras.forEach((item, index) => {
       const span = document.createElement('span');
-      span.textContent = item.data.text;
+      span.textContent = item.text;
       span.className = 'ticker-extra';
       grp.appendChild(span);
-    }
 
-    // Add separator unless this is the last item
-    if (index < items.length - 1) {
+      // Separator after each extra
       const sep = document.createElement('div');
       sep.className = 'ticker-separator';
       const img = document.createElement('img');
@@ -947,145 +937,154 @@ function createTickerGroup(items) {
       img.alt = 'AU Flag';
       sep.appendChild(img);
       grp.appendChild(sep);
-    }
+    });
+
+    // Add headlines
+    headlines.forEach((item, index) => {
+      const a = document.createElement('a');
+      a.href = item.url;
+      a.textContent = item.title;
+      grp.appendChild(a);
+
+      // Separator after each headline except the last
+      if (index < headlines.length - 1) {
+        const sep = document.createElement('div');
+        sep.className = 'ticker-separator';
+        const img = document.createElement('img');
+        img.src = '/flag_au.png';
+        img.alt = 'AU Flag';
+        sep.appendChild(img);
+        grp.appendChild(sep);
+      }
+    });
+
+    return grp;
+  }
+
+  // Build two groups for looping
+  const group1 = createTickerGroup(
+    extras,
+    recent.slice(0, 6)
+  );
+  const group2 = createTickerGroup(
+    extras,
+    recent.slice(0, 6)
+  );
+
+  track.appendChild(group1);
+  track.appendChild(group2);
+
+  // Measure total distance
+  const dist = track.scrollWidth / 2;
+  const speed = 20;
+  document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
+  document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
+
+  // ====================
+  // Columns below main headline
+  // ====================
+  const col1 = document.getElementById('latest-headlines');
+  const col2 = document.getElementById('more-headlines-list');
+  const col3 = document.getElementById('right-column-1');
+  const col1Headlines = recent.slice(0, 6);
+  const col2Headlines = recent.slice(6, 11);
+  const col3Headlines = recent.slice(11);
+
+  function formatDateAEST(dateStr) {
+    const date = new Date(dateStr);
+    return new Intl.DateTimeFormat('en-AU', {
+      timeZone: 'Australia/Sydney',
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).format(date) + ' AEST';
+  }
+
+  function createHeadlineItem(item) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'headline-item';
+    wrapper.style.display = 'flex';
+    wrapper.style.gap = '10px';
+    wrapper.style.alignItems = 'flex-start';
+
+    const img = document.createElement('img');
+    img.src = item.image;
+    img.alt = item.title;
+    img.style.width = '33%';
+    img.style.aspectRatio = '16/9';
+    img.style.objectFit = 'cover';
+    img.style.flexShrink = '0';
+
+    const content = document.createElement('div');
+    content.style.flex = '1';
+    content.style.textAlign = 'left';
+
+    const link = document.createElement('a');
+    link.href = item.url;
+    link.textContent = item.title;
+    link.style.color = 'white';
+    link.style.display = 'block';
+    link.style.marginBottom = '4px';
+
+    const meta = document.createElement('div');
+    meta.style.fontSize = '12px';
+    meta.style.color = '#ccc';
+    meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
+
+    const desc = document.createElement('div');
+    desc.className = 'headline-description';
+    desc.textContent = item.description || '';
+
+    content.appendChild(link);
+    content.appendChild(meta);
+    content.appendChild(desc);
+
+    wrapper.appendChild(img);
+    wrapper.appendChild(content);
+
+    return wrapper;
+  }
+
+  // Column 1
+  col1.innerHTML = '';
+  col1Headlines.forEach(item => col1.appendChild(createHeadlineItem(item)));
+
+  // Column 2
+  col2.innerHTML = '';
+  col2Headlines.forEach(item => col2.appendChild(createHeadlineItem(item)));
+
+  // Column 3
+  col3.innerHTML = '';
+  col3Headlines.forEach(item => col3.appendChild(createHeadlineItem(item)));
+
+  // Archive link
+  const archiveLinkWrapper = document.createElement('div');
+  archiveLinkWrapper.style.textAlign = 'center';
+  archiveLinkWrapper.style.marginTop = '20px';
+
+  const archiveLink = document.createElement('a');
+  archiveLink.href = 'https://fedsun.news/archive';
+  archiveLink.textContent = 'View All Archived Headlines...';
+  archiveLink.style.color = 'white';
+  archiveLink.style.textDecoration = 'none';
+  archiveLink.style.fontSize = '18px';
+  archiveLink.addEventListener('mouseover', () => {
+    archiveLink.style.color = 'gold';
+  });
+  archiveLink.addEventListener('mouseout', () => {
+    archiveLink.style.color = 'white';
   });
 
-  return grp;
-}
+  archiveLinkWrapper.appendChild(archiveLink);
+  col3.appendChild(archiveLinkWrapper);
 
-// Create first and second groups
-const group1 = createTickerGroup(tickerItems);
-const group2 = createTickerGroup(tickerItems);
+})
+.catch(e => console.error('Fetch error loading headlines:', e));
 
-// Append them
-track.appendChild(group1);
-track.appendChild(group2);
-
-// Measure total distance
-const dist = track.scrollWidth / 2;
-const speed = 20;
-document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
-document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
-
-
-
-
-    // Split into columns
-    const col1 = document.getElementById('latest-headlines');
-    const col2 = document.getElementById('more-headlines-list');
-    const col3 = document.getElementById('right-column-1');
-    const col1Headlines = recent.slice(0, 6);
-    const col2Headlines = recent.slice(6, 11);
-    const col3Headlines = recent.slice(11);
-
-    // Utility function to format date to AEST
-    function formatDateAEST(dateStr) {
-      const date = new Date(dateStr);
-      return new Intl.DateTimeFormat('en-AU', {
-        timeZone: 'Australia/Sydney',
-        weekday: 'short',
-        year: 'numeric',
-        month: 'short',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-      }).format(date) + ' AEST';
-    }
-
-    // Reusable renderer for a headline item
-    function createHeadlineItem(item) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'headline-item';
-  wrapper.style.display = 'flex';
-  wrapper.style.gap = '10px';
-  wrapper.style.alignItems = 'flex-start';
-
-  const img = document.createElement('img');
-  img.src = item.image;
-  img.alt = item.title;
-  img.style.width = '33%';
-  img.style.aspectRatio = '16/9';
-  img.style.objectFit = 'cover';
-  img.style.flexShrink = '0';
-
-  const content = document.createElement('div');
-  content.style.flex = '1';
-  content.style.textAlign = 'left';
-
-  const link = document.createElement('a');
-  link.href = item.url;
-  link.textContent = item.title;
-  link.style.color = 'white';
-  link.style.display = 'block';
-  link.style.marginBottom = '4px';
-
-  const meta = document.createElement('div');
-  meta.style.fontSize = '12px';
-  meta.style.color = '#ccc';
-  meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
-
-  const desc = document.createElement('div');
-desc.className = 'headline-description';
-desc.textContent = item.description || '';
-
-
-  content.appendChild(link);
-  content.appendChild(meta);
-  content.appendChild(desc);
-
-  wrapper.appendChild(img);
-  wrapper.appendChild(content);
-
-  return wrapper;
-}
-
-
-    // Render Column 1
-    col1.innerHTML = '';
-    col1Headlines.forEach(item => {
-      col1.appendChild(createHeadlineItem(item));
-    });
-
-    // Render Column 2
-    col2.innerHTML = '';
-    col2Headlines.forEach(item => {
-      col2.appendChild(createHeadlineItem(item));
-    });
-
-    // Render Column 3
-    col3.innerHTML = '';
-    col3Headlines.forEach(item => {
-      col3.appendChild(createHeadlineItem(item));
-    });
-
-    // Archive link
-    const archiveLinkWrapper = document.createElement('div');
-    archiveLinkWrapper.style.textAlign = 'center';
-    archiveLinkWrapper.style.marginTop = '20px';
-
-    const archiveLink = document.createElement('a');
-    archiveLink.href = 'https://fedsun.news/archive';
-    archiveLink.textContent = 'View All Archived Headlines...';
-    archiveLink.style.color = 'white';
-    archiveLink.style.textDecoration = 'none';
-    archiveLink.style.fontSize = '18px';
-    archiveLink.addEventListener('mouseover', () => {
-      archiveLink.style.color = 'gold';
-    });
-    archiveLink.addEventListener('mouseout', () => {
-      archiveLink.style.color = 'white';
-    });
-
-    archiveLinkWrapper.appendChild(archiveLink);
-    col3.appendChild(archiveLinkWrapper);
-
-
-
-
-  
-  })
-  .catch(e => console.error('Fetch error loading headlines:', e));
 
     
   </script>
