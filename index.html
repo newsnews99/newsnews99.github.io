@@ -657,9 +657,7 @@ body * {
   text-transform: uppercase !important;
   font-size: 15px !important;
 }
-.ticker-track img.ticker-separator {
-  vertical-align: middle;
-}
+
 .ticker-separator {
   display: flex;
   align-items: center;
@@ -823,24 +821,26 @@ body * {
   grp.appendChild(a);
 
   // Add the emoji separator unless it's the last item
-  if (index < recent.length - 1) {
+  // Add the emoji separator unless it's the last item
+if (index < recent.length - 1) {
   const sep = document.createElement('div');
-sep.className = 'ticker-separator';
-sep.style.display = 'flex';
-sep.style.alignItems = 'center'; // <-- This centers vertically
-sep.style.justifyContent = 'center';
-sep.style.margin = '0 12px';
+  sep.className = 'ticker-separator';
+  sep.style.display = 'flex';
+  sep.style.alignItems = 'center';
+  sep.style.justifyContent = 'center';
+  sep.style.margin = '0 12px';
 
-const img = document.createElement('img');
-img.src = 'flag_au.png';
-img.alt = 'AU Flag';
-img.style.height = '16px';
-img.style.width = 'auto';
-img.style.display = 'block';
+  const img = document.createElement('img');
+  img.src = '/flag_au.png'; // ✅ Make sure this is the correct path
+  img.alt = 'AU Flag';
+  img.style.height = '16px';
+  img.style.width = 'auto';
+  img.style.display = 'inline-block'; // inline-block keeps it visible
 
-sep.appendChild(img);
-grp.appendChild(sep);
-  }
+  sep.appendChild(img);
+  grp.appendChild(sep);
+}
+
 
 });
 
