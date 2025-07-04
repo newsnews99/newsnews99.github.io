@@ -915,47 +915,46 @@ body * {
 
   // This function creates a ticker group with extras, flag, then headlines
   function createTickerGroup(extras, headlines) {
-    const grp = document.createElement('div');
-    grp.className = 'ticker-group';
+  const grp = document.createElement('div');
+  grp.className = 'ticker-group';
 
-    // Add extras first
-    extras.forEach((item, index) => {
-      const span = document.createElement('span');
-      span.textContent = item.text;
-      span.className = 'ticker-extra';
-      grp.appendChild(span);
+  // Add extras first
+  extras.forEach((item, index) => {
+    // Insert separator BEFORE each extra
+    const sep = document.createElement('div');
+    sep.className = 'ticker-separator';
+    const img = document.createElement('img');
+    img.src = '/flag_au.png';
+    img.alt = 'AU Flag';
+    sep.appendChild(img);
+    grp.appendChild(sep);
 
-      // Separator after each extra
-      const sep = document.createElement('div');
-      sep.className = 'ticker-separator';
-      const img = document.createElement('img');
-      img.src = '/flag_au.png';
-      img.alt = 'AU Flag';
-      sep.appendChild(img);
-      grp.appendChild(sep);
-    });
+    const span = document.createElement('span');
+    span.textContent = item.text;
+    span.className = 'ticker-extra';
+    grp.appendChild(span);
+  });
 
-    // Add headlines
-    headlines.forEach((item, index) => {
-      const a = document.createElement('a');
-      a.href = item.url;
-      a.textContent = item.title;
-      grp.appendChild(a);
+  // Add headlines
+  headlines.forEach((item, index) => {
+    // Insert separator BEFORE each headline
+    const sep = document.createElement('div');
+    sep.className = 'ticker-separator';
+    const img = document.createElement('img');
+    img.src = '/flag_au.png';
+    img.alt = 'AU Flag';
+    sep.appendChild(img);
+    grp.appendChild(sep);
 
-      // Separator after each headline except the last
-      if (index < headlines.length - 1) {
-        const sep = document.createElement('div');
-        sep.className = 'ticker-separator';
-        const img = document.createElement('img');
-        img.src = '/flag_au.png';
-        img.alt = 'AU Flag';
-        sep.appendChild(img);
-        grp.appendChild(sep);
-      }
-    });
+    const a = document.createElement('a');
+    a.href = item.url;
+    a.textContent = item.title;
+    grp.appendChild(a);
+  });
 
-    return grp;
-  }
+  return grp;
+}
+
 
   // Build two groups for looping
   const group1 = createTickerGroup(
