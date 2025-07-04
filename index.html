@@ -779,15 +779,16 @@ body * {
   a.textContent = item.title;
   grp.appendChild(a);
 
-  // Add separator unless it's the last item
+  // Add the emoji separator unless it's the last item
   if (index < recent.length - 1) {
     const sep = document.createElement('span');
     sep.textContent = ' 🇦🇺 ';
-    sep.style.margin = '0 20px'; // spacing between items
-    sep.style.fontSize = '18px'; // size of emoji
+    sep.style.margin = '0 20px'; // spacing between
+    sep.style.fontSize = '18px';
     grp.appendChild(sep);
   }
 });
+
 
     track.appendChild(grp);
     track.appendChild(grp.cloneNode(true));
