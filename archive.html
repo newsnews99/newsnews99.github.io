@@ -634,9 +634,12 @@ body * {
 }
 @media (max-width: 768px) {
   .archive-columns {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
 }
+
 .archive-title {
   display: block;
   font-family: 'Oswald', sans-serif;
