@@ -833,8 +833,10 @@ if (index < recent.length - 1) {
   sep.className = 'ticker-separator';
 
   const img = document.createElement('img');
-  img.src = '/flag_au.png'; // make sure this matches step 1
+  img.src = '/flag_au.png';
   img.alt = 'AU Flag';
+
+  console.log('Adding flag separator after headline:', item.title);
 
   sep.appendChild(img);
   grp.appendChild(sep);
