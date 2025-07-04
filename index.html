@@ -850,9 +850,10 @@ body * {
     });
 
   const tickerItems = [
-    ...recent.map(h => ({ type: 'headline', data: h })),
-    ...extras.map(e => ({ type: 'extra', data: e }))
-  ];
+  ...recent.slice(0,6).map(h => ({ type: 'headline', data: h })),
+  ...extras.map(e => ({ type: 'extra', data: e }))
+];
+
 
     // Update ticker
     const track = document.getElementById('ticker-track');
