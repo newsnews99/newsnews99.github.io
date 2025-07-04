@@ -9,64 +9,221 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
+
 <style>
-:root { --ticker-distance:0; --ticker-duration:20s; }
-html,body{margin:0;font-family:'Bebas Neue',sans-serif;background:#1e1e1e;color:white;box-sizing:border-box;overflow-x:hidden;}
-body{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0;}
-img{max-width:100%;height:auto;display:block;}
-.banner{position:fixed;top:0;left:0;right:0;background:#1e1e1e;box-shadow:0 2px 4px rgba(0,0,0,0.4);z-index:1000;}
-.banner-content{display:grid;grid-template-columns:1fr auto 1fr;grid-template-areas:"social logo search";align-items:center;max-width:1200px;margin:0 auto;padding:12px 0;column-gap:8px;}
-.social-section{grid-area:social;display:flex;flex-direction:column;align-items:flex-start;gap:4px;}
-.time-subsection{font-size:13px;line-height:1;text-align:left;}
-.icons-subsection{display:flex;gap:8px;align-items:center;}
-.icons-subsection img{height:24px;width:auto;}
-.left-section{grid-area:logo;display:flex;justify-content:center;}
-.left-section img.logo{height:53px;width:auto;}
-.center-section{grid-area:search;display:flex;justify-self:end;gap:6px;max-width:300px;width:100%;}
-.center-section form{display:flex;width:100%;gap:6px;}
-.center-section input[type="text"]{flex:1;height:32px;padding:4px 8px;font-size:15px;border:none;border-radius:4px;outline:none;background:#fff;color:#1e1e1e;}
-.center-section button{background-image:url('australian_flag.png');background-size:cover;background-repeat:no-repeat;background-position:center;border:1px solid white;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;height:32px;padding:0 12px;color:white;font-size:15px;font-weight:bold;text-transform:uppercase;text-shadow:-1px -1px 0 #1e1e1e,1px -1px 0 #1e1e1e,-1px 1px 0 #1e1e1e,1px 1px 0 #1e1e1e;}
-.ticker{width:100%;overflow:hidden;height:32px;position:relative;z-index:999;}
-.ticker-inner{width:100%;max-width:1200px;margin:0 auto;background:#222;border-top:1px solid #444;border-bottom:1px solid #444;display:flex;align-items:center;height:32px;}
-.ticker-track{display:flex;will-change:transform;animation:scroll var(--ticker-duration) linear infinite;width:max-content;}
-.ticker-group{display:flex;white-space:nowrap;}
-.ticker-group a{color:white;text-decoration:none;font-size:15px;margin-right:40px;}
-.ticker-group a:hover{color:gold;}
-@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(calc(-1 * var(--ticker-distance)));}}
-.container{width:100%;max-width:1200px;margin:0 auto;}
-.main-headline-wrapper{padding-top:calc(53px + 32px + 12px + 10px + 20px);}
-.main-headline-link{font-family:'Oswald',sans-serif;font-size:32px;font-weight:bold;text-transform:uppercase;color:white;text-decoration:none;display:block;text-align:center;margin:20px 0;}
-.main-headline-link:hover{color:gold;}
-.two-columns-below{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;}
-.two-columns-below .column{display:grid;gap:15px;}
-.headline-description{font-family:'Roboto',sans-serif;font-size:14px;line-height:1.4;}
-.footer-wrapper{width:100%;background:#1e1e1e;padding:30px 0;}
-.footer-content{display:flex;justify-content:center;align-items:flex-start;max-width:1200px;margin:0 auto;gap:40px;flex-wrap:nowrap;text-align:left;}
-.footer-section{flex:1 1 0;min-width:0;}
-.footer-section.center{display:flex;flex-direction:column;align-items:center;text-align:center;}
-.footer-section.left img{width:33vw;margin-bottom:10px;}
-.footer-section.center img{width:120px;margin-bottom:10px;}
-.footer-section.right{display:flex;flex-direction:column;align-items:flex-start;text-align:left;}
-.footer-section.right h3{margin:0 0 10px 0;}
-.footer-section.right form{display:flex;flex-direction:column;gap:10px;width:100%;}
-.footer-section.right textarea{width:100%;min-height:80px;padding:8px;border:none;border-radius:4px;resize:vertical;box-sizing:border-box;}
-.footer-section.right button{background-image:url('australian_flag.png');background-size:cover;background-repeat:no-repeat;background-position:center;border:1px solid white;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;height:32px;padding:0 12px;box-sizing:border-box;color:white;font-size:15px;font-weight:bold;text-transform:uppercase;text-shadow:-1px -1px 0 #1e1e1e,1px -1px 0 #1e1e1e,-1px 1px 0 #1e1e1e,1px 1px 0 #1e1e1e;}
-.footer-separator{width:100%;max-width:1200px;margin:40px auto 0 auto;border:none;border-top:1px solid #444;}
-@media(max-width:768px){
-.banner-content{grid-template-columns:auto 1fr;grid-template-areas:"logo right""search search";row-gap:8px;column-gap:8px;align-items:start;padding:8px;}
-.social-section{grid-area:right;align-items:flex-end;text-align:right;}
-.time-subsection{text-align:right;}
-.left-section{justify-content:flex-start;}
-.center-section{width:100%;max-width:100%;}
-.container,.two-columns-below,.footer-content,.footer-section.right form,.footer-section.right textarea{width:100%;max-width:100%;box-sizing:border-box;}
-.two-columns-below{grid-template-columns:1fr;}
-.footer-content{flex-direction:column;align-items:center;text-align:center;}
-.footer-section{padding:0 16px;}
-.footer-section.left img{width:33vw;margin:0 auto 10px auto;}
-.footer-section.left{order:1;}
-.footer-section.right{order:2;}
-.footer-section.center{order:3;}
-.footer-section.right h3{text-align:center;width:100%;}
+:root { --ticker-distance: 0px; --ticker-duration: 20s; }
+html, body {
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  background: #1e1e1e;
+  color: white;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+}
+img { max-width: 100%; height: auto; display: block; }
+/* Same banner styling as homepage */
+.banner {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: #1e1e1e;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  z-index: 1000;
+}
+.banner-content {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas: "social logo search";
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 0;
+  column-gap: 8px;
+}
+.social-section {
+  grid-area: social;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.time-subsection {
+  font-size: 13px;
+  line-height: 1;
+  text-align: left;
+}
+.icons-subsection {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.icons-subsection img {
+  height: 24px;
+  width: auto;
+}
+.left-section {
+  grid-area: logo;
+  display: flex;
+  justify-content: center;
+}
+.left-section img.logo {
+  height: 53px;
+  width: auto;
+}
+.center-section {
+  grid-area: search;
+  display: flex;
+  justify-self: end;
+  gap: 6px;
+  max-width: 300px;
+  width: 100%;
+}
+.center-section form {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+.center-section input[type="text"] {
+  flex: 1;
+  height: 32px;
+  padding: 4px 8px;
+  font-size: 15px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  background: #fff;
+  color: #1e1e1e;
+}
+.center-section button {
+  background-image: url('australian_flag.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 0 #1e1e1e,
+     1px -1px 0 #1e1e1e,
+    -1px  1px 0 #1e1e1e,
+     1px  1px 0 #1e1e1e;
+}
+.ticker {
+  width: 100%;
+  overflow: hidden;
+  height: 32px;
+  position: relative;
+  z-index: 999;
+}
+.ticker-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #222;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex;
+  will-change: transform;
+  animation: scroll var(--ticker-duration) linear infinite;
+  width: max-content;
+}
+.ticker-group {
+  display: flex;
+  white-space: nowrap;
+}
+.ticker-group a {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  margin-right: 40px;
+}
+.ticker-group a:hover {
+  color: gold;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
+}
+/* Archive specific layout */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.main-headline-wrapper {
+  padding-top: calc(53px + 32px + 12px + 10px + 20px);
+}
+.archive-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  margin: 20px 0;
+}
+.archive-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+.archive-columns .column {
+  display: grid;
+  gap: 15px;
+}
+.headline-description {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.archive-columns a {
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  text-decoration: none;
+}
+.archive-columns a:hover {
+  color: gold;
+}
+@media (max-width:768px){
+  .archive-columns{
+    grid-template-columns:1fr;
+  }
+}
+/* Footer same as homepage */
+.footer-wrapper,
+.footer-wrapper * {
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-weight: normal !important;
+}
+.footer-section.left p,
+.footer-section.center p {
+  text-transform: none;
+  font-family: 'Roboto', sans-serif;
 }
 </style>
 </head>
@@ -108,13 +265,14 @@ img{max-width:100%;height:auto;display:block;}
 </div>
 <div class="container">
   <div class="main-headline-wrapper">
-    <a href="#" class="main-headline-link">ARCHIVED HEADLINES</a>
-    <div class="two-columns-below">
-      <div class="column" id="archive-col1"></div>
-      <div class="column" id="archive-col2"></div>
+    <span class="archive-title">Archived Headlines</span>
+    <div class="archive-columns">
+      <div class="column" id="col1"></div>
+      <div class="column" id="col2"></div>
+      <div class="column" id="col3"></div>
     </div>
     <div style="text-align:center;margin-top:20px;">
-      <a href="https://fedsun.news/" style="color:white;text-decoration:none;font-size:18px;">Back to Homepage...</a>
+      <a href="/" style="color:white;text-decoration:none;font-size:18px;">Back to Homepage…</a>
     </div>
   </div>
 </div>
@@ -143,7 +301,7 @@ img{max-width:100%;height:auto;display:block;}
         <form action="https://formspree.io/f/meokpdkj" method="POST">
           <textarea name="tip" placeholder="Type your tip here..."></textarea>
           <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
-          <button type="submit">Send Tip</button>
+          <button type="submit" class="button-flag">Send Tip</button>
         </form>
       </div>
     </div>
@@ -151,75 +309,77 @@ img{max-width:100%;height:auto;display:block;}
 </footer>
 
 <script>
-// Time update
+// Time
 function updateTime() {
   const now = new Date();
-  const t = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
-  const d = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
-  document.getElementById('current-time').textContent = t+' AEST';
+  const t = new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'Australia/Melbourne',
+    hour: '2-digit', minute: '2-digit', hour12: false
+  }).format(now);
+  const d = new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'Australia/Melbourne',
+    weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).format(now);
+  document.getElementById('current-time').textContent = t + ' AEST';
   document.getElementById('current-date').textContent = d;
 }
 updateTime();
 setInterval(updateTime,60000);
 
 // Ticker
-fetch('/data/headlines.json?'+new Date().getTime())
+fetch('/data/headlines.json?' + new Date().getTime())
 .then(r=>r.json())
 .then(data=>{
-  const track=document.getElementById('ticker-track');
-  track.innerHTML='';
-  const grp=document.createElement('div');
-  grp.className='ticker-group';
+  const track = document.getElementById('ticker-track');
+  track.innerHTML = '';
+  const grp = document.createElement('div');
+  grp.className = 'ticker-group';
   data.forEach(item=>{
-    const a=document.createElement('a');
-    a.href=item.url;
-    a.textContent=item.title;
+    const a = document.createElement('a');
+    a.href = item.url;
+    a.textContent = item.title;
     grp.appendChild(a);
   });
   track.appendChild(grp);
   track.appendChild(grp.cloneNode(true));
-  const dist=grp.offsetWidth,speed=20;
-  document.documentElement.style.setProperty('--ticker-distance',dist+'px');
-  document.documentElement.style.setProperty('--ticker-duration',(dist/speed)+'s');
+  const dist = grp.offsetWidth, speed = 20;
+  document.documentElement.style.setProperty('--ticker-distance', dist+'px');
+  document.documentElement.style.setProperty('--ticker-duration', (dist/speed)+'s');
 });
 
-// Archive headlines
-fetch('/data/archive.json?'+new Date().getTime())
+// Archive
+fetch('/data/archive.json?' + new Date().getTime())
 .then(r=>r.json())
 .then(data=>{
-  const col1=document.getElementById('archive-col1');
-  const col2=document.getElementById('archive-col2');
-  const perCol=Math.ceil(data.length/2);
-  [col1,col2].forEach((col,i)=>{
+  const cols = [document.getElementById('col1'), document.getElementById('col2'), document.getElementById('col3')];
+  const perCol = Math.ceil(data.length / 3);
+  cols.forEach((col,i)=>{
     data.slice(i*perCol,(i+1)*perCol).forEach(item=>{
-      const wrapper=document.createElement('div');
-      wrapper.className='headline-item';
-      wrapper.style.display='flex';
-      wrapper.style.gap='10px';
-      wrapper.style.alignItems='flex-start';
-      const img=document.createElement('img');
-      img.src=item.image;
-      img.alt=item.title;
-      img.style.width='33%';
-      img.style.aspectRatio='16/9';
-      img.style.objectFit='cover';
-      img.style.flexShrink='0';
-      const content=document.createElement('div');
-      content.style.flex='1';
-      content.style.textAlign='left';
-      const link=document.createElement('a');
-      link.href=item.url;
-      link.textContent=item.title;
-      link.style.color='white';
-      link.style.display='block';
-      link.style.marginBottom='4px';
-      const meta=document.createElement('div');
-      meta.style.fontSize='12px';
-      meta.style.color='#ccc';
-      meta.textContent=item.date;
-      const desc=document.createElement('div');
-      desc.className='headline-description';
-      desc.textContent=item.description||'';
+      const wrapper = document.createElement('div');
+      wrapper.className = 'headline-item';
+      wrapper.style.display = 'flex';
+      wrapper.style.gap = '10px';
+      wrapper.style.alignItems = 'flex-start';
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.alt = item.title;
+      img.style.width = '33%';
+      img.style.aspectRatio = '16/9';
+      img.style.objectFit = 'cover';
+      img.style.flexShrink = '0';
+      const content = document.createElement('div');
+      content.style.flex = '1';
+      content.style.textAlign = 'left';
+      const link = document.createElement('a');
+      link.href = item.url;
+      link.textContent = item.title;
+      const meta = document.createElement('div');
+      meta.style.fontSize = '12px';
+      meta.style.color = '#ccc';
+      meta.textContent = item.date;
+      const desc = document.createElement('div');
+      desc.className = 'headline-description';
+      desc.textContent = item.description || '';
       content.appendChild(link);
       content.appendChild(meta);
       content.appendChild(desc);
