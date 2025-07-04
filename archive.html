@@ -651,6 +651,41 @@ body * {
 .archive-title:hover {
   color: gold;
 }
+/* Style the Archived Headlines title like main headline */
+.archive-title {
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* Archive columns layout */
+.archive-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+/* Headline link style matching homepage */
+.archive-columns a {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  display: block;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+/* Headline link hover color */
+.archive-columns a:hover {
+  color: gold;
+}
 
 
 </style>
