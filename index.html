@@ -787,6 +787,17 @@ html, body {
 .right-column .headline-item a {
   display: block;
 }
+.headline-description {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Force last line to justify */
+.headline-description::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
 
 </style>
 
