@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Federation Sun Archive</title>
+<title>Federation Sun 2025</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
+
 
 <style>
 :root { --ticker-distance: 0px; --ticker-duration: 20s; }
@@ -28,7 +29,6 @@ body {
   padding: 0;
 }
 img { max-width: 100%; height: auto; display: block; }
-/* Same banner styling as homepage */
 .banner {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -57,6 +57,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 13px;
   line-height: 1;
   text-align: left;
+  display: block;
 }
 .icons-subsection {
   display: flex;
@@ -99,6 +100,7 @@ img { max-width: 100%; height: auto; display: block; }
   outline: none;
   background: #fff;
   color: #1e1e1e;
+  box-sizing: border-box;
 }
 .center-section button {
   background-image: url('australian_flag.png');
@@ -157,6 +159,7 @@ img { max-width: 100%; height: auto; display: block; }
   text-decoration: none;
   font-size: 15px;
   margin-right: 40px;
+  display: inline-block;
 }
 .ticker-group a:hover {
   color: gold;
@@ -165,105 +168,514 @@ img { max-width: 100%; height: auto; display: block; }
   from { transform: translateX(0); }
   to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
 }
-/* Archive specific layout */
 .container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
-.main-headline-wrapper {
-  padding-top: calc(53px + 32px + 12px + 10px + 20px);
+
+.main-headline-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 15px;
+  align-items: start;
 }
-.archive-title {
+.main-headline-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.main-headline-img-wrapper {
+  width: 100%;
+}
+.main-headline-img {
+  width: 100%;
+  height: auto;
+}
+.main-headline-link {
   font-family: 'Oswald', sans-serif;
-  font-size: 32px;
-  font-weight: bold;
-  text-transform: uppercase;
+
+  font-size: 28px;
   color: white;
   text-decoration: none;
-  display: block;
   text-align: center;
-  margin: 20px 0;
 }
-.archive-columns {
+.main-headline-link:hover {
+  color: gold;
+}
+.two-columns-below {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 15px;
 }
-.archive-columns .column {
+.two-columns-below .column,
+.right-column {
   display: grid;
   gap: 15px;
 }
+.two-columns-below .column > div.headline-item,
+.right-column > div {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.two-columns-below img,
+.right-column img {
+  width: 33%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.two-columns-below a,
+.right-column a {
+  font-family: 'Oswald', sans-serif;
+
+  line-height: 1.2;
+}
+.footer-wrapper {
+  width: 100%;
+  background: #1e1e1e;
+  padding: 30px 0;
+}
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  flex-wrap: nowrap;
+  text-align: left;
+}
+.footer-section {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.footer-section.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.footer-section.left img {
+  width: 33vw;
+  margin-bottom: 10px;
+}
+.footer-section.center img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+.footer-section.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.footer-section.right h3 {
+  margin: 0 0 10px 0;
+}
+.footer-section.right form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.footer-section.right textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.footer-separator {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto 0 auto;
+  border: none;
+  border-top: 1px solid #444;
+}
+@media (max-width: 768px) {
+  .banner-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "logo right"
+      "search search";
+    row-gap: 8px;
+    column-gap: 8px;
+    align-items: start;
+    padding: 8px;
+  }
+  .social-section {
+    grid-area: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 4px;
+  }
+  .time-subsection {
+    width: 100%;
+    text-align: right;
+  }
+  .left-section {
+    grid-area: logo;
+    justify-content: flex-start;
+  }
+  .center-section {
+    grid-area: search;
+    width: 100%;
+    max-width: 100%;
+  }
+  .container,
+  .main-headline-layout,
+  .two-columns-below,
+  .right-column,
+  .footer-content,
+  .footer-section,
+  .footer-section.right form,
+  .footer-section.right textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .main-headline-layout {
+    grid-template-columns: 1fr;
+  }
+  .two-columns-below {
+    grid-template-columns: 1fr;
+  }
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .footer-section {
+    padding: 0 16px;
+    max-width: 100%;
+  }
+  .footer-section.left img {
+    width: 33vw;
+    margin: 0 auto 10px auto;
+  }
+  .footer-section.left { order: 1; }
+  .footer-section.right { order: 2; }
+  .footer-section.center { order: 3; }
+  .footer-section.right h3 {
+    text-align: center;
+    width: 100%;
+  }
+}
+.ticker-inner:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+
+
+/* Make all text normal weight */
+body,
+body * {
+  font-weight: normal !important;
+}
+
+  /* Center the poll */
+#poll-container {
+  text-align: center;
+}
+#poll-container form {
+  display: inline-block;
+  text-align: left;
+}
+
+/* Make column 2 headlines align like other columns */
+#more-headlines-list {
+  display: grid;
+  gap: 15px;
+}
+#more-headlines-list .headline-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+/* Restore poll box */
+#poll-container {
+  text-align: center;
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+/* Stack poll content vertically */
+#poll-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Flag background vote button */
+#poll-container .button-flag {
+  background-image: url('australian_flag.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+  #poll-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  text-align: center;
+}
+#poll-container h3 {
+  margin-top: 0; /* Remove spacing above the title */
+}
+
+#poll-container button {
+  margin-top: 12px; /* Add spacing above the button */
+}
+/* Align anonymous tips title to the right on desktop */
+@media (min-width: 769px) {
+  .footer-section.right h3 {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+  .left-section a {
+  display: inline-block;
+}
+.left-section a:focus {
+  outline: none;
+}
+.footer-section a:focus {
+  outline: none;
+}
+/* Use Roboto for headline descriptions */
 .headline-description {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   line-height: 1.4;
 }
-.archive-columns a {
-  color: white;
+.two-columns-below a,
+.right-column a,
+.main-headline-link {
+  text-transform: uppercase;
+}
+.ticker-group a {
+  text-transform: uppercase;
+}
+/* Make headlines uppercase and Anton */
+.two-columns-below a,
+.right-column a,
+.main-headline-link,
+.ticker-group a {
   text-transform: uppercase;
   font-family: 'Oswald', sans-serif;
-  text-decoration: none;
+
 }
-.archive-columns a:hover {
-  color: gold;
+
+/* Make all header text uppercase and Anton */
+.banner,
+.banner * {
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+
 }
-@media (max-width:768px){
-  .archive-columns{
-    grid-template-columns:1fr;
-  }
-}
-/* Footer same as homepage */
+
+/* Make all footer text uppercase and Anton */
 .footer-wrapper,
 .footer-wrapper * {
   text-transform: uppercase;
   font-family: 'Oswald', sans-serif;
-  font-weight: normal !important;
+
 }
-.footer-section.left p,
+/* Poll text styling */
+#poll-container,
+#poll-container * {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-weight: normal; /* Remove boldness if any */
+}
+/* Remove underline from column headlines */
+.two-columns-below a,
+.right-column a {
+  text-decoration: none;
+}
+/* Limit footer flag image width on desktop */
+@media (min-width: 769px) {
+  .footer-section.left img {
+    max-width: 100px;
+    width: 100%;
+  }
+}
+.footer-section.left p {
+  text-transform: none;
+}
 .footer-section.center p {
   text-transform: none;
+}
+/* Make headlines gold on hover */
+.two-columns-below a:hover,
+.right-column a:hover {
+  color: gold !important;
+}
+
+.main-headline-link {
+  font-size: 32px;
+  font-weight: bold;
+}
+.two-columns-below {
+  margin-top: 15px; /* Increase as needed */
+}
+.button-flag {
+  background-image: url('australian_flag.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+.footer-section.right button.button-flag {
+  width: auto;
+}
+.footer-section.right form {
+  align-items: center;
+}
+
+.footer-section.right button.button-flag {
+  width: auto;
+}
+
+ 
+  
+  .button-flag {
+  background-image: url('australian_flag.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow:
+    -1px -1px 0 #1e1e1e,
+     1px -1px 0 #1e1e1e,
+    -1px  1px 0 #1e1e1e,
+     1px  1px 0 #1e1e1e;
+}
+
+#search-results > div {
+  border-bottom: 1px solid #444;
+  padding: 10px 0;
+  text-align: left;
+}
+#search-results a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+}
+#search-results a:hover {
+  color: gold;
+}
+#search-results div {
   font-family: 'Roboto', sans-serif;
 }
+
+.main-headline-wrapper {
+  padding-top: calc(53px + 32px + 12px + 10px + 20px);
+}
+
+
 </style>
+
 </head>
 <body>
-<div class="banner">
-  <div class="banner-content">
-    <div class="social-section">
-      <div class="time-subsection">
-        <div id="current-time">--:-- AEST</div>
-        <div id="current-date">--/--/----</div>
+
+  <div class="banner">
+    <div class="banner-content">
+      <div class="social-section">
+        <div class="time-subsection">
+          <div id="current-time">--:-- AEST</div>
+          <div id="current-date">--/--/----</div>
+        </div>
+        <div class="icons-subsection">
+          <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
+          <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
+          <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
+          <a href="https://fedsun.news/feed.xml" target="_blank"><img src="icon_rss.png" alt="RSS"></a>
+          <a href="https://t.me/federationsun" target="_blank"><img src="icon_telegram.png" alt="Telegram"></a>
+          <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
+          <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
+        </div>
       </div>
-      <div class="icons-subsection">
-        <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
-        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
-        <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
-        <a href="https://fedsun.news/feed.xml" target="_blank"><img src="icon_rss.png" alt="RSS"></a>
-        <a href="https://t.me/federationsun" target="_blank"><img src="icon_telegram.png" alt="Telegram"></a>
-        <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
-        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
-      </div>
-    </div>
-    <div class="left-section">
-      <a href="https://fedsun.news">
-        <img src="fedsun_logo_hoz.png" alt="Logo" class="logo">
-      </a>
-    </div>
-    <div class="center-section">
-      <form id="search-form" autocomplete="off">
-        <input type="text" id="search-input" placeholder="Search...">
-        <button type="submit" class="button-flag">Search</button>
-      </form>
-    </div>
-  </div>
-  <div class="ticker">
-    <div class="ticker-inner" id="ticker-inner">
-      <div class="ticker-track" id="ticker-track">Loading headlines…</div>
-    </div>
-  </div>
+     <div class="left-section">
+  <a href="https://fedsun.news">
+    <img src="fedsun_logo_hoz.png" alt="Logo" class="logo">
+  </a>
 </div>
-<div class="container">
+
+      <div class="center-section">
+        <form id="search-form" autocomplete="off">
+  <input type="text" id="search-input" placeholder="Search...">
+  <button type="submit" class="button-flag">Search</button>
+</form>
+
+      </div>
+    </div>
+    <div class="ticker">
+      <div class="ticker-inner" id="ticker-inner">
+        <div class="ticker-track" id="ticker-track">Loading headlines…</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="search-filters"></div>
+<div id="search-results"></div>
+<div id="search-pagination"></div>
   <div class="main-headline-wrapper">
     <span class="archive-title">Archived Headlines</span>
     <div class="archive-columns">
