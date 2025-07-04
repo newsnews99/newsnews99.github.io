@@ -59,3 +59,10 @@ collections:
           - {label: "Question", name: "question", widget: "string"}
           - {label: "Options", name: "options", widget: "list"}
 
+  - name: "ticker_extra"
+    label: "Ticker Extra Items"
+    folder: "content/ticker_extra"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "text", label: "Ticker Text", widget: "string" }
