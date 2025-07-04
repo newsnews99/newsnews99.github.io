@@ -772,12 +772,23 @@ body * {
     track.innerHTML = '';
     const grp = document.createElement('div');
     grp.className = 'ticker-group';
-    recent.forEach(item => {
-      const a = document.createElement('a');
-      a.href = item.url;
-      a.textContent = item.title;
-      grp.appendChild(a);
-    });
+    recent.forEach((item, index) => {
+  // Create the link
+  const a = document.createElement('a');
+  a.href = item.url;
+  a.textContent = item.title;
+  grp.appendChild(a);
+
+  // Add separator unless it's the last item
+  if (index < recent.length - 1) {
+    const sep = document.createElement('span');
+    sep.textContent = ' 🇦🇺 ';
+    sep.style.margin = '0 20px'; // spacing between items
+    sep.style.fontSize = '18px'; // size of emoji
+    grp.appendChild(sep);
+  }
+});
+
     track.appendChild(grp);
     track.appendChild(grp.cloneNode(true));
     const dist = grp.offsetWidth, speed = 20;
