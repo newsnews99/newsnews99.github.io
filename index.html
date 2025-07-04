@@ -890,8 +890,19 @@ const grp = document.createElement('div');
 grp.className = 'ticker-group';
 
 // Append the items twice in a row in the SAME group
+// Append the same items again (adding separator before the first repeated item)
 tickerItems.forEach((item, index) => {
-  // Create the item
+  // Before first repeated item, insert a separator
+  if (index === 0) {
+    const sep = document.createElement('div');
+    sep.className = 'ticker-separator';
+    const img = document.createElement('img');
+    img.src = '/flag_au.png';
+    img.alt = 'AU Flag';
+    sep.appendChild(img);
+    grp.appendChild(sep);
+  }
+
   if (item.type === 'headline') {
     const a = document.createElement('a');
     a.href = item.data.url;
@@ -903,7 +914,8 @@ tickerItems.forEach((item, index) => {
     span.className = 'ticker-extra';
     grp.appendChild(span);
   }
-  // Add separator unless last item
+
+  // Add separator unless this is the last repeated item
   if (index < tickerItems.length - 1) {
     const sep = document.createElement('div');
     sep.className = 'ticker-separator';
@@ -914,6 +926,7 @@ tickerItems.forEach((item, index) => {
     grp.appendChild(sep);
   }
 });
+
 
 // Append the same items again (no extra margin gap)
 tickerItems.forEach((item, index) => {
