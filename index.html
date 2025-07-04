@@ -652,23 +652,20 @@ body * {
 }
 
 
-.ticker-separator img {
-  height: 16px;
-  width: auto;
-  display: block;
-}
 .ticker-separator {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin: 0 12px;
-  height: 32px; /* Match ticker height */
+  height: 32px; /* Align with ticker height */
 }
+
 .ticker-separator img {
   height: 16px;
   width: auto;
   display: block;
 }
+
 
 </style>
 
@@ -825,21 +822,15 @@ body * {
 if (index < recent.length - 1) {
   const sep = document.createElement('div');
   sep.className = 'ticker-separator';
-  sep.style.display = 'flex';
-  sep.style.alignItems = 'center';
-  sep.style.justifyContent = 'center';
-  sep.style.margin = '0 12px';
 
   const img = document.createElement('img');
-  img.src = '/flag_au.png'; // ✅ Make sure this is the correct path
+  img.src = '/flag_au.png'; // make sure this matches step 1
   img.alt = 'AU Flag';
-  img.style.height = '16px';
-  img.style.width = 'auto';
-  img.style.display = 'inline-block'; // inline-block keeps it visible
 
   sep.appendChild(img);
   grp.appendChild(sep);
 }
+
 
 
 });
