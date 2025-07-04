@@ -29,7 +29,6 @@ body {
 }
 img { max-width: 100%; height: auto; display: block; }
 
-/* Banner Styles */
 .banner {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -128,7 +127,6 @@ img { max-width: 100%; height: auto; display: block; }
      1px  1px 0 #1e1e1e;
 }
 
-/* Ticker */
 .ticker {
   width: 100%;
   overflow: hidden;
@@ -177,7 +175,49 @@ img { max-width: 100%; height: auto; display: block; }
   padding-top: calc(53px + 32px + 12px + 10px + 20px);
 }
 
-/* Shared styles omitted for brevity—will be in Part 2 */
+.three-columns-archive {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.three-columns-archive .column {
+  display: grid;
+  gap: 15px;
+}
+.headline-description {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.three-columns-archive a {
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  text-decoration: none;
+}
+.three-columns-archive a:hover {
+  color: gold;
+}
+
+.footer-wrapper,
+.footer-wrapper * {
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+}
+.footer-section.left p,
+.footer-section.center p {
+  text-transform: none;
+}
+@media (max-width: 768px) {
+  .three-columns-archive {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    padding-top: 155px;
+  }
+}
 </style>
 </head>
 <body>
@@ -189,7 +229,6 @@ img { max-width: 100%; height: auto; display: block; }
         <div id="current-date">--/--/----</div>
       </div>
       <div class="icons-subsection">
-        <!-- Social icons (same as homepage) -->
         <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
         <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
         <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
@@ -217,23 +256,19 @@ img { max-width: 100%; height: auto; display: block; }
     </div>
   </div>
 </div>
+
 <div class="container">
-<div id="search-filters"></div>
-<div id="search-results"></div>
-<div id="search-pagination"></div>
-<div class="main-headline-wrapper">
-  <div class="main-headline-layout">
-    <div class="main-headline-left">
-      <a href="#" class="main-headline-link">ARCHIVED</a>
-      <div class="two-columns-below">
-        <div class="column" id="latest-headlines"></div>
-        <div class="column" id="more-headlines-list"></div>
-      </div>
+  <div id="search-results"></div>
+  <div id="search-pagination"></div>
+  <div class="main-headline-wrapper">
+    <a href="#" class="main-headline-link">ARCHIVED HEADLINES</a>
+    <div class="three-columns-archive">
+      <div class="column" id="col1"></div>
+      <div class="column" id="col2"></div>
+      <div class="column" id="col3"></div>
     </div>
-    <div class="right-column" id="right-column-1"></div>
   </div>
 </div>
-</div> <!-- end container -->
 
 <hr class="footer-separator" />
 <footer>
@@ -249,8 +284,7 @@ img { max-width: 100%; height: auto; display: block; }
         <a href="https://fedsun.news">
           <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
         </a>
-        <p>
-          Contact:<br />
+        <p>Contact:<br />
           editor@fedsun.news
         </p>
         <p>The Federation Sun © 2025</p>
@@ -266,70 +300,6 @@ img { max-width: 100%; height: auto; display: block; }
     </div>
   </div>
 </footer>
-
-<style>
-/* Additional styles matching homepage */
-
-/* Make all text normal weight and uppercase in headers/footers */
-body, body * {
-  font-weight: normal !important;
-}
-.banner,
-.banner * {
-  text-transform: uppercase;
-  font-family: 'Oswald', sans-serif;
-}
-.footer-wrapper,
-.footer-wrapper * {
-  text-transform: uppercase;
-  font-family: 'Oswald', sans-serif;
-}
-
-/* Headline styles */
-.two-columns-below a,
-.right-column a,
-.main-headline-link {
-  text-transform: uppercase;
-  font-family: 'Oswald', sans-serif;
-  text-decoration: none;
-}
-.ticker-group a {
-  text-transform: uppercase;
-  font-family: 'Oswald', sans-serif;
-}
-
-/* Hover color */
-.two-columns-below a:hover,
-.right-column a:hover {
-  color: gold !important;
-}
-
-/* Headline description font */
-.headline-description {
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-/* Footer flag image limit on desktop */
-@media (min-width: 769px) {
-  .footer-section.left img {
-    max-width: 100px;
-    width: 100%;
-  }
-}
-.footer-section.left p,
-.footer-section.center p {
-  text-transform: none;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .container {
-    padding-top: 155px;
-  }
-}
-</style>
 
 <script>
 function updateTime() {
@@ -363,7 +333,6 @@ function formatDateAEST(dateStr) {
   }).format(date) + ' AEST';
 }
 
-// Create headline item
 function createHeadlineItem(item) {
   const wrapper = document.createElement('div');
   wrapper.className = 'headline-item';
@@ -386,9 +355,6 @@ function createHeadlineItem(item) {
   const link = document.createElement('a');
   link.href = item.url;
   link.textContent = item.title;
-  link.style.color = 'white';
-  link.style.display = 'block';
-  link.style.marginBottom = '4px';
 
   const meta = document.createElement('div');
   meta.style.fontSize = '12px';
@@ -408,22 +374,14 @@ function createHeadlineItem(item) {
   return wrapper;
 }
 
-// Ticker from headlines.json
 fetch('/data/headlines.json?' + new Date().getTime())
 .then(r => r.json())
 .then(data => {
-  const today = new Date();
-  const recent = data.filter(item => {
-    const d = new Date(item.date);
-    const diff = (today - d) / (1000 * 60 * 60 * 24);
-    return diff <= 7;
-  });
-
   const track = document.getElementById('ticker-track');
   track.innerHTML = '';
   const grp = document.createElement('div');
   grp.className = 'ticker-group';
-  recent.forEach(item => {
+  data.forEach(item => {
     const a = document.createElement('a');
     a.href = item.url;
     a.textContent = item.title;
@@ -434,25 +392,19 @@ fetch('/data/headlines.json?' + new Date().getTime())
   const dist = grp.offsetWidth, speed = 20;
   document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
   document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
-})
-.catch(e => console.error('Ticker fetch error:', e));
+});
 
-// Load archive.json headlines
 fetch('/data/archive.json?' + new Date().getTime())
 .then(r => r.json())
 .then(data => {
-  const col1 = document.getElementById('latest-headlines');
-  const col2 = document.getElementById('more-headlines-list');
-  const col3 = document.getElementById('right-column-1');
-  [col1, col2, col3].forEach(c => c.innerHTML = '');
-
+  const cols = [document.getElementById('col1'), document.getElementById('col2'), document.getElementById('col3')];
   const perCol = Math.ceil(data.length / 3);
-  [col1, col2, col3].forEach((col, i) => {
+  cols.forEach((col, i) => {
     data.slice(i * perCol, (i + 1) * perCol).forEach(item => {
       col.appendChild(createHeadlineItem(item));
     });
   });
-  // ✅ Add Back to Homepage link
+
   const backLinkWrapper = document.createElement('div');
   backLinkWrapper.style.textAlign = 'center';
   backLinkWrapper.style.marginTop = '20px';
@@ -464,122 +416,11 @@ fetch('/data/archive.json?' + new Date().getTime())
   backLink.style.textDecoration = 'none';
   backLink.style.fontSize = '18px';
 
-  backLink.addEventListener('mouseover', () => {
-    backLink.style.color = 'gold';
-  });
-  backLink.addEventListener('mouseout', () => {
-    backLink.style.color = 'white';
-  });
+  backLink.addEventListener('mouseover', () => { backLink.style.color = 'gold'; });
+  backLink.addEventListener('mouseout', () => { backLink.style.color = 'white'; });
 
+  cols[2].appendChild(backLinkWrapper);
   backLinkWrapper.appendChild(backLink);
-  col3.appendChild(backLinkWrapper);
-})
-.catch(e => console.error('Archive fetch error:', e));
-
-// Search (same as homepage)
-document.getElementById("search-form").addEventListener("submit", async function(e) {
-  e.preventDefault();
-  const query = document.getElementById("search-input").value.trim().toLowerCase();
-  const resultsContainer = document.getElementById("search-results");
-  const filtersContainer = document.getElementById("search-filters");
-  const paginationContainer = document.getElementById("search-pagination");
-
-  resultsContainer.innerHTML = "<p>Loading results...</p>";
-  filtersContainer.innerHTML = "";
-  paginationContainer.innerHTML = "";
-
-  const res = await fetch('/data/headlines.json');
-  const headlines = await res.json();
-
-  let filtered = headlines.filter(item =>
-    item.title.toLowerCase().includes(query) ||
-    (item.description && item.description.toLowerCase().includes(query))
-  );
-
-  if (filtered.length === 0) {
-    resultsContainer.innerHTML = "<p>No results found.</p>";
-    return;
-  }
-
-  const uniqueDates = [...new Set(filtered.map(item => item.date.slice(0,10)))];
-  if (uniqueDates.length > 1) {
-    const select = document.createElement("select");
-    select.innerHTML = `<option value="">Filter by date</option>` +
-      uniqueDates.map(d => `<option value="${d}">${d}</option>`).join("");
-    select.addEventListener("change", function() {
-      const date = this.value;
-      if (date) {
-        filtered = filtered.filter(i => i.date.startsWith(date));
-      } else {
-        filtered = headlines.filter(item =>
-          item.title.toLowerCase().includes(query) ||
-          (item.description && item.description.toLowerCase().includes(query))
-        );
-      }
-      renderPage(1);
-    });
-    filtersContainer.appendChild(select);
-  }
-
-  const itemsPerPage = 5;
-  function renderPage(page) {
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    const pageItems = filtered.slice(start, end);
-
-    resultsContainer.innerHTML = "";
-    pageItems.forEach(item => {
-      const wrapper = document.createElement("div");
-      wrapper.style.borderBottom = "1px solid #444";
-      wrapper.style.padding = "10px 0";
-      wrapper.style.textAlign = "left";
-
-      const titleLink = document.createElement("a");
-      titleLink.href = item.url;
-      titleLink.style.color = "white";
-      titleLink.style.fontFamily = "'Oswald', sans-serif";
-      titleLink.style.fontSize = "20px";
-      titleLink.style.textDecoration = "none";
-      titleLink.style.display = "block";
-      titleLink.style.marginBottom = "4px";
-      titleLink.innerHTML = item.title.replace(new RegExp(query, "gi"), match => `<span style="background:gold;color:black;">${match}</span>`);
-
-      const desc = document.createElement("div");
-      desc.style.fontSize = "14px";
-      desc.style.color = "#ccc";
-      desc.style.fontFamily = "'Roboto', sans-serif";
-      desc.innerHTML = (item.description || "").replace(new RegExp(query, "gi"), match => `<span style="background:gold;color:black;">${match}</span>`);
-
-      const meta = document.createElement("div");
-      meta.style.fontSize = "12px";
-      meta.style.color = "#aaa";
-      meta.textContent = `Published: ${item.date.slice(0,10)}${item.author ? " — " + item.author : ""}`;
-
-      wrapper.appendChild(titleLink);
-      wrapper.appendChild(desc);
-      wrapper.appendChild(meta);
-      resultsContainer.appendChild(wrapper);
-    });
-
-    const totalPages = Math.ceil(filtered.length / itemsPerPage);
-    paginationContainer.innerHTML = "";
-    if (totalPages > 1) {
-      for (let i=1; i<=totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = i;
-        btn.style.margin = "0 4px";
-        btn.style.padding = "4px 8px";
-        btn.style.background = "#333";
-        btn.style.color = "white";
-        btn.style.border = "1px solid #555";
-        btn.style.cursor = "pointer";
-        if (i === page) btn.style.background = "gold";
-        btn.addEventListener("click", ()=>renderPage(i));
-        paginationContainer.appendChild(btn);
-      }
-    }
-  }
-  renderPage(1);
 });
 </script>
 </body>
