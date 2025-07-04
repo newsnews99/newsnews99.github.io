@@ -631,9 +631,7 @@ body * {
   font-family: 'Roboto', sans-serif;
 }
 
-.main-headline-wrapper {
-  padding-top: calc(53px + 32px + 12px + 10px + 20px);
-}
+
 
 
 
@@ -1047,6 +1045,16 @@ desc.textContent = item.description || '';
 
     archiveLinkWrapper.appendChild(archiveLink);
     col3.appendChild(archiveLinkWrapper);
+
+// Make main content respect banner height
+requestAnimationFrame(() => {
+  const banner = document.querySelector('.banner');
+  const bannerHeight = banner.offsetHeight;
+  const mainWrapper = document.querySelector('.main-headline-wrapper');
+  mainWrapper.style.paddingTop = `${bannerHeight}px`;
+});
+
+  
   })
   .catch(e => console.error('Fetch error loading headlines:', e));
 
