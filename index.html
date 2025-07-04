@@ -936,11 +936,16 @@ fetch('/data/poll.json?' + new Date().getTime())
 
     // Build the poll form
     let html = `<form id="poll-form"><h3 class="poll-title">${poll.question}</h3>`;
+poll.options.forEach(opt => {
+  html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
+});
+html += `
+  <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;">
+    <button type="submit" class="button-flag">Vote</button>
+    <button type="button" id="show-results-button" class="button-flag">Show Results</button>
+  </div>
+</form>`;
 
-    poll.options.forEach(opt => {
-      html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
-    });
-    html += `<button type="submit" class="button-flag">Vote</button></form>`;
 
     container.innerHTML = html;
 
@@ -954,6 +959,8 @@ fetch('/data/poll.json?' + new Date().getTime())
         .from('poll_votes')
         .insert([{ option: selected }]);
 
+      
+
       if (error) {
         container.innerHTML = `<p style="color:red;">Error saving vote: ${error.message}</p>`;
       } else {
@@ -961,6 +968,13 @@ fetch('/data/poll.json?' + new Date().getTime())
         loadVoteCounts(selected);
       }
     });
+
+const showResultsBtn = document.getElementById('show-results-button');
+showResultsBtn.addEventListener('click', () => {
+  loadVoteCounts(); // no voted option passed
+});
+
+    
   })
   .catch(e => console.error('Fetch error:', e));
 
