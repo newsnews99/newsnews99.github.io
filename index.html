@@ -729,7 +729,10 @@ body * {
   margin: 0;
   padding: 0 10px; /* optional, for nice breathing space */
 }
-  
+  .container {
+  margin-top: calc(53px + 32px);
+}
+
 </style>
 
 </head>
@@ -1046,13 +1049,7 @@ desc.textContent = item.description || '';
     archiveLinkWrapper.appendChild(archiveLink);
     col3.appendChild(archiveLinkWrapper);
 
-// Make main content respect banner height
-requestAnimationFrame(() => {
-  const banner = document.querySelector('.banner');
-  const bannerHeight = banner.offsetHeight;
-  const container = document.querySelector('.container');
-  container.style.paddingTop = `${bannerHeight}px`;
-});
+
 
 
   
