@@ -706,7 +706,25 @@ body * {
 .ticker-separator {
   white-space: nowrap;
 }
+.ticker-group .ticker-extra {
+  color: white;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  line-height: 1;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  margin-right: 0px; /* same as your .ticker-group a */
+  white-space: nowrap;
+}
 
+.ticker-group .ticker-extra:hover {
+  color: gold;
+  cursor: default;
+}
+
+  
 </style>
 
 </head>
@@ -869,13 +887,12 @@ body * {
     a.textContent = item.data.title;
     grp.appendChild(a);
   } else if (item.type === 'extra') {
-    const div = document.createElement('div');
-    div.textContent = item.data.text;
-    div.style.color = 'white';
-    div.style.fontSize = '15px';
-    div.style.marginRight = '40px';
-    grp.appendChild(div);
-  }
+  const span = document.createElement('span');
+  span.textContent = item.data.text;
+  span.className = 'ticker-extra';
+  grp.appendChild(span);
+}
+
 
   // Add flag separator unless last item
   if (index < tickerItems.length - 1) {
