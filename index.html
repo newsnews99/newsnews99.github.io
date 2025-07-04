@@ -172,8 +172,8 @@ img { max-width: 100%; height: auto; display: block; }
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: calc(53px + 32px + 12px + 10px + 20px);
 }
+
 .main-headline-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -624,6 +624,9 @@ body * {
   font-family: 'Roboto', sans-serif;
 }
 
+.main-headline-wrapper {
+  padding-top: calc(53px + 32px + 12px + 10px + 20px);
+}
 
 
 </style>
@@ -670,10 +673,12 @@ body * {
   </div>
 
   <div class="container">
-    <div id="search-filters" style="margin-top:10px;"></div>
-<div id="search-results" style="margin-top:20px;"></div>
-<div id="search-pagination" style="margin-top:10px;"></div>
-    <div class="main-headline-layout">
+    <div id="search-filters"></div>
+<div id="search-results"></div>
+<div id="search-pagination"></div>
+<div class="main-headline-wrapper">
+  <div class="main-headline-layout">
+
       <div class="main-headline-left">
         <div class="main-headline-img-wrapper">
           <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
@@ -691,6 +696,7 @@ body * {
       </div>
       <div class="right-column" id="right-column-1"></div>
     </div>
+  </div>
   </div>
 
   <hr class="footer-separator" />
