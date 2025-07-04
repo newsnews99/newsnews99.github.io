@@ -1,0 +1,42 @@
+name: Generate Ticker Extra JSON
+
+on:
+  push:
+    paths:
+      - 'content/ticker_extra/**'
+      - '.github/workflows/generate-ticker-extra.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install gray-matter
+
+      - name: Generate ticker_extra.json
+        run: |
+          node -e "
+          const fs = require('fs');
+          const matter = require('gray-matter');
+          const dir = 'content/ticker_extra';
+          const files = fs.readdirSync(dir).filter(f => f.endsWith('.md'));
+          const items = files.map(f => {
+            const content = fs.readFileSync(\`\${dir}/\${f}\`, 'utf8');
+            const data = matter(content).data;
+            return { text: data.text };
+          });
+          fs.writeFileSync('data/ticker_extra.json', JSON.stringify(items, null, 2));
+          "
+
+      - name: Commit and push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update ticker_extra.json
