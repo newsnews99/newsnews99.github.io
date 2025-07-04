@@ -721,14 +721,7 @@ body * {
   color: gold;
   cursor: default;
 }
-.ticker-group a,
-.ticker-group .ticker-extra {
-  margin-right: 40px; /* or any consistent space you prefer */
-}
-.ticker-separator {
-  margin: 0;
-  padding: 0 10px; /* optional, for nice breathing space */
-}
+
  
 .ticker-track {
   display: flex;
@@ -763,6 +756,14 @@ body * {
   flex: 0 0 auto;
 }
 
+.ticker-group a,
+.ticker-group .ticker-extra {
+  margin: 0; /* Remove margin */
+}
+
+.ticker-separator {
+  padding: 0 20px; /* Equal space on both sides of the flag */
+}
 
 </style>
 
