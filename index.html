@@ -657,6 +657,9 @@ body * {
   text-transform: uppercase !important;
   font-size: 15px !important;
 }
+.ticker-track img.ticker-separator {
+  vertical-align: middle;
+}
 
 </style>
 
@@ -810,24 +813,16 @@ body * {
 
   // Add the emoji separator unless it's the last item
   if (index < recent.length - 1) {
-  const sep = document.createElement('div');
+  const sep = document.createElement('img');
 sep.className = 'ticker-separator';
-sep.style.display = 'flex';
-sep.style.alignItems = 'center';
-sep.style.justifyContent = 'center';
+sep.src = 'flag_au.png';
+sep.alt = 'AU Flag';
+sep.style.height = '16px';
+sep.style.width = 'auto';
+sep.style.display = 'inline-block';
 sep.style.margin = '0 12px';
-sep.innerHTML = `
-  <img 
-    src="/flag_au.png" 
-    alt="AU Flag"
-    style="
-      height:16px;
-      width:auto;
-      display:block;
-    "
-  >
-`;
 grp.appendChild(sep);
+
 
   }
 
