@@ -915,10 +915,21 @@ body * {
 
 
 
-    track.appendChild(grp);
+   track.appendChild(grp);
+
+// ✅ Add a spacer div between clones
+const spacer = document.createElement('div');
+spacer.style.width = '40px'; // Adjust spacing here if you like
+spacer.style.flexShrink = '0';
+
+track.appendChild(spacer);
+
+// ✅ Append the clone
 track.appendChild(grp.cloneNode(true));
 
+// ✅ Measure total distance
 const dist = track.scrollWidth / 2;
+
 const speed = 20;
 document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
 document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
