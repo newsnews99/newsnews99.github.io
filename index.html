@@ -12,7 +12,6 @@
 
 
 <style>
-:root { --ticker-distance: 0px; --ticker-duration: 20s; }
 html, body {
   margin: 0;
   font-family: 'Bebas Neue', sans-serif;
@@ -144,19 +143,21 @@ img { max-width: 100%; height: auto; display: block; }
   height: 32px;
   overflow: hidden;
 }
+/* ✅ UPDATED ticker-track and animation */
 .ticker-track {
   display: flex;
   will-change: transform;
-  animation: scroll var(--ticker-duration) linear infinite;
-  width: max-content;
+  animation: scroll 30s linear infinite;
 }
-
-
-
 @keyframes scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
+
 .container {
   width: 100%;
   max-width: 1200px;
@@ -183,7 +184,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .main-headline-link {
   font-family: 'Oswald', sans-serif;
-
   font-size: 28px;
   color: white;
   text-decoration: none;
@@ -209,7 +209,6 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 10px;
   align-items: flex-start;
 }
-
 .two-columns-below img,
 .right-column img {
   width: 33%;
@@ -220,7 +219,6 @@ img { max-width: 100%; height: auto; display: block; }
 .two-columns-below a,
 .right-column a {
   font-family: 'Oswald', sans-serif;
-
   line-height: 1.2;
 }
 .footer-wrapper {
@@ -280,7 +278,6 @@ img { max-width: 100%; height: auto; display: block; }
   resize: vertical;
   box-sizing: border-box;
 }
-
 .footer-separator {
   width: 100%;
   max-width: 1200px;
@@ -363,16 +360,16 @@ img { max-width: 100%; height: auto; display: block; }
 .ticker-inner:hover .ticker-track {
   animation-play-state: paused;
 }
+/* The rest of your CSS remains unchanged... */
+<style>
+/* CONTINUATION OF YOUR CSS */
 
-
-
-/* Make all text normal weight */
 body,
 body * {
   font-weight: normal !important;
 }
 
-  /* Center the poll */
+/* Center the poll */
 #poll-container {
   text-align: center;
 }
@@ -430,7 +427,7 @@ body * {
   font-weight: bold;
 }
 
-  #poll-container form {
+#poll-container form {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -438,12 +435,12 @@ body * {
   text-align: center;
 }
 #poll-container h3 {
-  margin-top: 0; /* Remove spacing above the title */
+  margin-top: 0;
+}
+#poll-container button {
+  margin-top: 12px;
 }
 
-#poll-container button {
-  margin-top: 12px; /* Add spacing above the button */
-}
 /* Align anonymous tips title to the right on desktop */
 @media (min-width: 769px) {
   .footer-section.right h3 {
@@ -452,7 +449,7 @@ body * {
   }
 }
 
-  .left-section a {
+.left-section a {
   display: inline-block;
 }
 .left-section a:focus {
@@ -461,6 +458,7 @@ body * {
 .footer-section a:focus {
   outline: none;
 }
+
 /* Use Roboto for headline descriptions */
 .headline-description {
   font-family: 'Roboto', sans-serif;
@@ -481,10 +479,6 @@ body * {
   font-family: 'Oswald', sans-serif;
 }
 
-
-
-
-
 /* Make all header text uppercase and Anton */
 .banner {
   font-family: 'Oswald', sans-serif;
@@ -495,26 +489,27 @@ body * {
   text-transform: uppercase;
 }
 
-
 /* Make all footer text uppercase and Anton */
 .footer-wrapper,
 .footer-wrapper * {
   text-transform: uppercase;
   font-family: 'Oswald', sans-serif;
-
 }
+
 /* Poll text styling */
 #poll-container,
 #poll-container * {
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
-  font-weight: normal; /* Remove boldness if any */
+  font-weight: normal;
 }
+
 /* Remove underline from column headlines */
 .two-columns-below a,
 .right-column a {
   text-decoration: none;
 }
+
 /* Limit footer flag image width on desktop */
 @media (min-width: 769px) {
   .footer-section.left img {
@@ -528,6 +523,7 @@ body * {
 .footer-section.center p {
   text-transform: none;
 }
+
 /* Make headlines gold on hover */
 .two-columns-below a:hover,
 .right-column a:hover {
@@ -539,43 +535,11 @@ body * {
   font-weight: bold;
 }
 .two-columns-below {
-  margin-top: 15px; /* Increase as needed */
+  margin-top: 15px;
 }
+
+/* Button styling */
 .button-flag {
-  background-image: url('australian_flag.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 1px solid white;
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  padding: 0 12px;
-  box-sizing: border-box;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-
-.footer-section.right button.button-flag {
-  width: auto;
-}
-.footer-section.right form {
-  align-items: center;
-}
-
-.footer-section.right button.button-flag {
-  width: auto;
-}
-
- 
-  
-  .button-flag {
   background-image: url('australian_flag.png');
   background-size: cover;
   background-repeat: no-repeat;
@@ -600,6 +564,16 @@ body * {
      1px  1px 0 #1e1e1e;
 }
 
+.footer-section.right button.button-flag {
+  width: auto;
+}
+.footer-section.right form {
+  align-items: center;
+}
+.footer-section.right button.button-flag {
+  width: auto;
+}
+
 #search-results > div {
   border-bottom: 1px solid #444;
   padding: 10px 0;
@@ -618,13 +592,7 @@ body * {
   font-family: 'Roboto', sans-serif;
 }
 
-
-
-
-
-
-
-/* ✅ Restore search input and button consistent font and uppercase */
+/* Restore search input and button consistent font and uppercase */
 .center-section input[type="text"],
 .center-section button {
   font-family: 'Oswald', sans-serif !important;
@@ -632,50 +600,34 @@ body * {
   font-size: 16px !important;
 }
 
-
-
-
-
-
+/* Maintain ticker flex settings */
 .ticker-track {
   display: flex;
   flex-wrap: nowrap;
   white-space: nowrap;
 }
 
-
 html, body {
   font-size: 16px;
 }
 .headline-meta {
-  font-family: 'Roboto', sans-serif;  /* or any font you like */
-  font-size: 16px;                    /* or any size you prefer */
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
   color: #ccc;
 }
 .two-columns-below a,
 .right-column a {
   font-size: 21px;
 }
+
 /* Justify all column text */
 .two-columns-below .headline-item > div,
 .right-column .headline-item > div {
   text-align: justify;
 }
-
-/* Optional: make headline links block so they fill width */
 .two-columns-below .headline-item a,
 .right-column .headline-item a {
   display: block;
-}
-.headline-description {
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-/* Force last line to justify */
-.headline-description {
-  text-align: justify;
-  hyphens: auto;
 }
 .headline-description {
   display: block;
@@ -683,19 +635,12 @@ html, body {
   text-align: justify;
   hyphens: auto;
 }
-
 .two-columns-below img,
 .right-column img {
   width: 33%;
   aspect-ratio: 16/9;
   object-fit: cover;
   flex-shrink: 0;
-}
-
-.headline-description {
-  margin-top: 4px;
-  text-align: justify;
-  hyphens: auto;
 }
 
 @media (max-width: 768px) {
@@ -710,8 +655,11 @@ html, body {
   align-items: center;
   flex-wrap: nowrap;
   white-space: nowrap;
+  margin-right: 50px;
 }
-
+.ticker-group > * {
+  margin-right: 20px;
+}
 .ticker-separator {
   display: inline-flex;
   align-items: center;
@@ -719,7 +667,6 @@ html, body {
   padding: 0 15px;
   flex: 0 0 auto;
 }
-
 .ticker-separator img {
   height: 16px;
   width: auto;
@@ -732,11 +679,9 @@ html, body {
   text-transform: uppercase;
   text-decoration: none;
 }
-
 .ticker-group a:hover {
   color: gold;
 }
-
 .ticker-extra {
   font-family: 'Oswald', sans-serif;
   font-size: 16px;
@@ -744,25 +689,12 @@ html, body {
   text-transform: uppercase;
   text-decoration: none;
 }
-
 .ticker-extra:hover {
   color: gold;
-  cursor: default; /* If you don't want them to be clickable */
+  cursor: default;
 }
-.ticker-group {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  /* Add spacing to the right of each group so they don't collide */
-  margin-right: 50px; /* You can adjust this value */
-}
-
-  .ticker-group > * {
-  margin-right: 20px;
-}
-
 </style>
+
 
 </head>
 <body>
@@ -964,8 +896,12 @@ html, body {
     recent.slice(0, 6)
   );
 
-  track.appendChild(group1);
-  track.appendChild(group2);
+  const group = createTickerGroup(extras, recent.slice(0,6));
+const groupClone = group.cloneNode(true);
+
+track.appendChild(group);
+track.appendChild(groupClone);
+
 
   // Measure total distance
   const dist = track.scrollWidth;
