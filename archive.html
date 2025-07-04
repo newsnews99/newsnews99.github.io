@@ -5,11 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Federation Sun Archive</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
-
 <style>
 :root { --ticker-distance:0; --ticker-duration:20s; }
 html,body{margin:0;font-family:'Bebas Neue',sans-serif;background:#1e1e1e;color:white;box-sizing:border-box;overflow-x:hidden;}
@@ -53,7 +52,7 @@ img{max-width:100%;height:auto;display:block;}
 .footer-section.right textarea{width:100%;min-height:80px;padding:8px;border:none;border-radius:4px;resize:vertical;box-sizing:border-box;}
 .footer-section.right button{background-image:url('australian_flag.png');background-size:cover;background-repeat:no-repeat;background-position:center;border:1px solid white;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;height:32px;padding:0 12px;box-sizing:border-box;color:white;font-size:15px;font-weight:bold;text-transform:uppercase;text-shadow:-1px -1px 0 #1e1e1e,1px -1px 0 #1e1e1e,-1px 1px 0 #1e1e1e,1px 1px 0 #1e1e1e;}
 .footer-separator{width:100%;max-width:1200px;margin:40px auto 0 auto;border:none;border-top:1px solid #444;}
-@media (max-width:768px){
+@media(max-width:768px){
 .banner-content{grid-template-columns:auto 1fr;grid-template-areas:"logo right""search search";row-gap:8px;column-gap:8px;align-items:start;padding:8px;}
 .social-section{grid-area:right;align-items:flex-end;text-align:right;}
 .time-subsection{text-align:right;}
@@ -107,7 +106,6 @@ img{max-width:100%;height:auto;display:block;}
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="main-headline-wrapper">
     <a href="#" class="main-headline-link">ARCHIVED HEADLINES</a>
@@ -120,20 +118,24 @@ img{max-width:100%;height:auto;display:block;}
     </div>
   </div>
 </div>
-
 <hr class="footer-separator" />
 <footer>
   <div class="footer-wrapper">
     <div class="footer-content">
       <div class="footer-section left">
         <img src="australian_flag.png" alt="Australian Flag" />
-        <p>The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.</p>
+        <p>
+          The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
+        </p>
       </div>
       <div class="footer-section center">
         <a href="https://fedsun.news">
           <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
         </a>
-        <p>Contact:<br />editor@fedsun.news</p>
+        <p>
+          Contact:<br />
+          editor@fedsun.news
+        </p>
         <p>The Federation Sun © 2025</p>
       </div>
       <div class="footer-section right">
@@ -141,7 +143,7 @@ img{max-width:100%;height:auto;display:block;}
         <form action="https://formspree.io/f/meokpdkj" method="POST">
           <textarea name="tip" placeholder="Type your tip here..."></textarea>
           <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
-          <button type="submit" class="button-flag">Send Tip</button>
+          <button type="submit">Send Tip</button>
         </form>
       </div>
     </div>
@@ -149,65 +151,84 @@ img{max-width:100%;height:auto;display:block;}
 </footer>
 
 <script>
-function updateTime(){const now=new Date();const t=new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);const d=new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);document.getElementById('current-time').textContent=t+' AEST';document.getElementById('current-date').textContent=d;}
-updateTime();setInterval(updateTime,60000);
+// Time update
+function updateTime() {
+  const now = new Date();
+  const t = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
+  const d = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
+  document.getElementById('current-time').textContent = t+' AEST';
+  document.getElementById('current-date').textContent = d;
+}
+updateTime();
+setInterval(updateTime,60000);
 
+// Ticker
 fetch('/data/headlines.json?'+new Date().getTime())
 .then(r=>r.json())
 .then(data=>{
-const track=document.getElementById('ticker-track');
-track.innerHTML='';
-const grp=document.createElement('div');
-grp.className='ticker-group';
-data.forEach(item=>{
-const a=document.createElement('a');a.href=item.url;a.textContent=item.title;grp.appendChild(a);});
-track.appendChild(grp);
-track.appendChild(grp.cloneNode(true));
-const dist=grp.offsetWidth,speed=20;
-document.documentElement.style.setProperty('--ticker-distance',dist+'px');
-document.documentElement.style.setProperty('--ticker-duration',(dist/speed)+'s');});
+  const track=document.getElementById('ticker-track');
+  track.innerHTML='';
+  const grp=document.createElement('div');
+  grp.className='ticker-group';
+  data.forEach(item=>{
+    const a=document.createElement('a');
+    a.href=item.url;
+    a.textContent=item.title;
+    grp.appendChild(a);
+  });
+  track.appendChild(grp);
+  track.appendChild(grp.cloneNode(true));
+  const dist=grp.offsetWidth,speed=20;
+  document.documentElement.style.setProperty('--ticker-distance',dist+'px');
+  document.documentElement.style.setProperty('--ticker-duration',(dist/speed)+'s');
+});
 
+// Archive headlines
 fetch('/data/archive.json?'+new Date().getTime())
 .then(r=>r.json())
 .then(data=>{
-const col1=document.getElementById('archive-col1');
-const col2=document.getElementById('archive-col2');
-const half=Math.ceil(data.length/2);
-[col1,col2].forEach(c=>c.innerHTML='');
-data.slice(0,half).forEach(item=>col1.appendChild(createHeadline(item)));
-data.slice(half).forEach(item=>col2.appendChild(createHeadline(item)));});
-
-function createHeadline(item){
-const wrapper=document.createElement('div');
-wrapper.className='headline-item';
-wrapper.style.display='flex';
-wrapper.style.gap='10px';
-wrapper.style.alignItems='flex-start';
-const img=document.createElement('img');
-img.src=item.image;
-img.alt=item.title;
-img.style.width='33%';
-img.style.aspectRatio='16/9';
-img.style.objectFit='cover';
-const content=document.createElement('div');
-content.style.flex='1';
-content.style.textAlign='left';
-const link=document.createElement('a');
-link.href=item.url;
-link.textContent=item.title;
-const meta=document.createElement('div');
-meta.style.fontSize='12px';
-meta.style.color='#ccc';
-meta.textContent=item.date;
-const desc=document.createElement('div');
-desc.className='headline-description';
-desc.textContent=item.description||'';
-content.appendChild(link);
-content.appendChild(meta);
-content.appendChild(desc);
-wrapper.appendChild(img);
-wrapper.appendChild(content);
-return wrapper;}
+  const col1=document.getElementById('archive-col1');
+  const col2=document.getElementById('archive-col2');
+  const perCol=Math.ceil(data.length/2);
+  [col1,col2].forEach((col,i)=>{
+    data.slice(i*perCol,(i+1)*perCol).forEach(item=>{
+      const wrapper=document.createElement('div');
+      wrapper.className='headline-item';
+      wrapper.style.display='flex';
+      wrapper.style.gap='10px';
+      wrapper.style.alignItems='flex-start';
+      const img=document.createElement('img');
+      img.src=item.image;
+      img.alt=item.title;
+      img.style.width='33%';
+      img.style.aspectRatio='16/9';
+      img.style.objectFit='cover';
+      img.style.flexShrink='0';
+      const content=document.createElement('div');
+      content.style.flex='1';
+      content.style.textAlign='left';
+      const link=document.createElement('a');
+      link.href=item.url;
+      link.textContent=item.title;
+      link.style.color='white';
+      link.style.display='block';
+      link.style.marginBottom='4px';
+      const meta=document.createElement('div');
+      meta.style.fontSize='12px';
+      meta.style.color='#ccc';
+      meta.textContent=item.date;
+      const desc=document.createElement('div');
+      desc.className='headline-description';
+      desc.textContent=item.description||'';
+      content.appendChild(link);
+      content.appendChild(meta);
+      content.appendChild(desc);
+      wrapper.appendChild(img);
+      wrapper.appendChild(content);
+      col.appendChild(wrapper);
+    });
+  });
+});
 </script>
 </body>
 </html>
