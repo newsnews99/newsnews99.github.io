@@ -767,6 +767,11 @@ body * {
 html, body {
   font-size: 16px;
 }
+.headline-meta {
+  font-family: 'Roboto', sans-serif;  /* or any font you like */
+  font-size: 16px;                    /* or any size you prefer */
+  color: #ccc;
+}
 
 </style>
 
@@ -1030,9 +1035,9 @@ html, body {
     link.style.marginBottom = '4px';
 
     const meta = document.createElement('div');
-    meta.style.fontSize = '12px';
-    meta.style.color = '#ccc';
-    meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
+meta.className = 'headline-meta';
+meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
+
 
     const desc = document.createElement('div');
     desc.className = 'headline-description';
