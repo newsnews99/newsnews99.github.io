@@ -729,11 +729,7 @@ body * {
   margin: 0;
   padding: 0 10px; /* optional, for nice breathing space */
 }
- body::before {
-  content: "";
-  display: block;
-  height: calc(53px + 32px + 2px); /* logo bar + ticker + borders */
-}
+ 
 
 
 </style>
@@ -1303,6 +1299,15 @@ document.getElementById("search-form").addEventListener("submit", async function
   }
 
   renderPage(1);
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const banner = document.querySelector(".banner");
+  if (banner) {
+    const height = banner.offsetHeight;
+    document.body.style.paddingTop = height + "px";
+  }
 });
 </script>
 
