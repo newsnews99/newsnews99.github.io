@@ -494,11 +494,7 @@ body * {
 }
 
 
-/* prevent ticker separators inheriting uppercase */
-.ticker-separator {
-  text-transform: none;
-  font-family: Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif;
-}
+
 
 
 /* Make all header text uppercase and Anton */
@@ -638,20 +634,28 @@ body * {
 .main-headline-wrapper {
   padding-top: calc(53px + 32px + 12px + 10px + 20px);
 }
-.ticker-separator {
-  text-transform: none;
-  font-family: sans-serif, Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji;
-  margin: 0 20px;
-  font-size: 18px;
-}
+
+/* ✅ Make ticker separator immune to transforms */
 .ticker-separator {
   text-transform: none !important;
   font-family: Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif !important;
+  font-size: 18px !important;
   margin: 0 20px;
-  font-size: 18px;
   display: inline-block;
 }
 
+/* ✅ Make sure only ticker links get uppercase */
+.ticker-group > a {
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+}
+
+/* ✅ Force search button and input text consistent */
+.center-section input[type="text"],
+.center-section button {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+}
 
 </style>
 
