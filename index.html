@@ -635,14 +635,7 @@ body * {
   padding-top: calc(53px + 32px + 12px + 10px + 20px);
 }
 
-/* ✅ Ensure ticker separator stays emoji and not uppercase */
-.ticker-separator {
-  text-transform: none !important;
-  font-family: Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif !important;
-  font-size: 18px !important;
-  margin: 0 20px !important;
-  display: inline-block !important;
-}
+
 
 /* ✅ Only ticker links are uppercase, not separators */
 .ticker-group > a {
@@ -658,11 +651,18 @@ body * {
   font-size: 15px !important;
 }
 
+
+.ticker-separator img {
+  height: 16px;
+  width: auto;
+  display: block;
+}
 .ticker-separator {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   margin: 0 12px;
+  height: 32px; /* Match ticker height */
 }
 .ticker-separator img {
   height: 16px;
