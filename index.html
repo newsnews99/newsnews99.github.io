@@ -819,6 +819,20 @@ html, body {
   text-align: justify;
   hyphens: auto;
 }
+
+.two-columns-below .headline-item a,
+.right-column .headline-item a {
+  text-align: justify;
+  text-justify: inter-word;
+}
+.two-columns-below .headline-item a::after,
+.right-column .headline-item a::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+
+  
 </style>
 
 </head>
