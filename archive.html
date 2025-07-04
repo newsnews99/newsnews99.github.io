@@ -625,7 +625,7 @@ body * {
 }
 
 .main-headline-wrapper {
-  padding-top: calc(53px + 32px + 12px + 10px + 0px);
+  padding-top: calc(53px + 32px + 12px + 10px + 20px);
 }
 .archive-columns {
   display: grid;
@@ -687,7 +687,12 @@ body * {
   color: gold;
 }
 
-
+@media (min-width: 769px) {
+.main-headline-wrapper {
+padding-top: calc(53px + 32px + 12px + 10px + 5px);
+}
+}
+  
 </style>
 
 </head>
