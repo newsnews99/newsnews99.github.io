@@ -158,7 +158,7 @@ img { max-width: 100%; height: auto; display: block; }
   color: white;
   text-decoration: none;
   font-size: 15px;
-  margin-right: 40px;
+  margin-right: 0px;
   display: inline-block;
 }
 .ticker-group a:hover {
@@ -488,19 +488,26 @@ body * {
 .two-columns-below a,
 .right-column a,
 .main-headline-link,
-.ticker-group a {
+.ticker-group > a {
   text-transform: uppercase;
   font-family: 'Oswald', sans-serif;
-
 }
+
+
+
+
 
 /* Make all header text uppercase and Anton */
-.banner,
-.banner * {
-  text-transform: uppercase;
+.banner {
   font-family: 'Oswald', sans-serif;
-
 }
+.banner a,
+.banner .ticker-group a,
+.banner .icons-subsection,
+.banner .time-subsection {
+  text-transform: uppercase;
+}
+
 
 /* Make all footer text uppercase and Anton */
 .footer-wrapper,
@@ -624,9 +631,140 @@ body * {
   font-family: 'Roboto', sans-serif;
 }
 
-.main-headline-wrapper {
-  padding-top: calc(53px + 32px + 12px + 10px + 20px);
+
+
+
+
+/* ✅ Only ticker links are uppercase, not separators */
+.ticker-group > a {
+  text-transform: uppercase !important;
+  font-family: 'Oswald', sans-serif !important;
 }
+
+/* ✅ Restore search input and button consistent font and uppercase */
+.center-section input[type="text"],
+.center-section button {
+  font-family: 'Oswald', sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 15px !important;
+}
+
+
+.ticker-separator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;    /* Space between this and the text */
+  padding: 0 4px;    /* Equal space inside left & right of flag */
+  height: 32px;
+}
+
+
+.ticker-separator img {
+  height: 16px;           /* Reasonable icon size */
+  width: auto;
+  display: block;
+}
+
+.ticker-group a {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  line-height: 1;  /* Remove extra line spacing */
+}
+.ticker-separator img {
+  height: 16px;
+  width: auto;
+  display: block;
+}
+.ticker-separator {
+  flex: 0 0 auto;
+}
+
+.ticker-track {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.ticker-group {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+
+.ticker-group > * {
+  flex-shrink: 0;
+}
+.ticker-group {
+  white-space: nowrap;
+}
+.ticker-group a,
+.ticker-separator {
+  white-space: nowrap;
+}
+.ticker-group .ticker-extra {
+  color: white;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  line-height: 1;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  margin-right: 0px; /* same as your .ticker-group a */
+  white-space: nowrap;
+}
+
+.ticker-group .ticker-extra:hover {
+  color: gold;
+  cursor: default;
+}
+
+ 
+.ticker-track {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  align-items: center;
+}
+.ticker-track > * {
+  flex: 0 0 auto;
+}
+.ticker-group {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+.ticker-group > * {
+  flex: 0 0 auto;
+}
+.ticker-separator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0 10px;
+}
+.ticker-extra {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.ticker-group a,
+.ticker-group .ticker-extra {
+  margin: 0; /* Remove margin */
+}
+
+.ticker-separator {
+  padding: 0 20px; /* Equal space on both sides of the flag */
+}
+
 .archive-columns {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
