@@ -730,6 +730,38 @@ body * {
   padding: 0 10px; /* optional, for nice breathing space */
 }
  
+.ticker-track {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  align-items: center;
+}
+.ticker-track > * {
+  flex: 0 0 auto;
+}
+.ticker-group {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+.ticker-group > * {
+  flex: 0 0 auto;
+}
+.ticker-separator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0 10px;
+}
+.ticker-extra {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
 
 
 </style>
