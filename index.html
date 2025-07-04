@@ -1336,9 +1336,16 @@ document.addEventListener("DOMContentLoaded", function() {
   const spacer = document.getElementById("header-spacer");
   if (banner && spacer) {
     const height = banner.offsetHeight;
-    spacer.style.height = (height + 15) + "px";
+    if (window.innerWidth > 768) {
+      // Desktop: header height + 15px spacing
+      spacer.style.height = (height + 15) + "px";
+    } else {
+      // Mobile: header height only
+      spacer.style.height = height + "px";
+    }
   }
 });
+
 </script>
   
 </body>
