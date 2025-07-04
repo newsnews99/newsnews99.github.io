@@ -968,7 +968,8 @@ html, body {
   track.appendChild(group2);
 
   // Measure total distance
-  const dist = track.scrollWidth / 2;
+  const dist = track.scrollWidth;
+
   const speed = 20;
   document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
   document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
