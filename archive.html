@@ -28,8 +28,6 @@ body {
   padding: 0;
 }
 img { max-width: 100%; height: auto; display: block; }
-
-/* Banner */
 .banner {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -58,7 +56,6 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 13px;
   line-height: 1;
   text-align: left;
-  display: block;
 }
 .icons-subsection {
   display: flex;
@@ -67,7 +64,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .icons-subsection img {
   height: 24px;
-  width: auto;
 }
 .left-section {
   grid-area: logo;
@@ -76,7 +72,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .left-section img.logo {
   height: 53px;
-  width: auto;
 }
 .center-section {
   grid-area: search;
@@ -101,7 +96,6 @@ img { max-width: 100%; height: auto; display: block; }
   outline: none;
   background: #fff;
   color: #1e1e1e;
-  box-sizing: border-box;
 }
 .center-section button {
   background-image: url('australian_flag.png');
@@ -116,7 +110,6 @@ img { max-width: 100%; height: auto; display: block; }
   justify-content: center;
   height: 32px;
   padding: 0 12px;
-  box-sizing: border-box;
   color: white;
   font-size: 15px;
   font-weight: bold;
@@ -127,7 +120,6 @@ img { max-width: 100%; height: auto; display: block; }
     -1px  1px 0 #1e1e1e,
      1px  1px 0 #1e1e1e;
 }
-
 .ticker {
   width: 100%;
   overflow: hidden;
@@ -145,7 +137,6 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   align-items: center;
   height: 32px;
-  overflow: hidden;
 }
 .ticker-track {
   display: flex;
@@ -162,7 +153,6 @@ img { max-width: 100%; height: auto; display: block; }
   text-decoration: none;
   font-size: 15px;
   margin-right: 40px;
-  display: inline-block;
 }
 .ticker-group a:hover {
   color: gold;
@@ -171,24 +161,9 @@ img { max-width: 100%; height: auto; display: block; }
   from { transform: translateX(0); }
   to   { transform: translateX(calc(-1 * var(--ticker-distance))); }
 }
-
 .main-headline-wrapper {
   padding-top: calc(53px + 32px + 12px + 10px + 20px);
 }
-
-/* Archive headline title styling same as homepage */
-.main-headline-link {
-  font-size: 32px;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-family: 'Oswald', sans-serif;
-  color: white;
-  text-decoration: none;
-}
-.main-headline-link:hover {
-  color: gold;
-}
-
 .three-columns-archive {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -214,140 +189,42 @@ img { max-width: 100%; height: auto; display: block; }
 .three-columns-archive a:hover {
   color: gold;
 }
-
-/* Footer identical to homepage */
-.footer-wrapper {
-  width: 100%;
-  background: #1e1e1e;
-  padding: 30px 0;
-}
-.footer-content {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 40px;
-  flex-wrap: nowrap;
-  text-align: left;
-}
-.footer-section {
-  flex: 1 1 0;
-  min-width: 0;
-}
-.footer-section.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Archive title styling */
+.main-headline-link {
+  font-family: 'Oswald', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  display: block;
   text-align: center;
+  margin: 20px 0;
 }
-.footer-section.left img {
-  width: 33vw;
-  margin-bottom: 10px;
+.main-headline-link:hover {
+  color: gold;
 }
-.footer-section.center img {
-  width: 120px;
-  margin-bottom: 10px;
-}
-.footer-section.right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-}
-.footer-section.right h3 {
-  margin: 0 0 10px 0;
-}
-.footer-section.right form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-}
-.footer-section.right textarea {
-  width: 100%;
-  min-height: 80px;
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-  resize: vertical;
-  box-sizing: border-box;
-}
+/* Footer styling same as homepage */
 .footer-wrapper,
 .footer-wrapper * {
   text-transform: uppercase;
   font-family: 'Oswald', sans-serif;
+  font-weight: normal !important;
 }
 .footer-section.left p,
 .footer-section.center p {
   text-transform: none;
+  font-family: 'Roboto', sans-serif;
 }
 .footer-section.right button {
-  background-image: url('australian_flag.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 1px solid white;
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  padding: 0 12px;
-  box-sizing: border-box;
-  color: white;
-  font-size: 15px;
-  font-weight: bold;
   text-transform: uppercase;
-  text-shadow:
-    -1px -1px 0 #1e1e1e,
-     1px -1px 0 #1e1e1e,
-    -1px  1px 0 #1e1e1e,
-     1px  1px 0 #1e1e1e;
 }
-.footer-section.right form {
-  align-items: center;
-}
-.footer-section.right button {
-  width: auto;
-}
-
-/* Flag image max width on desktop */
-@media (min-width: 769px) {
-  .footer-section.left img {
-    max-width: 100px;
-    width: 100%;
-  }
-}
-
-/* Mobile adjustments */
 @media (max-width: 768px) {
   .three-columns-archive {
     grid-template-columns: 1fr;
   }
   .container {
     padding-top: 155px;
-  }
-  .footer-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .footer-section {
-    padding: 0 16px;
-    max-width: 100%;
-  }
-  .footer-section.left img {
-    width: 33vw;
-    margin: 0 auto 10px auto;
-  }
-  .footer-section.left { order: 1; }
-  .footer-section.right { order: 2; }
-  .footer-section.center { order: 3; }
-  .footer-section.right h3 {
-    text-align: center;
-    width: 100%;
   }
 }
 </style>
@@ -390,14 +267,15 @@ img { max-width: 100%; height: auto; display: block; }
 </div>
 
 <div class="container">
-  <div id="search-results"></div>
-  <div id="search-pagination"></div>
   <div class="main-headline-wrapper">
-    <a href="#" class="main-headline-link">Archived Headlines</a>
+    <a href="#" class="main-headline-link">ARCHIVED HEADLINES</a>
     <div class="three-columns-archive">
       <div class="column" id="col1"></div>
       <div class="column" id="col2"></div>
       <div class="column" id="col3"></div>
+    </div>
+    <div style="text-align:center; margin-top:20px;">
+      <a href="https://fedsun.news/" style="color:white; text-decoration:none; font-size:18px;">Back to Homepage...</a>
     </div>
   </div>
 </div>
@@ -408,25 +286,21 @@ img { max-width: 100%; height: auto; display: block; }
     <div class="footer-content">
       <div class="footer-section left">
         <img src="australian_flag.png" alt="Australian Flag" />
-        <p>
-          The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
-        </p>
+        <p>The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.</p>
       </div>
       <div class="footer-section center">
         <a href="https://fedsun.news">
           <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
         </a>
-        <p>Contact:<br />
-          editor@fedsun.news
-        </p>
+        <p>Contact:<br />editor@fedsun.news</p>
         <p>The Federation Sun © 2025</p>
       </div>
       <div class="footer-section right">
-        <h3>Send News Tips</h3>
+        <h3>SEND NEWS TIPS</h3>
         <form action="https://formspree.io/f/meokpdkj" method="POST">
           <textarea name="tip" placeholder="Type your tip here..."></textarea>
           <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
-          <button type="submit">Send Tip</button>
+          <button type="submit" class="button-flag">Send Tip</button>
         </form>
       </div>
     </div>
@@ -434,127 +308,79 @@ img { max-width: 100%; height: auto; display: block; }
 </footer>
 
 <script>
-// Update time
+// Time update
 function updateTime() {
   const now = new Date();
-  const t = new Intl.DateTimeFormat('en-AU', {
-    timeZone: 'Australia/Melbourne',
-    hour: '2-digit', minute: '2-digit', hour12: false
-  }).format(now);
-  const d = new Intl.DateTimeFormat('en-AU', {
-    timeZone: 'Australia/Melbourne',
-    weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit'
-  }).format(now);
-  document.getElementById('current-time').textContent = t + ' AEST';
+  const t = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
+  const d = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
+  document.getElementById('current-time').textContent = t+' AEST';
   document.getElementById('current-date').textContent = d;
 }
 updateTime();
-setInterval(updateTime, 60000);
-
-// Format date AEST
-function formatDateAEST(dateStr) {
-  const date = new Date(dateStr);
-  return new Intl.DateTimeFormat('en-AU', {
-    timeZone: 'Australia/Sydney',
-    weekday: 'short',
-    year: 'numeric',
-    month: 'short',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false
-  }).format(date) + ' AEST';
-}
-
-// Create headline element
-function createHeadlineItem(item) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'headline-item';
-  wrapper.style.display = 'flex';
-  wrapper.style.gap = '10px';
-  wrapper.style.alignItems = 'flex-start';
-
-  const img = document.createElement('img');
-  img.src = item.image;
-  img.alt = item.title;
-  img.style.width = '33%';
-  img.style.aspectRatio = '16/9';
-  img.style.objectFit = 'cover';
-  img.style.flexShrink = '0';
-
-  const content = document.createElement('div');
-  content.style.flex = '1';
-  content.style.textAlign = 'left';
-
-  const link = document.createElement('a');
-  link.href = item.url;
-  link.textContent = item.title;
-
-  const meta = document.createElement('div');
-  meta.style.fontSize = '12px';
-  meta.style.color = '#ccc';
-  meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
-
-  const desc = document.createElement('div');
-  desc.className = 'headline-description';
-  desc.textContent = item.description || '';
-
-  content.appendChild(link);
-  content.appendChild(meta);
-  content.appendChild(desc);
-
-  wrapper.appendChild(img);
-  wrapper.appendChild(content);
-  return wrapper;
-}
+setInterval(updateTime,60000);
 
 // Ticker
-fetch('/data/headlines.json?' + new Date().getTime())
-.then(r => r.json())
-.then(data => {
-  const track = document.getElementById('ticker-track');
-  track.innerHTML = '';
-  const grp = document.createElement('div');
-  grp.className = 'ticker-group';
-  data.forEach(item => {
-    const a = document.createElement('a');
-    a.href = item.url;
-    a.textContent = item.title;
+fetch('/data/headlines.json?'+new Date().getTime())
+.then(r=>r.json())
+.then(data=>{
+  const track=document.getElementById('ticker-track');
+  track.innerHTML='';
+  const grp=document.createElement('div');
+  grp.className='ticker-group';
+  data.forEach(item=>{
+    const a=document.createElement('a');
+    a.href=item.url;
+    a.textContent=item.title;
     grp.appendChild(a);
   });
   track.appendChild(grp);
   track.appendChild(grp.cloneNode(true));
-  const dist = grp.offsetWidth, speed = 20;
-  document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
-  document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
+  const dist=grp.offsetWidth,speed=20;
+  document.documentElement.style.setProperty('--ticker-distance',dist+'px');
+  document.documentElement.style.setProperty('--ticker-duration',(dist/speed)+'s');
 });
 
-// Load archive
-fetch('/data/archive.json?' + new Date().getTime())
-.then(r => r.json())
-.then(data => {
-  const cols = [document.getElementById('col1'), document.getElementById('col2'), document.getElementById('col3')];
-  const perCol = Math.ceil(data.length / 3);
-  cols.forEach((col, i) => {
-    data.slice(i * perCol, (i + 1) * perCol).forEach(item => {
-      col.appendChild(createHeadlineItem(item));
+// Archive
+fetch('/data/archive.json?'+new Date().getTime())
+.then(r=>r.json())
+.then(data=>{
+  const cols=[document.getElementById('col1'),document.getElementById('col2'),document.getElementById('col3')];
+  const perCol=Math.ceil(data.length/3);
+  cols.forEach((col,i)=>{
+    data.slice(i*perCol,(i+1)*perCol).forEach(item=>{
+      const wrapper=document.createElement('div');
+      wrapper.className='headline-item';
+      wrapper.style.display='flex';
+      wrapper.style.gap='10px';
+      wrapper.style.alignItems='flex-start';
+      const img=document.createElement('img');
+      img.src=item.image;
+      img.alt=item.title;
+      img.style.width='33%';
+      img.style.aspectRatio='16/9';
+      img.style.objectFit='cover';
+      img.style.flexShrink='0';
+      const content=document.createElement('div');
+      content.style.flex='1';
+      content.style.textAlign='left';
+      const link=document.createElement('a');
+      link.href=item.url;
+      link.textContent=item.title;
+      const meta=document.createElement('div');
+      meta.style.fontSize='12px';
+      meta.style.color='#ccc';
+      meta.textContent=item.date;
+      const desc=document.createElement('div');
+      desc.className='headline-description';
+      desc.textContent=item.description||'';
+      content.appendChild(link);
+      content.appendChild(meta);
+      content.appendChild(desc);
+      wrapper.appendChild(img);
+      wrapper.appendChild(content);
+      col.appendChild(wrapper);
     });
   });
-
-  // Back to homepage link
-  const backLinkWrapper = document.createElement('div');
-  backLinkWrapper.style.textAlign = 'center';
-  backLinkWrapper.style.marginTop = '20px';
-  const backLink = document.createElement('a');
-  backLink.href = 'https://fedsun.news/';
-  backLink.textContent = 'Back to Homepage...';
-  backLink.style.color = 'white';
-  backLink.style.textDecoration = 'none';
-  backLink.style.fontSize = '18px';
-  backLink.addEventListener('mouseover', ()=>backLink.style.color='gold');
-  backLink.addEventListener('mouseout', ()=>backLink.style.color='white');
-  cols[2].appendChild(backLinkWrapper);
-  backLinkWrapper.appendChild(backLink);
 });
 </script>
 </body>
