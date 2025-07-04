@@ -452,6 +452,27 @@ fetch('/data/archive.json?' + new Date().getTime())
       col.appendChild(createHeadlineItem(item));
     });
   });
+  // ✅ Add Back to Homepage link
+  const backLinkWrapper = document.createElement('div');
+  backLinkWrapper.style.textAlign = 'center';
+  backLinkWrapper.style.marginTop = '20px';
+
+  const backLink = document.createElement('a');
+  backLink.href = 'https://fedsun.news/';
+  backLink.textContent = 'Back to Homepage...';
+  backLink.style.color = 'white';
+  backLink.style.textDecoration = 'none';
+  backLink.style.fontSize = '18px';
+
+  backLink.addEventListener('mouseover', () => {
+    backLink.style.color = 'gold';
+  });
+  backLink.addEventListener('mouseout', () => {
+    backLink.style.color = 'white';
+  });
+
+  backLinkWrapper.appendChild(backLink);
+  col3.appendChild(backLinkWrapper);
 })
 .catch(e => console.error('Archive fetch error:', e));
 
