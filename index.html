@@ -635,26 +635,27 @@ body * {
   padding-top: calc(53px + 32px + 12px + 10px + 20px);
 }
 
-/* ✅ Make ticker separator immune to transforms */
+/* ✅ Ensure ticker separator stays emoji and not uppercase */
 .ticker-separator {
   text-transform: none !important;
   font-family: Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif !important;
   font-size: 18px !important;
-  margin: 0 20px;
-  display: inline-block;
+  margin: 0 20px !important;
+  display: inline-block !important;
 }
 
-/* ✅ Make sure only ticker links get uppercase */
+/* ✅ Only ticker links are uppercase, not separators */
 .ticker-group > a {
-  text-transform: uppercase;
-  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase !important;
+  font-family: 'Oswald', sans-serif !important;
 }
 
-/* ✅ Force search button and input text consistent */
+/* ✅ Restore search input and button consistent font and uppercase */
 .center-section input[type="text"],
 .center-section button {
-  font-family: 'Oswald', sans-serif;
-  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 15px !important;
 }
 
 </style>
