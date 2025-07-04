@@ -797,6 +797,12 @@ html, body {
   text-align: justify;
   hyphens: auto;
 }
+.headline-description {
+  display: block;
+  margin-top: 6px;
+  text-align: justify;
+  hyphens: auto;
+}
 
 
 </style>
@@ -1065,11 +1071,12 @@ meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.a
     desc.textContent = item.description || '';
 
     content.appendChild(link);
-    content.appendChild(meta);
-    content.appendChild(desc);
+content.appendChild(meta);
 
-    wrapper.appendChild(img);
-    wrapper.appendChild(content);
+wrapper.appendChild(img);
+wrapper.appendChild(content);
+wrapper.appendChild(desc);
+
 
     return wrapper;
   }
