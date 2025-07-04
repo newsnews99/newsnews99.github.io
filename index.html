@@ -1051,50 +1051,53 @@ html, body {
 
 
   function createHeadlineItem(item) {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'headline-item';
-    wrapper.style.display = 'flex';
-    wrapper.style.gap = '10px';
-    wrapper.style.alignItems = 'flex-start';
+  const wrapper = document.createElement('div');
+  wrapper.className = 'headline-item';
+  wrapper.style.display = 'flex';
+  wrapper.style.gap = '10px';
+  wrapper.style.alignItems = 'flex-start';
 
-    const img = document.createElement('img');
-    img.src = item.image;
-    img.alt = item.title;
-    img.style.width = '33%';
-    img.style.aspectRatio = '16/9';
-    img.style.objectFit = 'cover';
-    img.style.flexShrink = '0';
+  const img = document.createElement('img');
+  img.src = item.image;
+  img.alt = item.title;
+  img.style.width = '33%';
+  img.style.aspectRatio = '16/9';
+  img.style.objectFit = 'cover';
+  img.style.flexShrink = '0';
 
-    const content = document.createElement('div');
-    content.style.flex = '1';
-    content.style.textAlign = 'left';
+  const content = document.createElement('div');
+  content.style.flex = '1';
+  content.style.textAlign = 'left';
 
-    const link = document.createElement('a');
-    link.href = item.url;
-    link.textContent = item.title;
-    link.style.color = 'white';
-    link.style.display = 'block';
-    link.style.marginBottom = '4px';
+  const link = document.createElement('a');
+  link.href = item.url;
+  link.textContent = item.title;
+  link.style.color = 'white';
+  link.style.display = 'block';
+  link.style.marginBottom = '4px';
 
-    const meta = document.createElement('div');
-meta.className = 'headline-meta';
-meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
+  const meta = document.createElement('div');
+  meta.className = 'headline-meta';
+  meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
 
+  content.appendChild(link);
+  content.appendChild(meta);
 
-    const desc = document.createElement('div');
-    desc.className = 'headline-description';
-    desc.textContent = item.description || '';
+  wrapper.appendChild(img);
+  wrapper.appendChild(content);
 
-    content.appendChild(link);
-content.appendChild(meta);
+  // Create description separately
+  const desc = document.createElement('div');
+  desc.className = 'headline-description';
+  desc.textContent = item.description || '';
 
-wrapper.appendChild(img);
-wrapper.appendChild(content);
-wrapper.appendChild(desc);
+  // Wrap both in a container
+  const container = document.createElement('div');
+  container.appendChild(wrapper);
+  container.appendChild(desc);
 
-
-    return wrapper;
-  }
+  return container;
+}
 
   // Column 1
   col1.innerHTML = '';
