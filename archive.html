@@ -627,6 +627,30 @@ body * {
 .main-headline-wrapper {
   padding-top: calc(53px + 32px + 12px + 10px + 20px);
 }
+.archive-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+@media (max-width: 768px) {
+  .archive-columns {
+    grid-template-columns: 1fr;
+  }
+}
+.archive-title {
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  margin: 20px 0;
+}
+.archive-title:hover {
+  color: gold;
+}
 
 
 </style>
