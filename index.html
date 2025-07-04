@@ -684,20 +684,27 @@ body * {
 }
 
 .ticker-track {
-  display: inline-flex;
+  display: flex;
   flex-wrap: nowrap;
   white-space: nowrap;
-  width: max-content;
 }
 
 .ticker-group {
-  display: inline-flex;
+  display: flex;
   flex-wrap: nowrap;
   white-space: nowrap;
 }
 
+
 .ticker-group > * {
   flex-shrink: 0;
+}
+.ticker-group {
+  white-space: nowrap;
+}
+.ticker-group a,
+.ticker-separator {
+  white-space: nowrap;
 }
 
 </style>
@@ -872,10 +879,13 @@ if (index < recent.length - 1) {
 
 
     track.appendChild(grp);
-    track.appendChild(grp.cloneNode(true));
-    const dist = grp.offsetWidth, speed = 20;
-    document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
-    document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
+track.appendChild(grp.cloneNode(true));
+
+const dist = track.scrollWidth / 2;
+const speed = 20;
+document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
+document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
+
 
     // Split into columns
     const col1 = document.getElementById('latest-headlines');
