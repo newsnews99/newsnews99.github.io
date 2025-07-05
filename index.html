@@ -35,16 +35,6 @@ img { max-width: 100%; height: auto; display: block; }
   box-shadow: 0 2px 4px rgba(0,0,0,0.4);
   z-index: 1000;
 }
-.banner-content {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  grid-template-areas: "social logo search";
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 12px 0;
-  column-gap: 8px;
-}
 .social-section {
   grid-area: social;
   display: flex;
@@ -250,17 +240,7 @@ img { max-width: 100%; height: auto; display: block; }
   border-top: 1px solid #444;
 }
 @media (max-width: 768px) {
-  .banner-content {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-areas:
-      "logo right"
-      "search search";
-    row-gap: 8px;
-    column-gap: 8px;
-    align-items: start;
-    padding: 8px;
-  }
+  
   .social-section {
     grid-area: right;
     display: flex;
@@ -816,7 +796,10 @@ body > * {
 /* Container to hold the icon and form */
 /* Container holds icon and form */
 .search-wrapper {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  right: 40px; /* Exactly 40px from right edge */
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
 }
@@ -859,7 +842,15 @@ body > * {
 
 
 .banner-content {
+  position: relative; /* NEW */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "social logo";
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 0;
+  column-gap: 8px;
 }
 
   
@@ -889,16 +880,14 @@ body > * {
 
 <div class="banner">
     <div class="banner-content">
-    <div class="center-section">
-  <div class="search-wrapper">
-    <button id="search-toggle" aria-label="Search">
-      <img src="icon_search.png" alt="Search Icon">
-    </button>
-    <form id="search-form" autocomplete="off">
-      <input type="text" id="search-input" placeholder="Search...">
-      <button type="submit" class="button-flag">Search</button>
-    </form>
-  </div>
+   <div class="search-wrapper">
+  <button id="search-toggle" aria-label="Search">
+    <img src="icon_search.png" alt="Search Icon">
+  </button>
+  <form id="search-form" autocomplete="off">
+    <input type="text" id="search-input" placeholder="Search...">
+    <button type="submit" class="button-flag">Search</button>
+  </form>
 </div>
 
 
