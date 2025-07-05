@@ -727,10 +727,14 @@ html, body {
 }
 
 .header-time {
-  padding: 6px 0;
+  padding: 10px 0;
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
   color: white;
+}
+
+.header-time strong {
+  font-weight: bold;
 }
 
 .header-separator {
@@ -739,7 +743,7 @@ html, body {
 }
 
 .header-logo {
-  padding: 10px 0;
+  padding: 20px 0 10px;
 }
 
 .header-logo img {
@@ -889,9 +893,10 @@ html, body {
 
   const timeLine = document.getElementById('top-time-line');
   if (timeLine) {
-    timeLine.textContent = `${t} AEST, ${day}, ${d}`;
+    timeLine.innerHTML = `<strong>${t} AEST</strong> ${day}, ${d}`;
   }
 }
+
 
 
 
