@@ -752,7 +752,20 @@ html, body {
   display: block;
 }
 
+.header-logo {
+  width: 100%;
+  background: #1e1e1e;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  top: 40px; /* or whatever height your .top-time-bar is */
+  left: 0;
+  z-index: 1100;
+}
 
+.banner {
+  top: 70px; /* 40px + 30px spacing, adjust as needed */
+}
 
   
 </style>
@@ -765,19 +778,25 @@ html, body {
 <body>
 
   <div class="top-time-bar">
-  <div class="time-left">
-    <span id="top-current-time">--:-- AEST</span>
-    <img src="/flag_au1.png" alt="Flag" />
-  </div>
-  <div class="day-center">
-    <span id="top-current-day">---</span>
-  </div>
-  <div class="date-right">
-    <img src="/flag_au1.png" alt="Flag" />
-    <span id="top-current-date">--/--/----</span>
-  </div>
+    <div class="time-left">
+      <span id="top-current-time">--:-- AEST</span>
+      <img src="/flag_au1.png" alt="Flag" />
+    </div>
+    <div class="day-center">
+      <span id="top-current-day">---</span>
+    </div>
+    <div class="date-right">
+      <img src="/flag_au1.png" alt="Flag" />
+      <span id="top-current-date">--/--/----</span>
+    </div>
 </div>
 
+<div class="header-logo">
+  <a href="https://fedsun.news">
+    <img src="fedsun_logo_hoz.png" alt="Logo" class="logo">
+  </a>
+</div>
+  
   
   <div class="banner">
     <div class="banner-content">
@@ -793,11 +812,7 @@ html, body {
           <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
         </div>
       </div>
-     <div class="left-section">
-  <a href="https://fedsun.news">
-    <img src="fedsun_logo_hoz.png" alt="Logo" class="logo">
-  </a>
-</div>
+     
 
       <div class="center-section">
         <form id="search-form" autocomplete="off">
@@ -1370,8 +1385,10 @@ document.addEventListener("DOMContentLoaded", function() {
   const spacer = document.getElementById("header-spacer");
   if (banner && spacer) {
     const topBar = document.querySelector(".top-time-bar");
-    const topBarHeight = topBar ? topBar.offsetHeight : 0;
-    const height = banner.offsetHeight + topBarHeight;
+    const headerLogo = document.querySelector(".header-logo");
+const headerLogoHeight = headerLogo ? headerLogo.offsetHeight : 0;
+const height = banner.offsetHeight + topBarHeight + headerLogoHeight;
+
 
     if (window.innerWidth > 768) {
       // Desktop: header height + 15px spacing
