@@ -794,15 +794,11 @@ body > * {
 }
 
 /* Container to hold the icon and form */
-/* Container holds icon and form */
 .search-wrapper {
-  position: absolute;
-  right: 20px;
-  top: 0;
-  bottom: 0;
   display: flex;
   align-items: center;
 }
+
 
 
 /* Search icon styling */
@@ -816,10 +812,11 @@ body > * {
 }
 
 .search-wrapper img {
-  height: 32px; /* Same as your logo height if needed */
+  height: 32px;
   width: auto;
   display: block;
 }
+
 
 
 /* Form hidden by default */
@@ -845,16 +842,15 @@ body > * {
 
 
 .banner-content {
-  position: relative; /* NEW */
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: "social logo";
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 12px 0;
-  column-gap: 8px;
+  padding: 12px 40px; /* <-- 40px left/right padding */
+  box-sizing: border-box;
 }
+
 
   
 </style>
@@ -882,20 +878,23 @@ body > * {
   </div>
 
 <div class="banner">
-    <div class="banner-content">
-   <div class="search-wrapper">
-  <button id="search-toggle" aria-label="Search">
-    <img src="icon_search.png" alt="Search Icon">
-  </button>
-  <form id="search-form" autocomplete="off">
-    <input type="text" id="search-input" placeholder="Search...">
-    <button type="submit" class="button-flag">Search</button>
-  </form>
+   <div class="banner-content">
+  <div class="header-logo">
+    <a href="https://fedsun.news">
+      <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+    </a>
+  </div>
+  <div class="search-wrapper">
+    <button id="search-toggle" aria-label="Search">
+      <img src="icon_search.png" alt="Search Icon">
+    </button>
+    <form id="search-form" autocomplete="off">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button type="submit" class="button-flag">Search</button>
+    </form>
+  </div>
 </div>
 
-
-
-    </div>
     
   </div>
   
