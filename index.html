@@ -742,8 +742,15 @@ html, body {
 .top-time-bar span {
   font-family: 'Oswald', sans-serif;
   font-size: 13px;
-  text-transform: uppercase;
+  text-transform: none;
   color: white;
+}
+
+/* Center the day absolutely */
+#top-current-day {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
   
@@ -759,9 +766,10 @@ html, body {
   <div class="top-time-bar">
     <span id="top-current-time">--:-- AEST</span>
     <img src="/flag_au1.png" alt="Flag" />
+    <span id="top-current-day">---</span>
+    <img src="/flag_au1.png" alt="Flag" />
     <span id="top-current-date">--/--/----</span>
   </div>
-
   
   <div class="banner">
     <div class="banner-content">
@@ -861,36 +869,43 @@ html, body {
   <script>
     function updateTime() {
   const now = new Date();
+
   const t = new Intl.DateTimeFormat('en-AU', {
     timeZone: 'Australia/Melbourne',
     hour: '2-digit',
     minute: '2-digit',
     hour12: false
   }).format(now);
-  const d = new Intl.DateTimeFormat('en-AU', {
+
+  const day = new Intl.DateTimeFormat('en-AU', {
     timeZone: 'Australia/Melbourne',
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: '2-digit'
+    weekday: 'long'
   }).format(now);
 
-  // Safely update the top bar
+  const d = new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'Australia/Melbourne',
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  }).format(now);
+
   const topTime = document.getElementById('top-current-time');
+  const topDay = document.getElementById('top-current-day');
   const topDate = document.getElementById('top-current-date');
-  if (topTime && topDate) {
+  if (topTime && topDate && topDay) {
     topTime.textContent = t + ' AEST';
+    topDay.textContent = day;
     topDate.textContent = d;
   }
 
-  // Safely update the banner time if it exists
   const bannerTime = document.getElementById('current-time');
   const bannerDate = document.getElementById('current-date');
   if (bannerTime && bannerDate) {
     bannerTime.textContent = t + ' AEST';
-    bannerDate.textContent = d;
+    bannerDate.textContent = `${day}, ${d}`;
   }
 }
+
 
 
     updateTime();
