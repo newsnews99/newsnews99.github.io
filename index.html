@@ -794,6 +794,28 @@ body > * {
   opacity: 0.7;
 }
 
+.ticker-inner {
+  width: 100%;
+  max-width: 1248px;
+  margin: 0 auto;
+  background: #222;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  overflow: hidden;
+}
+.ticker {
+  position: fixed;
+  top: calc(53px + 10px + 10px + 1px); /* logo height + paddings + separator */
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
 
   
 </style>
@@ -824,24 +846,22 @@ body > * {
   
   <div class="banner">
     <div class="banner-content">
-      
-     
-
       <div class="center-section">
         <form id="search-form" autocomplete="off">
-  <input type="text" id="search-input" placeholder="Search...">
-  <button type="submit" class="button-flag">Search</button>
-</form>
-
+          <input type="text" id="search-input" placeholder="Search...">
+          <button type="submit" class="button-flag">Search</button>
+        </form>
       </div>
     </div>
-    <div class="ticker">
+    
+  </div>
+<div class="ticker">
       <div class="ticker-inner" id="ticker-inner">
         <div class="ticker-track" id="ticker-track">Loading headlines…</div>
       </div>
     </div>
-  </div>
-<div id="header-spacer"></div>
+  
+  <div id="header-spacer"></div>
   <div class="container">
     <div id="search-filters"></div>
 <div id="search-results"></div>
@@ -1400,22 +1420,23 @@ document.getElementById("search-form").addEventListener("submit", async function
 document.addEventListener("DOMContentLoaded", function() {
   const banner = document.querySelector(".banner");
   const spacer = document.getElementById("header-spacer");
-  if (banner && spacer) {
-    const topBar = document.querySelector(".top-time-bar");
-    const headerLogo = document.querySelector(".header-logo");
-const headerLogoHeight = headerLogo ? headerLogo.offsetHeight : 0;
-const height = banner.offsetHeight + topBarHeight + headerLogoHeight;
+  const ticker = document.querySelector(".ticker");
+  const headerLogo = document.querySelector(".header-logo");
 
+  if (banner && spacer && ticker && headerLogo) {
+    const bannerHeight = banner.offsetHeight;
+    const tickerHeight = ticker.offsetHeight;
+    const headerLogoHeight = headerLogo.offsetHeight;
+    const totalHeight = bannerHeight + tickerHeight + headerLogoHeight;
 
     if (window.innerWidth > 768) {
-      // Desktop: header height + 15px spacing
-      spacer.style.height = (height + 15) + "px";
+      spacer.style.height = (totalHeight + 15) + "px";
     } else {
-      // Mobile: header height only
-      spacer.style.height = height + "px";
+      spacer.style.height = totalHeight + "px";
     }
   }
 });
+
 
 </script>
   
