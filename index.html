@@ -752,6 +752,60 @@ html, body {
   display: inline-block;
 }
 
+/* Max width limit for entire content */
+body > * {
+  max-width: 1248px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Flex container for share icon and logo */
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 10px 0;
+}
+
+/* Share icon styles */
+.share-dropdown {
+  position: absolute;
+  left: 40px;
+}
+
+.share-dropdown .share-icon {
+  height: 24px;
+  width: auto;
+  cursor: pointer;
+}
+
+/* Dropdown menu hidden by default */
+.share-dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 28px;
+  left: 0;
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 8px;
+  white-space: nowrap;
+  z-index: 2000;
+}
+
+/* Show menu on hover */
+.share-dropdown:hover .dropdown-menu {
+  display: flex;
+  gap: 8px;
+}
+
+/* Icons inside dropdown */
+.share-dropdown .dropdown-menu img {
+  height: 24px;
+  width: auto;
+  display: block;
+}
 
   
 </style>
@@ -763,15 +817,29 @@ html, body {
   
 <body>
 
-  <div class="header-top">
+ <div class="header-top">
   <div class="header-time">
-    <span id="top-time-line">--:-- AEST, --- , -- --- ----</span>
+    <span id="top-time-line">--:-- AEST Saturday, -- --- ----</span>
   </div>
   <div class="header-separator"></div>
-  <div class="header-logo">
-    <a href="https://fedsun.news">
-      <img src="fedsun_logo_hoz.png" alt="Logo" class="logo">
-    </a>
+  <div class="header-bar">
+    <div class="share-dropdown">
+      <img src="icon_share.png" alt="Share" class="share-icon" />
+      <div class="dropdown-menu">
+        <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
+        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
+        <a href="https://fedsun.news/feed.xml" target="_blank"><img src="icon_rss.png" alt="RSS"></a>
+        <a href="https://t.me/federationsun" target="_blank"><img src="icon_telegram.png" alt="Telegram"></a>
+        <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
+        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
+      </div>
+    </div>
+    <div class="header-logo">
+      <a href="https://fedsun.news">
+        <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+      </a>
+    </div>
   </div>
 </div>
 
@@ -779,18 +847,7 @@ html, body {
   
   <div class="banner">
     <div class="banner-content">
-      <div class="social-section">
-        
-          <div class="icons-subsection">
-          <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
-          <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
-          <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
-          <a href="https://fedsun.news/feed.xml" target="_blank"><img src="icon_rss.png" alt="RSS"></a>
-          <a href="https://t.me/federationsun" target="_blank"><img src="icon_telegram.png" alt="Telegram"></a>
-          <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
-          <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
-        </div>
-      </div>
+      
      
 
       <div class="center-section">
