@@ -799,7 +799,15 @@ body > * {
   z-index: 999;
 }
 
-  
+ .header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: #1e1e1e;
+}
+ 
 </style>
 
 
@@ -808,13 +816,14 @@ body > * {
 
   
 <body>
-
+<div class="header-fixed">
  <div class="header-top">
   <div class="header-time">
     <span id="top-time-line">--:-- AEST Saturday, -- --- ----</span>
   </div>
-  <div class="header-separator"></div>
-  <div class="header-bar">
+  </div> 
+<div class="header-separator"></div>
+<div class="header-bar">
    
     <div class="header-logo">
       <a href="https://fedsun.news">
@@ -822,13 +831,13 @@ body > * {
       </a>
     </div>
   </div>
-<div class="ticker">
+    <div class="ticker">
       <div class="ticker-inner" id="ticker-inner">
         <div class="ticker-track" id="ticker-track">Loading headlines…</div>
       </div>
     </div>
    
-</div>
+ </div>
 
   
   
@@ -1402,25 +1411,14 @@ document.getElementById("search-form").addEventListener("submit", async function
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const banner = document.querySelector(".banner");
   const spacer = document.getElementById("header-spacer");
-  const ticker = document.querySelector(".ticker");
-  const headerLogo = document.querySelector(".header-logo");
+  const headerFixed = document.querySelector(".header-fixed");
 
-  if (banner && spacer && ticker && headerLogo) {
-    const bannerHeight = banner.offsetHeight;
-    const tickerHeight = ticker.offsetHeight;
-    const headerLogoHeight = headerLogo.offsetHeight;
-    const totalHeight = bannerHeight + headerLogoHeight;
-
-
-    if (window.innerWidth > 768) {
-      spacer.style.height = (totalHeight + 15) + "px";
-    } else {
-      spacer.style.height = totalHeight + "px";
-    }
+  if (headerFixed && spacer) {
+    spacer.style.height = headerFixed.offsetHeight + "px";
   }
 });
+
 
 
 </script>
