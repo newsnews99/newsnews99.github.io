@@ -345,13 +345,7 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-.ticker-track {
-  display: flex;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  will-change: transform;
-  animation: ticker-scroll var(--ticker-duration) linear infinite;
-}
+
 
 @keyframes ticker-scroll {
   0% {
@@ -716,6 +710,18 @@ html, body {
   animation-play-state: paused;
 }
 
+/* Force ticker group to never shrink or wrap */
+.ticker-group {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  margin-right: 50px;
+}
+
+.ticker-track > * {
+  margin: 0;
+}
 
   
 </style>
