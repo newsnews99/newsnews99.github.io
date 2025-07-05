@@ -870,6 +870,44 @@ const track = document.getElementById('ticker-track');
 track.innerHTML = '';
 
 // Build ticker group
+function createTickerGroup(extras, headlines) {
+  const grp = document.createElement('div');
+  grp.className = 'ticker-group';
+
+  // Add extras first
+  extras.forEach(item => {
+    const sep = document.createElement('div');
+    sep.className = 'ticker-separator';
+    const img = document.createElement('img');
+    img.src = '/flag_au1.png';
+    img.alt = 'AU Flag';
+    sep.appendChild(img);
+    grp.appendChild(sep);
+
+    const span = document.createElement('span');
+    span.textContent = item.text;
+    span.className = 'ticker-extra';
+    grp.appendChild(span);
+  });
+
+  // Add headlines
+  headlines.forEach(item => {
+    const sep = document.createElement('div');
+    sep.className = 'ticker-separator';
+    const img = document.createElement('img');
+    img.src = '/flag_au1.png';
+    img.alt = 'AU Flag';
+    sep.appendChild(img);
+    grp.appendChild(sep);
+
+    const a = document.createElement('a');
+    a.href = item.url;
+    a.textContent = item.title;
+    grp.appendChild(a);
+  });
+
+  return grp;
+}
 const group = createTickerGroup(extras, recent.slice(0, 6));
 const groupClone = group.cloneNode(true);
 
