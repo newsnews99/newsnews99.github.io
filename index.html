@@ -720,7 +720,7 @@ html, body {
 
   
 .top-time-bar {
-  position: relative;   /* relative for absolutely positioned children */
+  position: relative;
   width: 100%;
   background: #1e1e1e;
   height: 32px;
@@ -730,19 +730,19 @@ html, body {
   border-bottom: 1px solid #444;
   z-index: 1100;
 }
-
+  
 .top-time-bar .time-left {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-right: auto; /* pushes everything after to the right */
+  margin-right: auto;
 }
 
 .top-time-bar .date-right {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-left: auto; /* pushes everything before to the left */
+  margin-left: auto;
 }
 
 
@@ -754,28 +754,37 @@ html, body {
   margin-left: 5px;
 }
   
+/* Remove any conflicting margins */
 .top-time-bar > div {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0; /* Remove side margins */
+  margin: 0;
 }
 
 
 
+/* Styles for text and icons */
 .top-time-bar span {
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
-  text-transform: none; /* Remove all caps */
+  text-transform: none;
   color: white;
 }
-
-.top-time-bar img {
+  
+  .top-time-bar img {
   height: 12px;
   width: auto;
   display: block;
 }
 
+
+.day-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+  
 .header-logo {
   width: 100%;
   background: #1e1e1e;
@@ -787,14 +796,7 @@ html, body {
   z-index: 1100;
 }
 
-.day-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+
 
 
 .header-logo img {
