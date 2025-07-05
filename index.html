@@ -29,7 +29,7 @@ body {
 }
 img { max-width: 100%; height: auto; display: block; }
 .banner {
-  position: fixed;
+  position: static;
   top: 0; left: 0; right: 0;
   background: #1e1e1e;
   box-shadow: 0 2px 4px rgba(0,0,0,0.4);
@@ -789,7 +789,7 @@ body > * {
   overflow: hidden;
 }
 .ticker {
-  position: fixed;
+  position: static;
   top: calc(53px + 10px + 10px + 1px); /* logo height + paddings + separator */
   left: 0;
   right: 0;
@@ -831,17 +831,8 @@ body > * {
       </a>
     </div>
   </div>
-    <div class="ticker">
-      <div class="ticker-inner" id="ticker-inner">
-        <div class="ticker-track" id="ticker-track">Loading headlines…</div>
-      </div>
-    </div>
-   
- </div>
 
-  
-  
-  <div class="banner">
+<div class="banner">
     <div class="banner-content">
       <div class="center-section">
         <form id="search-form" autocomplete="off">
@@ -852,6 +843,18 @@ body > * {
     </div>
     
   </div>
+  
+    <div class="ticker">
+      <div class="ticker-inner" id="ticker-inner">
+        <div class="ticker-track" id="ticker-track">Loading headlines…</div>
+      </div>
+    </div>
+   
+ </div>
+
+  
+  
+  
 
   
   <div id="header-spacer"></div>
@@ -1418,6 +1421,7 @@ document.addEventListener("DOMContentLoaded", function() {
     spacer.style.height = headerFixed.offsetHeight + "px";
   }
 });
+
 
 
 
