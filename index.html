@@ -720,25 +720,38 @@ html, body {
 
   
 .top-time-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;   /* relative for absolutely positioned children */
   width: 100%;
   background: #1e1e1e;
   height: 32px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 12px;
   border-bottom: 1px solid #444;
   z-index: 1100;
 }
 
+.top-time-bar .time-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: auto; /* pushes everything after to the right */
+}
+
+.top-time-bar .date-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto; /* pushes everything before to the left */
+}
+
+
 .time-left,
 .date-right {
   display: flex;
   align-items: center;
   gap: 6px;
+  margin-left: auto;
 }
   
 .top-time-bar > div {
@@ -782,6 +795,7 @@ html, body {
   align-items: center;
   gap: 6px;
 }
+
 
 .header-logo img {
   height: 53px;  /* Keep it the same as before */
