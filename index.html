@@ -723,14 +723,26 @@ html, body {
   width: 100%;
   background: #1e1e1e;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  padding: 4px 0;
+  padding: 4px 10px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1100;
+}
+
+.top-time-bar > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.top-time-bar span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  text-transform: none; /* Remove all caps */
+  color: white;
 }
 
 .top-time-bar img {
@@ -739,19 +751,7 @@ html, body {
   display: block;
 }
 
-.top-time-bar span {
-  font-family: 'Oswald', sans-serif;
-  font-size: 13px;
-  text-transform: none;
-  color: white;
-}
 
-/* Center the day absolutely */
-#top-current-day {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
 
   
 </style>
