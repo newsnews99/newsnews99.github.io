@@ -807,7 +807,13 @@ body > * {
   z-index: 999;
   background: #1e1e1e;
 }
- 
+
+.center-section form {
+  gap: 6px;
+  width: 100%;
+}
+
+  
 </style>
 
 
@@ -834,12 +840,16 @@ body > * {
 
 <div class="banner">
     <div class="banner-content">
-      <div class="center-section">
-        <form id="search-form" autocomplete="off">
-          <input type="text" id="search-input" placeholder="Search...">
-          <button type="submit" class="button-flag">Search</button>
-        </form>
-      </div>
+     <div class="center-section">
+  <button id="search-toggle" aria-label="Search" style="background:none;border:none;cursor:pointer;padding:0;">
+    <img src="icon_search.png" alt="Search Icon" style="height:24px;width:auto;">
+  </button>
+  <form id="search-form" autocomplete="off" style="display:none;margin-top:8px;">
+    <input type="text" id="search-input" placeholder="Search...">
+    <button type="submit" class="button-flag">Search</button>
+  </form>
+</div>
+
     </div>
     
   </div>
@@ -1426,6 +1436,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 </script>
+
+<script>
+document.getElementById("search-toggle").addEventListener("click", function() {
+  const form = document.getElementById("search-form");
+  if (form.style.display === "none" || form.style.display === "") {
+    form.style.display = "flex";
+    form.style.flexDirection = "row";
+  } else {
+    form.style.display = "none";
+  }
+});
+</script>
+
   
 </body>
 </html>
