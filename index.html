@@ -719,111 +719,35 @@ html, body {
 
 
   
-.top-time-bar {
-  position: relative;
-  width: 100%;
-  background: #1e1e1e;
-  height: 32px;
-  display: flex;
-  justify-content: center; /* Center container */
-  align-items: center;
-  padding: 0;
-  border-bottom: 1px solid #444;
-  z-index: 1100;
-}
-
-  
-.top-time-bar .time-left {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.top-time-bar .date-right {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  }
-
-
-.time-left,
-.date-right {
-  display: flex;
-  align-items: center;
-  gap: 6px
-}
-  
-/* Remove any conflicting margins */
-.top-time-bar > div {
-  margin: 0;
-}
-
-
-
-/* Styles for text and icons */
-.top-time-bar span {
-  font-family: 'Roboto', sans-serif;
-  font-size: 13px;
-  text-transform: none;
-  color: white;
-}
-  
-  .top-time-bar img {
-  height: 12px;
-  width: auto;
-  display: block;
-}
-
-
-.day-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 5px; /* 5px spacing between day and flags */
-}
-
-
-
-.time-bar-inner {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.time-left,
-.date-right {
-  margin: 0;
-}
-
-
-  
-.header-logo {
+.header-top {
   width: 100%;
   background: #1e1e1e;
   text-align: center;
-  padding: 15px 0;
-  position: fixed;
-  top: 32px;  /* adjust based on your .top-time-bar height */
-  left: 0;
   z-index: 1100;
 }
 
+.header-time {
+  padding: 6px 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  color: white;
+}
 
+.header-separator {
+  border-top: 1px solid #444;
+  width: 100%;
+}
 
+.header-logo {
+  padding: 10px 0;
+}
 
 .header-logo img {
-  height: 53px;  /* Keep it the same as before */
+  height: 53px;
   width: auto;
   display: inline-block;
 }
 
-
-.banner {
-  top: 70px; /* 40px + 30px spacing, adjust as needed */
-}
 
   
 </style>
@@ -835,28 +759,18 @@ html, body {
   
 <body>
 
-  <div class="top-time-bar">
-  <div class="time-bar-inner">
-    <div class="time-left">
-      <span id="top-current-time">--:-- AEST</span>
-      <img src="/flag_au1.png" alt="Flag" />
-    </div>
-    <div class="day-center">
-      <span id="top-current-day">---</span>
-    </div>
-    <div class="date-right">
-      <img src="/flag_au1.png" alt="Flag" />
-      <span id="top-current-date">--/--/----</span>
-    </div>
+  <div class="header-top">
+  <div class="header-time">
+    <span id="top-time-line">--:-- AEST, --- , -- --- ----</span>
+  </div>
+  <div class="header-separator"></div>
+  <div class="header-logo">
+    <a href="https://fedsun.news">
+      <img src="fedsun_logo_hoz.png" alt="Logo" class="logo">
+    </a>
   </div>
 </div>
 
-
-<div class="header-logo">
-  <a href="https://fedsun.news">
-    <img src="fedsun_logo_hoz.png" alt="Logo" class="logo">
-  </a>
-</div>
   
   
   <div class="banner">
@@ -973,20 +887,9 @@ html, body {
     year: 'numeric'
   }).format(now);
 
-  const topTime = document.getElementById('top-current-time');
-  const topDay = document.getElementById('top-current-day');
-  const topDate = document.getElementById('top-current-date');
-  if (topTime && topDate && topDay) {
-    topTime.textContent = t + ' AEST';
-    topDay.textContent = day;
-    topDate.textContent = d;
-  }
-
-  const bannerTime = document.getElementById('current-time');
-  const bannerDate = document.getElementById('current-date');
-  if (bannerTime && bannerDate) {
-    bannerTime.textContent = t + ' AEST';
-    bannerDate.textContent = `${day}, ${d}`;
+  const timeLine = document.getElementById('top-time-line');
+  if (timeLine) {
+    timeLine.textContent = `${t} AEST, ${day}, ${d}`;
   }
 }
 
