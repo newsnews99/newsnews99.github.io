@@ -813,6 +813,53 @@ body > * {
   width: 100%;
 }
 
+/* Container to hold the icon and form */
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Search icon button */
+.search-wrapper button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.search-wrapper button img {
+  height: 24px;
+  width: auto;
+}
+
+/* Search form initially hidden */
+.search-wrapper form {
+  position: absolute;
+  right: 100%; /* expand to the left of the icon */
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* When visible */
+.search-wrapper form.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+
+.banner-content {
+  align-items: center;
+}
+
   
 </style>
 
@@ -841,14 +888,17 @@ body > * {
 <div class="banner">
     <div class="banner-content">
      <div class="center-section">
-  <button id="search-toggle" aria-label="Search" style="background:none;border:none;cursor:pointer;padding:0;">
-    <img src="icon_search.png" alt="Search Icon" style="height:24px;width:auto;">
-  </button>
-  <form id="search-form" autocomplete="off" style="display:none;margin-top:8px;">
-    <input type="text" id="search-input" placeholder="Search...">
-    <button type="submit" class="button-flag">Search</button>
-  </form>
+  <div class="search-wrapper">
+    <button id="search-toggle" aria-label="Search">
+      <img src="icon_search.png" alt="Search Icon">
+    </button>
+    <form id="search-form" autocomplete="off">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button type="submit" class="button-flag">Search</button>
+    </form>
+  </div>
 </div>
+
 
     </div>
     
@@ -1445,6 +1495,19 @@ document.getElementById("search-toggle").addEventListener("click", function() {
     form.style.flexDirection = "row";
   } else {
     form.style.display = "none";
+  }
+});
+</script>
+
+  <script>
+document.getElementById("search-toggle").addEventListener("click", function() {
+  const form = document.getElementById("search-form");
+  form.classList.toggle("active");
+  if (form.classList.contains("active")) {
+    // Optional: focus input when shown
+    setTimeout(() => {
+      document.getElementById("search-input").focus();
+    }, 300);
   }
 });
 </script>
