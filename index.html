@@ -919,7 +919,9 @@ const groupClone = group.cloneNode(true);
 
 // Append both for seamless loop
 track.appendChild(group);
-track.appendChild(groupClone);
+track.appendChild(group.cloneNode(true));
+track.appendChild(group.cloneNode(true));
+
 
 // Measure the width of ONE group
 const dist = group.scrollWidth;
