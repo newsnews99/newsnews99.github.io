@@ -768,44 +768,32 @@ body > * {
   padding: 10px 0;
 }
 
-/* Share icon styles */
-.share-dropdown {
-  position: absolute;
-  left: 40px;
+.footer-social {
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  background: #1e1e1e;
 }
 
-.share-dropdown .share-icon {
-  height: 24px;
-  width: auto;
-  cursor: pointer;
+.footer-social .social-icons {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-/* Dropdown menu hidden by default */
-.share-dropdown .dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 28px;
-  left: 0;
-  background: #222;
-  border: 1px solid #444;
-  border-radius: 4px;
-  padding: 8px;
-  white-space: nowrap;
-  z-index: 2000;
-}
-
-/* Show menu on hover */
-.share-dropdown:hover .dropdown-menu {
-  display: flex;
-  gap: 8px;
-}
-
-/* Icons inside dropdown */
-.share-dropdown .dropdown-menu img {
+.footer-social .social-icons img {
   height: 24px;
   width: auto;
   display: block;
+  transition: opacity 0.3s ease;
 }
+
+.footer-social .social-icons img:hover {
+  opacity: 0.7;
+}
+
 
   
 </style>
@@ -823,18 +811,7 @@ body > * {
   </div>
   <div class="header-separator"></div>
   <div class="header-bar">
-    <div class="share-dropdown">
-      <img src="icon_share.png" alt="Share" class="share-icon" />
-      <div class="dropdown-menu">
-        <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
-        <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
-        <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
-        <a href="https://fedsun.news/feed.xml" target="_blank"><img src="icon_rss.png" alt="RSS"></a>
-        <a href="https://t.me/federationsun" target="_blank"><img src="icon_telegram.png" alt="Telegram"></a>
-        <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
-        <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
-      </div>
-    </div>
+   
     <div class="header-logo">
       <a href="https://fedsun.news">
         <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
@@ -892,6 +869,20 @@ body > * {
   </div>
   </div>
 
+<div class="footer-social">
+  <div class="social-icons">
+    <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
+    <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
+    <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
+    <a href="https://fedsun.news/feed.xml" target="_blank"><img src="icon_rss.png" alt="RSS"></a>
+    <a href="https://t.me/federationsun" target="_blank"><img src="icon_telegram.png" alt="Telegram"></a>
+    <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
+    <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
+  </div>
+</div>
+
+
+  
   <hr class="footer-separator" />
 
   <footer>
