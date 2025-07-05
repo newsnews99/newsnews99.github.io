@@ -119,25 +119,7 @@ img { max-width: 100%; height: auto; display: block; }
     -1px  1px 0 #1e1e1e,
      1px  1px 0 #1e1e1e;
 }
-.ticker {
-  width: 100%;
-  overflow: hidden;
-  height: 32px;
-  position: relative;
-  z-index: 999;
-}
-.ticker-inner {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  background: #222;
-  border-top: 1px solid #444;
-  border-bottom: 1px solid #444;
-  display: flex;
-  align-items: center;
-  height: 32px;
-  overflow: hidden;
-}
+
 
 
 .container {
@@ -1427,7 +1409,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const bannerHeight = banner.offsetHeight;
     const tickerHeight = ticker.offsetHeight;
     const headerLogoHeight = headerLogo.offsetHeight;
-    const totalHeight = bannerHeight + tickerHeight + headerLogoHeight;
+    const totalHeight = bannerHeight + headerLogoHeight;
+
 
     if (window.innerWidth > 768) {
       spacer.style.height = (totalHeight + 15) + "px";
