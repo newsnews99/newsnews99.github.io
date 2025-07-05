@@ -722,8 +722,6 @@ html, body {
 .top-time-bar {
   width: 100%;
   background: #1e1e1e;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr; /* Three columns: left, center, right */
   align-items: center;
   padding: 10px 10px;
   position: fixed;
@@ -767,11 +765,14 @@ html, body {
 }
 
 .day-center {
-  justify-self: center; /* Centers in the middle cell */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 6px;
 }
+
 
 .header-logo img {
   height: 53px;  /* Keep it the same as before */
