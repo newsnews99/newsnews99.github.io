@@ -723,22 +723,25 @@ html, body {
   width: 100%;
   background: #1e1e1e;
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Center the whole bar content */
   align-items: center;
   padding: 10px 10px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1100;
+  border-bottom: 1px solid #444; /* keep your border */
 }
+
 
 
 .top-time-bar > div {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin: 0 5px;  /* Add space between the left/center/right */
+  margin: 0 20px; /* space between items */
 }
+
 
 .top-time-bar span {
   font-family: 'Roboto', sans-serif;
@@ -765,12 +768,11 @@ html, body {
 }
 
 .day-center {
-  flex: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 6px;
 }
+
 
 
 .header-logo img {
