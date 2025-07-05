@@ -797,12 +797,13 @@ body > * {
 /* Container holds icon and form */
 .search-wrapper {
   position: absolute;
-  top: 50%;
-  right: 40px; /* Exactly 40px from right edge */
-  transform: translateY(-50%);
+  right: 20px;
+  top: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
 }
+
 
 /* Search icon styling */
 .search-wrapper button {
@@ -814,10 +815,12 @@ body > * {
   align-items: center;
 }
 
-.search-wrapper button img {
-  height: 24px;
+.search-wrapper img {
+  height: 32px; /* Same as your logo height if needed */
   width: auto;
+  display: block;
 }
+
 
 /* Form hidden by default */
 .search-wrapper form {
