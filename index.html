@@ -814,13 +814,14 @@ body > * {
 }
 
 /* Container to hold the icon and form */
+/* Container holds icon and form */
 .search-wrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-/* Search icon button */
+/* Search icon styling */
 .search-wrapper button {
   background: none;
   border: none;
@@ -835,24 +836,25 @@ body > * {
   width: auto;
 }
 
-/* Search form initially hidden */
+/* Form hidden by default */
 .search-wrapper form {
   position: absolute;
-  right: 100%; /* expand to the left of the icon */
+  top: 50%;
+  right: calc(100% + 10px);
   display: flex;
-  gap: 6px;
   align-items: center;
+  gap: 6px;
   opacity: 0;
   pointer-events: none;
-  transform: translateX(10px);
+  transform: translateY(-50%) translateX(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* When visible */
+/* Form visible when active */
 .search-wrapper form.active {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(0);
+  transform: translateY(-50%) translateX(0);
 }
 
 
@@ -887,7 +889,7 @@ body > * {
 
 <div class="banner">
     <div class="banner-content">
-     <div class="center-section">
+    <div class="center-section">
   <div class="search-wrapper">
     <button id="search-toggle" aria-label="Search">
       <img src="icon_search.png" alt="Search Icon">
@@ -898,6 +900,7 @@ body > * {
     </form>
   </div>
 </div>
+
 
 
     </div>
@@ -1487,17 +1490,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </script>
 
-<script>
-document.getElementById("search-toggle").addEventListener("click", function() {
-  const form = document.getElementById("search-form");
-  if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "flex";
-    form.style.flexDirection = "row";
-  } else {
-    form.style.display = "none";
-  }
-});
-</script>
+
 
   <script>
 document.getElementById("search-toggle").addEventListener("click", function() {
