@@ -863,27 +863,35 @@ html, body {
   const now = new Date();
   const t = new Intl.DateTimeFormat('en-AU', {
     timeZone: 'Australia/Melbourne',
-    hour: '2-digit', minute: '2-digit', hour12: false
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
   }).format(now);
   const d = new Intl.DateTimeFormat('en-AU', {
-  timeZone: 'Australia/Melbourne',
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: '2-digit'
-}).format(now);
+    timeZone: 'Australia/Melbourne',
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit'
+  }).format(now);
 
-
-  document.getElementById('current-time').textContent = t + ' AEST';
-  document.getElementById('current-date').textContent = d;
-
+  // Safely update the top bar
   const topTime = document.getElementById('top-current-time');
   const topDate = document.getElementById('top-current-date');
   if (topTime && topDate) {
     topTime.textContent = t + ' AEST';
     topDate.textContent = d;
   }
+
+  // Safely update the banner time if it exists
+  const bannerTime = document.getElementById('current-time');
+  const bannerDate = document.getElementById('current-date');
+  if (bannerTime && bannerDate) {
+    bannerTime.textContent = t + ' AEST';
+    bannerDate.textContent = d;
+  }
 }
+
 
     updateTime();
     setInterval(updateTime, 60000);
