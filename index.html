@@ -722,18 +722,16 @@ html, body {
 .top-time-bar {
   width: 100%;
   background: #1e1e1e;
-  display: flex;
-  justify-content: center; /* Center the whole bar content */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 10px 10px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1100;
-  border-bottom: 1px solid #444; /* keep your border */
+  border-bottom: 1px solid #444;
 }
-
-
 
 .top-time-bar > div {
   display: flex;
@@ -741,7 +739,6 @@ html, body {
   gap: 6px;
   margin: 0 20px; /* space between items */
 }
-
 
 .top-time-bar span {
   font-family: 'Roboto', sans-serif;
