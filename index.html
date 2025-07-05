@@ -143,20 +143,7 @@ img { max-width: 100%; height: auto; display: block; }
   height: 32px;
   overflow: hidden;
 }
-/* ✅ UPDATED ticker-track and animation */
-.ticker-track {
-  display: flex;
-  will-change: transform;
-  animation: scroll 30s linear infinite;
-}
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
+
 
 .container {
   width: 100%;
@@ -357,10 +344,30 @@ img { max-width: 100%; height: auto; display: block; }
     width: 100%;
   }
 }
+
+.ticker-track {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  will-change: transform;
+  animation: ticker-scroll var(--ticker-duration) linear infinite;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--ticker-distance)));
+  }
+}
+
+/* Keep hover pause */
 .ticker-inner:hover .ticker-track {
   animation-play-state: paused;
 }
-/* The rest of your CSS remains unchanged... */
+
+  
 <style>
 /* CONTINUATION OF YOUR CSS */
 
@@ -600,12 +607,6 @@ body * {
   font-size: 16px !important;
 }
 
-/* Maintain ticker flex settings */
-.ticker-track {
-  display: flex;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-}
 
 html, body {
   font-size: 16px;
@@ -693,6 +694,30 @@ html, body {
   color: gold;
   cursor: default;
 }
+
+.ticker-track {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  will-change: transform;
+  animation: ticker-scroll var(--ticker-duration) linear infinite;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--ticker-distance)));
+  }
+}
+
+.ticker-inner:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+
+  
 </style>
 
 
@@ -840,75 +865,31 @@ html, body {
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   // Prepare ticker container
-  const track = document.getElementById('ticker-track');
-  track.innerHTML = '';
+  // Prepare ticker container
+const track = document.getElementById('ticker-track');
+track.innerHTML = '';
 
-  // This function creates a ticker group with extras, flag, then headlines
-  function createTickerGroup(extras, headlines) {
-  const grp = document.createElement('div');
-  grp.className = 'ticker-group';
-
-  // Add extras first
-  extras.forEach((item, index) => {
-    // Insert separator BEFORE each extra
-    const sep = document.createElement('div');
-    sep.className = 'ticker-separator';
-    const img = document.createElement('img');
-    img.src = '/flag_au1.png';
-    img.alt = 'AU Flag';
-    sep.appendChild(img);
-    grp.appendChild(sep);
-
-    const span = document.createElement('span');
-    span.textContent = item.text;
-    span.className = 'ticker-extra';
-    grp.appendChild(span);
-  });
-
-  // Add headlines
-  headlines.forEach((item, index) => {
-    // Insert separator BEFORE each headline
-    const sep = document.createElement('div');
-    sep.className = 'ticker-separator';
-    const img = document.createElement('img');
-    img.src = '/flag_au1.png';
-    img.alt = 'AU Flag';
-    sep.appendChild(img);
-    grp.appendChild(sep);
-
-    const a = document.createElement('a');
-    a.href = item.url;
-    a.textContent = item.title;
-    grp.appendChild(a);
-  });
-
-  return grp;
-}
-
-
-  // Build two groups for looping
-  const group1 = createTickerGroup(
-    extras,
-    recent.slice(0, 6)
-  );
-  const group2 = createTickerGroup(
-    extras,
-    recent.slice(0, 6)
-  );
-
-  const group = createTickerGroup(extras, recent.slice(0,6));
+// Build ticker group
+const group = createTickerGroup(extras, recent.slice(0, 6));
 const groupClone = group.cloneNode(true);
 
+// Append both for seamless loop
 track.appendChild(group);
 track.appendChild(groupClone);
 
+// Measure the width of ONE group
+const dist = group.scrollWidth;
 
-  // Measure total distance
-  const dist = track.scrollWidth;
+// Adjust speed (pixels per second)
+const speedPxPerSec = 30; // Change to 20 or 40 to tweak speed
 
-  const speed = 20;
-  document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
-  document.documentElement.style.setProperty('--ticker-duration', (dist / speed) + 's');
+// Compute duration
+const durationSec = dist / speedPxPerSec;
+
+// Set CSS variables
+document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
+document.documentElement.style.setProperty('--ticker-duration', durationSec + 's');
+
 
   // ====================
   // Columns below main headline
