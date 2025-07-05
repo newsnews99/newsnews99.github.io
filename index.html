@@ -730,12 +730,50 @@ html, body {
   display: block;
 }
 
+.top-time-bar {
+  width: 100%;
+  background: #1e1e1e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+}
+
+.top-time-bar img {
+  height: 13px;
+  width: auto;
+  display: block;
+}
+
+.top-time-bar span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: white;
+}
+
+  
 </style>
 
 
 </head>
+
+
+  
 <body>
 
+  <div class="top-time-bar">
+    <span id="top-current-time">--:-- AEST</span>
+    <img src="/flag_au1.png" alt="Flag" />
+    <span id="top-current-date">--/--/----</span>
+  </div>
+
+  
   <div class="banner">
     <div class="banner-content">
       <div class="social-section">
@@ -836,18 +874,27 @@ html, body {
 
   <script>
     function updateTime() {
-      const now = new Date();
-      const t = new Intl.DateTimeFormat('en-AU', {
-        timeZone: 'Australia/Melbourne',
-        hour: '2-digit', minute: '2-digit', hour12: false
-      }).format(now);
-      const d = new Intl.DateTimeFormat('en-AU', {
-        timeZone: 'Australia/Melbourne',
-        weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit'
-      }).format(now);
-      document.getElementById('current-time').textContent = t + ' AEST';
-      document.getElementById('current-date').textContent = d;
-    }
+  const now = new Date();
+  const t = new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'Australia/Melbourne',
+    hour: '2-digit', minute: '2-digit', hour12: false
+  }).format(now);
+  const d = new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'Australia/Melbourne',
+    weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).format(now);
+
+  document.getElementById('current-time').textContent = t + ' AEST';
+  document.getElementById('current-date').textContent = d;
+
+  const topTime = document.getElementById('top-current-time');
+  const topDate = document.getElementById('top-current-date');
+  if (topTime && topDate) {
+    topTime.textContent = t + ' AEST';
+    topDate.textContent = d;
+  }
+}
+
     updateTime();
     setInterval(updateTime, 60000);
 
@@ -1301,7 +1348,10 @@ document.addEventListener("DOMContentLoaded", function() {
   const banner = document.querySelector(".banner");
   const spacer = document.getElementById("header-spacer");
   if (banner && spacer) {
-    const height = banner.offsetHeight;
+    const topBar = document.querySelector(".top-time-bar");
+    const topBarHeight = topBar ? topBar.offsetHeight : 0;
+    const height = banner.offsetHeight + topBarHeight;
+
     if (window.innerWidth > 768) {
       // Desktop: header height + 15px spacing
       spacer.style.height = (height + 15) + "px";
