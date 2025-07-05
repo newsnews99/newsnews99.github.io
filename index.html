@@ -725,11 +725,13 @@ html, body {
   background: #1e1e1e;
   height: 32px;
   display: flex;
+  justify-content: center; /* Center container */
   align-items: center;
-  padding: 0 12px;
+  padding: 0;
   border-bottom: 1px solid #444;
   z-index: 1100;
 }
+
   
 .top-time-bar .time-left {
   display: flex;
@@ -784,6 +786,14 @@ html, body {
   align-items: center;
   gap: 6px;
 }
+
+.time-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 500px;  /* adjust as needed for desired spacing */
+}
+
   
 .header-logo {
   width: 100%;
@@ -821,6 +831,7 @@ html, body {
 <body>
 
   <div class="top-time-bar">
+  <div class="time-bar-inner">
     <div class="time-left">
       <span id="top-current-time">--:-- AEST</span>
       <img src="/flag_au1.png" alt="Flag" />
@@ -832,7 +843,9 @@ html, body {
       <img src="/flag_au1.png" alt="Flag" />
       <span id="top-current-date">--/--/----</span>
     </div>
+  </div>
 </div>
+
 
 <div class="header-logo">
   <a href="https://fedsun.news">
