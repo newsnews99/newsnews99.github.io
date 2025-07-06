@@ -951,10 +951,6 @@ html, body {
   padding: 0;
 }
 
-/* Hide by default */
-.sun-link {
-  display: none;
-}
 
 .sun-icon {
   height: 16px;
@@ -963,8 +959,12 @@ html, body {
   vertical-align: middle;
 }
 
+/* Always hide sun link by default */
+.sun-link {
+  display: none;
+}
 
-/* Show when the banner is collapsed */
+/* Show sun link when banner is collapsed (scrolled) */
 .banner.collapsed ~ .header-top-combined .sun-link {
   display: inline-block;
 }
@@ -976,11 +976,12 @@ html, body {
     display: inline-block;
   }
 
-  /* Hide the date text on mobile */
+  /* Always hide the date text on mobile */
   #top-time-line {
     display: none;
   }
 }
+
   
 </style>
 
