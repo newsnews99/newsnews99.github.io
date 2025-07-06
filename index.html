@@ -795,9 +795,9 @@ body > * {
   position: absolute;
   right: 40px;
   display: flex;
-  top: 50%;
-  transform: translateY(calc(-50% + 4px)); /* adjust the 4px to taste */
+  align-items: flex-end; /* still keeps icon hugging the bottom */
 }
+
 
 
 
@@ -848,13 +848,14 @@ body > * {
 .banner-content {
   position: relative;
   display: flex;
-  align-items: center; /* center logo vertically */
+  align-items: flex-end; /* align everything to the bottom edge */
   justify-content: center;
   max-width: 1248px;
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
 }
+
 
 
 
