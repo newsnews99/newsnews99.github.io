@@ -769,17 +769,11 @@ html, body {
    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
-.center-section form {
-  gap: 6px;
-  width: 100%;
-}
 
-/* Container to hold the icon and form */
 .search-wrapper {
-   position: relative;
+  position: relative;
   display: flex;
-  align-items: center; 
-  padding-bottom: 0px;
+  align-items: center;
 }
 
 
@@ -900,25 +894,15 @@ html, body {
   align-items: center;
 }
 
-.search-wrapper {
-  flex: 0 0 auto;
-}
-.search-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  overflow: hidden;
-  transition: width 0.3s ease;
-}
+
+
 
 .search-wrapper form {
   position: absolute;
-  right: 100%; /* place to the left of the button */
+  right: 100%;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
-  align-items: center;
-  gap: 6px;
   width: 0;
   opacity: 0;
   pointer-events: none;
@@ -1564,18 +1548,7 @@ document.getElementById("search-close").style.display = "none";
 
 
 
-  <script>
-document.getElementById("search-toggle").addEventListener("click", function() {
-  const form = document.getElementById("search-form");
-  form.classList.toggle("active");
-  if (form.classList.contains("active")) {
-    // Optional: focus input when shown
-    setTimeout(() => {
-      document.getElementById("search-input").focus();
-    }, 300);
-  }
-});
-</script>
+ 
 
   <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -1588,5 +1561,20 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+  
+ <script>
+document.getElementById("search-toggle").addEventListener("click", function() {
+  const form = document.getElementById("search-form");
+  form.classList.toggle("active");
+  if (form.classList.contains("active")) {
+    // Optional: focus input when shown
+    setTimeout(() => {
+      document.getElementById("search-input").focus();
+    }, 300);
+  }
+});
+</script>
+
+  
 </body>
 </html>
