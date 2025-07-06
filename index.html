@@ -795,9 +795,14 @@ body > * {
 
 /* Container to hold the icon and form */
 .search-wrapper {
+  position: absolute;
+  right: 40px; /* padding right spacing */
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
 }
+
 
 
 
@@ -823,13 +828,13 @@ body > * {
 .search-wrapper form {
   position: absolute;
   top: 50%;
-  right: calc(100% + 10px);
+  left: calc(100% + 10px); /* <-- pops out to the RIGHT of icon */
   display: flex;
   align-items: center;
   gap: 6px;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-50%) translateX(10px);
+  transform: translateY(-50%) translateX(-10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -842,14 +847,16 @@ body > * {
 
 
 .banner-content {
+  position: relative; /* So absolute inside can reference this */
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* This centers the logo */
   max-width: 1200px;
   margin: 0 auto;
-  padding: 12px 40px; /* <-- 40px left/right padding */
+  padding: 12px 0;
   box-sizing: border-box;
 }
+
 
 
   
