@@ -969,14 +969,7 @@ html, body {
 }
 
 
-.banner {
-  position: relative; /* or just remove position entirely */
-  width: 100%;
-  z-index: 1; /* so it's under the fixed header */
-  max-height: none; /* remove collapsing if you don't need it anymore */
-  overflow: visible;
-  transition: none; /* no transition needed if scrolling away naturally */
-}
+
 
 .banner.collapsed {
   max-height: 0;
@@ -992,6 +985,16 @@ html, body {
   max-height: 53px;
   width: auto;
 }
+
+
+  /* Banner just scrolls away */
+.banner {
+  position: relative; /* default */
+  width: 100%;
+  background: #1e1e1e;
+}
+
+/* Sticky bar stays in place */
 .header-top-bar {
   position: sticky;
   top: 0;
@@ -1000,7 +1003,45 @@ html, body {
   box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
-  
+/* Inside sticky bar */
+.header-top-combined {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  gap: 16px;
+}
+
+/* Optional: size and spacing */
+.header-time {
+  flex: 0 0 auto;
+}
+
+.ticker-inner {
+  flex: 1 1 auto;
+  overflow: hidden;
+  border-left: 1px solid #444;
+  border-right: 1px solid #444;
+  height: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.search-wrapper {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+/* Sun icon default hidden */
+.sun-link {
+  display: none;
+}
+
+/* Show sun icon after scrolling (add a class dynamically if you want) */
+
 </style>
 
 
@@ -1009,41 +1050,39 @@ html, body {
 
   
 <body>
+  <!-- Banner that scrolls away naturally -->
+  <div class="banner">
+    <div class="banner-content">
+      <div class="header-logo">
+        <a href="/">
+          <img src="fedsun_logo_hoz.png" alt="Logo">
+        </a>
+      </div>
+    </div>
+  </div>
 
-<!-- Logo banner scrolls away normally -->
-<div class="banner">
-  <div class="banner-content">
-    <div class="header-logo">
-      <a href="https://fedsun.news">
-        <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+  <!-- Sticky header bar -->
+  <div class="header-top-bar">
+    <div class="header-top-combined">
+      <a href="/" class="sun-link">
+        <img src="sun.png" alt="Home">
       </a>
+      <div class="header-time">
+        <span id="top-time-line">Mon, 07 Jul 2025</span>
+      </div>
+      <div class="ticker-inner">
+        <div class="ticker-track">Loading headlines…</div>
+      </div>
+      <div class="search-wrapper">
+        <button id="search-toggle" aria-label="Search">
+          <img src="icon_search.png" alt="Search Icon">
+        </button>
+        <form id="search-form">
+          <input type="text" placeholder="Search…">
+        </form>
+      </div>
     </div>
   </div>
-</div>
-
-<!-- This bar stays sticky -->
-<div class="header-top-bar">
-  <div class="header-top-combined">
-    <a href="https://fedsun.news/" class="sun-link">
-      <img src="sun.png" alt="Home" class="sun-icon" />
-    </a>
-    <div class="header-time">
-      <span id="top-time-line">Mon, 07 Jul 2025</span>
-    </div>
-    <div class="ticker-inner" id="ticker-inner">
-      <div class="ticker-track" id="ticker-track">Loading headlines…</div>
-    </div>
-    <div class="search-wrapper">
-      <button id="search-toggle" aria-label="Search">
-        <img src="icon_search.png" alt="Search Icon" />
-      </button>
-      <form id="search-form" autocomplete="off">
-        <input type="text" id="search-input" placeholder="Search fedsun.news..." />
-      </form>
-    </div>
-  </div>
-</div>
-
 
 
 
