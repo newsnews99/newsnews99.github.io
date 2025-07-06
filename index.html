@@ -805,31 +805,10 @@ html, body {
 
 
 
-/* Form hidden by default */
-.search-wrapper form {
-  position: absolute;
-  top: 50%;
-  right: calc(100% + 10px);
-  display: flex;
-  align-items: center;
-  gap: 0;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-50%) translateX(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  padding-bottom: 15px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-}
 
 
 
-/* Form visible when active */
-.search-wrapper form.active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(-50%) translateX(0);
-}
+
 
 
 .banner-content {
@@ -922,6 +901,28 @@ html, body {
 
 .search-wrapper {
   flex: 0 0 auto;
+}
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+.search-wrapper form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 0;
+  opacity: 0;
+  transition: width 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.search-wrapper form.active {
+  width: 220px; /* or any width you prefer */
+  opacity: 1;
 }
 
 </style>
