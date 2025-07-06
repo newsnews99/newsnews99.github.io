@@ -773,8 +773,8 @@ html, body {
 .search-wrapper {
   display: flex;
   align-items: center;
-  gap: 6px;
-  min-width: auto;
+  gap: 8px;
+  transition: all 0.3s ease;
 }
 
 
@@ -787,14 +787,14 @@ html, body {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;
   display: flex;
   align-items: center;
+  padding: 0;
 }
 
 .search-wrapper img {
-  height: 20px;  /* or 16px if you prefer smaller */
-  width: auto;   /* ensures aspect ratio */
+  height: 20px; /* adjust as needed */
+  width: auto;
   display: block;
 }
 
@@ -900,15 +900,15 @@ html, body {
 
 .search-wrapper form {
   display: flex;
-  width: 0;
+  flex-basis: 0;
   opacity: 0;
-  pointer-events: none;
   overflow: hidden;
-  transition: width 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+  transition: flex-basis 0.3s ease, opacity 0.3s ease;
 }
 
 .search-wrapper form.active {
-  width: 200px; /* adjust as needed */
+  flex-basis: 220px; /* adjust width as needed */
   opacity: 1;
   pointer-events: auto;
 }
