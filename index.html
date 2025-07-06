@@ -972,14 +972,19 @@ html, body {
   }
 }
 
-.sun-icon {
-  height: 16px;         /* or whatever fixed height you want */
-  width: auto;          /* maintain aspect ratio */
-  max-width: 100%;      /* never exceed container width */
-  display: inline-block;/* prevent block scaling in flex */
-  vertical-align: middle; /* nicely aligned with text */
+
+
+.sun-link {
+  flex: 0 0 auto;
 }
 
+.sun-icon {
+  height: auto;
+  max-height: 16px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
 
   
 </style>
