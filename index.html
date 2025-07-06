@@ -964,7 +964,7 @@ html, body {
   </div>
 </div>
 
-
+  </div>
 
 
 <div class="container">
@@ -998,7 +998,7 @@ html, body {
       <div class="right-column" id="right-column-1"></div>
     </div>
   </div>
-  </div>
+
 
 
 
@@ -1566,6 +1566,16 @@ document.getElementById("search-toggle").addEventListener("click", function() {
 });
 </script>
 
-  
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const spacer = document.getElementById("header-spacer");
+  const headerFixed = document.querySelector(".header-fixed");
+
+  if (headerFixed && spacer) {
+    spacer.style.height = headerFixed.offsetHeight + "px";
+  }
+});
+</script>
+
 </body>
 </html>
