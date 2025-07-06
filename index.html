@@ -951,6 +951,18 @@ html, body {
   padding: 0;
 }
 
+.sun-icon {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: 16px;
+  width: auto;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.banner.collapsed ~ .header-top-combined .sun-icon {
+  opacity: 1;
+}
 
   
 </style>
@@ -976,8 +988,10 @@ html, body {
   
   <div class="header-top-combined">
   <div class="header-time">
-    <span id="top-time-line">--:-- AEST Saturday, -- --- ----</span>
-  </div>
+  <img src="sun.png" alt="Sun Icon" class="sun-icon" />
+  <span id="top-time-line">Mon, 07 Jul 2025</span>
+</div>
+
   <div class="ticker-inner" id="ticker-inner">
     <div class="ticker-track" id="ticker-track">Loading headlines…</div>
   </div>
