@@ -978,16 +978,15 @@ html, body {
 
 
 .banner {
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  max-height: 200px;  /* or a bit bigger than your banner height */
-  opacity: 1;
+  transition: max-height 0.4s ease;
+  max-height: 200px;   /* or a bit larger than your banner content */
   overflow: hidden;
 }
 .banner.collapsed {
   max-height: 0;
-  opacity: 0;
   padding: 0;
 }
+
 .banner.collapsed .header-logo {
   margin: 0;
   padding: 0;
