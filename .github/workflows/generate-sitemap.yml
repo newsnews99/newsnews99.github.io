@@ -6,6 +6,10 @@ on:
       - main
       - master
 
+concurrency:
+  group: sitemap-generate
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
