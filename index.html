@@ -955,29 +955,26 @@ html, body {
 .sun-icon {
   height: 16px;
   width: auto;
-  margin-right: 6px; /* spacing between icon and date */
   vertical-align: middle;
 }
+
 
 /* Always hide sun link by default */
 .sun-link {
   display: none;
 }
 
-/* Show when banner is collapsed */
+/* Show when the banner is collapsed */
 .banner.collapsed ~ .header-top-combined .sun-link {
-  display: inline-block;
+  display: inline-flex; /* inline-flex ensures it lines up nicely */
 }
 
 /* Mobile overrides */
 @media (max-width: 768px) {
-  /* Always show sun link on mobile */
   .sun-link {
-    display: inline-block !important;
+    display: inline-flex !important;
   }
-
-  /* Always hide the date text on mobile */
-  #top-time-line {
+  .header-time {
     display: none !important;
   }
 }
@@ -1006,12 +1003,13 @@ html, body {
 </div>
   
   <div class="header-top-combined">
-  <div class="header-time">
   <a href="https://fedsun.news/" class="sun-link">
-    <img src="sun.png" alt="Home" class="sun-icon" />
-  </a>
+  <img src="sun.png" alt="Home" class="sun-icon" />
+</a>
+<div class="header-time">
   <span id="top-time-line">Mon, 07 Jul 2025</span>
 </div>
+
 
 
 
