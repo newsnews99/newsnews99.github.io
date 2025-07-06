@@ -891,8 +891,11 @@ display: none;
 }
 
 .main-headline-wrapper {
+  padding-top: 130px; /* Adjust this value as needed */
   max-width: 1248px;
+  margin: 0 auto;
 }
+
   .header-top-combined {
   display: flex;
   justify-content: space-between;
@@ -963,7 +966,7 @@ display: none;
 </div>
 
 
-<div id="header-spacer"></div>
+
 
 <div class="container">
   <div id="search-container">
@@ -1547,20 +1550,7 @@ document.getElementById("search-close").style.display = "none";
 
   
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const spacer = document.getElementById("header-spacer");
-  const headerFixed = document.querySelector(".header-fixed");
 
-  if (headerFixed && spacer) {
-    spacer.style.height = headerFixed.offsetHeight + "px";
-  }
-});
-
-
-
-
-</script>
 
 
 
