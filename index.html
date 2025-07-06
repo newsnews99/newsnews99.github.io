@@ -828,15 +828,17 @@ body > * {
 .search-wrapper form {
   position: absolute;
   top: 50%;
-  left: calc(100% + 10px); /* <-- pops out to the RIGHT of icon */
+  right: calc(100% + 10px);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-50%) translateX(-10px);
+  transform: translateY(-50%) translateX(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
+
 
 /* Form visible when active */
 .search-wrapper form.active {
@@ -892,9 +894,9 @@ body > * {
       <img src="icon_search.png" alt="Search Icon">
     </button>
     <form id="search-form" autocomplete="off">
-      <input type="text" id="search-input" placeholder="Search...">
-      <button type="submit" class="button-flag">Search</button>
-    </form>
+  <input type="text" id="search-input" placeholder="Search...">
+</form>
+
   </div>
 </div>
 
