@@ -932,69 +932,13 @@ html, body {
 
 
 
-
-
-
-
-
-/* Hide sun icon by default everywhere */
-.sun-link {
-  display: none;
-}
-
-/* Show sun icon when banner is collapsed (all screen sizes) */
-.banner.collapsed ~ .header-top-combined .sun-link {
-  display: inline-flex;
-}
-
-/* Hide date text on mobile always */
-@media (max-width: 768px) {
-  .header-time #top-time-line {
-    display: none;
-  }
-}
-
-
-
-.sun-link {
-  flex: 0 0 auto;
-}
-
-.sun-icon {
-  height: auto;
-  max-height: 16px;
-  width: auto;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-
-
-
-.banner.collapsed {
-  max-height: 0;
-  padding: 0;
-}
-
-.banner.collapsed .header-logo {
-  margin: 0;
-  padding: 0;
-}
-.header-logo img {
-  height: auto;
-  max-height: 53px;
-  width: auto;
-}
-
-
-  /* Banner just scrolls away */
 .banner {
-  position: relative; /* default */
+  position: relative; /* Normal flow, scrolls away naturally */
   width: 100%;
   background: #1e1e1e;
 }
 
-/* Sticky bar stays in place */
+/* Sticky bar always visible */
 .header-top-bar {
   position: sticky;
   top: 0;
@@ -1010,15 +954,18 @@ html, body {
   justify-content: space-between;
   max-width: 1248px;
   margin: 0 auto;
-  padding: 8px 16px;
+  padding: 12px 16px;
   gap: 16px;
 }
 
-/* Optional: size and spacing */
-.header-time {
-  flex: 0 0 auto;
+/* Sun icon hidden by default */
+.sun-link {
+  display: none;
 }
 
+/* If you want the sun icon visible all the time, remove the line above */
+
+/* Ticker styling */
 .ticker-inner {
   flex: 1 1 auto;
   overflow: hidden;
@@ -1029,18 +976,21 @@ html, body {
   align-items: center;
 }
 
+/* Time styling */
+.header-time {
+  flex: 0 0 auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: white;
+}
+
+/* Search styling */
 .search-wrapper {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
 }
 
-/* Sun icon default hidden */
-.sun-link {
-  display: none;
-}
-
-/* Show sun icon after scrolling (add a class dynamically if you want) */
 
 </style>
 
@@ -1050,7 +1000,8 @@ html, body {
 
   
 <body>
-  <!-- Banner that scrolls away naturally -->
+
+  <!-- Banner that scrolls away -->
   <div class="banner">
     <div class="banner-content">
       <div class="header-logo">
@@ -1061,21 +1012,21 @@ html, body {
     </div>
   </div>
 
-  <!-- Sticky header bar -->
+  <!-- Sticky bar stays visible -->
   <div class="header-top-bar">
     <div class="header-top-combined">
       <a href="/" class="sun-link">
-        <img src="sun.png" alt="Home">
+        <img src="sun.png" alt="Home" />
       </a>
       <div class="header-time">
-        <span id="top-time-line">Mon, 07 Jul 2025</span>
+        <span id="top-time-line">Mon, 07 July 2025</span>
       </div>
       <div class="ticker-inner">
         <div class="ticker-track">Loading headlines…</div>
       </div>
       <div class="search-wrapper">
         <button id="search-toggle" aria-label="Search">
-          <img src="icon_search.png" alt="Search Icon">
+          <img src="icon_search.png" alt="Search Icon" />
         </button>
         <form id="search-form">
           <input type="text" placeholder="Search…">
@@ -1083,6 +1034,7 @@ html, body {
       </div>
     </div>
   </div>
+
 
 
 
@@ -1705,6 +1657,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if (headerFixed && spacer) {
     spacer.style.height = headerFixed.offsetHeight + "px";
+  }
+});
+</script>
+
+<!-- your other scripts above here -->
+
+<script>
+window.addEventListener("scroll", () => {
+  const sun = document.querySelector(".sun-link");
+  if (window.scrollY > 50) {
+    sun.style.display = "inline-flex";
+  } else {
+    sun.style.display = "none";
   }
 });
 </script>
