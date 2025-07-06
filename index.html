@@ -771,9 +771,10 @@ html, body {
 
 
 .search-wrapper {
-  position: relative;
   display: flex;
   align-items: center;
+  gap: 6px;
+  min-width: auto;
 }
 
 
@@ -792,11 +793,11 @@ html, body {
 }
 
 .search-wrapper img {
-  height: 16px;
-  width: auto;
+  height: 20px;  /* or 16px if you prefer smaller */
+  width: auto;   /* ensures aspect ratio */
   display: block;
-  padding: 16px 0px
 }
+
 
 
 
@@ -898,10 +899,6 @@ html, body {
 
 
 .search-wrapper form {
-  position: absolute;
-  right: 100%;
-  top: 50%;
-  transform: translateY(-50%);
   display: flex;
   width: 0;
   opacity: 0;
@@ -910,9 +907,8 @@ html, body {
   transition: width 0.3s ease, opacity 0.3s ease;
 }
 
-
 .search-wrapper form.active {
-  width: 220px; /* or however wide you want */
+  width: 200px; /* adjust as needed */
   opacity: 1;
   pointer-events: auto;
 }
