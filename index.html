@@ -721,14 +721,7 @@ body > * {
   margin-right: auto;
 }
 
-/* Flex container for share icon and logo */
-.header-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 5px 0;
-}
+
 
 .footer-social {
   width: 100%;
@@ -881,6 +874,9 @@ body > * {
   color: gold;
 }
 
+.search-wrapper {
+  align-items: flex-end; /* aligns the bottom of the icon */
+}
 
   
 </style>
@@ -892,56 +888,50 @@ body > * {
   
 <body>
 <div class="header-fixed">
- <div class="header-top">
-  <div class="header-time">
-    <span id="top-time-line">--:-- AEST Saturday, -- --- ----</span>
-  </div>
-  </div> 
-<div class="header-separator"></div>
+  <div class="header-top">
+    <div class="header-time">
+      <span id="top-time-line">--:-- AEST Saturday, -- --- ----</span>
+    </div> <!-- ✅ closing .header-time -->
+  </div> <!-- ✅ closing .header-top -->
 
+  <div class="header-separator"></div>
 
-<div class="banner">
-   <div class="banner-content">
-  <div class="header-logo">
-    <a href="https://fedsun.news">
-      <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
-    </a>
-  </div>
-  <div class="search-wrapper">
-    <button id="search-toggle" aria-label="Search">
-      <img src="icon_search.png" alt="Search Icon">
-    </button>
-    <form id="search-form" autocomplete="off">
-  <input type="text" id="search-input" placeholder="Search...">
-</form>
-
-  </div>
-</div>
-
-    
-  </div>
-  
-    <div class="ticker">
-      <div class="ticker-inner" id="ticker-inner">
-        <div class="ticker-track" id="ticker-track">Loading headlines…</div>
+  <div class="banner">
+    <div class="banner-content">
+      <div class="header-logo">
+        <a href="https://fedsun.news">
+          <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+        </a>
       </div>
+      <div class="search-wrapper">
+        <button id="search-toggle" aria-label="Search">
+          <img src="icon_search.png" alt="Search Icon">
+        </button>
+        <form id="search-form" autocomplete="off">
+          <input type="text" id="search-input" placeholder="Search...">
+        </form>
+      </div>
+    </div> <!-- ✅ closing .banner-content -->
+  </div> <!-- ✅ closing .banner -->
+
+  <div class="ticker">
+    <div class="ticker-inner" id="ticker-inner">
+      <div class="ticker-track" id="ticker-track">Loading headlines…</div>
     </div>
-   
- </div>
+  </div>
+</div> <!-- ✅ closing .header-fixed -->
 
-  
-  
-  
+<div id="header-spacer"></div>
 
-  
-  <div id="header-spacer"></div>
-  <div class="container">
-    <div id="search-container">
-  <button id="search-close" aria-label="Close Search Results">✕</button>
-  <div id="search-filters"></div>
-  <div id="search-results"></div>
-  <div id="search-pagination"></div>
+<div class="container">
+  <div id="search-container">
+    <button id="search-close" aria-label="Close Search Results">✕</button>
+    <div id="search-filters"></div>
+    <div id="search-results"></div>
+    <div id="search-pagination"></div>
+  </div>
 </div>
+
 <div class="main-headline-wrapper">
   <div class="main-headline-layout">
 
