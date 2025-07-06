@@ -15,7 +15,7 @@
 html, body {
   margin: 0;
   font-family: 'Bebas Neue', sans-serif;
-  background: #1e1e1e;
+  background: #1e1e1e;ti
   color: white;
   box-sizing: border-box;
   overflow-x: hidden;
@@ -421,6 +421,7 @@ body * {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 1.4;
+  color: white; 
 }
 .two-columns-below a,
 .right-column a,
@@ -709,7 +710,7 @@ html, body {
 }
 
 .header-logo {
-  padding: 15px 0 15px;
+  padding: 15px 0 10px;
 }
 
 .header-logo img {
@@ -750,16 +751,8 @@ html, body {
   opacity: 0.7;
 }
 
-.ticker-inner {
-  width: 100%;
-  margin: 0 auto;
-  background: #1e1e1e;
-  border-bottom: 1px solid #444;
-  display: flex;
-  align-items: center;
-  height: 30px;
-  overflow: hidden;
-}
+
+
 .ticker {
   position: static;
   top: calc(53px + 10px + 10px + 1px); /* logo height + paddings + separator */
@@ -902,7 +895,125 @@ display: none;
 .main-headline-wrapper {
   max-width: 1248px;
 }
-  
+ .header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: #1e1e1e;
+}
+
+/* Flex row */
+.header-top-row {
+  display: flex;
+  align-items: center; /* Vertically center everything */
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 5px 15px;
+  box-sizing: border-box;
+}
+
+/* Time/date */
+.header-time {
+  flex: 0 0 auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  color: white;
+  white-space: nowrap;
+}
+
+/* Ticker in center */
+.ticker {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.ticker-inner {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  overflow: hidden;
+}
+
+
+/* Search area */
+.search-wrapper {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0;
+}
+.search-wrapper button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.search-wrapper img {
+  height: 21px;
+  width: auto;
+}
+
+/* Search form dropdown */
+.search-wrapper form {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0);
+  transition: opacity 0.3s ease;
+  background: #1e1e1e;
+  padding: 4px;
+  border: 1px solid #444;
+}
+.search-wrapper form.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-top-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .ticker {
+    order: 2;
+  }
+  .search-wrapper {
+    order: 3;
+    justify-content: flex-end;
+  }
+}
+ .ticker-inner::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw; /* full viewport width */
+  height: 1px;
+  background: #444;
+  transform: translateX(-50%);
+  left: 50%;
+  z-index: -1;
+}
+
 </style>
 
 
@@ -912,38 +1023,32 @@ display: none;
   
 <body>
 <div class="header-fixed">
-  <div class="header-top">
-    <div class="header-time">
-      <span id="top-time-line">--:-- AEST Saturday, -- --- ----</span>
-    </div> <!-- ✅ closing .header-time -->
-  </div> <!-- ✅ closing .header-top -->
-
-  <div class="header-separator"></div>
-
-  <div class="banner">
-    <div class="banner-content">
-      <div class="header-logo">
-        <a href="https://fedsun.news">
-          <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
-        </a>
-      </div>
-      <div class="search-wrapper">
-        <button id="search-toggle" aria-label="Search">
-          <img src="icon_search.png" alt="Search Icon">
-        </button>
-        <form id="search-form" autocomplete="off">
-          <input type="text" id="search-input" placeholder="Search fedsun.news...">
-        </form>
-      </div>
-    </div> <!-- ✅ closing .banner-content -->
-  </div> <!-- ✅ closing .banner -->
-
+  <div class="header-top-row">
+  <div class="header-time">
+    <span id="top-time-line">--:-- AEST Saturday, -- --- ----</span>
+  </div>
   <div class="ticker">
     <div class="ticker-inner" id="ticker-inner">
       <div class="ticker-track" id="ticker-track">Loading headlines…</div>
     </div>
   </div>
-</div> <!-- ✅ closing .header-fixed -->
+  <div class="search-wrapper">
+    <button id="search-toggle" aria-label="Search">
+      <img src="icon_search.png" alt="Search Icon">
+    </button>
+    <form id="search-form" autocomplete="off">
+      <input type="text" id="search-input" placeholder="Search fedsun.news...">
+    </form>
+  </div>
+  <div class="header-logo">
+    <a href="https://fedsun.news">
+      <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+    </a>
+  </div>
+</div>
+
+</div>
+
 
 <div id="header-spacer"></div>
 
@@ -1052,7 +1157,7 @@ display: none;
 
   const timeLine = document.getElementById('top-time-line');
   if (timeLine) {
-    timeLine.innerHTML = <strong>${t} AEST</strong> ${day}, ${d};
+    timeLine.innerHTML = `<strong>${t} AEST</strong> ${day}, ${d}`;
   }
 }
 
@@ -1173,7 +1278,7 @@ document.documentElement.style.setProperty('--ticker-duration', durationSec + 's
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = String(date.getFullYear()).slice(-2);
-  return ${day}/${month}/${year};
+  return `${day}/${month}/${year}`;
 }
 
 
@@ -1205,7 +1310,7 @@ document.documentElement.style.setProperty('--ticker-duration', durationSec + 's
 
   const meta = document.createElement('div');
   meta.className = 'headline-meta';
-  meta.textContent = ${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''};
+  meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
 
   content.appendChild(link);
   content.appendChild(meta);
@@ -1302,16 +1407,16 @@ fetch('/data/poll.json?' + new Date().getTime())
     if (!poll || !poll.question || !poll.options) return;
 
     // Build the poll form
-    let html = <form id="poll-form"><h3 class="poll-title">${poll.question}</h3>;
+    let html = `<form id="poll-form"><h3 class="poll-title">${poll.question}</h3>`;
 poll.options.forEach(opt => {
-  html += <label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>;
+  html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
 });
-html += 
+html += `
   <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;">
     <button type="submit" class="button-flag">Vote</button>
     <button type="button" id="show-results-button" class="button-flag">Show Results</button>
   </div>
-</form>;
+</form>`;
 
 
     container.innerHTML = html;
@@ -1329,7 +1434,7 @@ html +=
       
 
       if (error) {
-        container.innerHTML = <p style="color:red;">Error saving vote: ${error.message}</p>;
+        container.innerHTML = `<p style="color:red;">Error saving vote: ${error.message}</p>`;
       } else {
         // Show results
         loadVoteCounts(selected);
@@ -1347,7 +1452,7 @@ showResultsBtn.addEventListener('click', () => {
 
 async function loadVoteCounts(votedOption) {
   const container = document.getElementById('poll-container');
-  container.innerHTML = <p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p><p>Loading results...</p>;
+  container.innerHTML = `<p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p><p>Loading results...</p>`;
 
 
   const { data, error } = await supabaseClient
@@ -1355,7 +1460,7 @@ async function loadVoteCounts(votedOption) {
     .select('option');
 
   if (error) {
-    container.innerHTML = <p style="color:red;">Error loading results: ${error.message}</p>;
+    container.innerHTML = `<p style="color:red;">Error loading results: ${error.message}</p>`;
     return;
   }
 
@@ -1372,17 +1477,17 @@ async function loadVoteCounts(votedOption) {
   let resultsHtml = '<h3>Vote Results</h3><div style="width:100%;text-align:left;">';
   Object.entries(counts).forEach(([opt, count]) => {
     const percent = ((count / totalVotes) * 100).toFixed(1);
-    resultsHtml += 
+    resultsHtml += `
       <div style="margin-bottom:8px;">
         <div style="margin-bottom:4px;">${opt}: ${count} vote${count!==1?'s':''} (${percent}%)</div>
         <div style="background:#555;width:100%;height:14px;border-radius:4px;overflow:hidden;">
           <div style="background:gold;width:${percent}%;height:100%;"></div>
         </div>
-      </div>;
+      </div>`;
   });
   resultsHtml += '</div>';
 
-  container.innerHTML = <p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p> + resultsHtml;
+  container.innerHTML = `<p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p>` + resultsHtml;
 
 }
 </script>
@@ -1427,8 +1532,8 @@ document.getElementById("search-form").addEventListener("submit", async function
   const uniqueDates = [...new Set(filtered.map(item => item.date.slice(0,10)))];
   if (uniqueDates.length > 1) {
     const select = document.createElement("select");
-    select.innerHTML = <option value="">Filter by date</option> +
-      uniqueDates.map(d => <option value="${d}">${d}</option>).join("");
+    select.innerHTML = `<option value="">Filter by date</option>` +
+      uniqueDates.map(d => `<option value="${d}">${d}</option>`).join("");
     select.addEventListener("change", function() {
       const date = this.value;
       if (date) {
@@ -1469,19 +1574,19 @@ document.getElementById("search-form").addEventListener("submit", async function
       titleLink.style.marginBottom = "4px";
 
       // Highlight keywords
-      const highlightedTitle = item.title.replace(new RegExp(query, "gi"), match => <span style="background:gold;color:black;">${match}</span>);
+      const highlightedTitle = item.title.replace(new RegExp(query, "gi"), match => `<span style="background:gold;color:black;">${match}</span>`);
       titleLink.innerHTML = highlightedTitle;
 
       const desc = document.createElement("div");
       desc.style.fontSize = "14px";
       desc.style.color = "#ccc";
       desc.style.fontFamily = "'Roboto', sans-serif";
-      desc.innerHTML = (item.description || "").replace(new RegExp(query, "gi"), match => <span style="background:gold;color:black;">${match}</span>);
+      desc.innerHTML = (item.description || "").replace(new RegExp(query, "gi"), match => `<span style="background:gold;color:black;">${match}</span>`);
 
       const meta = document.createElement("div");
       meta.style.fontSize = "12px";
       meta.style.color = "#aaa";
-      meta.textContent = Published: ${item.date.slice(0,10)}${item.author ? " — " + item.author : ""};
+      meta.textContent = `Published: ${item.date.slice(0,10)}${item.author ? " — " + item.author : ""}`;
 
       wrapper.appendChild(titleLink);
       wrapper.appendChild(desc);
