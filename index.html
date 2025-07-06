@@ -939,7 +939,20 @@ html, body {
   display: flex;
   align-items: flex-end;
 }
- 
+
+.banner {
+  transition: all 0.3s ease;
+}
+
+.banner.collapsed {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+
+  
 </style>
 
 
@@ -1071,10 +1084,10 @@ html, body {
 
   const day = new Intl.DateTimeFormat('en-AU', {
     timeZone: 'Australia/Melbourne',
-    weekday: 'long'
+    weekday: 'short'
   }).format(now);
 
-  const d = new Intl.DateTimeFormat('en-AU', {
+  const date = new Intl.DateTimeFormat('en-AU', {
     timeZone: 'Australia/Melbourne',
     day: '2-digit',
     month: 'short',
@@ -1083,7 +1096,7 @@ html, body {
 
   const timeLine = document.getElementById('top-time-line');
   if (timeLine) {
-    timeLine.textContent = `${day}, ${d}`;
+    timeLine.textContent = `${day}, ${date}`;
   }
 }
 
@@ -1603,6 +1616,18 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-  
+ <script>
+window.addEventListener("scroll", function() {
+  const banner = document.querySelector(".banner");
+  if (!banner) return;
+
+  if (window.scrollY > 50) { // threshold in pixels
+    banner.classList.add("collapsed");
+  } else {
+    banner.classList.remove("collapsed");
+  }
+});
+</script>
+ 
 </body>
 </html>
