@@ -859,6 +859,27 @@ body > * {
   box-sizing: border-box;
 }
 
+#search-container {
+  position: relative;
+}
+
+#search-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+#search-close:hover {
+  color: gold;
+}
 
 
   
@@ -918,9 +939,12 @@ body > * {
   
   <div id="header-spacer"></div>
   <div class="container">
-    <div id="search-filters"></div>
-<div id="search-results"></div>
-<div id="search-pagination"></div>
+    <div id="search-container">
+  <button id="search-close" aria-label="Close Search Results">✕</button>
+  <div id="search-filters"></div>
+  <div id="search-results"></div>
+  <div id="search-pagination"></div>
+</div>
 <div class="main-headline-wrapper">
   <div class="main-headline-layout">
 
@@ -1470,6 +1494,16 @@ document.getElementById("search-form").addEventListener("submit", async function
 });
 </script>
 
+
+<script>
+document.getElementById("search-close").addEventListener("click", function() {
+  document.getElementById("search-filters").innerHTML = "";
+  document.getElementById("search-results").innerHTML = "";
+  document.getElementById("search-pagination").innerHTML = "";
+});
+</script>
+
+  
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
