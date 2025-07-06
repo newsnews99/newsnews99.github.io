@@ -793,12 +793,11 @@ body > * {
 /* Container to hold the icon and form */
 .search-wrapper {
   position: absolute;
-  right: 40px; /* padding right spacing */
-  top: 50%;
-  transform: translateY(-50%);
+  right: 40px; /* keep your right spacing */
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* aligns the icon with the bottom of the logo */
 }
+
 
 
 
@@ -846,15 +845,16 @@ body > * {
 
 
 .banner-content {
-  position: relative; /* So absolute inside can reference this */
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center; /* This centers the logo */
+  align-items: flex-end; /* Align children to the bottom */
+  justify-content: center;
   max-width: 1248px;
   margin: 0 auto;
-  padding: 0px 0;
+  padding: 0;
   box-sizing: border-box;
 }
+
 
 #search-container {
   position: relative;
