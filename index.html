@@ -983,7 +983,7 @@ html, body {
 
 
   </div>
-
+<div id="header-spacer"></div>
 
 <div class="container">
   <div id="search-container">
@@ -1587,6 +1587,18 @@ document.getElementById("search-toggle").addEventListener("click", function() {
     setTimeout(() => {
       document.getElementById("search-input").focus();
     }, 300);
+  }
+});
+</script>
+
+
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const spacer = document.getElementById("header-spacer");
+  const headerFixed = document.querySelector(".header-fixed");
+
+  if (headerFixed && spacer) {
+    spacer.style.height = headerFixed.offsetHeight + "px";
   }
 });
 </script>
