@@ -15,7 +15,7 @@
 html, body {
   margin: 0;
   font-family: 'Bebas Neue', sans-serif;
-  background: #1e1e1e;
+  background: #1e1e1e;ti
   color: white;
   box-sizing: border-box;
   overflow-x: hidden;
@@ -750,16 +750,8 @@ html, body {
   opacity: 0.7;
 }
 
-.ticker-inner {
-  width: 100%;
-  margin: 0 auto;
-  background: #1e1e1e;
-  border-bottom: 1px solid #444;
-  display: flex;
-  align-items: center;
-  height: 40px;
-  overflow: hidden;
-}
+
+
 .ticker {
   position: static;
   top: calc(53px + 10px + 10px + 1px); /* logo height + paddings + separator */
@@ -941,14 +933,14 @@ display: none;
   min-width: 0;
 }
 .ticker-inner {
-  width: 100%;
-  background: #1e1e1e;
-  border-bottom: 1px solid #444;
+  position: relative;
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 32px;
   overflow: hidden;
 }
+
 
 /* Search area */
 .search-wrapper {
@@ -1007,7 +999,19 @@ display: none;
     justify-content: flex-end;
   }
 }
- 
+ .ticker-inner::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100vw; /* full viewport width */
+  height: 1px;
+  background: #444;
+  transform: translateX(-50%);
+  left: 50%;
+  z-index: -1;
+}
+
 </style>
 
 
