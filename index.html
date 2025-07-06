@@ -761,15 +761,6 @@ html, body {
 }
 
 
- .header-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #1e1e1e;
-  z-index: 999;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-}
 
 
 
@@ -1001,6 +992,13 @@ html, body {
   max-height: 53px;
   width: auto;
 }
+.header-top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #1e1e1e;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
 
   
 </style>
@@ -1012,6 +1010,7 @@ html, body {
   
 <body>
 
+<!-- Logo banner scrolls away normally -->
 <div class="banner">
   <div class="banner-content">
     <div class="header-logo">
@@ -1021,36 +1020,30 @@ html, body {
     </div>
   </div>
 </div>
-  
-<div class="header-fixed">
 
-
-
-  
+<!-- This bar stays sticky -->
+<div class="header-top-bar">
   <div class="header-top-combined">
-  <a href="https://fedsun.news/" class="sun-link">
-  <img src="sun.png" alt="Home" class="sun-icon" />
-</a>
-<div class="header-time">
-  <span id="top-time-line">Mon, 07 Jul 2025</span>
-</div>
-
-
-
-
-
-  <div class="ticker-inner" id="ticker-inner">
-    <div class="ticker-track" id="ticker-track">Loading headlines…</div>
-  </div>
-  <div class="search-wrapper">
-    <button id="search-toggle" aria-label="Search">
-      <img src="icon_search.png" alt="Search Icon">
-    </button>
-    <form id="search-form" autocomplete="off">
-      <input type="text" id="search-input" placeholder="Search fedsun.news...">
-    </form>
+    <a href="https://fedsun.news/" class="sun-link">
+      <img src="sun.png" alt="Home" class="sun-icon" />
+    </a>
+    <div class="header-time">
+      <span id="top-time-line">Mon, 07 Jul 2025</span>
+    </div>
+    <div class="ticker-inner" id="ticker-inner">
+      <div class="ticker-track" id="ticker-track">Loading headlines…</div>
+    </div>
+    <div class="search-wrapper">
+      <button id="search-toggle" aria-label="Search">
+        <img src="icon_search.png" alt="Search Icon" />
+      </button>
+      <form id="search-form" autocomplete="off">
+        <input type="text" id="search-input" placeholder="Search fedsun.news..." />
+      </form>
+    </div>
   </div>
 </div>
+
 
 
 
