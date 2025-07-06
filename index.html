@@ -877,6 +877,7 @@ display: none;
 
 
 #search-close {
+  display: none; /* Hidden by default */
   background: none;
   border: none;
   color: white;
@@ -885,13 +886,12 @@ display: none;
   padding: 4px 8px;
   line-height: 1;
   transition: color 0.2s ease;
-  float: right;
+  margin-left: auto; /* Pushes it to the right inside flex container */
 }
-
-
 #search-close:hover {
   color: gold;
 }
+
 
 @media (max-width: 768px) {
   .header-time {
@@ -899,7 +899,11 @@ display: none;
   }
 }
 
-  
+  #search-container {
+  display: none;
+  flex-direction: column;
+}
+
 </style>
 
 
@@ -946,9 +950,9 @@ display: none;
 
 <div class="container">
   <div id="search-container">
-    <div id="search-filters">
-          <button id="search-close" aria-label="Close Search Results">✕</button>
-    </div>
+   <button id="search-close" aria-label="Close Search Results">✕</button>
+   <div id="search-filters">
+            </div>
     <div id="search-results"></div>
     <div id="search-pagination"></div>
   </div>
@@ -1395,6 +1399,8 @@ document.getElementById("search-form").addEventListener("submit", async function
 
   resultsContainer.innerHTML = "<p>Loading results...</p>";
   document.getElementById("search-container").style.display = "block";
+  document.getElementById("search-close").style.display = "block";
+
 
   filtersContainer.innerHTML = "";
   paginationContainer.innerHTML = "";
@@ -1512,6 +1518,8 @@ document.getElementById("search-close").addEventListener("click", function() {
   document.getElementById("search-results").innerHTML = "";
   document.getElementById("search-pagination").innerHTML = "";
   document.getElementById("search-container").style.display = "none";
+document.getElementById("search-close").style.display = "none";
+
 
 });
 </script>
