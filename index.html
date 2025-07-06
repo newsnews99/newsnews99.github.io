@@ -1139,10 +1139,14 @@ const groupClone = group.cloneNode(true);
 track.appendChild(group);
 track.appendChild(group.cloneNode(true));
 track.appendChild(group.cloneNode(true));
+track.appendChild(group.cloneNode(true));
+track.appendChild(group.cloneNode(true));
+
 
 
 // Measure the width of ONE group
-const dist = group.scrollWidth;
+const dist = track.scrollWidth / 2;
+
 
 // Adjust speed (pixels per second)
 const speedPxPerSec = 30; // Change to 20 or 40 to tweak speed
