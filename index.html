@@ -20,6 +20,8 @@ html, body {
   box-sizing: border-box;
   overflow-x: hidden;
 }
+
+  
 body {
   display: flex;
   flex-direction: column;
@@ -42,6 +44,7 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: flex-start;
   gap: 4px;
 }
+
 .icons-subsection {
   display: flex;
   gap: 8px;
@@ -108,11 +111,15 @@ img { max-width: 100%; height: auto; display: block; }
     -1px  1px 0 #1e1e1e,
      1px  1px 0 #1e1e1e;
 }
+
+
+
 .container {
   width: 100%;
   max-width: 1248px;
   margin: 0 auto;
 }
+
 .main-headline-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -235,6 +242,7 @@ img { max-width: 100%; height: auto; display: block; }
   border-top: 1px solid #444;
 }
 @media (max-width: 768px) {
+  
   .social-section {
     grid-area: right;
     display: flex;
@@ -243,6 +251,7 @@ img { max-width: 100%; height: auto; display: block; }
     text-align: right;
     gap: 4px;
   }
+  
   .left-section {
     grid-area: logo;
     justify-content: flex-start;
@@ -292,6 +301,26 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
+
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--ticker-distance)));
+  }
+}
+
+/* Keep hover pause */
+.ticker-inner:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+  
+<style>
+/* CONTINUATION OF YOUR CSS */
+
 body,
 body * {
   font-weight: normal !important;
@@ -316,7 +345,6 @@ body * {
   gap: 10px;
   align-items: flex-start;
 }
-
 /* Restore poll box */
 #poll-container {
   text-align: center;
@@ -356,7 +384,6 @@ body * {
   font-weight: bold;
 }
 
-/* Poll form center alignment */
 #poll-container form {
   display: flex;
   flex-direction: column;
@@ -379,27 +406,88 @@ body * {
   }
 }
 
-/* Headline descriptions */
+.left-section a {
+  display: inline-block;
+}
+.left-section a:focus {
+  outline: none;
+}
+.footer-section a:focus {
+  outline: none;
+}
+
+/* Use Roboto for headline descriptions */
 .headline-description {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 1.4;
-  color: white;
+}
+.two-columns-below a,
+.right-column a,
+.main-headline-link {
+  text-transform: uppercase;
 }
 
-/* Headline styling */
+/* Make headlines uppercase and Anton */
 .two-columns-below a,
 .right-column a,
 .main-headline-link {
   text-transform: uppercase;
   font-family: 'Oswald', sans-serif;
 }
+
+/* Make all header text uppercase and Anton */
+.banner {
+  font-family: 'Oswald', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.banner a,
+.banner .icons-subsection {
+  text-transform: uppercase;
+}
+
+/* Make all footer text uppercase and Anton */
+.footer-wrapper,
+.footer-wrapper * {
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+}
+
+/* Poll text styling */
+#poll-container,
+#poll-container * {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+/* Remove underline from column headlines */
+.two-columns-below a,
+.right-column a {
+  text-decoration: none;
+}
+
+/* Limit footer flag image width on desktop */
+@media (min-width: 769px) {
+  .footer-section.left img {
+    max-width: 100px;
+    width: 100%;
+  }
+}
+.footer-section.left p {
+  text-transform: none;
+}
+.footer-section.center p {
+  text-transform: none;
+}
+
+/* Make headlines gold on hover */
 .two-columns-below a:hover,
 .right-column a:hover {
   color: gold !important;
 }
 
-/* Make headlines bigger */
 .main-headline-link {
   font-size: 32px;
   font-weight: bold;
@@ -407,23 +495,43 @@ body * {
 .two-columns-below {
   margin-top: 15px;
 }
-.two-columns-below a,
-.right-column a {
-  font-size: 21px;
-}
 
-/* Footer styles */
-.footer-wrapper,
-.footer-wrapper * {
+/* Button styling */
+.button-flag {
+  background-image: url('australian_flag.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
   text-transform: uppercase;
-  font-family: 'Oswald', sans-serif;
-}
-.footer-section.left p,
-.footer-section.center p {
-  text-transform: none;
+  text-shadow:
+    -1px -1px 0 #1e1e1e,
+     1px -1px 0 #1e1e1e,
+    -1px  1px 0 #1e1e1e,
+     1px  1px 0 #1e1e1e;
 }
 
-/* Search results */
+.footer-section.right button.button-flag {
+  width: auto;
+}
+.footer-section.right form {
+  align-items: center;
+}
+.footer-section.right button.button-flag {
+  width: auto;
+}
+
 #search-results > div {
   border-bottom: 1px solid #444;
   padding: 10px 0;
@@ -442,7 +550,7 @@ body * {
   font-family: 'Roboto', sans-serif;
 }
 
-/* Search input consistency */
+/* Restore search input and button consistent font and uppercase */
 .center-section input[type="text"],
 .center-section button {
   font-family: 'Oswald', sans-serif !important;
@@ -450,21 +558,54 @@ body * {
   font-size: 16px !important;
 }
 
-/* Ticker animation */
-@keyframes ticker-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-1 * var(--ticker-distance)));
+
+html, body {
+  font-size: 16px;
+}
+.headline-meta {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #ccc;
+}
+.two-columns-below a,
+.right-column a {
+  font-size: 21px;
+}
+
+/* Justify all column text */
+.two-columns-below .headline-item > div,
+.right-column .headline-item > div {
+  text-align: justify;
+}
+.two-columns-below .headline-item a,
+.right-column .headline-item a {
+  display: block;
+}
+.headline-description {
+  display: block;
+  margin-top: 6px;
+  text-align: justify;
+  hyphens: auto;
+}
+.two-columns-below img,
+.right-column img {
+  width: 33%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .two-columns-below {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
-/* Ticker styling */
 .ticker-group {
   display: flex;
   align-items: center;
-  flex: 0 0 auto;
+  flex-wrap: nowrap;
   white-space: nowrap;
   margin-right: 50px;
 }
@@ -483,8 +624,7 @@ body * {
   width: auto;
   display: block;
 }
-.ticker-group a,
-.ticker-extra {
+.ticker-group a {
   font-family: 'Oswald', sans-serif;
   font-size: 16px;
   color: white;
@@ -494,10 +634,18 @@ body * {
 .ticker-group a:hover {
   color: gold;
 }
+.ticker-extra {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+}
 .ticker-extra:hover {
   color: gold;
   cursor: default;
 }
+
 .ticker-track {
   display: flex;
   flex-wrap: nowrap;
@@ -505,75 +653,153 @@ body * {
   will-change: transform;
   animation: ticker-scroll var(--ticker-duration) linear infinite;
 }
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--ticker-distance)));
+  }
+}
+
 .ticker-inner:hover .ticker-track {
   animation-play-state: paused;
 }
 
-/* Header fixed */
-.header-fixed {
+/* Force ticker group to never shrink or wrap */
+.ticker-group {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  margin-right: 50px;
+}
+
+.ticker-track > * {
+  margin: 0;
+}
+
+  
+
+
+
+  
+.header-top {
+  width: 100%;
+  background: #1e1e1e;
+  text-align: center;
+  z-index: 1100;
+}
+
+.header-time {
+  padding: 10px 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  color: white;
+}
+
+.header-time strong {
+  font-weight: bold;
+}
+
+.header-separator {
+  border-top: 1px solid #444;
+  width: 100%;
+}
+
+.header-logo {
+  padding: 15px 0 15px;
+}
+
+.header-logo img {
+  height: 53px;
+  width: auto;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+
+.footer-social {
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  background: #1e1e1e;
+}
+
+.footer-social .social-icons {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer-social .social-icons img {
+  height: 24px;
+  width: auto;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.footer-social .social-icons img:hover {
+  opacity: 0.7;
+}
+
+.ticker-inner {
+  width: 100%;
+  margin: 0 auto;
+  background: #1e1e1e;
+  border-bottom: 1px solid #444;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  overflow: hidden;
+}
+.ticker {
+  position: static;
+  top: calc(53px + 10px + 10px + 1px); /* logo height + paddings + separator */
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
+
+ .header-fixed {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 999;
   background: #1e1e1e;
+}
+
+.center-section form {
+  gap: 6px;
   width: 100%;
 }
 
-/* Top bar: Time/Date, Ticker, Search */
-.header-top-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  max-width: 1248px;
-  margin: 0 auto;
-  padding: 5px 15px;
-  box-sizing: border-box;
-}
-
-/* Time/date styling */
-.header-time {
-  flex: 0 0 auto;
-  font-family: 'Roboto', sans-serif;
-  font-size: 13px;
-  color: white;
-  white-space: nowrap;
-}
-
-/* Ticker area */
-.ticker {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  min-width: 0;
-}
-.ticker-inner {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  height: 32px;
-  overflow: hidden;
-  border-bottom: 1px solid #444;
-}
-.ticker-track {
-  display: flex;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  will-change: transform;
-  animation: ticker-scroll var(--ticker-duration) linear infinite;
-}
-.ticker-inner:hover .ticker-track {
-  animation-play-state: paused;
-}
-
-/* Search area */
+/* Container to hold the icon and form */
 .search-wrapper {
-  flex: 0 0 auto;
+  position: absolute;
+  right: 15px;
   display: flex;
-  align-items: center;
-  position: relative;
+  align-items: flex-end; /* still keeps icon hugging the bottom */
+  padding-bottom: 15px;
 }
+
+
+
+
+
+
+/* Search icon styling */
 .search-wrapper button {
   background: none;
   border: none;
@@ -582,59 +808,102 @@ body * {
   display: flex;
   align-items: center;
 }
+
 .search-wrapper img {
   height: 21px;
   width: auto;
+  display: block;
 }
+
+
+
+/* Form hidden by default */
 .search-wrapper form {
   position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: 4px;
+  top: 50%;
+  right: calc(100% + 10px);
   display: flex;
   align-items: center;
   gap: 0;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(0);
-  transition: opacity 0.3s ease;
-  background: #1e1e1e;
-  padding: 4px;
-  border: 1px solid #444;
+  transform: translateY(-50%) translateX(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  padding-bottom: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
 }
+
+
+
+/* Form visible when active */
 .search-wrapper form.active {
   opacity: 1;
   pointer-events: auto;
+  transform: translateY(-50%) translateX(0);
 }
 
-/* Logo row centered below */
-.header-logo-row {
+
+.banner-content {
+  position: relative;
   display: flex;
+  align-items: flex-end; /* align everything to the bottom edge */
   justify-content: center;
-  padding: 10px 0;
-}
-.header-logo-row img {
-  height: 53px;
-  width: auto;
-  display: block;
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Responsive: stack on small screens */
+display: none;
+
+
+#search-container {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  max-width: 1248px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+
+
+#search-close {
+  display: none; /* Hidden by default */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.2s ease;
+  margin-left: auto; /* Pushes it to the right inside flex container */
+}
+#search-close:hover {
+  color: gold;
+}
+
+
 @media (max-width: 768px) {
-  .header-top-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .ticker {
-    order: 2;
-  }
-  .search-wrapper {
-    order: 3;
-    justify-content: flex-end;
+  .header-time {
+    display: none;
   }
 }
-</style>
 
+  #search-container {
+  display: none;
+  flex-direction: column;
+}
+
+.main-headline-wrapper {
+  max-width: 1248px;
+}
+  
+</style>
 
 
 </head>
@@ -643,28 +912,38 @@ body * {
   
 <body>
 <div class="header-fixed">
-  <div class="header-top-row">
+  <div class="header-top">
     <div class="header-time">
       <span id="top-time-line">--:-- AEST Saturday, -- --- ----</span>
-    </div>
-    <div class="ticker">
-      <div class="ticker-inner" id="ticker-inner">
-        <div class="ticker-track" id="ticker-track">Loading headlines…</div>
+    </div> <!-- ✅ closing .header-time -->
+  </div> <!-- ✅ closing .header-top -->
+
+  <div class="header-separator"></div>
+
+  <div class="banner">
+    <div class="banner-content">
+      <div class="header-logo">
+        <a href="https://fedsun.news">
+          <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+        </a>
       </div>
-    </div>
-    <div class="search-wrapper">
-      <button id="search-toggle" aria-label="Search">
-        <img src="icon_search.png" alt="Search Icon">
-      </button>
-      <form id="search-form" autocomplete="off">
-        <input type="text" id="search-input" placeholder="Search fedsun.news...">
-      </form>
+      <div class="search-wrapper">
+        <button id="search-toggle" aria-label="Search">
+          <img src="icon_search.png" alt="Search Icon">
+        </button>
+        <form id="search-form" autocomplete="off">
+          <input type="text" id="search-input" placeholder="Search fedsun.news...">
+        </form>
+      </div>
+    </div> <!-- ✅ closing .banner-content -->
+  </div> <!-- ✅ closing .banner -->
+
+  <div class="ticker">
+    <div class="ticker-inner" id="ticker-inner">
+      <div class="ticker-track" id="ticker-track">Loading headlines…</div>
     </div>
   </div>
-</div>
-
-
-
+</div> <!-- ✅ closing .header-fixed -->
 
 <div id="header-spacer"></div>
 
@@ -773,7 +1052,7 @@ body * {
 
   const timeLine = document.getElementById('top-time-line');
   if (timeLine) {
-    timeLine.innerHTML = `<strong>${t} AEST</strong> ${day}, ${d}`;
+    timeLine.innerHTML = <strong>${t} AEST</strong> ${day}, ${d};
   }
 }
 
@@ -894,7 +1173,7 @@ document.documentElement.style.setProperty('--ticker-duration', durationSec + 's
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = String(date.getFullYear()).slice(-2);
-  return `${day}/${month}/${year}`;
+  return ${day}/${month}/${year};
 }
 
 
@@ -926,7 +1205,7 @@ document.documentElement.style.setProperty('--ticker-duration', durationSec + 's
 
   const meta = document.createElement('div');
   meta.className = 'headline-meta';
-  meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
+  meta.textContent = ${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''};
 
   content.appendChild(link);
   content.appendChild(meta);
@@ -1023,16 +1302,16 @@ fetch('/data/poll.json?' + new Date().getTime())
     if (!poll || !poll.question || !poll.options) return;
 
     // Build the poll form
-    let html = `<form id="poll-form"><h3 class="poll-title">${poll.question}</h3>`;
+    let html = <form id="poll-form"><h3 class="poll-title">${poll.question}</h3>;
 poll.options.forEach(opt => {
-  html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
+  html += <label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>;
 });
-html += `
+html += 
   <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;">
     <button type="submit" class="button-flag">Vote</button>
     <button type="button" id="show-results-button" class="button-flag">Show Results</button>
   </div>
-</form>`;
+</form>;
 
 
     container.innerHTML = html;
@@ -1050,7 +1329,7 @@ html += `
       
 
       if (error) {
-        container.innerHTML = `<p style="color:red;">Error saving vote: ${error.message}</p>`;
+        container.innerHTML = <p style="color:red;">Error saving vote: ${error.message}</p>;
       } else {
         // Show results
         loadVoteCounts(selected);
@@ -1068,7 +1347,7 @@ showResultsBtn.addEventListener('click', () => {
 
 async function loadVoteCounts(votedOption) {
   const container = document.getElementById('poll-container');
-  container.innerHTML = `<p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p><p>Loading results...</p>`;
+  container.innerHTML = <p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p><p>Loading results...</p>;
 
 
   const { data, error } = await supabaseClient
@@ -1076,7 +1355,7 @@ async function loadVoteCounts(votedOption) {
     .select('option');
 
   if (error) {
-    container.innerHTML = `<p style="color:red;">Error loading results: ${error.message}</p>`;
+    container.innerHTML = <p style="color:red;">Error loading results: ${error.message}</p>;
     return;
   }
 
@@ -1093,17 +1372,17 @@ async function loadVoteCounts(votedOption) {
   let resultsHtml = '<h3>Vote Results</h3><div style="width:100%;text-align:left;">';
   Object.entries(counts).forEach(([opt, count]) => {
     const percent = ((count / totalVotes) * 100).toFixed(1);
-    resultsHtml += `
+    resultsHtml += 
       <div style="margin-bottom:8px;">
         <div style="margin-bottom:4px;">${opt}: ${count} vote${count!==1?'s':''} (${percent}%)</div>
         <div style="background:#555;width:100%;height:14px;border-radius:4px;overflow:hidden;">
           <div style="background:gold;width:${percent}%;height:100%;"></div>
         </div>
-      </div>`;
+      </div>;
   });
   resultsHtml += '</div>';
 
-  container.innerHTML = `<p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p>` + resultsHtml;
+  container.innerHTML = <p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p> + resultsHtml;
 
 }
 </script>
@@ -1148,8 +1427,8 @@ document.getElementById("search-form").addEventListener("submit", async function
   const uniqueDates = [...new Set(filtered.map(item => item.date.slice(0,10)))];
   if (uniqueDates.length > 1) {
     const select = document.createElement("select");
-    select.innerHTML = `<option value="">Filter by date</option>` +
-      uniqueDates.map(d => `<option value="${d}">${d}</option>`).join("");
+    select.innerHTML = <option value="">Filter by date</option> +
+      uniqueDates.map(d => <option value="${d}">${d}</option>).join("");
     select.addEventListener("change", function() {
       const date = this.value;
       if (date) {
@@ -1190,19 +1469,19 @@ document.getElementById("search-form").addEventListener("submit", async function
       titleLink.style.marginBottom = "4px";
 
       // Highlight keywords
-      const highlightedTitle = item.title.replace(new RegExp(query, "gi"), match => `<span style="background:gold;color:black;">${match}</span>`);
+      const highlightedTitle = item.title.replace(new RegExp(query, "gi"), match => <span style="background:gold;color:black;">${match}</span>);
       titleLink.innerHTML = highlightedTitle;
 
       const desc = document.createElement("div");
       desc.style.fontSize = "14px";
       desc.style.color = "#ccc";
       desc.style.fontFamily = "'Roboto', sans-serif";
-      desc.innerHTML = (item.description || "").replace(new RegExp(query, "gi"), match => `<span style="background:gold;color:black;">${match}</span>`);
+      desc.innerHTML = (item.description || "").replace(new RegExp(query, "gi"), match => <span style="background:gold;color:black;">${match}</span>);
 
       const meta = document.createElement("div");
       meta.style.fontSize = "12px";
       meta.style.color = "#aaa";
-      meta.textContent = `Published: ${item.date.slice(0,10)}${item.author ? " — " + item.author : ""}`;
+      meta.textContent = Published: ${item.date.slice(0,10)}${item.author ? " — " + item.author : ""};
 
       wrapper.appendChild(titleLink);
       wrapper.appendChild(desc);
