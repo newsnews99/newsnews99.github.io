@@ -793,9 +793,10 @@ body > * {
 /* Container to hold the icon and form */
 .search-wrapper {
   position: absolute;
-  right: 40px; /* keep your right spacing */
+  right: 40px;
   display: flex;
-  align-items: flex-end; /* aligns the icon with the bottom of the logo */
+  top: 50%;
+  transform: translateY(calc(-50% + 4px)); /* adjust the 4px to taste */
 }
 
 
@@ -847,13 +848,14 @@ body > * {
 .banner-content {
   position: relative;
   display: flex;
-  align-items: flex-end; /* Align children to the bottom */
+  align-items: center; /* center logo vertically */
   justify-content: center;
   max-width: 1248px;
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
 }
+
 
 
 #search-container {
@@ -878,9 +880,6 @@ body > * {
   color: gold;
 }
 
-.search-wrapper {
-  align-items: flex-end; /* aligns the bottom of the icon */
-}
 
   
 </style>
