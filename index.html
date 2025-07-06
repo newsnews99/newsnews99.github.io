@@ -867,6 +867,7 @@ body > * {
 
 #search-container {
   position: relative;
+  display: none;
 }
 
 #search-close {
@@ -1387,6 +1388,8 @@ document.getElementById("search-form").addEventListener("submit", async function
   const paginationContainer = document.getElementById("search-pagination");
 
   resultsContainer.innerHTML = "<p>Loading results...</p>";
+  document.getElementById("search-container").style.display = "block";
+
   filtersContainer.innerHTML = "";
   paginationContainer.innerHTML = "";
 
@@ -1502,6 +1505,8 @@ document.getElementById("search-close").addEventListener("click", function() {
   document.getElementById("search-filters").innerHTML = "";
   document.getElementById("search-results").innerHTML = "";
   document.getElementById("search-pagination").innerHTML = "";
+  document.getElementById("search-container").style.display = "none";
+
 });
 </script>
 
