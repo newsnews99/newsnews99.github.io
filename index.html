@@ -959,25 +959,23 @@ html, body {
 }
 
 
-/* Always hide sun link by default */
+/* Hide sun icon by default everywhere */
 .sun-link {
   display: none;
 }
 
-/* Show when the banner is collapsed */
+/* Show sun icon when banner is collapsed (all screen sizes) */
 .banner.collapsed ~ .header-top-combined .sun-link {
-  display: inline-flex; /* inline-flex ensures it lines up nicely */
+  display: inline-flex;
 }
 
-/* Mobile overrides */
+/* Hide date text on mobile always */
 @media (max-width: 768px) {
-  .sun-link {
-    display: inline-flex !important;
-  }
-  .header-time {
-    display: none !important;
+  .header-time #top-time-line {
+    display: none;
   }
 }
+
 
 
   
