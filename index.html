@@ -650,9 +650,10 @@ html, body {
   display: flex;
   flex-wrap: nowrap;
   white-space: nowrap;
-  will-change: transform;
-  animation: ticker-scroll var(--ticker-duration) linear infinite;
+  align-items: center;
+  flex: 0 0 auto;
 }
+
 
 @keyframes ticker-scroll {
   0% {
@@ -667,20 +668,27 @@ html, body {
   animation-play-state: paused;
 }
 
-/* Force ticker group to never shrink or wrap */
-.ticker-group {
+.ticker-track {
   display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
   align-items: center;
   flex: 0 0 auto;
+  overflow-x: visible;
+}
+
+.ticker-group {
+  display: flex;
+  flex-wrap: nowrap;
   white-space: nowrap;
-  margin-right: 50px;
+  flex: 0 0 auto;
 }
 
-.ticker-track > * {
-  margin: 0;
+.ticker-group > * {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
-  
 
 
 
