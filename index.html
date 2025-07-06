@@ -986,6 +986,28 @@ html, body {
   vertical-align: middle;
 }
 
+
+.banner {
+  transition: max-height 0.6s ease, opacity 0.6s ease;
+  max-height: 200px;  /* or a bit bigger than your banner height */
+  opacity: 1;
+  overflow: hidden;
+}
+.banner.collapsed {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+}
+.banner.collapsed .header-logo {
+  margin: 0;
+  padding: 0;
+}
+.header-logo img {
+  height: auto;
+  max-height: 53px;
+  width: auto;
+}
+
   
 </style>
 
