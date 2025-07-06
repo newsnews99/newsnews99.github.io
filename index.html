@@ -766,10 +766,11 @@ html, body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999;
   background: #1e1e1e;
-   box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  z-index: 999;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
+
 
 
 .search-wrapper {
@@ -978,10 +979,14 @@ html, body {
 
 
 .banner {
-  transition: max-height 0.4s ease;
-  max-height: 200px;   /* or a bit larger than your banner content */
-  overflow: hidden;
+  position: relative; /* or just remove position entirely */
+  width: 100%;
+  z-index: 1; /* so it's under the fixed header */
+  max-height: none; /* remove collapsing if you don't need it anymore */
+  overflow: visible;
+  transition: none; /* no transition needed if scrolling away naturally */
 }
+
 .banner.collapsed {
   max-height: 0;
   padding: 0;
@@ -1006,8 +1011,6 @@ html, body {
 
   
 <body>
-<div class="header-fixed">
-
 
 <div class="banner">
   <div class="banner-content">
@@ -1018,6 +1021,11 @@ html, body {
     </div>
   </div>
 </div>
+  
+<div class="header-fixed">
+
+
+
   
   <div class="header-top-combined">
   <a href="https://fedsun.news/" class="sun-link">
@@ -1669,18 +1677,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
- <script>
-window.addEventListener("scroll", function() {
-  const banner = document.querySelector(".banner");
-  if (!banner) return;
 
-  if (window.scrollY > 50) { // threshold in pixels
-    banner.classList.add("collapsed");
-  } else {
-    banner.classList.remove("collapsed");
-  }
-});
-</script>
  
 </body>
 </html>
