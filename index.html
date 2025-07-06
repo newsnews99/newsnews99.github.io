@@ -951,18 +951,23 @@ html, body {
   padding: 0;
 }
 
+/* Hide by default */
+.sun-link {
+  display: none;
+}
+
 .sun-icon {
-  opacity: 0;
-  transition: opacity 0.3s ease;
   height: 16px;
   width: auto;
-  margin-right: 6px;
+  margin-left: 6px; /* spacing between date and icon */
   vertical-align: middle;
 }
 
-.banner.collapsed ~ .header-top-combined .sun-icon {
-  opacity: 1;
+/* Show when the banner is collapsed */
+.banner.collapsed ~ .header-top-combined .sun-link {
+  display: inline-block;
 }
+
 
   
 </style>
@@ -988,9 +993,12 @@ html, body {
   
   <div class="header-top-combined">
   <div class="header-time">
-  <img src="sun.png" alt="Sun Icon" class="sun-icon" />
   <span id="top-time-line">Mon, 07 Jul 2025</span>
+  <a href="https://fedsun.news/" class="sun-link">
+    <img src="sun.png" alt="Home" class="sun-icon" />
+  </a>
 </div>
+
 
   <div class="ticker-inner" id="ticker-inner">
     <div class="ticker-track" id="ticker-track">Loading headlines…</div>
