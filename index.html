@@ -877,9 +877,6 @@ display: none;
 
 
 #search-close {
-  position: absolute;
-  top: 0;
-  right: 0;
   background: none;
   border: none;
   color: white;
@@ -888,7 +885,9 @@ display: none;
   padding: 4px 8px;
   line-height: 1;
   transition: color 0.2s ease;
+  float: right;
 }
+
 
 #search-close:hover {
   color: gold;
@@ -947,8 +946,9 @@ display: none;
 
 <div class="container">
   <div id="search-container">
-    <button id="search-close" aria-label="Close Search Results">✕</button>
-    <div id="search-filters"></div>
+    <div id="search-filters">
+          <button id="search-close" aria-label="Close Search Results">✕</button>
+    </div>
     <div id="search-results"></div>
     <div id="search-pagination"></div>
   </div>
