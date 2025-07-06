@@ -421,6 +421,7 @@ body * {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 1.4;
+  color: white; 
 }
 .two-columns-below a,
 .right-column a,
@@ -909,6 +910,7 @@ display: none;
   align-items: center; /* Vertically center everything */
   justify-content: space-between;
   gap: 20px;
+  flex-wrap: wrap;
   width: 100%;
   max-width: 1248px;
   margin: 0 auto;
@@ -1022,23 +1024,29 @@ display: none;
 <body>
 <div class="header-fixed">
   <div class="header-top-row">
-    <div class="header-time">
-      <span id="top-time-line">--:-- AEST Saturday, -- --- ----</span>
-    </div>
-    <div class="ticker">
-      <div class="ticker-inner" id="ticker-inner">
-        <div class="ticker-track" id="ticker-track">Loading headlines…</div>
-      </div>
-    </div>
-    <div class="search-wrapper">
-      <button id="search-toggle" aria-label="Search">
-        <img src="icon_search.png" alt="Search Icon">
-      </button>
-      <form id="search-form" autocomplete="off">
-        <input type="text" id="search-input" placeholder="Search fedsun.news...">
-      </form>
+  <div class="header-time">
+    <span id="top-time-line">--:-- AEST Saturday, -- --- ----</span>
+  </div>
+  <div class="ticker">
+    <div class="ticker-inner" id="ticker-inner">
+      <div class="ticker-track" id="ticker-track">Loading headlines…</div>
     </div>
   </div>
+  <div class="search-wrapper">
+    <button id="search-toggle" aria-label="Search">
+      <img src="icon_search.png" alt="Search Icon">
+    </button>
+    <form id="search-form" autocomplete="off">
+      <input type="text" id="search-input" placeholder="Search fedsun.news...">
+    </form>
+  </div>
+  <div class="header-logo">
+    <a href="https://fedsun.news">
+      <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+    </a>
+  </div>
+</div>
+
 </div>
 
 
