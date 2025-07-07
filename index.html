@@ -23,12 +23,7 @@ html, body {
   
 
 img { max-width: 100%; height: auto; display: block; }
-.banner {
-  position: static;
-  top: 0; left: 0; right: 0;
-  background: #1e1e1e;
-  z-index: 1000;
-}
+
 .social-section {
   grid-area: social;
   display: flex;
@@ -430,11 +425,7 @@ body * {
   font-family: 'Oswald', sans-serif;
 }
 
-/* Make all header text uppercase and Anton */
-.banner {
-  font-family: 'Oswald', sans-serif;
-  padding: 0;
-  margin: 0;
+
 }
 .banner a,
 .banner .icons-subsection {
@@ -934,20 +925,10 @@ html, body {
 
 
 
-.banner {
-  position: relative; /* Normal flow, scrolls away naturally */
-  width: 100%;
-  background: #1e1e1e;
-}
+
 
 /* Sticky bar always visible */
-.header-top-bar {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: #1e1e1e;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-}
+
 
 /* Inside sticky bar */
 .header-top-combined {
@@ -1016,13 +997,9 @@ body {
 }
 
 .header-top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: sticky;
+  top: 53px; /* height of your logo */
   z-index: 999;
-  background: #1e1e1e;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
   .header-spacer {
@@ -1039,6 +1016,7 @@ body {
   
 <body>
 
+  <!-- Banner that scrolls away -->
   <!-- Banner that scrolls away -->
   <div class="banner">
     <div class="banner-content">
@@ -1059,10 +1037,9 @@ body {
       <div class="header-time">
         <span id="top-time-line">Mon, 07 July 2025</span>
       </div>
-     <div class="ticker-inner">
-  <div id="ticker-track" class="ticker-track">Loading headlines…</div>
-</div>
-
+      <div class="ticker-inner">
+        <div id="ticker-track" class="ticker-track">Loading headlines…</div>
+      </div>
       <div class="search-wrapper">
         <button id="search-toggle" aria-label="Search">
           <img src="icon_search.png" alt="Search Icon" />
