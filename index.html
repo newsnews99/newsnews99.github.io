@@ -21,7 +21,13 @@ html, body {
 }
 
   
-
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+}
 img { max-width: 100%; height: auto; display: block; }
 .banner {
   position: static;
@@ -644,10 +650,9 @@ html, body {
   display: flex;
   flex-wrap: nowrap;
   white-space: nowrap;
-  align-items: center;
-  flex: 0 0 auto;
+  will-change: transform;
+  animation: ticker-scroll var(--ticker-duration) linear infinite;
 }
-
 
 @keyframes ticker-scroll {
   0% {
@@ -662,27 +667,20 @@ html, body {
   animation-play-state: paused;
 }
 
-.ticker-track {
-  display: flex;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  align-items: center;
-  flex: 0 0 auto;
-  overflow-x: visible;
-}
-
+/* Force ticker group to never shrink or wrap */
 .ticker-group {
   display: flex;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  flex: 0 0 auto;
-}
-
-.ticker-group > * {
+  align-items: center;
   flex: 0 0 auto;
   white-space: nowrap;
+  margin-right: 50px;
 }
 
+.ticker-track > * {
+  margin: 0;
+}
+
+  
 
 
 
@@ -763,13 +761,21 @@ html, body {
 }
 
 
-
+ .header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: #1e1e1e;
+   box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
 
 
 .search-wrapper {
   display: flex;
   align-items: center;
-  gap: 0px;
+  gap: 8px;
   transition: all 0.3s ease;
 }
 
@@ -921,7 +927,9 @@ html, body {
   line-height: 0;
   text-transform: none; /* remove uppercase from link */
 }
-
+.header-logo img {
+  display: block;
+}
 
  .banner-content {
   align-items: flex-end;
@@ -932,104 +940,45 @@ html, body {
   align-items: flex-end;
 }
 
-
-
 .banner {
-  position: relative; /* Normal flow, scrolls away naturally */
-  width: 100%;
-  background: #1e1e1e;
+  transition: all 1.0s ease;
 }
 
-/* Sticky bar always visible */
-.header-top-bar {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: #1e1e1e;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+.banner.collapsed {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
 }
 
-/* Inside sticky bar */
-.header-top-combined {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1248px;
-  margin: 0 auto;
-  padding: 12px 16px;
-  gap: 16px;
+
+.sun-icon {
+  height: 16px;
+  width: auto;
+  vertical-align: middle;
 }
 
-/* Sun icon hidden by default */
+
+/* Hide sun icon by default everywhere */
 .sun-link {
   display: none;
 }
 
-/* If you want the sun icon visible all the time, remove the line above */
-
-/* Ticker styling */
-.ticker-inner {
-  flex: 1 1 auto;
-  overflow: hidden;
-  border-left: 1px solid #444;
-  border-right: 1px solid #444;
-  height: 16px;
-  display: flex;
-  align-items: center;
+/* Show sun icon when banner is collapsed (all screen sizes) */
+.banner.collapsed ~ .header-top-combined .sun-link {
+  display: inline-flex;
 }
 
-/* Time styling */
-.header-time {
-  flex: 0 0 auto;
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  color: white;
-}
-
-/* Search styling */
-.search-wrapper {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-}
-
-/* Sun icon styling */
-.sun-link {
-  display: none;              /* Hidden by default */
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  height: 32px;               /* Adjust to match your design */
-  width: auto;
-}
-
-.sun-link img {
-  height: 32px;               /* Consistent size */
-  width: auto;
-  display: block;
-}
-body {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-.header-top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  background: #1e1e1e;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-}
-
-  .header-spacer {
-  height: 40px; /* adjust to match header height */
+/* Hide date text on mobile always */
+@media (max-width: 768px) {
+  .header-time #top-time-line {
+    display: none;
+  }
 }
 
 
+
+  
 </style>
 
 
@@ -1038,47 +987,49 @@ body {
 
   
 <body>
+<div class="header-fixed">
 
-  <!-- Banner that scrolls away -->
-  <div class="banner">
-    <div class="banner-content">
-      <div class="header-logo">
-        <a href="/">
-          <img src="fedsun_logo_hoz.png" alt="Logo">
-        </a>
-      </div>
+
+<div class="banner">
+  <div class="banner-content">
+    <div class="header-logo">
+      <a href="https://fedsun.news">
+        <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+      </a>
     </div>
   </div>
-
-  <!-- Sticky bar stays visible -->
-  <div class="header-top-bar">
-    <div class="header-top-combined">
-      <a href="/" class="sun-link">
-        <img src="sun.png" alt="Home" />
-      </a>
-      <div class="header-time">
-        <span id="top-time-line">Mon, 07 July 2025</span>
-      </div>
-     <div class="ticker-inner">
-  <div id="ticker-track" class="ticker-track">Loading headlines…</div>
+</div>
+  
+  <div class="header-top-combined">
+  <a href="https://fedsun.news/" class="sun-link">
+  <img src="sun.png" alt="Home" class="sun-icon" />
+</a>
+<div class="header-time">
+  <span id="top-time-line">Mon, 07 Jul 2025</span>
 </div>
 
-      <div class="search-wrapper">
-        <button id="search-toggle" aria-label="Search">
-          <img src="icon_search.png" alt="Search Icon" />
-        </button>
-        <form id="search-form">
-          <input type="text" placeholder="Search…">
-        </form>
-      </div>
-    </div>
+
+
+
+
+  <div class="ticker-inner" id="ticker-inner">
+    <div class="ticker-track" id="ticker-track">Loading headlines…</div>
   </div>
+  <div class="search-wrapper">
+    <button id="search-toggle" aria-label="Search">
+      <img src="icon_search.png" alt="Search Icon">
+    </button>
+    <form id="search-form" autocomplete="off">
+      <input type="text" id="search-input" placeholder="Search fedsun.news...">
+    </form>
+  </div>
+</div>
 
 
 
 
 
-
+  </div>
 <div id="header-spacer"></div>
 
 <div class="container">
@@ -1699,20 +1650,18 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- your other scripts above here -->
+ <script>
+window.addEventListener("scroll", function() {
+  const banner = document.querySelector(".banner");
+  if (!banner) return;
 
-<script>
-window.addEventListener("scroll", () => {
-  const sun = document.querySelector(".sun-link");
-  if (window.scrollY > 50) {
-    sun.style.display = "inline-flex";
+  if (window.scrollY > 50) { // threshold in pixels
+    banner.classList.add("collapsed");
   } else {
-    sun.style.display = "none";
+    banner.classList.remove("collapsed");
   }
 });
 </script>
-
-
  
 </body>
 </html>
