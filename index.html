@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
+
 <style>
 html, body {
   margin: 0;
@@ -18,36 +19,46 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Logo Banner (scrolls away) */
-.header-banner {
+/* Banner with logo */
+.banner {
   background: #1e1e1e;
-  padding: 16px 0;
-  text-align: center;
-}
-.header-banner img {
-  height: 53px;
-  width: auto;
 }
 
-/* Sticky Bar (sticks at top) */
-.header-bar {
-  background: #1e1e1e;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+.banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+.header-logo img {
+  height: 53px;
+  width: auto;
+  display: block;
+}
+
+/* Sticky bar */
+.header-top-bar {
   position: sticky;
   top: 0;
   z-index: 999;
+  background: #1e1e1e;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
-.header-bar-inner {
+
+.header-top-combined {
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 1248px;
   margin: 0 auto;
-  padding: 8px 16px;
+  padding: 12px 16px;
   gap: 16px;
 }
 
-/* Time/date */
+/* Time */
 .header-time {
   flex: 0 0 auto;
   font-family: 'Roboto', sans-serif;
@@ -55,7 +66,7 @@ html, body {
   color: white;
 }
 
-/* Sun icon hidden initially */
+/* Sun icon hidden by default */
 .sun-link {
   display: none;
   align-items: center;
@@ -64,6 +75,21 @@ html, body {
 .sun-link img {
   height: 16px;
   width: auto;
+  display: block;
+}
+
+/* On mobile hide date */
+@media (max-width: 768px) {
+  .header-time {
+    display: none;
+  }
+}
+
+/* On desktop show margin */
+@media (min-width: 769px) {
+  .sun-link {
+    margin-right: 8px;
+  }
 }
 
 /* Ticker styling */
@@ -76,36 +102,50 @@ html, body {
   display: flex;
   align-items: center;
 }
+
 .ticker-track {
   display: flex;
-  flex-wrap: nowrap;
   white-space: nowrap;
-  animation: ticker-scroll var(--ticker-duration) linear infinite;
-}
-@keyframes ticker-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-1 * var(--ticker-distance))); }
-}
-.ticker-inner:hover .ticker-track {
-  animation-play-state: paused;
+  align-items: center;
 }
 
-/* Search styling */
+.ticker-group {
+  display: flex;
+  align-items: center;
+}
+
+.ticker-separator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+}
+.ticker-separator img {
+  height: 16px;
+  width: auto;
+}
+
+/* Search */
 .search-wrapper {
   display: flex;
   align-items: center;
 }
+
 .search-wrapper button {
   background: none;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
+  padding: 0;
 }
+
 .search-wrapper img {
   height: 16px;
   width: 16px;
+  display: block;
 }
+
 .search-wrapper form {
   display: flex;
   flex-basis: 0;
@@ -120,92 +160,52 @@ html, body {
   pointer-events: auto;
 }
 .search-wrapper input[type="text"] {
-  flex: 1;
-  height: 32px;
-  padding: 4px 8px;
-  font-size: 16px;
+  height: 24px;
+  padding: 2px 6px;
+  font-size: 14px;
   border: none;
   border-radius: 4px;
   outline: none;
-  background: #fff;
-  color: #1e1e1e;
-  box-sizing: border-box;
-}
-.search-wrapper button {
-  background-image: url('australian_flag.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 1px solid white;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  padding: 0 12px;
-  box-sizing: border-box;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-shadow:
-    -1px -1px 0 #1e1e1e,
-     1px -1px 0 #1e1e1e,
-    -1px  1px 0 #1e1e1e,
-     1px  1px 0 #1e1e1e;
-}
-
-/* Hide date on mobile */
-@media (max-width: 768px) {
-  .header-time {
-    display: none;
-  }
-}
-
-/* Show sun icon next to date on desktop when scrolled */
-@media (min-width: 769px) {
-  .sun-link {
-    margin-right: 8px;
-  }
 }
 </style>
 </head>
 <body>
-
 <!-- Logo Banner -->
-<div class="header-banner">
-  <a href="/">
-    <img src="fedsun_logo_hoz.png" alt="Federation Sun Logo">
-  </a>
+<div class="banner">
+  <div class="banner-content">
+    <div class="header-logo">
+      <a href="/">
+        <img src="fedsun_logo_hoz.png" alt="Logo" />
+      </a>
+    </div>
+  </div>
 </div>
 
 <!-- Sticky Header Bar -->
-<div class="header-bar">
-  <div class="header-bar-inner">
+<div class="header-top-bar">
+  <div class="header-top-combined">
     <a href="/" class="sun-link">
-      <img src="sun.png" alt="Sun Icon">
+      <img src="sun.png" alt="Home" />
     </a>
     <div class="header-time">
-      <span id="top-time-line">Loading date...</span>
+      <span id="top-time-line">Mon, 07 July 2025</span>
     </div>
     <div class="ticker-inner">
-      <div id="ticker-track" class="ticker-track">Loading headlines...</div>
+      <div id="ticker-track" class="ticker-track">Loading headlines…</div>
     </div>
     <div class="search-wrapper">
       <button id="search-toggle" aria-label="Search">
-        <img src="icon_search.png" alt="Search">
+        <img src="icon_search.png" alt="Search Icon" />
       </button>
       <form id="search-form">
-        <input type="text" id="search-input" placeholder="Search…">
+        <input type="text" id="search-input" placeholder="Search…" />
       </form>
     </div>
   </div>
 </div>
 
-<!-- Spacer so content does not jump -->
-<div style="height:16px;"></div>
+<div id="header-spacer"></div>
 
-<!-- Search Results -->
 <div class="container">
   <div id="search-container">
     <button id="search-close" aria-label="Close Search Results">✕</button>
@@ -215,7 +215,6 @@ html, body {
   </div>
 </div>
 
-<!-- Main Content -->
 <div class="main-headline-wrapper">
   <div class="main-headline-layout">
     <div class="main-headline-left">
@@ -236,6 +235,7 @@ html, body {
 </div>
 
 <hr class="footer-separator" />
+
 <div class="footer-social">
   <div class="social-icons">
     <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
@@ -247,13 +247,14 @@ html, body {
     <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
   </div>
 </div>
+
 <footer>
   <div class="footer-wrapper">
     <div class="footer-content">
       <div class="footer-section left">
         <img src="australian_flag.png" alt="Australian Flag" />
         <p>
-          The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
+          The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia.
         </p>
       </div>
       <div class="footer-section center">
@@ -278,19 +279,10 @@ html, body {
   </div>
 </footer>
 <script>
-// Update date/time
 function updateTime() {
   const now = new Date();
-  const day = new Intl.DateTimeFormat('en-AU', {
-    timeZone: 'Australia/Melbourne',
-    weekday: 'short'
-  }).format(now);
-  const date = new Intl.DateTimeFormat('en-AU', {
-    timeZone: 'Australia/Melbourne',
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric'
-  }).format(now);
+  const day = new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Melbourne', weekday: 'short' }).format(now);
+  const date = new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Melbourne', day: '2-digit', month: 'short', year: 'numeric' }).format(now);
   const timeLine = document.getElementById('top-time-line');
   if (timeLine) {
     timeLine.textContent = `${day}, ${date}`;
@@ -300,22 +292,41 @@ updateTime();
 setInterval(updateTime, 60000);
 </script>
 
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
-// Ticker + Headlines
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on("init", user => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
+  window.netlifyIdentity.init();
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const supabaseUrl = 'https://fpsykizmderxiwovqcwk.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ...'; // shortened key
+const { createClient } = supabase;
+const supabaseClient = createClient(supabaseUrl, supabaseKey);
+</script>
+
+<script>
+// Fetch and render headlines and ticker
 Promise.all([
   fetch('/data/headlines.json?' + new Date().getTime()).then(r => r.json()),
   fetch('/data/ticker_extra.json?' + new Date().getTime()).then(r => r.json())
 ])
 .then(([headlines, extras]) => {
   const today = new Date();
-  const recent = headlines
-    .filter(item => {
-      const d = new Date(item.date);
-      return (today - d) / (1000 * 60 * 60 * 24) <= 7;
-    })
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+  const recent = headlines.filter(item => {
+    const d = new Date(item.date);
+    return (today - d) / (1000 * 60 * 60 * 24) <= 7;
+  }).sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // Ticker
   const track = document.getElementById('ticker-track');
   track.innerHTML = '';
   function createTickerGroup(extras, headlines) {
@@ -349,8 +360,8 @@ Promise.all([
     });
     return grp;
   }
-  const group = createTickerGroup(extras, recent.slice(0,6));
-  for(let i=0; i<5; i++) {
+  const group = createTickerGroup(extras, recent.slice(0, 6));
+  for (let i = 0; i < 5; i++) {
     track.appendChild(group.cloneNode(true));
   }
   const dist = track.scrollWidth / 2;
@@ -363,22 +374,12 @@ Promise.all([
   const col1 = document.getElementById('latest-headlines');
   const col2 = document.getElementById('more-headlines-list');
   const col3 = document.getElementById('right-column-1');
-  const col1Headlines = recent.slice(0,6);
-  const col2Headlines = recent.slice(6,10);
+  const col1Headlines = recent.slice(0, 6);
+  const col2Headlines = recent.slice(6, 10);
   const col3Headlines = recent.slice(10);
-  function formatDateAEST(dateStr) {
-    const date = new Date(dateStr);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = String(date.getFullYear()).slice(-2);
-    return `${day}/${month}/${year}`;
-  }
   function createHeadlineItem(item) {
     const wrapper = document.createElement('div');
     wrapper.className = 'headline-item';
-    wrapper.style.display = 'flex';
-    wrapper.style.gap = '10px';
-    wrapper.style.alignItems = 'flex-start';
     const img = document.createElement('img');
     img.src = item.image;
     img.alt = item.title;
@@ -397,7 +398,7 @@ Promise.all([
     link.style.marginBottom = '4px';
     const meta = document.createElement('div');
     meta.className = 'headline-meta';
-    meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
+    meta.textContent = `${item.date}${item.author ? ' — ' + item.author : ''}`;
     content.appendChild(link);
     content.appendChild(meta);
     wrapper.appendChild(img);
@@ -416,25 +417,12 @@ Promise.all([
   col2Headlines.forEach(item => col2.appendChild(createHeadlineItem(item)));
   col3.innerHTML = '';
   col3Headlines.forEach(item => col3.appendChild(createHeadlineItem(item)));
-
-  const archiveLinkWrapper = document.createElement('div');
-  archiveLinkWrapper.style.textAlign = 'center';
-  archiveLinkWrapper.style.marginTop = '20px';
-  const archiveLink = document.createElement('a');
-  archiveLink.href = '/archive';
-  archiveLink.textContent = 'View All Archived Headlines...';
-  archiveLink.style.color = 'white';
-  archiveLink.style.fontSize = '18px';
-  archiveLink.addEventListener('mouseover', () => archiveLink.style.color = 'gold');
-  archiveLink.addEventListener('mouseout', () => archiveLink.style.color = 'white');
-  archiveLinkWrapper.appendChild(archiveLink);
-  col3.appendChild(archiveLinkWrapper);
 })
 .catch(e => console.error('Fetch error loading headlines:', e));
 </script>
 
 <script>
-// Scroll behavior to show/hide sun icon
+// Scroll sun icon show/hide
 window.addEventListener("scroll", () => {
   const sun = document.querySelector(".sun-link");
   const time = document.querySelector(".header-time");
@@ -452,100 +440,5 @@ window.addEventListener("scroll", () => {
 });
 </script>
 
-<script>
-// Search toggle
-document.getElementById("search-toggle").addEventListener("click", function() {
-  const form = document.getElementById("search-form");
-  form.classList.toggle("active");
-  if (form.classList.contains("active")) {
-    setTimeout(() => {
-      document.getElementById("search-input").focus();
-    }, 300);
-  }
-});
-</script>
-
-<script>
-// Netlify Identity
-if (window.netlifyIdentity) {
-  window.netlifyIdentity.on("init", user => {
-    if (!user) {
-      window.netlifyIdentity.on("login", () => {
-        document.location.href = "/admin/";
-      });
-    }
-  });
-  window.netlifyIdentity.init();
-}
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const supabaseUrl = 'https://fpsykizmderxiwovqcwk.supabase.co';
-const supabaseKey = 'YOUR_KEY_HERE';
-const { createClient } = supabase;
-const supabaseClient = createClient(supabaseUrl, supabaseKey);
-</script>
-
-<script>
-// Poll fetch and submission
-fetch('/data/poll.json?' + new Date().getTime())
-  .then(r => r.json())
-  .then(poll => {
-    const container = document.getElementById('poll-container');
-    if (!container || !poll || !poll.question || !poll.options) return;
-    let html = `<form id="poll-form"><h3 class="poll-title">${poll.question}</h3>`;
-    poll.options.forEach(opt => {
-      html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
-    });
-    html += `
-      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;">
-        <button type="submit" class="button-flag">Vote</button>
-        <button type="button" id="show-results-button" class="button-flag">Show Results</button>
-      </div>
-    </form>`;
-    container.innerHTML = html;
-    const form = document.getElementById('poll-form');
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const selected = form.elements['pollOption'].value;
-      const { error } = await supabaseClient.from('poll_votes').insert([{ option: selected }]);
-      if (error) {
-        container.innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
-      } else {
-        loadVoteCounts(selected);
-      }
-    });
-    document.getElementById('show-results-button').addEventListener('click', () => {
-      loadVoteCounts();
-    });
-  })
-  .catch(e => console.error('Poll error:', e));
-
-async function loadVoteCounts(votedOption) {
-  const container = document.getElementById('poll-container');
-  container.innerHTML = `<p class="poll-thank-you">Thank you${votedOption ? ' for voting for <b>' + votedOption + '</b>' : ''}!</p><p>Loading results...</p>`;
-  const { data, error } = await supabaseClient.from('poll_votes').select('option');
-  if (error) {
-    container.innerHTML = `<p style="color:red;">Error loading results: ${error.message}</p>`;
-    return;
-  }
-  const counts = {};
-  data.forEach(row => counts[row.option] = (counts[row.option] || 0) + 1);
-  const total = Object.values(counts).reduce((a,b)=>a+b,0);
-  let html = '<h3>Vote Results</h3><div>';
-  Object.entries(counts).forEach(([opt,count])=>{
-    const pct = ((count/total)*100).toFixed(1);
-    html+=`<div style="margin-bottom:8px;">
-      <div>${opt}: ${count} vote${count!==1?'s':''} (${pct}%)</div>
-      <div style="background:#555;width:100%;height:14px;border-radius:4px;overflow:hidden;">
-        <div style="background:gold;width:${pct}%;height:100%;"></div>
-      </div>
-    </div>`;
-  });
-  html+='</div>';
-  container.innerHTML = html;
-}
-</script>
 </body>
 </html>
