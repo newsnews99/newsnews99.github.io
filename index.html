@@ -977,6 +977,21 @@ html, body {
 }
 
 
+.banner-date {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  padding-top: 8px;
+  padding-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+  .banner-date {
+    display: none;
+  }
+}
 
   
 </style>
@@ -992,21 +1007,23 @@ html, body {
 
 <div class="banner">
   <div class="banner-content">
-    <div class="header-logo">
-      <a href="https://fedsun.news">
-        <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
-      </a>
-    </div>
+  <div class="banner-date">
+    <span id="top-time-line">Mon, 07 Jul 2025</span>
   </div>
+  <div class="header-logo">
+    <a href="https://fedsun.news">
+      <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+    </a>
+  </div>
+</div>
+
 </div>
   
   <div class="header-top-combined">
   <a href="https://fedsun.news/" class="sun-link">
   <img src="sun.png" alt="Home" class="sun-icon" />
 </a>
-<div class="header-time">
-  <span id="top-time-line">Mon, 07 Jul 2025</span>
-</div>
+
 
 
 
