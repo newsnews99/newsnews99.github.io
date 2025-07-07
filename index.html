@@ -5,11 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Federation Sun 2025</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
-
-
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
 <style>
 html, body {
   margin: 0;
@@ -18,110 +16,139 @@ html, body {
   color: white;
   box-sizing: border-box;
   overflow-x: hidden;
+  font-size: 16px;
 }
-
-  
-
 img { max-width: 100%; height: auto; display: block; }
 
-.social-section {
-  grid-area: social;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
+/* Banner that scrolls away */
+.banner {
+  background: #1e1e1e;
 }
-
-.icons-subsection {
+.banner-content {
   display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.icons-subsection img {
-  height: 24px;
-  width: auto;
-}
-.left-section {
-  grid-area: logo;
-  display: flex;
+  align-items: flex-end;
   justify-content: center;
-}
-.left-section img.logo {
-  height: 53px;
-  width: auto;
-}
-.center-section {
-  grid-area: search;
-  display: flex;
-  justify-self: end;
-  gap: 6px;
-  max-width: 300px;
-  width: 100%;
-}
-.center-section form {
-  display: flex;
-  width: 100%;
-  gap: 6px;
-}
-.center-section input[type="text"] {
-  flex: 1;
-  height: 32px;
-  padding: 4px 8px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  outline: none;
-  background: #fff;
-  color: #1e1e1e;
-  box-sizing: border-box;
-}
-.center-section button {
-  background-image: url('australian_flag.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 1px solid white;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  padding: 0 12px;
-  box-sizing: border-box;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-shadow:
-    -1px -1px 0 #1e1e1e,
-     1px -1px 0 #1e1e1e,
-    -1px  1px 0 #1e1e1e,
-     1px  1px 0 #1e1e1e;
-}
-
-
-
-.container {
-  width: 100%;
   max-width: 1248px;
   margin: 0 auto;
 }
+.header-logo a {
+  display: inline-block;
+  line-height: 0;
+  text-transform: none;
+}
+.header-logo img {
+  height: 53px;
+  width: auto;
+}
 
+/* Sticky top bar */
+.header-top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: #1e1e1e;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+.header-top-combined {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  gap: 16px;
+}
+.header-time {
+  flex: 0 0 auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+.sun-link {
+  display: none;
+  align-items: center;
+}
+.sun-link img {
+  height: 16px;
+  width: auto;
+}
+
+/* Mobile hide date */
+@media (max-width: 768px) {
+  .header-time { display: none; }
+}
+@media (min-width: 769px) {
+  .sun-link { margin-right: 8px; }
+}
+
+/* Ticker */
+.ticker-inner {
+  flex: 1 1 auto;
+  overflow: hidden;
+  border-left: 1px solid #444;
+  border-right: 1px solid #444;
+  height: 16px;
+  display: flex;
+  align-items: center;
+}
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+}
+.ticker-inner:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+/* Search */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+}
+.search-wrapper button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+}
+.search-wrapper img {
+  width: 16px;
+  height: 16px;
+}
+.search-wrapper form {
+  display: flex;
+  flex-basis: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: flex-basis 0.3s ease, opacity 0.3s ease;
+}
+.search-wrapper form.active {
+  flex-basis: 220px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/***** CONTINUED STYLES *****/
+.main-headline-wrapper {
+  padding-top: 16px;
+  max-width: 1248px;
+  margin: 0 auto;
+}
 .main-headline-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 16px;
-  padding: 0px 16px;
-  align-items: start;
+  padding: 0 16px;
 }
 .main-headline-left {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  
-}
-.main-headline-img-wrapper {
-  width: 100%;
 }
 .main-headline-img {
   width: 100%;
@@ -129,8 +156,10 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .main-headline-link {
   font-family: 'Oswald', sans-serif;
-  font-size: 28px;
+  font-size: 32px;
+  font-weight: bold;
   color: white;
+  text-transform: uppercase;
   text-decoration: none;
   text-align: center;
 }
@@ -141,876 +170,123 @@ img { max-width: 100%; height: auto; display: block; }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-}
-.two-columns-below .column,
-.right-column {
-  display: grid;
-  gap: 16px;
-}
-.two-columns-below .column > div.headline-item,
-.right-column .headline-item {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: flex-start;
-}
-.two-columns-below img,
-.right-column img {
-  width: 33%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-.two-columns-below a,
-.right-column a {
-  font-family: 'Oswald', sans-serif;
-  line-height: 1.2;
-}
-.footer-wrapper {
-  width: 100%;
-  background: #1e1e1e;
-  padding: 30px 0;
-}
-.footer-content {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 40px;
-  flex-wrap: nowrap;
-  text-align: left;
-}
-.footer-section {
-  flex: 1 1 0;
-  min-width: 0;
-}
-.footer-section.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-.footer-section.left img {
-  width: 33vw;
-  margin-bottom: 10px;
-}
-.footer-section.center img {
-  width: 120px;
-  margin-bottom: 10px;
-}
-.footer-section.right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-}
-.footer-section.right h3 {
-  margin: 0 0 10px 0;
-}
-.footer-section.right form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-}
-.footer-section.right textarea {
-  width: 100%;
-  min-height: 80px;
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-  resize: vertical;
-  box-sizing: border-box;
-}
-.footer-separator {
-  width: 100%;
-  max-width: 1200px;
-  margin: 40px auto 0 auto;
-  border: none;
-  border-top: 1px solid #444;
-}
-@media (max-width: 768px) {
-  
-  .social-section {
-    grid-area: right;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    text-align: right;
-    gap: 4px;
-  }
-  
-  .left-section {
-    grid-area: logo;
-    justify-content: flex-start;
-  }
-  .center-section {
-    grid-area: search;
-    width: 100%;
-    max-width: 100%;
-  }
-  .container,
-  .main-headline-layout,
-  .two-columns-below,
-  .right-column,
-  .footer-content,
-  .footer-section,
-  .footer-section.right form,
-  .footer-section.right textarea {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-  .main-headline-layout {
-    grid-template-columns: 1fr;
-  }
-  .two-columns-below {
-    grid-template-columns: 1fr;
-  }
-  .footer-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .footer-section {
-    padding: 0 16px;
-    max-width: 100%;
-  }
-  .footer-section.left img {
-    width: 33vw;
-    margin: 0 auto 10px auto;
-  }
-  .footer-section.left { order: 1; }
-  .footer-section.right { order: 2; }
-  .footer-section.center { order: 3; }
-  .footer-section.right h3 {
-    text-align: center;
-    width: 100%;
-  }
-}
-
-
-
-@keyframes ticker-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-1 * var(--ticker-distance)));
-  }
-}
-
-/* Keep hover pause */
-.ticker-inner:hover .ticker-track {
-  animation-play-state: paused;
-}
-
-  
-<style>
-/* CONTINUATION OF YOUR CSS */
-
-body,
-body * {
-  font-weight: normal !important;
-}
-
-/* Center the poll */
-#poll-container {
-  text-align: center;
-}
-#poll-container form {
-  display: inline-block;
-  text-align: left;
-}
-
-/* Make column 2 headlines align like other columns */
-#more-headlines-list {
-  display: grid;
-  gap: 16px;
-}
-#more-headlines-list .headline-item {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-/* Restore poll box */
-#poll-container {
-  text-align: center;
-  background: #222;
-  border: 1px solid #444;
-  border-radius: 4px;
-  padding: 15px;
-  margin-bottom: 15px;
-}
-
-/* Stack poll content vertically */
-#poll-container form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-start;
-  text-align: left;
-}
-
-/* Flag background vote button */
-#poll-container .button-flag {
-  background-image: url('australian_flag.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 1px solid white;
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  padding: 0 12px;
-  box-sizing: border-box;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-#poll-container form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: center;
-  text-align: center;
-}
-#poll-container h3 {
-  margin-top: 0;
-}
-#poll-container button {
-  margin-top: 12px;
-}
-
-/* Align anonymous tips title to the right on desktop */
-@media (min-width: 769px) {
-  .footer-section.right h3 {
-    text-align: center;
-    width: 100%;
-  }
-}
-
-.left-section a {
-  display: inline-block;
-}
-.left-section a:focus {
-  outline: none;
-}
-.footer-section a:focus {
-  outline: none;
-}
-
-/* Use Roboto for headline descriptions */
-.headline-description {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  line-height: 1.4;
-}
-.two-columns-below a,
-.right-column a,
-.main-headline-link {
-  text-transform: uppercase;
-}
-
-/* Make headlines uppercase and Anton */
-.two-columns-below a,
-.right-column a,
-.main-headline-link {
-  text-transform: uppercase;
-  font-family: 'Oswald', sans-serif;
-}
-
-
-}
-.banner a,
-.banner .icons-subsection {
-  text-transform: uppercase;
-}
-
-/* Make all footer text uppercase and Anton */
-.footer-wrapper,
-.footer-wrapper * {
-  text-transform: uppercase;
-  font-family: 'Oswald', sans-serif;
-}
-
-/* Poll text styling */
-#poll-container,
-#poll-container * {
-  font-family: 'Oswald', sans-serif;
-  text-transform: uppercase;
-  font-weight: normal;
-}
-
-/* Remove underline from column headlines */
-.two-columns-below a,
-.right-column a {
-  text-decoration: none;
-}
-
-/* Limit footer flag image width on desktop */
-@media (min-width: 769px) {
-  .footer-section.left img {
-    max-width: 100px;
-    width: 100%;
-  }
-}
-.footer-section.left p {
-  text-transform: none;
-}
-.footer-section.center p {
-  text-transform: none;
-}
-
-/* Make headlines gold on hover */
-.two-columns-below a:hover,
-.right-column a:hover {
-  color: gold !important;
-}
-
-.main-headline-link {
-  font-size: 32px;
-  font-weight: bold;
-}
-.two-columns-below {
   margin-top: 15px;
 }
-
-/* Button styling */
-.button-flag {
-  background-image: url('australian_flag.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 1px solid white;
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  padding: 0 12px;
-  box-sizing: border-box;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-shadow:
-    -1px -1px 0 #1e1e1e,
-     1px -1px 0 #1e1e1e,
-    -1px  1px 0 #1e1e1e,
-     1px  1px 0 #1e1e1e;
+@media (max-width:768px) {
+  .main-headline-layout { grid-template-columns:1fr; }
+  .two-columns-below { grid-template-columns:1fr; gap:20px; }
 }
-
-.footer-section.right button.button-flag {
-  width: auto;
-}
-.footer-section.right form {
-  align-items: center;
-}
-.footer-section.right button.button-flag {
-  width: auto;
-}
-
-#search-results > div {
-  border-bottom: 1px solid #444;
-  padding: 10px 0;
-  text-align: left;
-}
-#search-results a {
-  color: white;
-  text-decoration: none;
-  font-family: 'Oswald', sans-serif;
-  font-size: 21px;
-}
-#search-results a:hover {
-  color: gold;
-}
-#search-results div {
-  font-family: 'Roboto', sans-serif;
-}
-
-/* Restore search input and button consistent font and uppercase */
-.center-section input[type="text"],
-.center-section button {
-  font-family: 'Oswald', sans-serif !important;
-  text-transform: uppercase !important;
-  font-size: 16px !important;
-}
-
-
-html, body {
-  font-size: 16px;
-}
-.headline-meta {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  color: #ccc;
-}
-.two-columns-below a,
-.right-column a {
-  font-size: 21px;
-}
-
-/* Justify all column text */
-.two-columns-below .headline-item > div,
-.right-column .headline-item > div {
-  text-align: justify;
-}
-.two-columns-below .headline-item a,
-.right-column .headline-item a {
-  display: block;
-}
-.headline-description {
-  display: block;
-  margin-top: 6px;
-  text-align: justify;
-  hyphens: auto;
-}
-.two-columns-below img,
-.right-column img {
-  width: 33%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-  .two-columns-below {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-
-.ticker-group {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  margin-right: 50px;
-}
-.ticker-group > * {
-  margin-right: 20px;
-}
-.ticker-separator {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0px;
-  flex: 0 0 auto;
-}
-.ticker-separator img {
-  height: 16px;
-  width: auto;
-  display: block;
-}
-.ticker-group a {
-  font-family: 'Oswald', sans-serif;
-  font-size: 16px;
-  color: white;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.ticker-group a:hover {
-  color: gold;
-}
-.ticker-extra {
-  font-family: 'Oswald', sans-serif;
-  font-size: 16px;
-  color: white;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.ticker-extra:hover {
-  color: gold;
-  cursor: default;
-}
-
-.ticker-track {
-  display: flex;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  align-items: center;
-  flex: 0 0 auto;
-}
-
-
-@keyframes ticker-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-1 * var(--ticker-distance)));
-  }
-}
-
-.ticker-inner:hover .ticker-track {
-  animation-play-state: paused;
-}
-
-.ticker-track {
-  display: flex;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  align-items: center;
-  flex: 0 0 auto;
-  overflow-x: visible;
-}
-
-.ticker-group {
-  display: flex;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  flex: 0 0 auto;
-}
-
-.ticker-group > * {
-  flex: 0 0 auto;
-  white-space: nowrap;
-}
-
-
-
-
-  
-.header-top {
-  width: 100%;
-  background: #1e1e1e;
-  text-align: center;
-  z-index: 1100;
-}
-
-
-
-.header-time strong {
-  font-weight: bold;
-}
-
-.header-separator {
-  border-top: 1px solid #444;
-  width: 100%;
-}
-
-.header-logo {
-  padding: 16px 0 0px;
-}
-
-.header-logo img {
-  display: block;
-  height: 53px;
-  width: auto;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-}
-
-
-
-
-
-.footer-social {
-  width: 100%;
-  padding: 20px 0;
-  text-align: center;
-  background: #1e1e1e;
-}
-
-.footer-social .social-icons {
-  display: inline-flex;
-  gap: 12px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.footer-social .social-icons img {
-  height: 24px;
-  width: auto;
-  display: block;
-  transition: opacity 0.3s ease;
-}
-
-.footer-social .social-icons img:hover {
-  opacity: 0.7;
-}
-
-.ticker-inner {
-  width: 100%;
-   background: #1e1e1e;
-    display: flex;
-  align-items: center;
-  height: 16px;
-  overflow: hidden;
-}
-
-
-
-
-
-.search-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0px;
-  transition: all 0.3s ease;
-}
-
-
-
-
-
-
-/* Search icon styling */
-.search-wrapper button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 0;
-}
-
-.search-wrapper img {
-  height: 16px; /* adjust as needed */
-  width: 16px;
-  display: block;
-}
-
-
-
-
-
-
-
-
-
-
-.banner-content {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 1248px;
-  margin: 0 auto;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-
-
-
-#search-container {
-  position: relative;
-  display: none;
-  flex-direction: column;
-  max-width: 1248px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 16px;
-  box-sizing: border-box;
-}
-
-
-
-#search-close {
-  display: none; /* Hidden by default */
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 16px 0px;
-  line-height: 1;
-  transition: color 0.2s ease;
-  margin-left: auto; /* Pushes it to the right inside flex container */
-}
-#search-close:hover {
-  color: gold;
-}
-
-
-
-
-  #search-container {
-  display: none;
-  flex-direction: column;
-}
-
-.main-headline-wrapper {
-  padding-top: 16px; /* Adjust this value as needed */
-  max-width: 1248px;
-  margin: 0 auto;
-}
-
- 
-
-
-
-.ticker-inner {
-  flex: 1 1 auto;
-  overflow: hidden;
-  border-left: 1px solid #444;
-  border-right: 1px solid #444;
-  height: 16px;
-  display: flex;
-  align-items: center;
-}
-
-
-
-
-.search-wrapper form {
-  display: flex;
-  flex-basis: 0;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-  transition: flex-basis 0.3s ease, opacity 0.3s ease;
-}
-
-.search-wrapper form.active {
-  flex-basis: 220px; /* adjust width as needed */
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.search-wrapper button {
-  flex: 0 0 auto;
-  width: 16px;
-  height: 16px;
-  justify-content: center;
-}
-
-.header-logo a {
-  display: inline-block;
-  line-height: 0;
-  text-transform: none; /* remove uppercase from link */
-}
-
-
- .banner-content {
-  align-items: flex-end;
-}
-
-.header-logo {
-  display: flex;
-  align-items: flex-end;
-}
-
-
-
-
-
-/* Ticker styling */
-.ticker-inner {
-  flex: 1 1 auto;
-  overflow: hidden;
-  border-left: 1px solid #444;
-  border-right: 1px solid #444;
-  height: 16px;
-  display: flex;
-  align-items: center;
-}
-
-
-/* Search styling */
-.search-wrapper {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-}
-
-
-
-body {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-
-
-
-  .header-spacer {
-  height: 69px; /* adjust to match header height */
-}
-
-
-/* Banner stays in flow */
-.banner {
-  background: #1e1e1e;
-}
-
-/* Sticky bar sticks at top */
-.header-top-bar {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: #1e1e1e;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-}
-
-/* Flex layout inside sticky bar */
-.header-top-combined {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1248px;
-  margin: 0 auto;
-  padding: 12px 16px;
+.two-columns-below .column, .right-column {
+  display: grid;
   gap: 16px;
 }
-
-/* Time (date) styling */
-.header-time {
-  flex: 0 0 auto;
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  color: white;
+.two-columns-below img, .right-column img {
+  width:33%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  flex-shrink:0;
+}
+.two-columns-below a, .right-column a {
+  font-family:'Oswald',sans-serif;
+  text-transform:uppercase;
+  text-decoration:none;
+  font-size:21px;
+  color:white;
+}
+.two-columns-below a:hover, .right-column a:hover { color:gold !important; }
+.headline-description {
+  font-family:'Roboto',sans-serif;
+  font-size:16px;
+  line-height:1.4;
+  margin-top:6px;
+  text-align:justify;
+  hyphens:auto;
+}
+.headline-meta {
+  font-family:'Roboto',sans-serif;
+  font-size:16px;
+  color:#ccc;
+}
+.footer-wrapper {
+  background:#1e1e1e;
+  padding:30px 0;
+  text-transform:uppercase;
+  font-family:'Oswald',sans-serif;
+}
+.footer-content {
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  max-width:1200px;
+  margin:0 auto;
+  gap:40px;
+  flex-wrap:nowrap;
+  text-align:left;
+}
+.footer-section {
+  flex:1 1 0;
+  min-width:0;
+}
+.footer-section.center {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+.footer-section.left img {
+  max-width:100px;
+}
+.footer-section.right form {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+}
+.button-flag {
+  background-image:url('australian_flag.png');
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center;
+  border:1px solid white;
+  border-radius:4px;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:32px;
+  padding:0 12px;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  text-transform:uppercase;
+  text-shadow:-1px -1px 0 #1e1e1e,1px -1px 0 #1e1e1e,-1px 1px 0 #1e1e1e,1px 1px 0 #1e1e1e;
+}
+.footer-social {
+  width:100%;
+  padding:20px 0;
+  text-align:center;
+  background:#1e1e1e;
+}
+.footer-social .social-icons {
+  display:inline-flex;
+  gap:12px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.footer-social .social-icons img {
+  height:24px;
+  transition:opacity 0.3s ease;
+}
+.footer-social .social-icons img:hover {
+  opacity:0.7;
 }
 
-/* Sun icon hidden by default */
-.sun-link {
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-.sun-link img {
-  height: 16px;
-  width: auto;
-  display: block;
-}
-
-/* On mobile: hide date */
-@media (max-width: 768px) {
-  .header-time {
-    display: none;
-  }
-}
-
-/* On desktop: show sun left of date when scrolled */
-@media (min-width: 769px) {
-  .sun-link {
-    margin-right: 8px;
-  }
-}
-
-
-  
+/* end of styles */
 </style>
-
-
 </head>
-
-
-  
 <body>
-
-  <!-- Logo Banner that scrolls away -->
+<!-- Banner that scrolls away -->
 <div class="banner">
   <div class="banner-content">
     <div class="header-logo">
@@ -1020,8 +296,7 @@ body {
     </div>
   </div>
 </div>
-
-<!-- Sticky header bar that sticks to top after scrolling -->
+<!-- Sticky header -->
 <div class="header-top-bar">
   <div class="header-top-combined">
     <a href="/" class="sun-link">
@@ -1038,25 +313,19 @@ body {
         <img src="icon_search.png" alt="Search Icon" />
       </button>
       <form id="search-form">
-        <input type="text" placeholder="Search…" />
+        <input type="text" placeholder="Search…" id="search-input" />
       </form>
     </div>
   </div>
 </div>
 
 
-
-
-
-
-
 <div id="header-spacer"></div>
 
 <div class="container">
   <div id="search-container">
-   <button id="search-close" aria-label="Close Search Results">✕</button>
-   <div id="search-filters">
-            </div>
+    <button id="search-close" aria-label="Close Search Results">✕</button>
+    <div id="search-filters"></div>
     <div id="search-results"></div>
     <div id="search-pagination"></div>
   </div>
@@ -1064,32 +333,25 @@ body {
 
 <div class="main-headline-wrapper">
   <div class="main-headline-layout">
-
-      <div class="main-headline-left">
-        <div class="main-headline-img-wrapper">
-          <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
-        </div>
-        <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
-        <div class="two-columns-below">
-          <div class="column" id="latest-headlines"></div>
-          <div class="column" id="more-headlines">
-  <div id="poll-container"></div>
-
-  <div id="more-headlines-list"></div>
-</div>
-
+    <div class="main-headline-left">
+      <div class="main-headline-img-wrapper">
+        <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
+      </div>
+      <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
+      <div class="two-columns-below">
+        <div class="column" id="latest-headlines"></div>
+        <div class="column" id="more-headlines">
+          <div id="poll-container"></div>
+          <div id="more-headlines-list"></div>
         </div>
       </div>
-      <div class="right-column" id="right-column-1"></div>
     </div>
+    <div class="right-column" id="right-column-1"></div>
   </div>
+</div>
 
+<hr class="footer-separator" />
 
-
-
-
-  
-  <hr class="footer-separator" />
 <div class="footer-social">
   <div class="social-icons">
     <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
@@ -1101,598 +363,113 @@ body {
     <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
   </div>
 </div>
-  <footer>
-    <div class="footer-wrapper">
-      <div class="footer-content">
-        <div class="footer-section left">
-          <img src="australian_flag.png" alt="Australian Flag" />
-          <p>
-            The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
-          </p>
-        </div>
-       <div class="footer-section center">
-  <a href="https://fedsun.news">
-    <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
-  </a>
-          <p>
-            Contact:<br />
-            editor@fedsun.news
-          </p>
-          <p>The Federation Sun © 2025</p>
-        </div>
-        <div class="footer-section right">
-          <h3>SEND NEWS TIPS</h3>
-          <form action="https://formspree.io/f/meokpdkj" method="POST">
-            <textarea name="tip" placeholder="Type your tip here..."></textarea>
-            <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
-            <button type="submit" class="button-flag">Send tip</button>
-          </form>
-        </div>
+
+<footer>
+  <div class="footer-wrapper">
+    <div class="footer-content">
+      <div class="footer-section left">
+        <img src="australian_flag.png" alt="Australian Flag" />
+        <p>
+          The Federation Sun proudly honours the European Australians who built this nation—taming the land, founding our cities, and instilling the traditions and institutions of Western civilisation that shaped Australia. We stand firm in our heritage and look ahead with unity and purpose to secure a strong future for our people.
+        </p>
+      </div>
+      <div class="footer-section center">
+        <a href="https://fedsun.news">
+          <img src="fedsun__logo_footer.png" alt="Federation Sun Logo" />
+        </a>
+        <p>Contact:<br />editor@fedsun.news</p>
+        <p>The Federation Sun © 2025</p>
+      </div>
+      <div class="footer-section right">
+        <h3>SEND NEWS TIPS</h3>
+        <form action="https://formspree.io/f/meokpdkj" method="POST">
+          <textarea name="tip" placeholder="Type your tip here..."></textarea>
+          <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
+          <button type="submit" class="button-flag">Send tip</button>
+        </form>
       </div>
     </div>
-  </footer>
-
-  <script>
-    function updateTime() {
-  const now = new Date();
-
-  const day = new Intl.DateTimeFormat('en-AU', {
-    timeZone: 'Australia/Melbourne',
-    weekday: 'short'
-  }).format(now);
-
-  const date = new Intl.DateTimeFormat('en-AU', {
-    timeZone: 'Australia/Melbourne',
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric'
-  }).format(now);
-
-  const timeLine = document.getElementById('top-time-line');
-  if (timeLine) {
-    timeLine.textContent = `${day}, ${date}`;
-  }
-}
-
-
-
-
-    updateTime();
-    setInterval(updateTime, 60000);
-
-    fetch('/data/main-headline.json?' + new Date().getTime())
-      .then(r => r.json())
-      .then(data => {
-        document.querySelector('.main-headline-img').src = data.image;
-        document.querySelector('.main-headline-link').textContent = data.title;
-        document.querySelector('.main-headline-link').href = data.url;
-      });
-
-
-
-    Promise.all([
-  fetch('/data/headlines.json?' + new Date().getTime()).then(r => r.json()),
-  fetch('/data/ticker_extra.json?' + new Date().getTime()).then(r => r.json())
-])
-.then(([headlines, extras]) => {
-
-  const today = new Date();
-  const recent = headlines
-    .filter(item => {
-      const d = new Date(item.date);
-      const diff = (today - d) / (1000 * 60 * 60 * 24);
-      return diff <= 7;
-    })
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  // Prepare ticker container
-  // Prepare ticker container
-const track = document.getElementById('ticker-track');
-track.innerHTML = '';
-
-// Build ticker group
-function createTickerGroup(extras, headlines) {
-  const grp = document.createElement('div');
-  grp.className = 'ticker-group';
-
-  // Add extras first
-  extras.forEach(item => {
-    const sep = document.createElement('div');
-    sep.className = 'ticker-separator';
-    const img = document.createElement('img');
-    img.src = '/flag_au1.png';
-    img.alt = 'AU Flag';
-    sep.appendChild(img);
-    grp.appendChild(sep);
-
-    const span = document.createElement('span');
-    span.textContent = item.text;
-    span.className = 'ticker-extra';
-    grp.appendChild(span);
-  });
-
-  // Add headlines
-  headlines.forEach(item => {
-    const sep = document.createElement('div');
-    sep.className = 'ticker-separator';
-    const img = document.createElement('img');
-    img.src = '/flag_au1.png';
-    img.alt = 'AU Flag';
-    sep.appendChild(img);
-    grp.appendChild(sep);
-
-    const a = document.createElement('a');
-    a.href = item.url;
-    a.textContent = item.title;
-    grp.appendChild(a);
-  });
-
-  return grp;
-}
-const group = createTickerGroup(extras, recent.slice(0, 6));
-const groupClone = group.cloneNode(true);
-
-// Append both for seamless loop
-track.appendChild(group);
-track.appendChild(group.cloneNode(true));
-track.appendChild(group.cloneNode(true));
-track.appendChild(group.cloneNode(true));
-track.appendChild(group.cloneNode(true));
-
-
-
-// Measure the width of ONE group
-const dist = track.scrollWidth / 2;
-
-
-// Adjust speed (pixels per second)
-const speedPxPerSec = 30; // Change to 20 or 40 to tweak speed
-
-// Compute duration
-const durationSec = dist / speedPxPerSec;
-
-// Set CSS variables
-document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
-document.documentElement.style.setProperty('--ticker-duration', durationSec + 's');
-
-
-  // ====================
-  // Columns below main headline
-  // ====================
-  const col1 = document.getElementById('latest-headlines');
-  const col2 = document.getElementById('more-headlines-list');
-  const col3 = document.getElementById('right-column-1');
-  const col1Headlines = recent.slice(0, 6);
-  const col2Headlines = recent.slice(6, 10);
-  const col3Headlines = recent.slice(10);
-
-  function formatDateAEST(dateStr) {
-  const date = new Date(dateStr);
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const year = String(date.getFullYear()).slice(-2);
-  return `${day}/${month}/${year}`;
-}
-
-
-  function createHeadlineItem(item) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'headline-item';
-  wrapper.style.display = 'flex';
-  wrapper.style.gap = '10px';
-  wrapper.style.alignItems = 'flex-start';
-
-  const img = document.createElement('img');
-  img.src = item.image;
-  img.alt = item.title;
-  img.style.width = '33%';
-  img.style.aspectRatio = '16/9';
-  img.style.objectFit = 'cover';
-  img.style.flexShrink = '0';
-
-  const content = document.createElement('div');
-  content.style.flex = '1';
-  content.style.textAlign = 'left';
-
-  const link = document.createElement('a');
-  link.href = item.url;
-  link.textContent = item.title;
-  link.style.color = 'white';
-  link.style.display = 'block';
-  link.style.marginBottom = '4px';
-
-  const meta = document.createElement('div');
-  meta.className = 'headline-meta';
-  meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
-
-  content.appendChild(link);
-  content.appendChild(meta);
-
-  wrapper.appendChild(img);
-  wrapper.appendChild(content);
-
-  // Create description separately
-  const desc = document.createElement('div');
-  desc.className = 'headline-description';
-  desc.textContent = item.description || '';
-
-  // Wrap both in a container
-  const container = document.createElement('div');
-  container.appendChild(wrapper);
-  container.appendChild(desc);
-
-  return container;
-}
-
-  // Column 1
-  col1.innerHTML = '';
-  col1Headlines.forEach(item => col1.appendChild(createHeadlineItem(item)));
-
-  // Column 2
-  col2.innerHTML = '';
-  col2Headlines.forEach(item => col2.appendChild(createHeadlineItem(item)));
-
-  // Column 3
-  col3.innerHTML = '';
-  col3Headlines.forEach(item => col3.appendChild(createHeadlineItem(item)));
-
-  // Archive link
-  const archiveLinkWrapper = document.createElement('div');
-  archiveLinkWrapper.style.textAlign = 'center';
-  archiveLinkWrapper.style.marginTop = '20px';
-
-  const archiveLink = document.createElement('a');
-  archiveLink.href = 'https://fedsun.news/archive';
-  archiveLink.textContent = 'View All Archived Headlines...';
-  archiveLink.style.color = 'white';
-  archiveLink.style.textDecoration = 'none';
-  archiveLink.style.fontSize = '18px';
-  archiveLink.addEventListener('mouseover', () => {
-    archiveLink.style.color = 'gold';
-  });
-  archiveLink.addEventListener('mouseout', () => {
-    archiveLink.style.color = 'white';
-  });
-
-  archiveLinkWrapper.appendChild(archiveLink);
-  col3.appendChild(archiveLinkWrapper);
-
-})
-.catch(e => console.error('Fetch error loading headlines:', e));
-
-
-    
-  </script>
-
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-      window.netlifyIdentity.init();
-    }
-  </script>
-
- <!-- 1️⃣ Load the Supabase library FIRST -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<!-- 2️⃣ Initialize Supabase -->
-<script>
-  const supabaseUrl = 'https://fpsykizmderxiwovqcwk.supabase.co';
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwc3lraXptZGVyeGl3b3ZxY3drIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0OTUyMDksImV4cCI6MjA2NzA3MTIwOX0.GkLxj8sTj9uK_6taRK0HH2b_FobLRUa3UhxfgN7QssA';
-  const { createClient } = supabase;
-const supabaseClient = createClient(supabaseUrl, supabaseKey);
-
-</script>
-
-<!-- 3️⃣ Your vote form script -->
-<script>
-fetch('/data/poll.json?' + new Date().getTime())
-  .then(r => r.json())
-  .then(poll => {
-    const container = document.getElementById('poll-container');
-    if (!container) return;
-    if (!poll || !poll.question || !poll.options) return;
-
-    // Build the poll form
-    let html = `<form id="poll-form"><h3 class="poll-title">${poll.question}</h3>`;
-poll.options.forEach(opt => {
-  html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
-});
-html += `
-  <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;">
-    <button type="submit" class="button-flag">Vote</button>
-    <button type="button" id="show-results-button" class="button-flag">Show Results</button>
   </div>
-</form>`;
+</footer>
 
+<!-- JavaScript -->
+<script>
+// Time update
+function updateTime() {
+  const now = new Date();
+  const day = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',weekday:'short'}).format(now);
+  const date = new Intl.DateTimeFormat('en-AU',{timeZone:'Australia/Melbourne',day:'2-digit',month:'short',year:'numeric'}).format(now);
+  document.getElementById('top-time-line').textContent = `${day}, ${date}`;
+}
+updateTime();
+setInterval(updateTime,60000);
 
-    container.innerHTML = html;
-
-    const form = document.getElementById('poll-form');
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const selected = form.elements['pollOption'].value;
-
-      // Save the vote
-      const { error } = await supabaseClient
-        .from('poll_votes')
-        .insert([{ option: selected }]);
-
-      
-
-      if (error) {
-        container.innerHTML = `<p style="color:red;">Error saving vote: ${error.message}</p>`;
-      } else {
-        // Show results
-        loadVoteCounts(selected);
-      }
-    });
-
-const showResultsBtn = document.getElementById('show-results-button');
-showResultsBtn.addEventListener('click', () => {
-  loadVoteCounts(); // no voted option passed
+// Sticky spacer adjust
+document.addEventListener("DOMContentLoaded",function(){
+  const spacer=document.getElementById("header-spacer");
+  const header=document.querySelector(".header-top-bar");
+  if(header && spacer){
+    spacer.style.height=header.offsetHeight+"px";
+  }
 });
 
-    
-  })
-  .catch(e => console.error('Fetch error:', e));
-
-async function loadVoteCounts(votedOption) {
-  const container = document.getElementById('poll-container');
-  container.innerHTML = `<p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p><p>Loading results...</p>`;
-
-
-  const { data, error } = await supabaseClient
-    .from('poll_votes')
-    .select('option');
-
-  if (error) {
-    container.innerHTML = `<p style="color:red;">Error loading results: ${error.message}</p>`;
-    return;
+// Show sun icon when scrolled
+window.addEventListener("scroll",()=>{
+  const sun=document.querySelector(".sun-link");
+  const time=document.querySelector(".header-time");
+  if(window.scrollY>50){
+    sun.style.display="inline-flex";
+    if(window.innerWidth<=768){time.style.display="none";}
+  }else{
+    sun.style.display="none";
+    if(window.innerWidth<=768){time.style.display="";}
   }
+});
 
-  // Count votes
-  const counts = {};
-  data.forEach(row => {
-    counts[row.option] = (counts[row.option] || 0) + 1;
+// Search toggle
+document.getElementById("search-toggle").addEventListener("click",function(){
+  const form=document.getElementById("search-form");
+  form.classList.toggle("active");
+  if(form.classList.contains("active")){
+    setTimeout(()=>document.getElementById("search-input").focus(),300);
+  }
+});
+
+// Search close
+document.getElementById("search-close").addEventListener("click",function(){
+  document.getElementById("search-filters").innerHTML="";
+  document.getElementById("search-results").innerHTML="";
+  document.getElementById("search-pagination").innerHTML="";
+  document.getElementById("search-container").style.display="none";
+  this.style.display="none";
+});
+</script>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+if(window.netlifyIdentity){
+  window.netlifyIdentity.on("init",user=>{
+    if(!user){
+      window.netlifyIdentity.on("login",()=>{location.href="/admin/";});
+    }
   });
-
-  // Calculate total votes
-  const totalVotes = Object.values(counts).reduce((a, b) => a + b, 0);
-
-  // Build results HTML
-  let resultsHtml = '<h3>Vote Results</h3><div style="width:100%;text-align:left;">';
-  Object.entries(counts).forEach(([opt, count]) => {
-    const percent = ((count / totalVotes) * 100).toFixed(1);
-    resultsHtml += `
-      <div style="margin-bottom:8px;">
-        <div style="margin-bottom:4px;">${opt}: ${count} vote${count!==1?'s':''} (${percent}%)</div>
-        <div style="background:#555;width:100%;height:14px;border-radius:4px;overflow:hidden;">
-          <div style="background:gold;width:${percent}%;height:100%;"></div>
-        </div>
-      </div>`;
-  });
-  resultsHtml += '</div>';
-
-  container.innerHTML = `<p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p>` + resultsHtml;
-
+  window.netlifyIdentity.init();
 }
 </script>
 
-
-
-
-
-  <script>
-document.getElementById("search-form").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const query = document.getElementById("search-input").value.trim().toLowerCase();
-  const resultsContainer = document.getElementById("search-results");
-  const filtersContainer = document.getElementById("search-filters");
-  const paginationContainer = document.getElementById("search-pagination");
-
-  resultsContainer.innerHTML = "<p>Loading results...</p>";
-  document.getElementById("search-container").style.display = "block";
-  document.getElementById("search-close").style.display = "block";
-
-
-  filtersContainer.innerHTML = "";
-  paginationContainer.innerHTML = "";
-
-  // Fetch headlines
-  const res = await fetch('/data/headlines.json');
-  const headlines = await res.json();
-
-  // Filter by query
-  let filtered = headlines.filter(item =>
-    item.title.toLowerCase().includes(query) ||
-    (item.description && item.description.toLowerCase().includes(query))
-  );
-
-  if (filtered.length === 0) {
-    resultsContainer.innerHTML = "<p>No results found.</p>";
-    return;
-  }
-
-  // Create date filter
-  const uniqueDates = [...new Set(filtered.map(item => item.date.slice(0,10)))];
-  if (uniqueDates.length > 1) {
-    const select = document.createElement("select");
-    select.innerHTML = `<option value="">Filter by date</option>` +
-      uniqueDates.map(d => `<option value="${d}">${d}</option>`).join("");
-    select.addEventListener("change", function() {
-      const date = this.value;
-      if (date) {
-        filtered = filtered.filter(i => i.date.startsWith(date));
-      } else {
-        filtered = headlines.filter(item =>
-          item.title.toLowerCase().includes(query) ||
-          (item.description && item.description.toLowerCase().includes(query))
-        );
-      }
-      renderPage(1);
-    });
-    filtersContainer.appendChild(select);
-  }
-
-  // Pagination
-  const itemsPerPage = 5;
-  function renderPage(page) {
-    const start = (page - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    const pageItems = filtered.slice(start, end);
-
-    resultsContainer.innerHTML = "";
-    pageItems.forEach(item => {
-      const wrapper = document.createElement("div");
-      wrapper.style.borderBottom = "1px solid #444";
-      wrapper.style.padding = "10px 0";
-      wrapper.style.textAlign = "left";
-
-      const titleLink = document.createElement("a");
-      titleLink.href = item.url;
-      titleLink.target = "_blank";
-      titleLink.style.color = "white";
-      titleLink.style.textDecoration = "none";
-      titleLink.style.fontFamily = "'Oswald', sans-serif";
-      titleLink.style.fontSize = "20px";
-      titleLink.style.display = "block";
-      titleLink.style.marginBottom = "4px";
-
-      // Highlight keywords
-      const highlightedTitle = item.title.replace(new RegExp(query, "gi"), match => `<span style="background:gold;color:black;">${match}</span>`);
-      titleLink.innerHTML = highlightedTitle;
-
-      const desc = document.createElement("div");
-      desc.style.fontSize = "14px";
-      desc.style.color = "#ccc";
-      desc.style.fontFamily = "'Roboto', sans-serif";
-      desc.innerHTML = (item.description || "").replace(new RegExp(query, "gi"), match => `<span style="background:gold;color:black;">${match}</span>`);
-
-      const meta = document.createElement("div");
-      meta.style.fontSize = "12px";
-      meta.style.color = "#aaa";
-      meta.textContent = `Published: ${item.date.slice(0,10)}${item.author ? " — " + item.author : ""}`;
-
-      wrapper.appendChild(titleLink);
-      wrapper.appendChild(desc);
-      wrapper.appendChild(meta);
-
-      resultsContainer.appendChild(wrapper);
-    });
-
-    // Pagination buttons
-    const totalPages = Math.ceil(filtered.length / itemsPerPage);
-    paginationContainer.innerHTML = "";
-    if (totalPages > 1) {
-      for (let i=1; i<=totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = i;
-        btn.style.margin = "0 4px";
-        btn.style.padding = "4px 8px";
-        btn.style.background = "#333";
-        btn.style.color = "white";
-        btn.style.border = "1px solid #555";
-        btn.style.cursor = "pointer";
-        if (i === page) btn.style.background = "gold";
-        btn.addEventListener("click", ()=>renderPage(i));
-        paginationContainer.appendChild(btn);
-      }
-    }
-  }
-
-  renderPage(1);
-});
-</script>
-
-
+<!-- Load Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-document.getElementById("search-close").addEventListener("click", function() {
-  document.getElementById("search-filters").innerHTML = "";
-  document.getElementById("search-results").innerHTML = "";
-  document.getElementById("search-pagination").innerHTML = "";
-  document.getElementById("search-container").style.display = "none";
-document.getElementById("search-close").style.display = "none";
-
-
-});
+const supabaseUrl='https://fpsykizmderxiwovqcwk.supabase.co';
+const supabaseKey='[YOUR_SUPABASE_KEY]';
+const {createClient}=supabase;
+const supabaseClient=createClient(supabaseUrl,supabaseKey);
 </script>
 
-  
-
-
-
-
-
- 
-
-  <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const spacer = document.getElementById("header-spacer");
-  const headerFixed = document.querySelector(".header-fixed");
-
-  if (headerFixed && spacer) {
-    spacer.style.height = headerFixed.offsetHeight + "px";
-  }
-});
-</script>
-
-  
- <script>
-document.getElementById("search-toggle").addEventListener("click", function() {
-  const form = document.getElementById("search-form");
-  form.classList.toggle("active");
-  if (form.classList.contains("active")) {
-    // Optional: focus input when shown
-    setTimeout(() => {
-      document.getElementById("search-input").focus();
-    }, 300);
-  }
-});
-</script>
-
-
-  <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const spacer = document.getElementById("header-spacer");
-  const headerFixed = document.querySelector(".header-fixed");
-
-  if (headerFixed && spacer) {
-    spacer.style.height = headerFixed.offsetHeight + "px";
-  }
-});
-</script>
-
-
-
-
-<script>
-// Show sun icon after scrolling past logo
-window.addEventListener("scroll", () => {
-  const sun = document.querySelector(".sun-link");
-  const time = document.querySelector(".header-time");
-  if (window.scrollY > 50) {
-    sun.style.display = "inline-flex";
-    // On mobile, hide date when sun appears
-    if (window.innerWidth <= 768) {
-      time.style.display = "none";
-    }
-  } else {
-    sun.style.display = "none";
-    // On mobile, show date again
-    if (window.innerWidth <= 768) {
-      time.style.display = "";
-    }
-  }
-});
-</script>
- 
+<!-- Additional scripts (ticker, headlines, poll, search) -->
+<script src="scripts/ticker.js"></script>
+<script src="scripts/headlines.js"></script>
+<script src="scripts/poll.js"></script>
+<script src="scripts/search.js"></script>
 </body>
 </html>
