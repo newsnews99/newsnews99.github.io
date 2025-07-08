@@ -1510,7 +1510,6 @@ poll.options.forEach(opt => {
   html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
 });
 html += `
-  html += `
   <div style="text-align:center; margin-top:12px;">
     <a href="#" id="show-results-link" style="color:#f5c518;text-decoration:underline;font-family:'Oswald',sans-serif;font-size:14px;display:inline-block;margin-bottom:8px;">Show results</a>
     <div>
@@ -1527,6 +1526,11 @@ html += `
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       const selected = form.elements['pollOption'].value;
+if (!selected) {
+  alert('Please select an option before voting.');
+  return;
+}
+
 
       // Save the vote
       const { error } = await supabaseClient
@@ -1544,9 +1548,10 @@ html += `
     });
 
 const showResultsLink = document.getElementById('show-results-link');
-showResultsLink.addEventListener('click', (e) => {
+showResultsLink.addEventListener('click', e => {
   e.preventDefault();
   loadVoteCounts();
+  showResultsLink.style.display = 'none'; // Hide after click
 });
 
 
