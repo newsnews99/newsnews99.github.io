@@ -961,10 +961,11 @@ html, body {
 
 
 .sun-icon {
-  height: 16px;
-  width: auto;
-  vertical-align: middle;
+  height: 16px;          /* Fixed height */
+  width: auto;           /* Automatically scales width to preserve aspect */
+  display: block;
 }
+
 
 
 /* Hide sun icon by default everywhere */
