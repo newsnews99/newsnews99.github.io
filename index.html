@@ -962,12 +962,14 @@ margin-left: 8px;
 
 
 .sun-icon {
-  width: 32px;                    /* Or 32px if needed */
+  width: 24px; /* or whatever you prefer */
   height: auto;
   aspect-ratio: 634 / 318;
   object-fit: contain;
   display: block;
+  flex-shrink: 0; /* 👈 this is crucial */
 }
+
 
 
 
