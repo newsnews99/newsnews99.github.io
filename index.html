@@ -1510,11 +1510,13 @@ poll.options.forEach(opt => {
   html += `<label><input type="radio" name="pollOption" value="${opt}"> ${opt}</label>`;
 });
 html += `
-  <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;">
+  html += `
+  <div style="text-align:center; margin-top:12px;">
+    <a href="#" id="show-results-link" style="color:#f5c518;text-decoration:underline;font-family:'Oswald',sans-serif;font-size:14px;display:inline-block;margin-bottom:10px;">Show results</a><br>
     <button type="submit" class="button-flag">Vote</button>
-    <button type="button" id="show-results-button" class="button-flag">Show Results</button>
   </div>
 </form>`;
+
 
 
     container.innerHTML = html;
@@ -1539,10 +1541,12 @@ html += `
       }
     });
 
-const showResultsBtn = document.getElementById('show-results-button');
-showResultsBtn.addEventListener('click', () => {
-  loadVoteCounts(); // no voted option passed
+const showResultsLink = document.getElementById('show-results-link');
+showResultsLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  loadVoteCounts();
 });
+
 
     
   })
