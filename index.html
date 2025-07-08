@@ -961,10 +961,14 @@ html, body {
 
 
 .sun-icon {
-  height: 16px;          /* Fixed height */
-  width: auto;           /* Automatically scales width to preserve aspect */
+  width: 24px;                    /* Or 32px if needed */
+  height: auto;
+  aspect-ratio: 634 / 318;
+  object-fit: contain;
   display: block;
 }
+
+
 
 
 
@@ -1002,6 +1006,7 @@ html, body {
     paddting-top: 0px;
   }
 }
+
 
   
 </style>
