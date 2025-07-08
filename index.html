@@ -1090,6 +1090,15 @@ margin-left: 16px;
   max-width: 100%;
   height: auto;
 }
+.right-column-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.right-column {
+  flex: 1;
+}
 
 
 </style>
@@ -1175,7 +1184,23 @@ margin-left: 16px;
 
         </div>
       </div>
-      <div class="right-column" id="right-column-1"></div>
+      <div class="right-column-wrapper">
+  <div class="right-column" id="right-column-1">
+    <!-- existing right column content -->
+  </div>
+  <div class="right-column" id="right-column-2">
+    <div id="poll-container"></div>
+    <div id="tips-section">
+      <h3>SEND NEWS TIPS</h3>
+      <form action="https://formspree.io/f/meokpdkj" method="POST">
+        <textarea name="tip" placeholder="Type your tip here..."></textarea>
+        <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
+        <button type="submit" class="button-flag">Send tip</button>
+      </form>
+    </div>
+  </div>
+</div>
+
     </div>
   </div>
 
@@ -1219,13 +1244,9 @@ margin-left: 16px;
          The Federation Sun © 2025</p>
         </div>
         <div class="footer-section right">
-          <h3>SEND NEWS TIPS</h3>
-          <form action="https://formspree.io/f/meokpdkj" method="POST">
-            <textarea name="tip" placeholder="Type your tip here..."></textarea>
-            <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
-            <button type="submit" class="button-flag">Send tip</button>
-          </form>
-        </div>
+  <img src="eureka_flag.png" alt="Eureka Flag" style="height:32px;" />
+</div>
+
       </div>
         </div>
     </div>
