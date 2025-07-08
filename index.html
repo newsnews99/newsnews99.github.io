@@ -1192,23 +1192,25 @@ margin-left: 16px;
     function updateTime() {
   const now = new Date();
 
-  const day = new Intl.DateTimeFormat('en-AU', {
+  const dayName = new Intl.DateTimeFormat('en-AU', {
     timeZone: 'Australia/Melbourne',
     weekday: 'long'
   }).format(now);
 
-  const date = new Intl.DateTimeFormat('en-AU', {
+  const day = now.getDate(); // no padStart, just numeric
+  const month = new Intl.DateTimeFormat('en-AU', {
     timeZone: 'Australia/Melbourne',
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric'
+    month: 'short'
   }).format(now);
+
+  const year = now.getFullYear();
 
   const timeLine = document.getElementById('top-time-line');
   if (timeLine) {
-    timeLine.textContent = `${day}, ${date}`;
+    timeLine.textContent = `${dayName}, ${day} ${month} ${year}`;
   }
 }
+
 
 
 
