@@ -1099,6 +1099,19 @@ margin-left: 16px;
 .right-column {
   flex: 1;
 }
+.four-column-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1248px;
+  margin: 0 auto;
+}
+
+.four-column-wrapper .column {
+  flex: 1;
+  min-width: 0;
+}
 
 
 </style>
@@ -1169,40 +1182,45 @@ margin-left: 16px;
 <div class="main-headline-wrapper">
   <div class="main-headline-layout">
 
-      <div class="main-headline-left">
-        <div class="main-headline-img-wrapper">
-          <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
-        </div>
-        <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
-        <div class="two-columns-below">
-          <div class="column" id="latest-headlines"></div>
-          <div class="column" id="more-headlines">
-  <div id="poll-container"></div>
-
-  <div id="more-headlines-list"></div>
-</div>
-
-        </div>
+    <div class="main-headline-left">
+      <div class="main-headline-img-wrapper">
+        <img src="1st.jpg" alt="Main Headline" class="main-headline-img" />
       </div>
-      <div class="right-column-wrapper">
-  <div class="right-column" id="right-column-1">
-    <!-- existing right column content -->
-  </div>
-  <div class="right-column" id="right-column-2">
-    <div id="poll-container"></div>
-    <div id="tips-section">
-      <h3>SEND NEWS TIPS</h3>
-      <form action="https://formspree.io/f/meokpdkj" method="POST">
-        <textarea name="tip" placeholder="Type your tip here..."></textarea>
-        <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
-        <button type="submit" class="button-flag">Send tip</button>
-      </form>
+      <a href="#" class="main-headline-link">WEBSITE UNDER CONSTRUCTION</a>
+
+      <!-- BEGIN: Four Equal Columns -->
+      <div class="four-column-wrapper">
+
+        <div class="column" id="latest-headlines"></div>
+
+        <div class="column" id="more-headlines">
+          <div id="more-headlines-list"></div>
+        </div>
+
+        <div class="column" id="right-column-1">
+          <!-- existing right column content -->
+        </div>
+
+        <div class="column" id="right-column-2">
+          <div id="poll-container"></div>
+
+          <div id="tips-section">
+            <h3>SEND NEWS TIPS</h3>
+            <form action="https://formspree.io/f/meokpdkj" method="POST">
+              <textarea name="tip" placeholder="Type your tip here..."></textarea>
+              <input type="hidden" name="_redirect" value="https://fedsun.news/thanks.html" />
+              <button type="submit" class="button-flag">Send tip</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+      <!-- END: Four Equal Columns -->
+
     </div>
   </div>
 </div>
 
-    </div>
-  </div>
 
 
 
