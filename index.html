@@ -1059,7 +1059,33 @@ margin-left: 16px;
   margin: 0 auto;
   box-sizing: border-box;
 }
-  
+  .footer-wrapper {
+  background: #1e1e1e;
+  padding: 30px 0;
+  border-top: 1px solid #444;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap; /* allows stacking on smaller screens */
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-section.center {
+  text-align: center;
+}
+
+.footer-section.right {
+  text-align: right;
+}
+
 </style>
 
 
