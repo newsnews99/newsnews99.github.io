@@ -204,13 +204,11 @@ img { max-width: 100%; height: auto; display: block; }
   text-align: center;
 }
 .footer-section.left img {
- height: 200px;
-  width: auto;
+ 
   margin-bottom: 0px;
 }
 .footer-section.right img {
- height: 200px;
-  width: auto;
+ 
   margin-bottom: 0px;
 }
   
@@ -1204,10 +1202,11 @@ margin-left: 16px;
 @media (max-width: 768px) {
   .footer-section.left img,
   .footer-section.right img {
-    max-width: 200px;
-    height: auto;
-    margin: 0 auto 10px auto;
+    max-height: 175px;     /* 👈 same height */
+    width: auto;           /* 👈 preserve aspect ratio */
+    height: auto;          /* 👈 avoid vertical stretching */
     display: block;
+    margin: 0 auto 10px auto;
   }
 
   .footer-section.left,
@@ -1215,6 +1214,7 @@ margin-left: 16px;
     text-align: center;
   }
 }
+
 
 </style>
 
