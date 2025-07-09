@@ -1898,6 +1898,15 @@ window.addEventListener("scroll", function() {
   }
 });
 </script>
- 
+ <script>
+  window.addEventListener('load', () => {
+    const aus = document.getElementById('aus-flag');
+    const eureka = document.getElementById('eureka-flag');
+    if (aus && eureka) {
+      eureka.style.maxHeight = aus.clientHeight + 'px';
+    }
+  });
+</script>
+
 </body>
 </html>
