@@ -1261,19 +1261,20 @@ margin-left: 16px;
   align-self: center;
 }
 
-#footer-flags {
+
+  #footer-flags {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 20px;
+  flex-direction: column;  /* stack flags vertically */
+  gap: 16px;
   margin-top: 20px;
 }
 
 #footer-flags img {
-  height: 120px;
-  width: auto;
+  width: 100%;       /* fill full column width */
+  height: auto;      /* maintain aspect ratio */
+  display: block;
 }
-  
+
 </style>
 
 
