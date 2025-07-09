@@ -1430,7 +1430,7 @@ function createTickerGroup(extras, headlines) {
 
   return grp;
 }
-const group = createTickerGroup(extras, recent.slice(0, 12));
+const group = createTickerGroup(extras, recent.slice(0, 10));
 const groupClone = group.cloneNode(true);
 
 // Append both for seamless loop
@@ -1466,9 +1466,9 @@ document.documentElement.style.setProperty('--ticker-duration', durationSec + 's
   const homepageLimit = 12;
 const homepageArticles = recent.slice(0, homepageLimit);
 
-const col1Headlines = homepageArticles.slice(0, 4);
-const col2Headlines = homepageArticles.slice(4, 6);
-const col3Headlines = homepageArticles.slice(6, 12);
+const col1Headlines = homepageArticles.slice(0, 3);
+const col2Headlines = homepageArticles.slice(3, 5);
+const col3Headlines = homepageArticles.slice(5, 10);
 
 
   function formatDateAEST(dateStr) {
