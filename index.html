@@ -1340,6 +1340,9 @@ margin-left: 16px;
   font-family: 'Oswald', sans-serif !important;
 }
 
+.headline-block {
+  margin-bottom: 24px; /* or whatever spacing you want */
+}
 
 </style>
 
@@ -1690,11 +1693,14 @@ const month = date.getMonth() + 1;
   desc.textContent = item.description || '';
 
   // Wrap both in a container
+    // Wrap both in a uniform outer container
   const container = document.createElement('div');
+  container.className = 'headline-block'; // add this line
   container.appendChild(wrapper);
   container.appendChild(desc);
 
   return container;
+
 }
 
   // Column 1
