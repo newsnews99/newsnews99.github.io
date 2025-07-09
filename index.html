@@ -1525,14 +1525,8 @@ margin-left: 16px;
 ])
 .then(([headlines, extras]) => {
 
-  const today = new Date();
-  const recent = headlines
-    .filter(item => {
-      const d = new Date(item.date);
-      const diff = (today - d) / (1000 * 60 * 60 * 24);
-      return diff <= 7;
-    })
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+ const recent = headlines;
+
 
   // Prepare ticker container
   // Prepare ticker container
