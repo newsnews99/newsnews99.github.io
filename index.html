@@ -1176,6 +1176,25 @@ margin-left: 16px;
   flex-direction: column;
   gap: 20px;
 }
+.footer-flags {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.footer-flag {
+  max-height: 100px; /* Adjust based on the actual desired height */
+  height: auto;
+  width: auto;
+}
+
+#eureka-flag {
+  max-height: 100%; /* ensures it cannot exceed the height of aus flag */
+  object-fit: contain;
+}
 
 </style>
 
@@ -1306,7 +1325,10 @@ margin-left: 16px;
 </div>
       <div class="footer-content">
         <div class="footer-section left">
-          <img src="australian_flag.png" alt="Australian Flag" />
+          <div class="footer-flags">
+  <img src="australian_flag.png" alt="Australian Flag" class="footer-flag" id="aus-flag" />
+  
+</div>
           
         </div>
        <div class="footer-section center">
@@ -1323,7 +1345,10 @@ margin-left: 16px;
          The Federation Sun © 2025</p>
         </div>
         <div class="footer-section right">
-  <img src="eureka_flag.png" alt="Eureka Flag" style="max-width: 100%; height: auto;" />
+  <div class="footer-flags">
+  
+  <img src="eureka_flag.png" alt="Eureka Flag" class="footer-flag" id="eureka-flag" />
+</div>
 </div>
 
       </div>
@@ -1467,8 +1492,8 @@ document.documentElement.style.setProperty('--ticker-duration', durationSec + 's
 const homepageArticles = recent.slice(0, homepageLimit);
 
 const col1Headlines = homepageArticles.slice(0, 3);
-const col2Headlines = homepageArticles.slice(3, 5);
-const col3Headlines = homepageArticles.slice(5, 10);
+const col2Headlines = homepageArticles.slice(3, 6);
+const col3Headlines = homepageArticles.slice(6, 10);
 
 
   function formatDateAEST(dateStr) {
