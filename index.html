@@ -1134,11 +1134,15 @@ margin-left: 16px;
 }
 
 .right-columns {
-  flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 20px;
+  flex: 1;
 }
+.right-columns .column {
+  flex: 1;
+}
+
 
 .column {
   flex: 1;
