@@ -1365,66 +1365,7 @@ margin-left: 16px;
 #right-column-2.column {
   gap: 20px;
 }
-  .headline-block {
-  margin-bottom: 20px;
-}
-
-.headline-flex {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-
-.headline-img {
-  width: 33%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.headline-content {
-  flex: 1;
-  text-align: left;
-}
-
-.headline-title {
-  font-size: 21px;
-  color: white;
-  text-decoration: none;
-  font-family: 'Oswald', sans-serif;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.headline-meta {
-  font-size: 14px;
-  color: #ccc;
-  font-family: 'Roboto', sans-serif;
-  margin-bottom: 4px;
-}
-
-.headline-description {
-  font-size: 15px;
-  color: #ccc;
-  font-family: 'Roboto', sans-serif;
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .headline-flex {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  .headline-img {
-    width: 33%;
-  }
-
-  .headline-content {
-    width: 67%;
-  }
-}
-
+  
 </style>
 
 
@@ -1743,21 +1684,27 @@ const month = date.getMonth() + 1;
   const container = document.createElement('div');
   container.className = 'headline-block';
 
-  const wrapper = document.createElement('div');
-  wrapper.className = 'headline-flex';
-
   const img = document.createElement('img');
   img.src = item.image;
   img.alt = item.title;
-  img.className = 'headline-img';
+  img.style.width = '100%';
+  img.style.aspectRatio = '16/9';
+  img.style.objectFit = 'cover';
+  img.style.marginBottom = '8px'; // spacing between image and text
 
   const content = document.createElement('div');
-  content.className = 'headline-content';
+  content.style.textAlign = 'left';
 
   const link = document.createElement('a');
-  link.href = item.url;
-  link.textContent = item.title;
-  link.className = 'headline-title';
+link.href = item.url;
+link.textContent = item.title;
+link.style.color = 'white';
+link.style.display = 'block';
+link.style.marginBottom = '4px';
+link.style.fontSize = '21px';
+link.style.textDecoration = 'none';
+link.style.fontFamily = "'Oswald', sans-serif";
+
 
   const meta = document.createElement('div');
   meta.className = 'headline-meta';
@@ -1767,17 +1714,15 @@ const month = date.getMonth() + 1;
   desc.className = 'headline-description';
   desc.textContent = item.description || '';
 
+  // Append all in correct order
   content.appendChild(link);
   content.appendChild(meta);
-  content.appendChild(desc);
+  container.appendChild(img);
+  container.appendChild(content);
+  container.appendChild(desc);
 
-  wrapper.appendChild(img);
-  wrapper.appendChild(content);
-
-  container.appendChild(wrapper);
   return container;
 }
-
 
 
   // Column 1
