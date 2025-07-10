@@ -1657,23 +1657,19 @@ const month = date.getMonth() + 1;
 }
 
 
-  function createHeadlineItem(item) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'headline-item';
-  wrapper.style.display = 'flex';
-  wrapper.style.gap = '10px';
-  wrapper.style.alignItems = 'flex-start';
+ function createHeadlineItem(item) {
+  const container = document.createElement('div');
+  container.className = 'headline-block';
 
   const img = document.createElement('img');
   img.src = item.image;
   img.alt = item.title;
-  img.style.width = '33%';
+  img.style.width = '100%';
   img.style.aspectRatio = '16/9';
   img.style.objectFit = 'cover';
-  img.style.flexShrink = '0';
+  img.style.marginBottom = '8px'; // spacing between image and text
 
   const content = document.createElement('div');
-  content.style.flex = '1';
   content.style.textAlign = 'left';
 
   const link = document.createElement('a');
@@ -1687,27 +1683,20 @@ const month = date.getMonth() + 1;
   meta.className = 'headline-meta';
   meta.textContent = `${formatDateAEST(item.date)}${item.author ? ' — ' + item.author : ''}`;
 
-  content.appendChild(link);
-  content.appendChild(meta);
-
-  wrapper.appendChild(img);
-  wrapper.appendChild(content);
-
-  // Create description separately
   const desc = document.createElement('div');
   desc.className = 'headline-description';
   desc.textContent = item.description || '';
 
-  // Wrap both in a container
-    // Wrap both in a uniform outer container
-  const container = document.createElement('div');
-  container.className = 'headline-block'; // add this line
-  container.appendChild(wrapper);
+  // Append all in correct order
+  content.appendChild(link);
+  content.appendChild(meta);
+  container.appendChild(img);
+  container.appendChild(content);
   container.appendChild(desc);
 
   return container;
-
 }
+
 
   // Column 1
   col1.innerHTML = '';
