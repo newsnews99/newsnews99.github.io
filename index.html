@@ -2454,7 +2454,7 @@ window.addEventListener("scroll", function() {
 fetch('/data/videos.json')
   .then(res => res.json())
   .then(data => {
-    const video = data[0]; // Only show the first video
+    const video = data[0]; // Only show first video
 
     const container = document.getElementById("right-column-1");
 
@@ -2483,7 +2483,7 @@ fetch('/data/videos.json')
     iframeWrapper.appendChild(iframe);
     videoBlock.appendChild(iframeWrapper);
 
-    // Optional: Add video meta
+    // Optional meta
     const title = document.createElement("h3");
     title.textContent = video.title;
     title.style.fontSize = "14px";
@@ -2507,12 +2507,14 @@ fetch('/data/videos.json')
     videoBlock.appendChild(author);
     videoBlock.appendChild(desc);
 
-    container.appendChild(videoBlock);
+    // ⬅ Insert at the TOP of right-column-1
+    container.prepend(videoBlock);
   })
   .catch(err => {
     console.error("Failed to load video:", err);
   });
 </script>
+
 
 
 </body>
