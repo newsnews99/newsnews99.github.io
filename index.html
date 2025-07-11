@@ -1636,7 +1636,55 @@ max-width: 1248px;
     max-width: 45vw;
   }
 }
- 
+ .footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 20px 15px;
+  flex-wrap: nowrap;
+}
+
+.footer-flag img {
+  height: 80px;
+  width: auto;
+}
+
+/* MOBILE STYLES */
+@media (max-width: 768px) {
+  .footer-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-flag-left,
+  .footer-flag-right {
+    flex: 0 0 48%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-center {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .footer-flag img {
+    height: 60px;
+    width: 100%;
+    max-width: 100px;
+    object-fit: contain;
+  }
+}
+
 </style>
 
 
@@ -1761,16 +1809,18 @@ max-width: 1248px;
   <hr class="footer-separator" />
 
   <footer>
-   
-    <div class="footer-bar">
-       <div class="footer-flags">
-  <div class="footer-flag-left">
-      <img src="australian_flag.png" alt="Australian Flag" class="footer-flag" />
+   <div class="footer-wrapper">
+  <div class="container footer-bar">
+
+    <!-- Left Flag -->
+    <div class="footer-flag footer-flag-left">
+      <img src="australian_flag.png" alt="Australian Flag" />
     </div>
-  </div>
-  <div class="footer-center">
-    <div class="footer-social">
-       <div class="social-icons">
+
+    <!-- Center Content -->
+    <div class="footer-center">
+      <div class="footer-social">
+        <div class="social-icons">
     <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
     <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
     <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
@@ -1779,19 +1829,23 @@ max-width: 1248px;
     <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
     <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
   </div>
-    </div>
-    <div class="footer-contact">Contact: editor@fedsun.news</div>
-    <div class="footer-logo">
-      <img src="sun.png" alt="Federation Sun Logo" />
-      <div>THE FEDERATION SUN © 2025</div>
-    </div>
-  </div>
- <div class="footer-flags">
-  <div class="footer-flag-right">
-      <img src="eureka_flag.png" alt="Eureka Flag" class="footer-flag" />
-    </div>
       </div>
+      <div class="footer-contact">Contact: editor@fedsun.news</div>
+      <div class="footer-logo">
+        <img src="sun.png" alt="Federation Sun Logo" />
+        <div>THE FEDERATION SUN © 2025</div>
+      </div>
+    </div>
+
+    <!-- Right Flag -->
+    <div class="footer-flag footer-flag-right">
+      <img src="eureka_flag.png" alt="Eureka Flag" />
+    </div>
+
+  </div>
 </div>
+
+    
 
     
     
