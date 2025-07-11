@@ -2485,28 +2485,25 @@ fetch('/data/videos.json')
     videoBlock.appendChild(iframeWrapper);
 
     // Optional meta
-    const title = document.createElement("h3");
-    title.textContent = video.title;
-    title.style.fontSize = "14px";
-    title.style.marginTop = "10px";
+   // Styled to match headlines
+const titleLink = document.createElement("a");
+titleLink.href = "#"; // You can link to the full video page here
+titleLink.textContent = video.title;
+titleLink.className = "headline-link";
 
-    const date = document.createElement("div");
-    date.textContent = new Date(video.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
-    date.style.fontSize = "12px";
-    date.style.color = "#ccc";
+const meta = document.createElement("div");
+meta.className = "headline-date";
+const dateObj = new Date(video.date);
+meta.textContent = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${String(dateObj.getFullYear()).slice(2)} – ${video.author}`;
 
-    const author = document.createElement("div");
-    author.textContent = video.author;
-    author.style.fontSize = "12px";
+const desc = document.createElement("p");
+desc.textContent = video.description;
+desc.className = "headline-description";
 
-    const desc = document.createElement("p");
-    desc.textContent = video.description;
-    desc.style.fontSize = "13px";
+videoBlock.appendChild(titleLink);
+videoBlock.appendChild(meta);
+videoBlock.appendChild(desc);
 
-    videoBlock.appendChild(title);
-    videoBlock.appendChild(date);
-    videoBlock.appendChild(author);
-    videoBlock.appendChild(desc);
 
     // ⬅ Insert at the TOP of right-column-1
     container.prepend(videoBlock);
