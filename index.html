@@ -2494,6 +2494,63 @@ window.addEventListener("scroll", function() {
     }
   });
 </script>
+<script>
+function formatDateAEST(dateString) {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('en-AU', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'Australia/Sydney'
+  }).format(date);
+}
+
+// Load video
+fetch('/data/videos.json?' + new Date().getTime())
+  .then(r => r.json())
+  .then(videos => {
+    const container = document.getElementById('right-column-2');
+    if (!container || videos.length === 0) return;
+
+    const video = videos[0];
+    const block = document.createElement('div');
+    block.className = 'headline-block';
+
+    const iframe = document.createElement('iframe');
+    iframe.src = video.video_url;
+    iframe.width = "100%";
+    iframe.height = "180";
+    iframe.style.aspectRatio = "16 / 9";
+    iframe.style.marginBottom = "8px";
+    iframe.style.border = "none";
+    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    iframe.allowFullscreen = true;
+
+    const link = document.createElement('a');
+    link.href = video.video_url;
+    link.textContent = video.title;
+    link.style.color = 'white';
+    link.style.display = 'block';
+    link.style.fontSize = '21px';
+    link.style.marginBottom = '4px';
+
+    const meta = document.createElement('div');
+    meta.className = 'headline-meta';
+    meta.textContent = `${formatDateAEST(video.date)}${video.author ? ' — ' + video.author : ''}`;
+
+    const desc = document.createElement('div');
+    desc.className = 'headline-description';
+    desc.textContent = video.description || '';
+
+    block.appendChild(iframe);
+    block.appendChild(link);
+    block.appendChild(meta);
+    block.appendChild(desc);
+
+    container.insertBefore(block, container.firstChild);
+  })
+  .catch(e => console.error('Video load error:', e));
+</script>
 
 </body>
 </html>
