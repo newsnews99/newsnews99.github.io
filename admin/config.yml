@@ -66,3 +66,15 @@ collections:
     slug: "{{slug}}"
     fields:
       - { name: "text", label: "Ticker Text", widget: "string" }
+
+  - name: "videos"
+    label: "Videos"
+    folder: "content/videos"
+    create: true
+    slug: "video-{{year}}{{month}}{{day}}{{hour}}{{minute}}{{second}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Video Embed URL", name: "video_url", widget: "string", pattern: ["^(https://www\\.youtube\\.com/embed/|https://rumble\\.com/embed/).+", "Must be a valid YouTube or Rumble embed URL"] }
