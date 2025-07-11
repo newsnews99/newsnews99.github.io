@@ -2472,11 +2472,26 @@ fetch('/data/videos.json?' + new Date().getTime())
     const block = document.createElement('div');
     block.className = 'headline-block';
 
-    const iframe = document.createElement('iframe');
-    iframe.src = video.video_url;
-    iframe.width = "100%";
-    iframe.height = "180";
-    iframe.style.aspectRatio = "16 / 9";
+    const iframeWrapper = document.createElement('div');
+iframeWrapper.style.position = 'relative';
+iframeWrapper.style.paddingBottom = '56.25%'; // 16:9
+iframeWrapper.style.height = '0';
+iframeWrapper.style.overflow = 'hidden';
+
+const iframe = document.createElement('iframe');
+iframe.src = video.video_url;
+iframe.style.position = 'absolute';
+iframe.style.top = '0';
+iframe.style.left = '0';
+iframe.style.width = '100%';
+iframe.style.height = '100%';
+iframe.style.border = 'none';
+iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+iframe.allowFullscreen = true;
+
+iframeWrapper.appendChild(iframe);
+block.appendChild(iframeWrapper);
+
     iframe.style.marginBottom = "8px";
     iframe.style.border = "none";
     iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
