@@ -2451,60 +2451,69 @@ window.addEventListener("scroll", function() {
   });
 </script>
 <script>
-const container = document.getElementById("right-column-1");
+fetch('/data/videos.json')
+  .then(res => res.json())
+  .then(data => {
+    const video = data[0]; // Only show the first video
 
-const videoBlock = document.createElement("div");
-videoBlock.className = "video-block";
-videoBlock.style.marginBottom = "20px";
+    const container = document.getElementById("right-column-1");
 
-const iframeWrapper = document.createElement("div");
-iframeWrapper.style.position = 'relative';
-iframeWrapper.style.paddingBottom = '56.25%'; // 16:9
-iframeWrapper.style.height = '0';
-iframeWrapper.style.overflow = 'hidden';
-iframeWrapper.style.width = '100%';
+    const videoBlock = document.createElement("div");
+    videoBlock.className = "video-block";
+    videoBlock.style.marginBottom = "20px";
 
-const iframe = document.createElement("iframe");
-iframe.src = video.video_url;
-iframe.style.position = 'absolute';
-iframe.style.top = '0';
-iframe.style.left = '0';
-iframe.style.width = '100%';
-iframe.style.height = '100%';
-iframe.style.border = '0';
-iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-iframe.allowFullscreen = true;
+    const iframeWrapper = document.createElement("div");
+    iframeWrapper.style.position = 'relative';
+    iframeWrapper.style.paddingBottom = '56.25%'; // 16:9
+    iframeWrapper.style.height = '0';
+    iframeWrapper.style.overflow = 'hidden';
+    iframeWrapper.style.width = '100%';
 
-iframeWrapper.appendChild(iframe);
-videoBlock.appendChild(iframeWrapper);
+    const iframe = document.createElement("iframe");
+    iframe.src = video.video_url;
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
 
-// Optional: Add video meta
-const title = document.createElement("h3");
-title.textContent = video.title;
-title.style.fontSize = "14px";
-title.style.marginTop = "10px";
+    iframeWrapper.appendChild(iframe);
+    videoBlock.appendChild(iframeWrapper);
 
-const date = document.createElement("div");
-date.textContent = new Date(video.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
-date.style.fontSize = "12px";
-date.style.color = "#ccc";
+    // Optional: Add video meta
+    const title = document.createElement("h3");
+    title.textContent = video.title;
+    title.style.fontSize = "14px";
+    title.style.marginTop = "10px";
 
-const author = document.createElement("div");
-author.textContent = video.author;
-author.style.fontSize = "12px";
+    const date = document.createElement("div");
+    date.textContent = new Date(video.date).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+    date.style.fontSize = "12px";
+    date.style.color = "#ccc";
 
-const desc = document.createElement("p");
-desc.textContent = video.description;
-desc.style.fontSize = "13px";
+    const author = document.createElement("div");
+    author.textContent = video.author;
+    author.style.fontSize = "12px";
 
-videoBlock.appendChild(title);
-videoBlock.appendChild(date);
-videoBlock.appendChild(author);
-videoBlock.appendChild(desc);
+    const desc = document.createElement("p");
+    desc.textContent = video.description;
+    desc.style.fontSize = "13px";
 
-container.appendChild(videoBlock);
+    videoBlock.appendChild(title);
+    videoBlock.appendChild(date);
+    videoBlock.appendChild(author);
+    videoBlock.appendChild(desc);
 
+    container.appendChild(videoBlock);
+  })
+  .catch(err => {
+    console.error("Failed to load video:", err);
+  });
 </script>
+
 
 </body>
 </html>
