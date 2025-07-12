@@ -2501,9 +2501,15 @@ fetch('/data/videos.json')
     desc.textContent = video.description;
     desc.className = "headline-description";
 
-    videoBlock.appendChild(titleLink);
-    videoBlock.appendChild(meta);
-    videoBlock.appendChild(desc);
+   const textWrapper = document.createElement("div");
+textWrapper.style.textAlign = "left";
+
+textWrapper.appendChild(titleLink);
+textWrapper.appendChild(meta);
+textWrapper.appendChild(desc);
+
+videoBlock.appendChild(textWrapper);
+
 
     container.insertBefore(videoBlock, container.firstChild);
   })
