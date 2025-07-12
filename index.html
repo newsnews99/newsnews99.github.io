@@ -2462,13 +2462,16 @@ fetch('/data/videos.json')
     videoBlock.className = "headline-block";
     videoBlock.style.marginBottom = "20px";
 
+
     // --- Embedded Video ---
-    const iframeWrapper = document.createElement("div");
-    iframeWrapper.style.position = 'relative';
-    iframeWrapper.style.paddingBottom = '56.25%'; // 16:9 aspect ratio
-    iframeWrapper.style.height = '0';
-    iframeWrapper.style.overflow = 'hidden';
-    iframeWrapper.style.width = '100%';
+const iframeWrapper = document.createElement("div");
+iframeWrapper.style.position = 'relative';
+iframeWrapper.style.paddingBottom = '56.25%'; // 16:9 aspect ratio
+iframeWrapper.style.height = '0';
+iframeWrapper.style.overflow = 'hidden';
+iframeWrapper.style.width = '100%';
+iframeWrapper.style.marginBottom = '8px'; // ← Add this line
+
 
     const iframe = document.createElement("iframe");
     iframe.src = video.video_url;
