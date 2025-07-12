@@ -2456,10 +2456,11 @@ fetch('/data/videos.json')
   .then(data => {
     const container = document.getElementById("right-column-2");
 
-    // Limit to first 3 videos
+    // Show 3 most recent videos (sorted by date if needed)
     const videosToShow = data.slice(0, 3);
 
-    videosToShow.forEach(video => {
+    // Add in reverse order so that first video ends up on top
+    videosToShow.reverse().forEach(video => {
       const videoBlock = document.createElement("div");
       videoBlock.className = "headline-block";
       videoBlock.style.marginBottom = "20px";
@@ -2510,13 +2511,16 @@ fetch('/data/videos.json')
       textWrapper.appendChild(desc);
 
       videoBlock.appendChild(textWrapper);
-      container.appendChild(videoBlock);
+
+      // Insert each video at the top in reverse order
+      container.insertBefore(videoBlock, container.firstChild);
     });
   })
   .catch(err => {
     console.error("Failed to load video:", err);
   });
 </script>
+
 
 
 
