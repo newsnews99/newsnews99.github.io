@@ -2455,17 +2455,17 @@ fetch('/data/videos.json')
   .then(res => res.json())
   .then(data => {
     const video = data[0]; // Only show first video
-
     const container = document.getElementById("right-column-2");
 
-
+    // Create outer headline block
     const videoBlock = document.createElement("div");
-    videoBlock.className = "video-block";
+    videoBlock.className = "headline-block";
     videoBlock.style.marginBottom = "20px";
 
+    // --- Embedded Video ---
     const iframeWrapper = document.createElement("div");
     iframeWrapper.style.position = 'relative';
-    iframeWrapper.style.paddingBottom = '56.25%'; // 16:9
+    iframeWrapper.style.paddingBottom = '56.25%'; // 16:9 aspect ratio
     iframeWrapper.style.height = '0';
     iframeWrapper.style.overflow = 'hidden';
     iframeWrapper.style.width = '100%';
@@ -2484,34 +2484,34 @@ fetch('/data/videos.json')
     iframeWrapper.appendChild(iframe);
     videoBlock.appendChild(iframeWrapper);
 
-    // Optional meta
-   // Styled to match headlines
-const titleLink = document.createElement("a");
-titleLink.href = "#"; // You can link to the full video page here
-titleLink.textContent = video.title;
-titleLink.className = "headline-link";
+    // --- Video Title (styled like .headline-block a) ---
+    const titleLink = document.createElement("a");
+    titleLink.href = video.link || "#";
+    titleLink.textContent = video.title;
+    titleLink.className = "headline-link";
 
-const meta = document.createElement("div");
-meta.className = "headline-date";
-const dateObj = new Date(video.date);
-meta.textContent = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${String(dateObj.getFullYear()).slice(2)} – ${video.author}`;
+    // --- Date + Author line (styled like .headline-meta) ---
+    const meta = document.createElement("div");
+    meta.className = "headline-meta";
+    const dateObj = new Date(video.date);
+    meta.textContent = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${String(dateObj.getFullYear()).slice(2)} – ${video.author}`;
 
-const desc = document.createElement("p");
-desc.textContent = video.description;
-desc.className = "headline-description";
+    // --- Description (already styled similarly) ---
+    const desc = document.createElement("p");
+    desc.textContent = video.description;
+    desc.className = "headline-description";
 
-videoBlock.appendChild(titleLink);
-videoBlock.appendChild(meta);
-videoBlock.appendChild(desc);
+    videoBlock.appendChild(titleLink);
+    videoBlock.appendChild(meta);
+    videoBlock.appendChild(desc);
 
-
-    // ⬅ Insert at the TOP of right-column-1
-    container.prepend(videoBlock);
+    container.insertBefore(videoBlock, container.firstChild);
   })
   .catch(err => {
     console.error("Failed to load video:", err);
   });
 </script>
+
 
 
 
