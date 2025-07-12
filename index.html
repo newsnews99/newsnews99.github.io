@@ -1716,6 +1716,21 @@ max-width: 1248px;
 .headline-block {
   margin-bottom: 20px;
 }
+
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker-scroll var(--ticker-duration) linear infinite;
+  will-change: transform;
+}
+.ticker-inner {
+  height: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+  
 </style>
 
 
@@ -1936,14 +1951,13 @@ max-width: 1248px;
   // Prepare ticker container
   // Prepare ticker container
 const track = document.getElementById('ticker-track');
-track.innerHTML = '';
+track.innerHTML = ''; // Clear previous content
 
-// Build ticker group
+// Build the ticker group
 function createTickerGroup(extras, headlines) {
   const grp = document.createElement('div');
   grp.className = 'ticker-group';
 
-  // Add extras first
   extras.forEach(item => {
     const sep = document.createElement('div');
     sep.className = 'ticker-separator';
@@ -1959,7 +1973,6 @@ function createTickerGroup(extras, headlines) {
     grp.appendChild(span);
   });
 
-  // Add headlines
   headlines.forEach(item => {
     const sep = document.createElement('div');
     sep.className = 'ticker-separator';
@@ -1977,31 +1990,31 @@ function createTickerGroup(extras, headlines) {
 
   return grp;
 }
+
+// Create and append 2 copies (1 real, 1 clone)
 const group = createTickerGroup(extras, recent.slice(0, 10));
 const groupClone = group.cloneNode(true);
 
-// Append both for seamless loop
 track.appendChild(group);
-track.appendChild(group.cloneNode(true));
-track.appendChild(group.cloneNode(true));
-track.appendChild(group.cloneNode(true));
-track.appendChild(group.cloneNode(true));
+track.appendChild(groupClone);
 
+// Defer animation until layout is stable
+requestAnimationFrame(() => {
+  // Get actual scroll width AFTER layout update
+  const dist = track.scrollWidth / 2;
+  const speedPxPerSec = 30;
+  const durationSec = dist / speedPxPerSec;
 
+  // Apply CSS vars
+  document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
+  document.documentElement.style.setProperty('--ticker-duration', durationSec + 's');
 
-// Measure the width of ONE group
-const dist = track.scrollWidth / 2;
+  // Restart animation
+  track.style.animation = 'none';
+  void track.offsetWidth; // force reflow
+  track.style.animation = '';
+});
 
-
-// Adjust speed (pixels per second)
-const speedPxPerSec = 30; // Change to 20 or 40 to tweak speed
-
-// Compute duration
-const durationSec = dist / speedPxPerSec;
-
-// Set CSS variables
-document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
-document.documentElement.style.setProperty('--ticker-duration', durationSec + 's');
 
 
   // ====================
