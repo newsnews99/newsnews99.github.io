@@ -2003,7 +2003,7 @@ function createTickerGroup(extras, headlines) {
 }
 
 // Create and append 2 copies (1 real, 1 clone)
-const group = createTickerGroup(extras, recent.slice(0, 10));
+const group = createTickerGroup(extras, recent.slice(0, 9);
 const groupClone = group.cloneNode(true);
 
 track.appendChild(group);
@@ -2039,7 +2039,7 @@ const homepageArticles = recent.slice(0, homepageLimit);
 
 const col1Headlines = homepageArticles.slice(0, 3);
 const col2Headlines = homepageArticles.slice(3, 6);
-const col3Headlines = homepageArticles.slice(6, 10);
+const col3Headlines = homepageArticles.slice(6, 9);
 
 
   function formatDateAEST(dateStr) {
@@ -2306,7 +2306,7 @@ document.getElementById("search-form").addEventListener("submit", async function
   }
 
   // Create date filter
-  const uniqueDates = [...new Set(filtered.map(item => item.date.slice(0,10)))];
+  const uniqueDates = [...new Set(filtered.map(item => item.date.slice(0,9)))];
   if (uniqueDates.length > 1) {
     const select = document.createElement("select");
     select.innerHTML = `<option value="">Filter by date</option>` +
@@ -2363,7 +2363,7 @@ document.getElementById("search-form").addEventListener("submit", async function
       const meta = document.createElement("div");
       meta.style.fontSize = "12px";
       meta.style.color = "#aaa";
-      meta.textContent = `Published: ${item.date.slice(0,10)}${item.author ? " — " + item.author : ""}`;
+      meta.textContent = `Published: ${item.date.slice(0,9}${item.author ? " — " + item.author : ""}`;
 
       wrapper.appendChild(titleLink);
       wrapper.appendChild(desc);
