@@ -2456,22 +2456,17 @@ fetch('/data/videos.json')
   .then(data => {
     const container = document.getElementById("right-column-2");
 
-    // Show 3 most recent videos (sorted by date if needed)
-    const videosToShow = data.slice(0, 3);
-
-    // Add in reverse order so that first video ends up on top
-    videosToShow.reverse().forEach(video => {
+    data.slice(0, 3).forEach(video => {
       const videoBlock = document.createElement("div");
       videoBlock.className = "headline-block";
-      videoBlock.style.marginBottom = "20px";
+      videoBlock.style.marginBottom = "8px";
 
       const iframeWrapper = document.createElement("div");
       iframeWrapper.style.position = 'relative';
-      iframeWrapper.style.paddingBottom = '56.25%';
+      iframeWrapper.style.paddingBottom = '56.25%'; // 16:9
       iframeWrapper.style.height = '0';
       iframeWrapper.style.overflow = 'hidden';
       iframeWrapper.style.width = '100%';
-      iframeWrapper.style.marginBottom = '8px';
 
       const iframe = document.createElement("iframe");
       iframe.src = video.video_url;
@@ -2487,12 +2482,15 @@ fetch('/data/videos.json')
       iframeWrapper.appendChild(iframe);
       videoBlock.appendChild(iframeWrapper);
 
+      const textWrapper = document.createElement("div");
+      textWrapper.style.textAlign = "left";
+
       const titleLink = document.createElement("a");
       titleLink.href = video.link || "#";
       titleLink.textContent = video.title;
       titleLink.className = "headline-link";
-      titleLink.style.display = "block";
       titleLink.style.marginBottom = "4px";
+      titleLink.style.display = "block";
 
       const meta = document.createElement("div");
       meta.className = "headline-meta";
@@ -2503,23 +2501,19 @@ fetch('/data/videos.json')
       desc.textContent = video.description;
       desc.className = "headline-description";
 
-      const textWrapper = document.createElement("div");
-      textWrapper.style.textAlign = "left";
-
       textWrapper.appendChild(titleLink);
       textWrapper.appendChild(meta);
       textWrapper.appendChild(desc);
 
       videoBlock.appendChild(textWrapper);
-
-      // Insert each video at the top in reverse order
-      container.insertBefore(videoBlock, container.firstChild);
+      container.appendChild(videoBlock); // append to bottom of right-column-2
     });
   })
   .catch(err => {
-    console.error("Failed to load video:", err);
+    console.error("Failed to load videos:", err);
   });
 </script>
+
 
 
 
