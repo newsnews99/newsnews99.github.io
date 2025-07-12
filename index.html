@@ -1848,7 +1848,18 @@ a:hover {
     </form>
   </div>
 </div>
-
+<div class="footer-social">
+        <div class="social-icons">
+    <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
+    <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
+    <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
+    <a href="https://fedsun.news/feed.xml" target="_blank"><img src="icon_rss.png" alt="RSS"></a>
+    <a href="https://t.me/federationsun" target="_blank"><img src="icon_telegram.png" alt="Telegram"></a>
+    <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
+    <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
+  </div>
+      </div>
+      <div class="footer-contact">Contact: editor@fedsun.news</div>
 
        
       </div>
@@ -1877,18 +1888,7 @@ a:hover {
 
     <!-- Center Content -->
     <div class="footer-center">
-      <div class="footer-social">
-        <div class="social-icons">
-    <a href="https://gab.com/federationsun" target="_blank"><img src="icon_gab.png" alt="Gab"></a>
-    <a href="https://www.facebook.com/people/Federation-Sun/61577319796033/" target="_blank"><img src="icon_facebook.png" alt="Facebook"></a>
-    <a href="https://www.instagram.com/fedsun.news/" target="_blank"><img src="icon_instagram.png" alt="Instagram"></a>
-    <a href="https://fedsun.news/feed.xml" target="_blank"><img src="icon_rss.png" alt="RSS"></a>
-    <a href="https://t.me/federationsun" target="_blank"><img src="icon_telegram.png" alt="Telegram"></a>
-    <a href="https://x.com/federationsun" target="_blank"><img src="icon_x.png" alt="X"></a>
-    <a href="https://www.youtube.com/channel/UCe8DBHr28mOCBxtZuxzJ7_A" target="_blank"><img src="icon_youtube.png" alt="YouTube"></a>
-  </div>
-      </div>
-      <div class="footer-contact">Contact: editor@fedsun.news</div>
+      
       <div class="footer-logo">
         <img src="fedsun_logo_hoz.png" alt="Federation Sun Logo" />
         <div>THE FEDERATION SUN © 2025</div>
@@ -2039,7 +2039,7 @@ const homepageArticles = recent.slice(0, homepageLimit);
 
 const col1Headlines = homepageArticles.slice(0, 3);
 const col2Headlines = homepageArticles.slice(3, 6);
-const col3Headlines = homepageArticles.slice(6, 10);
+const col3Headlines = homepageArticles.slice(6, 9);
 
 
   function formatDateAEST(dateStr) {
@@ -2115,7 +2115,7 @@ link.style.fontFamily = "'Oswald', sans-serif";
 
   const archiveLink = document.createElement('a');
   archiveLink.href = 'https://fedsun.news/archive';
-  archiveLink.textContent = 'View All Archived Headlines...';
+  archiveLink.textContent = 'View more...';
   archiveLink.style.color = 'white';
   archiveLink.style.textDecoration = 'none';
   archiveLink.style.fontSize = '18px';
@@ -2127,7 +2127,8 @@ link.style.fontFamily = "'Oswald', sans-serif";
   });
 
   archiveLinkWrapper.appendChild(archiveLink);
-  col3.appendChild(archiveLinkWrapper);
+  document.getElementById('right-column-2').appendChild(archiveLinkWrapper);
+
 
 })
 .catch(e => console.error('Fetch error loading headlines:', e));
