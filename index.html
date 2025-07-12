@@ -2456,17 +2456,20 @@ fetch('/data/videos.json')
   .then(data => {
     const container = document.getElementById("right-column-2");
 
-    data.slice(0, 3).forEach(video => {
+    // Get latest 3 videos and reverse to maintain original order when prepending
+    data.slice(0, 3).reverse().forEach(video => {
       const videoBlock = document.createElement("div");
       videoBlock.className = "headline-block";
       videoBlock.style.marginBottom = "8px";
 
+      // --- Embedded Video ---
       const iframeWrapper = document.createElement("div");
       iframeWrapper.style.position = 'relative';
-      iframeWrapper.style.paddingBottom = '56.25%'; // 16:9
+      iframeWrapper.style.paddingBottom = '56.25%'; // 16:9 aspect ratio
       iframeWrapper.style.height = '0';
       iframeWrapper.style.overflow = 'hidden';
       iframeWrapper.style.width = '100%';
+      iframeWrapper.style.marginBottom = '8px'; // spacing below video
 
       const iframe = document.createElement("iframe");
       iframe.src = video.video_url;
@@ -2482,6 +2485,7 @@ fetch('/data/videos.json')
       iframeWrapper.appendChild(iframe);
       videoBlock.appendChild(iframeWrapper);
 
+      // --- Text Content ---
       const textWrapper = document.createElement("div");
       textWrapper.style.textAlign = "left";
 
@@ -2489,8 +2493,8 @@ fetch('/data/videos.json')
       titleLink.href = video.link || "#";
       titleLink.textContent = video.title;
       titleLink.className = "headline-link";
-      titleLink.style.marginBottom = "4px";
       titleLink.style.display = "block";
+      titleLink.style.marginBottom = "4px";
 
       const meta = document.createElement("div");
       meta.className = "headline-meta";
@@ -2506,13 +2510,16 @@ fetch('/data/videos.json')
       textWrapper.appendChild(desc);
 
       videoBlock.appendChild(textWrapper);
-      container.prepend(videoBlock); // append to bottom of right-column-2
+
+      // Prepend to top of right column
+      container.prepend(videoBlock);
     });
   })
   .catch(err => {
     console.error("Failed to load videos:", err);
   });
 </script>
+
 
 
 
