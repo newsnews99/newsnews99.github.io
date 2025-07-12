@@ -2506,7 +2506,7 @@ fetch('/data/videos.json')
       textWrapper.appendChild(desc);
 
       videoBlock.appendChild(textWrapper);
-      container.appendChild(videoBlock); // append to bottom of right-column-2
+      container.prepend(videoBlock); // append to bottom of right-column-2
     });
   })
   .catch(err => {
