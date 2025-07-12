@@ -2500,6 +2500,8 @@ fetch('/data/videos.json')
       const desc = document.createElement("p");
       desc.textContent = video.description;
       desc.className = "headline-description";
+desc.style.marginBottom = "0";
+
 
       textWrapper.appendChild(titleLink);
       textWrapper.appendChild(meta);
