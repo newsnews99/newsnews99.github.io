@@ -2454,77 +2454,70 @@ window.addEventListener("scroll", function() {
 fetch('/data/videos.json')
   .then(res => res.json())
   .then(data => {
-    const video = data[0]; // Only show first video
     const container = document.getElementById("right-column-2");
 
-    // Create outer headline block
-    const videoBlock = document.createElement("div");
-    videoBlock.className = "headline-block";
-    videoBlock.style.marginBottom = "20px";
+    // Limit to first 3 videos
+    const videosToShow = data.slice(0, 3);
 
+    videosToShow.forEach(video => {
+      const videoBlock = document.createElement("div");
+      videoBlock.className = "headline-block";
+      videoBlock.style.marginBottom = "20px";
 
-    // --- Embedded Video ---
-const iframeWrapper = document.createElement("div");
-iframeWrapper.style.position = 'relative';
-iframeWrapper.style.paddingBottom = '56.25%'; // 16:9 aspect ratio
-iframeWrapper.style.height = '0';
-iframeWrapper.style.overflow = 'hidden';
-iframeWrapper.style.width = '100%';
-iframeWrapper.style.marginBottom = '8px'; // ← Add this line
+      const iframeWrapper = document.createElement("div");
+      iframeWrapper.style.position = 'relative';
+      iframeWrapper.style.paddingBottom = '56.25%';
+      iframeWrapper.style.height = '0';
+      iframeWrapper.style.overflow = 'hidden';
+      iframeWrapper.style.width = '100%';
+      iframeWrapper.style.marginBottom = '8px';
 
+      const iframe = document.createElement("iframe");
+      iframe.src = video.video_url;
+      iframe.style.position = 'absolute';
+      iframe.style.top = '0';
+      iframe.style.left = '0';
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = '0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
 
-    const iframe = document.createElement("iframe");
-    iframe.src = video.video_url;
-    iframe.style.position = 'absolute';
-    iframe.style.top = '0';
-    iframe.style.left = '0';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = '0';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
+      iframeWrapper.appendChild(iframe);
+      videoBlock.appendChild(iframeWrapper);
 
-    iframeWrapper.appendChild(iframe);
-    videoBlock.appendChild(iframeWrapper);
+      const titleLink = document.createElement("a");
+      titleLink.href = video.link || "#";
+      titleLink.textContent = video.title;
+      titleLink.className = "headline-link";
+      titleLink.style.display = "block";
+      titleLink.style.marginBottom = "4px";
 
-    // --- Video Title (styled like .headline-block a) ---
-    const titleLink = document.createElement("a");
-    titleLink.href = video.link || "#";
-    titleLink.textContent = video.title;
-    titleLink.className = "headline-link";
-    titleLink.style.display = "block";
-titleLink.style.marginBottom = "4px";
+      const meta = document.createElement("div");
+      meta.className = "headline-meta";
+      const dateObj = new Date(video.date);
+      meta.textContent = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${String(dateObj.getFullYear()).slice(2)} – ${video.author}`;
 
-    
+      const desc = document.createElement("p");
+      desc.textContent = video.description;
+      desc.className = "headline-description";
 
+      const textWrapper = document.createElement("div");
+      textWrapper.style.textAlign = "left";
 
-    // --- Date + Author line (styled like .headline-meta) ---
-    const meta = document.createElement("div");
-    meta.className = "headline-meta";
-    const dateObj = new Date(video.date);
-    meta.textContent = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${String(dateObj.getFullYear()).slice(2)} – ${video.author}`;
+      textWrapper.appendChild(titleLink);
+      textWrapper.appendChild(meta);
+      textWrapper.appendChild(desc);
 
-    // --- Description (already styled similarly) ---
-    const desc = document.createElement("p");
-    desc.textContent = video.description;
-    desc.className = "headline-description";
-
-   const textWrapper = document.createElement("div");
-textWrapper.style.textAlign = "left";
-
-textWrapper.appendChild(titleLink);
-textWrapper.appendChild(meta);
-textWrapper.appendChild(desc);
-
-videoBlock.appendChild(textWrapper);
-
-
-    container.insertBefore(videoBlock, container.firstChild);
+      videoBlock.appendChild(textWrapper);
+      container.appendChild(videoBlock);
+    });
   })
   .catch(err => {
     console.error("Failed to load video:", err);
   });
 </script>
+
 
 
 
