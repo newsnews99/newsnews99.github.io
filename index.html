@@ -1715,33 +1715,6 @@ max-width: 1248px;
   justify-content: space-between;
   align-items: flex-end; /* Align items to the bottom */
 }
-.headline-link {
-  font-family: 'Oswald', sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-  display: block;
-  margin-top: 8px;
-}
-
-.headline-link:hover {
-  text-decoration: underline;
-}
-
-.headline-date {
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-  color: #ccc;
-  margin: 3px 0 3px 0;
-}
-
-.headline-description {
-  font-family: 'Oswald', sans-serif;
-  font-size: 12px;
-  color: white;
-  line-height: 1.2em;
-}
 
 </style>
 
@@ -2513,33 +2486,15 @@ fetch('/data/videos.json')
 
     // Optional meta
    // Styled to match headlines
-const textWrapper = document.createElement("div");
-textWrapper.className = "headline-text-wrapper";
-
-// Headline link
 const titleLink = document.createElement("a");
-titleLink.href = "#";
+titleLink.href = "#"; // You can link to the full video page here
 titleLink.textContent = video.title;
 titleLink.className = "headline-link";
 
-// Date and author
-const dateAuthor = document.createElement("div");
-dateAuthor.className = "headline-date";
+const meta = document.createElement("div");
+meta.className = "headline-date";
 const dateObj = new Date(video.date);
-const formattedDate = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${String(dateObj.getFullYear()).slice(2)}`;
-dateAuthor.textContent = `${formattedDate} – ${video.author}`;
-
-// Description
-const desc = document.createElement("div");
-desc.className = "headline-description";
-desc.textContent = video.description;
-
-// Assemble
-textWrapper.appendChild(titleLink);
-textWrapper.appendChild(dateAuthor);
-textWrapper.appendChild(desc);
-videoBlock.appendChild(textWrapper);
-
+meta.textContent = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${String(dateObj.getFullYear()).slice(2)} – ${video.author}`;
 
 const desc = document.createElement("p");
 desc.textContent = video.description;
