@@ -2268,11 +2268,7 @@ async function loadVoteCounts(votedOption) {
   resultsHtml += '</div>';
 
   container.innerHTML = `<p class="poll-thank-you">Thank you for voting${votedOption ? ' for <b>' + votedOption + '</b>' : ''}!</p>` + resultsHtml;
-// Move the fully rendered poll to right-column-1
-const newParent = document.getElementById("right-column-1");
-if (newParent && container) {
-  newParent.prepend(container);
-}
+
 
 }
 </script>
