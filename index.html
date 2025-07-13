@@ -1829,13 +1829,13 @@ a:hover {
     <!-- RIGHT SIDE -->
     <div class="right-columns">
       <div class="column" id="right-column-1">
-   
+   <div id="poll-container"></div>
         <!-- additional right column content -->
     
             </div>
       <div class="column" id="right-column-2">
         
-       <div id="poll-container"></div>
+       
         <div class="poll-box" id="tips-box">
           </div>
        <div id="tips-section">
@@ -2552,17 +2552,6 @@ desc.style.marginBottom = "0";
   })
   .catch(err => {
     console.error("Failed to load videos:", err);
-  });
-</script>
-
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const poll = document.getElementById("poll-container");
-    const target = document.getElementById("right-column-1");
-    if (poll && target) {
-      target.appendChild(poll); 
-    }
   });
 </script>
 
