@@ -2107,8 +2107,11 @@ link.style.fontFamily = "'Oswald', sans-serif";
   col2Headlines.forEach(item => col2.appendChild(createHeadlineItem(item)));
 
   // Column 3
-  col3.innerHTML = '';
-  col3Headlines.forEach(item => col3.appendChild(createHeadlineItem(item)));
+const pollEl = document.getElementById('poll-container');
+col3.innerHTML = ''; // This clears the column
+col3Headlines.forEach(item => col3.appendChild(createHeadlineItem(item)));
+if (pollEl) col3.appendChild(pollEl); // Move poll to bottom
+
 
   // Archive link
   const archiveLinkWrapper = document.createElement('div');
