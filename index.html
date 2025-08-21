@@ -1740,6 +1740,23 @@ a:hover {
 #more-headlines-list a:hover {
   color: gold !important;
 }
+#right-column-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* pushes last item to bottom */
+  min-height: 100%;
+}
+
+.aus-flag-wrapper {
+  margin-top: auto;   /* ensures it drops to the bottom */
+  text-align: center; /* centers the flag */
+  padding-top: 20px;  /* optional spacing above */
+}
+
+.aus-flag-wrapper img {
+  max-width: 150px;   /* adjust size as you like */
+  height: auto;
+}
 
   
 </style>
@@ -1862,7 +1879,9 @@ a:hover {
       </div>
       <div class="footer-contact">Contact: editor@fedsun.news</div>
 
-       
+       <div class="aus-flag-wrapper">
+    <img src="australian_flag.png" alt="Australian Flag" />
+  </div>
       </div>
     </div>
 
@@ -1882,10 +1901,7 @@ a:hover {
    <div class="footer-wrapper">
   <div class="container footer-bar">
 
-    <!-- Left Flag -->
-    <div class="footer-flag footer-flag-left">
-      <img src="australian_flag.png" alt="Australian Flag" />
-    </div>
+   
 
     <!-- Center Content -->
     <div class="footer-center">
@@ -1896,11 +1912,7 @@ a:hover {
       </div>
     </div>
 
-    <!-- Right Flag -->
-    <div class="footer-flag footer-flag-right">
-      <img src="eureka_flag.png" alt="Eureka Flag" />
-    </div>
-
+  
   </div>
 </div>
 
@@ -2560,3 +2572,4 @@ desc.style.marginBottom = "0";
 
 </body>
 </html>
+
