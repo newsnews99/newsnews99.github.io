@@ -2165,7 +2165,7 @@ if (pollEl) col3.appendChild(pollEl); // Move poll to bottom
 
   const archiveLink = document.createElement('a');
   archiveLink.href = 'https://fedsun.news/archive';
-  archiveLink.textContent = 'View more...';
+  archiveLink.textContent = 'Archive';
   archiveLink.style.color = 'white';
   archiveLink.style.textDecoration = 'none';
   archiveLink.style.fontSize = '18px';
@@ -2177,7 +2177,11 @@ if (pollEl) col3.appendChild(pollEl); // Move poll to bottom
   });
 
   archiveLinkWrapper.appendChild(archiveLink);
-  document.getElementById('right-column-2').appendChild(archiveLinkWrapper);
+  const tipsSection = document.getElementById('tips-section');
+if (tipsSection) {
+  tipsSection.parentNode.insertBefore(archiveLinkWrapper, tipsSection);
+}
+
 
 
 })
@@ -2606,6 +2610,7 @@ desc.style.marginBottom = "0";
 
 </body>
 </html>
+
 
 
 
