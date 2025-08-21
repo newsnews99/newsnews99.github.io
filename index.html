@@ -1793,7 +1793,28 @@ footer .footer-logo img {
   }
 }
 
-  
+  /* Put items in a simple top→bottom flow */
+#right-column-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start !important;  /* was space-between */
+  gap: 16px;                                /* nice spacing */
+}
+
+/* Order: Flag → Tips → Socials → Contact */
+.aus-flag-wrapper { order: 0; margin-top: 0 !important; padding-top: 0; }
+#tips-section      { order: 1; }
+.footer-social     { order: 2; }
+.footer-contact    { order: 3; }
+
+/* Make the flag full column width */
+.aus-flag-wrapper img {
+  width: 100% !important;
+  height: auto;
+  max-width: none;        /* override previous max-width:150px */
+  display: block;
+}
+
 </style>
 
 
@@ -2610,6 +2631,7 @@ desc.style.marginBottom = "0";
 
 </body>
 </html>
+
 
 
 
