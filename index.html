@@ -1814,6 +1814,18 @@ footer .footer-logo img {
   max-width: none;        /* override previous max-width:150px */
   display: block;
 }
+/* Move SOCIALS above TIPS in right column */
+#right-column-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  gap: 16px;
+}
+
+#right-column-2 .footer-social { order: 0 !important; }
+#right-column-2 #tips-section  { order: 1 !important; }
+#right-column-2 .footer-contact{ order: 2; }
+#right-column-2 .aus-flag-wrapper { order: 3; }  
 
 </style>
 
@@ -2631,6 +2643,7 @@ desc.style.marginBottom = "0";
 
 </body>
 </html>
+
 
 
 
