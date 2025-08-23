@@ -8,11 +8,9 @@ on:
       - '.github/workflows/generate-headlines-json.yml'
   workflow_dispatch:
 
-# allow this job to push
 permissions:
   contents: write
 
-# prevent concurrent runs of this same workflow from colliding
 concurrency:
   group: generate-headlines-json-main
   cancel-in-progress: false
@@ -35,14 +33,14 @@ jobs:
       - name: Install dependencies
         run: npm install gray-matter glob
 
-      - name: Generate JSON files
-        run: node scripts/generate-headlines-json.js
-
-      # make sure we’re up-to-date before committing/pushing
+      # ✅ Sync before generating files
       - name: Sync with remote main (rebase)
         run: |
           git fetch origin main
-          git pull --rebase origin main
+          git rebase origin/main
+
+      - name: Generate JSON files
+        run: node scripts/generate-headlines-json.js
 
       - name: Commit and push changes
         run: |
@@ -52,7 +50,6 @@ jobs:
 
           git add data/headlines.json data/archive.json data/main-headline.json || true
 
-          # Skip if nothing changed
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
