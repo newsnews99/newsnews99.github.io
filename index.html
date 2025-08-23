@@ -2185,10 +2185,26 @@ link.style.fontFamily = "'Oswald', sans-serif";
   col2Headlines.forEach(item => col2.appendChild(createHeadlineItem(item)));
 
   // Column 3
+// Column 3 (right-column-1) — put poll between 1st and 2nd headline
 const pollEl = document.getElementById('poll-container');
-col3.innerHTML = ''; // This clears the column
-col3Headlines.forEach(item => col3.appendChild(createHeadlineItem(item)));
-if (pollEl) col3.appendChild(pollEl); // Move poll to bottom
+
+col3.innerHTML = '';
+
+// no headlines → just show the poll
+if (col3Headlines.length === 0) {
+  if (pollEl) col3.appendChild(pollEl);
+} else {
+  col3Headlines.forEach((item, idx) => {
+    const card = createHeadlineItem(item);
+    col3.appendChild(card);
+
+    // insert poll right after the first headline
+    if (idx === 0 && pollEl) {
+      col3.appendChild(pollEl);
+    }
+  });
+}
+
 
 
   // Archive link
@@ -2643,6 +2659,7 @@ desc.style.marginBottom = "0";
 
 </body>
 </html>
+
 
 
 
