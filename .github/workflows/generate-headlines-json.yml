@@ -33,12 +33,13 @@ jobs:
       - name: Install dependencies
         run: npm install gray-matter glob
 
-      # ✅ Sync before generating files
-      - name: Sync with remote main (rebase)
+      # ✅ Sync BEFORE generating JSON
+      - name: Sync with remote main
         run: |
           git fetch origin main
-          git rebase origin/main
+          git reset --hard origin/main
 
+      # Now generate JSON after repo is clean
       - name: Generate JSON files
         run: node scripts/generate-headlines-json.js
 
