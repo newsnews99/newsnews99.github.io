@@ -8,6 +8,15 @@ on:
       - '.github/workflows/generate-headlines-json.yml'
   workflow_dispatch:
 
+# allow this job to push
+permissions:
+  contents: write
+
+# prevent concurrent runs of this same workflow from colliding
+concurrency:
+  group: generate-headlines-json-main
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +24,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # needed for rebase
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -27,10 +38,25 @@ jobs:
       - name: Generate JSON files
         run: node scripts/generate-headlines-json.js
 
+      # make sure we’re up-to-date before committing/pushing
+      - name: Sync with remote main (rebase)
+        run: |
+          git fetch origin main
+          git pull --rebase origin main
+
       - name: Commit and push changes
         run: |
+          set -e
           git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add data/headlines.json data/archive.json data/main-headline.json
+          git config user.email "actions@users.noreply.github.com"
+
+          git add data/headlines.json data/archive.json data/main-headline.json || true
+
+          # Skip if nothing changed
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
           git commit -m "Update headlines and main headline JSON"
-          git push
+          git push origin HEAD:main
