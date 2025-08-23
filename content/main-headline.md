@@ -1,5 +1,5 @@
 ---
-title: Lorem Ipsum Dolor Sit Amet Consectetur Adipiscing Elot
-url: https://x.com/federationsun
-image: /uploads/1st.jpg
+title: March for Australia
+url: https://marchforaustralia.org/
+image: /uploads/ausflag2.jpg
 ---
