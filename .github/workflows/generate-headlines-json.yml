@@ -43,38 +43,25 @@ jobs:
       - name: Generate JSON files
         run: node scripts/generate-headlines-json.js
 
-      # 🔧 Convert .date to Melbourne YYYY-MM-DD (fixes 24/8/25 vs 25/8/25)
-      - name: Normalise dates to Melbourne (YYYY-MM-DD)
+      - name: Normalise dates to YYYY-MM-DD (no timezone)
+        env:
+          TZ: Australia/Melbourne
         run: |
-          node -e "
-            const fs = require('fs');
-            function ymdMel(dt) {
-              if (!dt) return dt;
-              if (/^\\d{4}-\\d{2}-\\d{2}$/.test(dt)) return dt; // already date-only
-              const d = new Date(dt);
-              if (isNaN(d)) return dt;
-              // en-CA yields YYYY-MM-DD; force Melbourne tz
-              const fmt = new Intl.DateTimeFormat('en-CA', {
-                timeZone: 'Australia/Melbourne',
-                year: 'numeric', month: '2-digit', day: '2-digit'
-              });
-              return fmt.format(d);
-            }
-            function fixFile(p) {
-              if (!fs.existsSync(p)) return;
-              const raw = fs.readFileSync(p, 'utf8').trim();
-              if (!raw) return;
-              const data = JSON.parse(raw);
-              if (Array.isArray(data)) {
-                data.forEach(it => { if (it && it.date) it.date = ymdMel(it.date); });
-              } else if (data && typeof data === 'object') {
-                if (data.date) data.date = ymdMel(data.date);
-              }
-              fs.writeFileSync(p, JSON.stringify(data, null, 2));
-            }
-            fixFile('data/headlines.json');
-            fixFile('data/main-headline.json');
-          "
+          fix() {
+            f="$1"
+            [ -f "$f" ] || return 0
+            tmp="$(mktemp)"
+            # If an object has a "date", drop everything after the first 'T'
+            jq 'walk(
+                  if type=="object" and has("date") then
+                    .date |= ( . | tostring | sub("T.*$"; "") )
+                  else .
+                  end
+                )' "$f" > "$tmp"
+            mv "$tmp" "$f"
+          }
+          fix data/headlines.json
+          fix data/main-headline.json
 
       - name: Commit and push changes
         run: |
