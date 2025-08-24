@@ -1,3 +1,0 @@
----
-text: Nationwide rallies on 31 August, 12–2pm, calling for an end to mass immigration
----
