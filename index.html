@@ -2123,13 +2123,13 @@ const col3Headlines = homepageArticles.slice(6, 9);
 
 
   function formatDateAEST(dateStr) {
-  // If it's a date-only value like "2025-08-24", don't create a Date at all.
+  if (!dateStr) return '';
+  // If it's already date-only, don't create a Date (avoids timezone shifts)
   if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
     const [y, m, d] = dateStr.split('-').map(Number);
-    return `${d}/${m}/${String(y).slice(-2)}`; // 24/8/25
+    return `${d}/${m}/${String(y).slice(-2)}`;
   }
-
-  // Otherwise, format the timestamp explicitly in Australia/Melbourne
+  // Otherwise format explicitly in Melbourne time
   const opts = { timeZone: 'Australia/Melbourne', day: 'numeric', month: 'numeric', year: '2-digit' };
   return new Intl.DateTimeFormat('en-AU', opts).format(new Date(dateStr));
 }
@@ -2664,6 +2664,7 @@ desc.style.marginBottom = "0";
 
 </body>
 </html>
+
 
 
 
