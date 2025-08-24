@@ -1897,6 +1897,27 @@ footer .footer-logo img {
 .article-body ul ul  { list-style: circle;  margin-left: 1rem; }
 .article-body ol ol  { list-style: lower-alpha; margin-left: 1rem; }
 
+
+/* Tighten spacing above the hero image */
+.article-wrapper { padding: 8px 16px 16px; }   /* was 16px all sides */
+.article-hero    { margin: 0 auto 8px; }       /* was 12px auto 8px */
+
+  /* Article-only: make H2 and links gold */
+.article-body h2 {
+  color: gold;
+}
+
+.article-body a {
+  color: gold;
+  text-decoration: none;   /* keep your no-underline look */
+}
+
+.article-body a:hover,
+.article-body a:focus {
+  color: gold;             /* stays gold on hover */
+  text-decoration: underline; /* or remove this line if you want no underline on hover */
+}
+
   
 </style>
 </head>
