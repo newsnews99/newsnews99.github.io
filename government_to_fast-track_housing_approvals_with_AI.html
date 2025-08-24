@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Article — Federation Sun 2025</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap" rel="stylesheet">
+
+<style>
+/* ====== BASE FROM HOMEPAGE (kept to match exact look) ====== */
+html, body {
+  margin: 0;
+  font-family: 'Oswald', sans-serif;
+  background: #1e1e1e;
+  color: white;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+}
+img { max-width: 100%; height: auto; display: block; }
+.container { width: 100%; max-width: 1248px; margin: 0 auto; }
+
+/* Header (exactly as homepage) */
+.banner { position: static; top: 0; left: 0; right: 0; background: #1e1e1e; z-index: 1000; transition: all 1.0s ease; }
+.banner.collapsed { height: 0; opacity: 0; overflow: hidden; padding: 0; }
+.banner-content { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; max-width: 1248px; margin: 0 auto; padding: 8px 0 0; box-sizing: border-box; }
+.banner-date { width: 100%; text-align: center; font-size: 12px; font-family: 'Roboto', sans-serif; color: white; padding-top: 0px; padding-bottom: 0px; }
+.header-logo { padding: 14px 0 0px; display: flex; justify-content: center; align-items: flex-end; width: 100%; }
+.header-logo a { display: inline-block; line-height: 0; text-transform: none; }
+.header-logo img { display: block; height: 53px; width: auto; }
+
+.header-fixed { position: fixed; top: 0; left: 0; right: 0; z-index: 999; background: #1e1e1e; box-shadow: 0 2px 4px rgba(0,0,0,0.4); }
+.header-top-combined { display: flex; justify-content: space-between; align-items: center; gap: 16px; width: 100%; max-width: 1248px; margin: 0 auto; padding: 12px 16px; box-sizing: border-box; background: #1e1e1e; }
+.header-time { padding: 0px 0; font-family: 'Roboto', sans-serif; font-size: 16px; color: white; flex: 0 0 auto; }
+
+/* Search */
+.search-wrapper { display: flex; align-items: center; gap: 0px; transition: all 0.3s ease; height: auto; padding: 0; }
+.search-wrapper button { background: none; border: none; cursor: pointer; display: flex; align-items: center; padding: 0; flex: 0 0 auto; width: 16px; height: 16px; justify-content: center; }
+.search-wrapper img { height: 16px; width: 16px; display: block; }
+#search-container { position: relative; display: none; flex-direction: column; max-width: 1248px; margin: 0 auto; width: 100%; padding: 0 16px; box-sizing: border-box; }
+#search-close { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 16px 0px; line-height: 1; transition: color 0.2s ease; margin-left: auto; }
+#search-close:hover { color: gold; }
+#search-form { height: auto; padding: 0; margin: 0; display: none; align-items: center; }
+#search-form.active { display: flex; }
+#search-input { height: 16px; line-height: 16px; font-size: 11px; padding: 0 4px; border: none; box-sizing: border-box; margin-right: 5px; }
+
+/* Ticker */
+.ticker-inner { width: 100%; background: #1e1e1e; display: flex; align-items: center; height: 16px; overflow: hidden; border-left: 1px solid #444; border-right: 1px solid #444; }
+.ticker-track { display: flex; flex-wrap: nowrap; white-space: nowrap; will-change: transform; animation: ticker-scroll var(--ticker-duration) linear infinite; }
+@keyframes ticker-scroll { 0% { transform: translateX(0);} 100% { transform: translateX(calc(-1 * var(--ticker-distance))); } }
+.ticker-inner:hover .ticker-track { animation-play-state: paused; }
+.ticker-group { display: flex; align-items: center; flex: 0 0 auto; white-space: nowrap; margin-right: 50px; }
+.ticker-group > * { margin-right: 20px; }
+.ticker-separator { display: inline-flex; align-items: center; justify-content: center; padding: 0 0px; flex: 0 0 auto; }
+.ticker-separator img { height: 16px; width: auto; display: block; }
+.ticker-group a, .ticker-extra { font-family: 'Oswald', sans-serif; font-size: 16px; color: white; text-transform: uppercase; text-decoration: none; }
+.ticker-group a:hover, .ticker-extra:hover { color: gold; }
+
+/* Sun icon appears when banner is collapsed */
+.sun-link { display: none; }
+.banner.collapsed ~ .header-top-combined .sun-link { display: inline-flex; }
+
+/* Footer (exactly as current homepage footer) */
+.footer-wrapper { width: 100%; background: #1e1e1e; padding-top: 0px; max-width: 1248px; }
+footer .footer-bar { display: flex; justify-content: center !important; align-items: center !important; gap: 10px; max-width: 1248px; width: 100%; margin: 0 auto; padding: 20px 15px; box-sizing: border-box; }
+.footer-center { flex: 0 1 auto; text-align: center; margin: 0 auto; }
+.footer-logo { display: flex; flex-direction: column; align-items: center; }
+.footer-logo img { display: block; margin: 0 auto 6px; height: 53px; width: auto; }
+
+/* Typography parity */
+.banner, .banner a, .banner .icons-subsection { text-transform: uppercase; font-family: 'Oswald', sans-serif; }
+.footer-wrapper, .footer-wrapper * { text-transform: uppercase; font-family: 'Oswald', sans-serif; }
+
+/* Global links hover gold */
+a:hover { color: gold !important; }
+
+/* ====== ARTICLE-SPECIFIC LAYOUT (adds on top) ====== */
+#header-spacer { height: 0; }
+.article-wrapper { width: 100%; max-width: 1248px; margin: 0 auto; padding: 16px; box-sizing: border-box; }
+.article-hero { width: 100%; max-width: 100%; margin: 12px auto 8px; }
+.article-image { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.article-content { max-width: 900px; margin: 0 auto; text-align: left; }
+.article-headline { font-family: 'Oswald', sans-serif; font-size: 36px; line-height: 1.1; margin: 16px 0 8px; color: white; text-transform: uppercase; text-align: left; }
+.article-meta { font-family: 'Roboto', sans-serif; font-size: 16px; color: #ccc; margin-bottom: 16px; text-align: left; }
+.article-body { font-family: 'Roboto', sans-serif; font-size: 18px; line-height: 1.6; color: white; text-transform: none; text-align: justify; hyphens: auto; }
+.article-body p { margin: 0 0 16px 0; }
+.article-body a { color: white; text-decoration: none; }
+.article-backlink { text-align: center; margin: 28px 0 42px; }
+.article-backlink a { font-family: 'Oswald', sans-serif; font-size: 16px; text-decoration: none; color: white; }
+
+@media (max-width: 768px) {
+  .header-time { display: none; }
+  .banner-date { display: none; }
+  .article-content { max-width: 100%; }
+  .article-headline { font-size: 28px; }
+}
+
+/* Subheading / standfirst under H1 */
+.article-standfirst {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #ccc;
+  margin: 8px 0 16px 0;
+  text-transform: none;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Optional: section heads inside the article body */
+.article-body h2,
+.article-body h3 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  color: white;
+  line-height: 1.2;
+  margin: 24px 0 8px;
+}
+
+.article-body h2 { font-size: 26px; }
+.article-body h3 { font-size: 22px; }
+
+/* Bulleted & numbered lists inside the article */
+.article-body ul,
+.article-body ol {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: white;
+  text-transform: none;         /* keep normal case */
+  text-align: left;             /* avoid weird justification gaps */
+  margin: 0 0 16px 1.25rem;     /* space around list */
+  padding-left: 1.25rem;        /* indent bullets */
+}
+
+.article-body ul { list-style: disc outside; }
+.article-body ol { list-style: decimal outside; }
+
+.article-body li { margin: 6px 0; }
+
+/* Optional: brand accent on the bullet/number */
+.article-body li::marker { color: gold; }
+
+/* Nested lists */
+.article-body ul ul  { list-style: circle;  margin-left: 1rem; }
+.article-body ol ol  { list-style: lower-alpha; margin-left: 1rem; }
+
+  
+</style>
+</head>
+
+<body>
+  <!-- ===== Header (exact markup as homepage) ===== -->
+  <div class="header-fixed">
+    <div class="banner">
+      <div class="banner-content">
+        <div class="banner-date">
+          <span id="top-time-line">Mon, 07 Jul 2025</span>
+        </div>
+        <div class="header-logo">
+          <a href="https://fedsun.news">
+            <img src="fedsun_logo_hoz.png" alt="Logo" class="logo" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-top-combined">
+      <a href="https://fedsun.news/" class="sun-link">
+        <img src="sun.png" alt="Home" class="sun-icon" />
+      </a>
+
+      <div class="ticker-inner" id="ticker-inner">
+        <div class="ticker-track" id="ticker-track">Loading headlines…</div>
+      </div>
+
+      <div class="search-wrapper">
+        <form id="search-form" autocomplete="off">
+          <input type="text" id="search-input" placeholder="Search fedsun.news...">
+        </form>
+        <button id="search-toggle" aria-label="Search">
+          <img src="icon_search.png" alt="Search Icon">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="header-spacer"></div>
+
+  <!-- ===== Search results tray (same as homepage) ===== -->
+  <div class="container">
+    <div id="search-container">
+      <button id="search-close" aria-label="Close Search Results">✕</button>
+      <div id="search-filters"></div>
+      <div id="search-results"></div>
+      <div id="search-pagination"></div>
+    </div>
+  </div>
+
+  <!-- ===== ARTICLE BODY ===== -->
+  <main class="article-wrapper">
+    <article class="article-content" itemscope itemtype="https://schema.org/NewsArticle">
+      <!-- 16:9 hero image at the top -->
+      <div class="article-hero">
+        <img id="article-image" class="article-image" src="/aiconstruction.png" alt="ARTICLE IMAGE ALT" itemprop="image" />
+      </div>
+
+      <!-- Headline -->
+      <h1 class="article-headline" itemprop="headline">Government to fast-track housing approvals with AI</h1>
+
+      <!-- Meta (date/author) -->
+      <div class="article-meta" id="article-meta" itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <span class="meta-date" id="article-date" itemprop="datePublished">24/08/25</span>
+        <span> — </span>
+        <span itemprop="name">The Federation Sun</span>
+      </div>
+
+      <!-- Body copy -->
+      <div class="article-body" itemprop="articleBody">
+        
+        <p>The <a href="https://www.theguardian.com/australia-news/2025/aug/23/we-want-builders-on-site-not-filling-in-forms-albanese-government-cuts-red-tape-in-bid-to-boost-home-building">Albanese government</a> will pause most changes to the National Construction Code (NCC) until 2029 and lean on artificial intelligence to speed up planning and environmental approvals - moves it says will get builders "on site, not filling in forms."</p>
+        
+        <p>Housing Minister <a href="https://www.abc.net.au/news/2025-06-07/clare-oneil-interview-housing-red-tape-construction/105386844">Clare O'Neil</a> has framed the package as a red-tape blitz to clear bottlenecks in a system she says has become "uneconomic" for building. The plan includes a new Environment Department "<a href="https://www.theguardian.com/australia-news/2025/aug/23/we-want-builders-on-site-not-filling-in-forms-albanese-government-cuts-red-tape-in-bid-to-boost-home-building">strike team</a>" to triage stalled projects and fast-track approvals for tens of thousands of homes. It will also scope the use of AI to help people navigate the 2,000-page NCC and automate routine checks.</p>
+        
+        <p>Yet even as Canberra sells AI as a shortcut, the leaked Treasury brief that foreshadowed these steps also admitted the real jam: a backlog of about 30,000 homes in the federal environmental pipeline. That same advice floated a "<a href="https://www.abc.net.au/news/2025-08-14/leaked-treasury-advice-outcomes-productivity-round-table/105648510">National AI Plan</a>" to push approvals faster - an approach that alarms people who don't want algorithms picking winners in their suburbs.</p>
+        
+         <h2>A freeze that divides the industry</h2>
+        
+  <p>Master Builders backs a pause to let industry catch up. "Our ask is that you pause it for residential, you review the whole document and we ensure that there is a level of consistency," chief executive <a href="https://www.abc.net.au/news/2025-08-14/leaked-treasury-advice-outcomes-productivity-round-table/105648510">Denita Wawn</a> told the ABC.</p>
+
+        <p>Others aren't convinced. Engineers Australia warned a long freeze risks locking in lower-quality, less resilient homes just as we try to lift supply. "Without a forward-looking, nationally consistent code that supports innovation and ensures quality, Australia risks falling short of its housing targets," CEO <a href="https://www.engineersaustralia.org.au/news-and-media/2025/08/engineers-australia-warns-against-ncc-freeze-calls-smarter-reform-boost">Romilly Madew</a> said this week.</p>
+
+        <p>Even Labor voices are wary. Former industry minister <a href="https://www.thesenior.com.au/story/9045162/red-tape-on-chopping-block-in-bid-to-build-homes-faster/">Ed Husic</a> said pausing the code risks "repeating the bad mistakes of the Coalition."</p>
+
+        
+<h2>AI in approvals: speed vs control</h2>
+
+        <p>AI can help surface rules, flag missing documents, and cut duplicate steps. But it also concentrates power in black-box software. The <a href="https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/guidance-on-privacy-and-the-use-of-commercially-available-ai-products">Office of the Australian Information Commissioner</a> says public entities using AI must be transparent, limit data collection and keep human oversight—especially where personal information is involved. The <a href="https://www.digital.gov.au/policy/ai/transparency-statements">Digital Transformation Agency</a> now requires agencies to publish AI transparency statements describing what systems they use and how decisions are made. In plain terms: people affected by an AI-assisted decision should know it, and be able to challenge it.</p>
+
+        <p>The <a href="https://www.ombudsman.gov.au/__data/assets/pdf_file/0025/317437/Automated-Decision-Making-Better-Practice-Guide-March-2025.pdf">Commonwealth Ombudsman</a>'s new guide on automated decision-making goes further: if algorithms are used, agencies must build in human review, explainability, and fairness checks. That's a high bar for any "strike team" working at speed.</p>
+
+        <h2>The immigration headwind the plan barely touches</h2>
+
+
+        <p>Even if AI shaves months off approvals, the demand side keeps climbing. The <a href="https://www.abs.gov.au/statistics/industry/tourism-and-transport/overseas-arrivals-and-departures-australia">ABS</a> reports net overseas migration (NOM) added 446,000 people in 2023-24—down from the 2022-23 record, but still historically high. Migrant arrivals totalled 667,000, with temporary students the largest group at 207,000. Those are real people competing for rental stock today, not paper forecasts.</p>
+
+        <p>On top of that flow, <a href="https://www.homeaffairs.gov.au/research-and-stats/files/student-temporary-grad-program-report-dec-2024.pdf">Home Affairs</a> figures show there were 522,183 student visa holders in Australia as at 31 December 2024, and 183,995 student visas were granted in the first half of 2024-25 alone. Temporary Graduate visa holders stood at 195,304 at the same date. In employer-sponsored migration, grants under the <a href="https://www.homeaffairs.gov.au/research-and-stats/files/student-temporary-grad-program-report-dec-2024.pdf">482/TSS program</a> jumped to 68,200 in 2024-25 (to 30 June), with 119,440 primary visa holders in Australia - a 31 per cent rise year on year. None of this includes visitors or bridging visas.</p>
+
+        <p><a href="https://kpmg.com/xx/en/our-insights/gms-flash-alert/flash-alert-2025-061.html">Treasury</a> says NOM will fall over the next few years (a 2024-25 forecast of about 260,000 was widely cited), but official projections have been revised repeatedly and depend on program settings that still admit large numbers on temporary visas. Forecasts don't pay the rent; arrivals do.</p>
+
+
+        <h2>Will the approvals blitz move the dial?</h2>
+
+        <p>Environment Minister <a href="https://minister.dcceew.gov.au/watt/media-releases/high-level-roundtable-restarts-environmental-reform-consultation">Murray Watt</a> has begun clearing the decks on nature law reforms and points to quicker project decisions as a productivity fix. But his <a href="https://www.abc.net.au/news/2025-08-20/productivity-summit-housing-environment-approvals-speed-up/105673682">department</a> also concedes the national backlog is substantial and that streamlining under the EPBC Act must still protect the environment - another area where AI triage could collide with community expectations.</p>
+
+
+        <p>The <a href="https://www.abc.net.au/news/2025-08-20/productivity-summit-housing-environment-approvals-speed-up/105673682">government</a> insists safety changes to the code won't be frozen, and that AI will assist, not replace, human decision-makers. Still, critics note <a href="https://www.thenewdaily.com.au/finance/finance-news/2024/10/21/building-code-housing-dutton">Labor attacked a similar Coalition freeze last year</a> as a recipe for "shoddy homes", and worry that a long pause entrenches today's standards while energy bills, heat risk, and defect rates bite households for decades.</p>
+
+
+        <h2>What to watch</h2>
+<ol>
+    <li><b>Transparency:</b> Will agencies publish plain-English AI statements for planning tools and give affected residents a human appeal path, as required by DTA policy and privacy guidance?</li>
+    <li><b>Quality vs speed:</b> Does the NCC pause become a crutch, or will ministers use the breathing space to simplify and improve the code, not just shelve updates? Engineers Australia, consumer groups and insurers will press this point.</li>
+    <li><b>Population settings:</b> If student and temporary work flows stay high, approvals alone won't ease rents or prices. The ABS arrival data and Home Affairs visa grants suggest demand will outpace AI-enabled marginal gains.</li>
+  </ol>
+
+         <h2>Bottom line</h2>
+
+<p>Freezing code changes and wiring AI into approvals reads like a quick fix. It may clear some blockages and help small builders navigate rules. But unless Canberra fronts up to the scale of temporary visa intakes and student flows alongside permanent migration—and keeps humans, not algorithms, in charge of local decisions—Australians will see another tech-led promise that doesn't deliver a roof they can afford. The nation that built its suburbs with its own hands wants more than faster forms; it wants homes that are safe, affordable and ours.</p>
+
+        
+
+        
+      </div>
+
+      <!-- Back to home link at the bottom -->
+      <div class="article-backlink">
+        <a href="https://fedsun.news/">&larr; Back to Home</a>
+      </div>
+    </article>
+  </main>
+
+  <!-- ===== Footer (exact markup as homepage) ===== -->
+  <footer>
+    <div class="footer-wrapper">
+      <div class="container footer-bar">
+        <div class="footer-center">
+          <div class="footer-logo">
+            <img src="fedsun_logo_hoz.png" alt="Federation Sun Logo" />
+            <div>THE FEDERATION SUN © 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS (kept minimal; header/ticker/search work like homepage) ===== -->
+  <script>
+    // Date line at top (AEST)
+    function updateTime() {
+      const now = new Date();
+      const dayName = new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Melbourne', weekday: 'long' }).format(now);
+      const day = now.getDate();
+      const month = new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Melbourne', month: 'short' }).format(now);
+      const year = now.getFullYear();
+      const timeLine = document.getElementById('top-time-line');
+      if (timeLine) timeLine.textContent = `${dayName}, ${day} ${month} ${year}`;
+    }
+    updateTime();
+    setInterval(updateTime, 60000);
+
+    // Header spacer so fixed header doesn't overlay content
+    document.addEventListener('DOMContentLoaded', function() {
+      const spacer = document.getElementById('header-spacer');
+      const headerFixed = document.querySelector('.header-fixed');
+      if (headerFixed && spacer) spacer.style.height = headerFixed.offsetHeight + 'px';
+    });
+
+    // Collapse banner on scroll
+    window.addEventListener('scroll', function() {
+      const banner = document.querySelector('.banner');
+      if (!banner) return;
+      if (window.scrollY > 50) banner.classList.add('collapsed');
+      else banner.classList.remove('collapsed');
+    });
+
+    // Search toggle
+    document.getElementById('search-toggle').addEventListener('click', function() {
+      const form = document.getElementById('search-form');
+      form.classList.toggle('active');
+      if (form.classList.contains('active')) {
+        setTimeout(() => document.getElementById('search-input').focus(), 300);
+      }
+    });
+
+    // Search behaviour (same as homepage; searches /data/headlines.json)
+    document.getElementById('search-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const query = document.getElementById('search-input').value.trim().toLowerCase();
+      const resultsContainer = document.getElementById('search-results');
+      const filtersContainer = document.getElementById('search-filters');
+      const paginationContainer = document.getElementById('search-pagination');
+      resultsContainer.innerHTML = '<p>Loading results...</p>';
+      document.getElementById('search-container').style.display = 'block';
+      document.getElementById('search-close').style.display = 'block';
+      filtersContainer.innerHTML = '';
+      paginationContainer.innerHTML = '';
+      const res = await fetch('/data/headlines.json');
+      const headlines = await res.json();
+      let filtered = headlines.filter(item => item.title.toLowerCase().includes(query) || (item.description && item.description.toLowerCase().includes(query)) );
+      if (filtered.length === 0) { resultsContainer.innerHTML = '<p>No results found.</p>'; return; }
+      const uniqueDates = [...new Set(filtered.map(item => item.date.slice(0,10)))];
+      if (uniqueDates.length > 1) {
+        const select = document.createElement('select');
+        select.innerHTML = '<option value="">Filter by date</option>' + uniqueDates.map(d => `<option value="${d}">${d}</option>`).join('');
+        select.addEventListener('change', function() {
+          const date = this.value;
+          if (date) filtered = filtered.filter(i => i.date.startsWith(date));
+          else filtered = headlines.filter(item => item.title.toLowerCase().includes(query) || (item.description && item.description.toLowerCase().includes(query)) );
+          renderPage(1);
+        });
+        filtersContainer.appendChild(select);
+      }
+      const itemsPerPage = 5;
+      function renderPage(page) {
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const pageItems = filtered.slice(start, end);
+        resultsContainer.innerHTML = '';
+        pageItems.forEach(item => {
+          const wrapper = document.createElement('div');
+          wrapper.style.borderBottom = '1px solid #444';
+          wrapper.style.padding = '10px 0';
+          wrapper.style.textAlign = 'left';
+          const titleLink = document.createElement('a');
+          titleLink.href = item.url;
+          titleLink.target = '_blank';
+          titleLink.style.color = 'white';
+          titleLink.style.textDecoration = 'none';
+          titleLink.style.fontFamily = "'Oswald', sans-serif";
+          titleLink.style.fontSize = '20px';
+          titleLink.style.display = 'block';
+          titleLink.style.marginBottom = '4px';
+          const highlightedTitle = item.title.replace(new RegExp(query, 'gi'), match => `<span style="background:gold;color:black;">${match}</span>`);
+          titleLink.innerHTML = highlightedTitle;
+          const desc = document.createElement('div');
+          desc.style.fontSize = '14px';
+          desc.style.color = '#ccc';
+          desc.style.fontFamily = "'Roboto', sans-serif";
+          desc.innerHTML = (item.description || '').replace(new RegExp(query, 'gi'), match => `<span style="background:gold;color:black;">${match}</span>`);
+          const meta = document.createElement('div');
+          meta.style.fontSize = '12px';
+          meta.style.color = '#aaa';
+          meta.textContent = `Published: ${item.date.slice(0,10)}${item.author ? ' — ' + item.author : ''}`;
+          wrapper.appendChild(titleLink); wrapper.appendChild(desc); wrapper.appendChild(meta);
+          resultsContainer.appendChild(wrapper);
+        });
+        const totalPages = Math.ceil(filtered.length / itemsPerPage);
+        paginationContainer.innerHTML = '';
+        if (totalPages > 1) {
+          for (let i=1; i<=totalPages; i++) {
+            const btn = document.createElement('button');
+            btn.textContent = i;
+            btn.style.margin = '0 4px';
+            btn.style.padding = '4px 8px';
+            btn.style.background = '#333';
+            btn.style.color = 'white';
+            btn.style.border = '1px solid #555';
+            btn.style.cursor = 'pointer';
+            if (i === page) btn.style.background = 'gold';
+            btn.addEventListener('click', ()=>renderPage(i));
+            paginationContainer.appendChild(btn);
+          }
+        }
+      }
+      renderPage(1);
+    });
+
+    // Close search pane
+    document.getElementById('search-close').addEventListener('click', function() {
+      document.getElementById('search-filters').innerHTML = '';
+      document.getElementById('search-results').innerHTML = '';
+      document.getElementById('search-pagination').innerHTML = '';
+      document.getElementById('search-container').style.display = 'none';
+      document.getElementById('search-close').style.display = 'none';
+    });
+
+    // Build ticker from headlines + extras (same logic as homepage)
+    Promise.all([
+      fetch('/data/headlines.json?' + new Date().getTime()).then(r => r.json()),
+      fetch('/data/ticker_extra.json?' + new Date().getTime()).then(r => r.json())
+    ])
+    .then(([headlines, extras]) => {
+      const recent = headlines;
+      const track = document.getElementById('ticker-track');
+      track.innerHTML = '';
+      function createTickerGroup(extras, headlines) {
+        const grp = document.createElement('div');
+        grp.className = 'ticker-group';
+        extras.forEach(item => {
+          const sep = document.createElement('div');
+          sep.className = 'ticker-separator';
+          const img = document.createElement('img');
+          img.src = '/flag_au1.png';
+          img.alt = 'AU Flag';
+          sep.appendChild(img); grp.appendChild(sep);
+          const span = document.createElement('span');
+          span.textContent = item.text; span.className = 'ticker-extra';
+          grp.appendChild(span);
+        });
+        headlines.forEach(item => {
+          const sep = document.createElement('div');
+          sep.className = 'ticker-separator';
+          const img = document.createElement('img');
+          img.src = '/flag_au1.png';
+          img.alt = 'AU Flag';
+          sep.appendChild(img); grp.appendChild(sep);
+          const a = document.createElement('a');
+          a.href = item.url; a.textContent = item.title;
+          grp.appendChild(a);
+        });
+        return grp;
+      }
+      const group = createTickerGroup(extras, recent.slice(0, 10));
+      const groupClone = group.cloneNode(true);
+      track.appendChild(group); track.appendChild(groupClone);
+      requestAnimationFrame(() => {
+        const dist = track.scrollWidth / 2;
+        const speedPxPerSec = 30;
+        const durationSec = dist / speedPxPerSec;
+        document.documentElement.style.setProperty('--ticker-distance', dist + 'px');
+        document.documentElement.style.setProperty('--ticker-duration', durationSec + 's');
+        track.style.animation = 'none'; void track.offsetWidth; track.style.animation = '';
+      });
+    })
+    .catch(e => console.error('Ticker load error:', e));
+  </script>
+</body>
+</html>
