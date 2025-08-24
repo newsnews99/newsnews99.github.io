@@ -18,12 +18,14 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TZ: Australia/Melbourne   # ensure date tools default to Melbourne
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # needed for rebase
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -33,28 +35,56 @@ jobs:
       - name: Install dependencies
         run: npm install gray-matter glob
 
-      # ✅ Sync BEFORE generating JSON
       - name: Sync with remote main
         run: |
           git fetch origin main
           git reset --hard origin/main
 
-      # Now generate JSON after repo is clean
       - name: Generate JSON files
         run: node scripts/generate-headlines-json.js
+
+      # 🔧 Convert .date to Melbourne YYYY-MM-DD (fixes 24/8/25 vs 25/8/25)
+      - name: Normalise dates to Melbourne (YYYY-MM-DD)
+        run: |
+          node -e "
+            const fs = require('fs');
+            function ymdMel(dt) {
+              if (!dt) return dt;
+              if (/^\\d{4}-\\d{2}-\\d{2}$/.test(dt)) return dt; // already date-only
+              const d = new Date(dt);
+              if (isNaN(d)) return dt;
+              // en-CA yields YYYY-MM-DD; force Melbourne tz
+              const fmt = new Intl.DateTimeFormat('en-CA', {
+                timeZone: 'Australia/Melbourne',
+                year: 'numeric', month: '2-digit', day: '2-digit'
+              });
+              return fmt.format(d);
+            }
+            function fixFile(p) {
+              if (!fs.existsSync(p)) return;
+              const raw = fs.readFileSync(p, 'utf8').trim();
+              if (!raw) return;
+              const data = JSON.parse(raw);
+              if (Array.isArray(data)) {
+                data.forEach(it => { if (it && it.date) it.date = ymdMel(it.date); });
+              } else if (data && typeof data === 'object') {
+                if (data.date) data.date = ymdMel(data.date);
+              }
+              fs.writeFileSync(p, JSON.stringify(data, null, 2));
+            }
+            fixFile('data/headlines.json');
+            fixFile('data/main-headline.json');
+          "
 
       - name: Commit and push changes
         run: |
           set -e
           git config user.name "GitHub Actions"
           git config user.email "actions@users.noreply.github.com"
-
           git add data/headlines.json data/archive.json data/main-headline.json || true
-
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-
-          git commit -m "Update headlines and main headline JSON"
+          git commit -m "Update headlines and main headline JSON (Melbourne dates)"
           git push origin HEAD:main
